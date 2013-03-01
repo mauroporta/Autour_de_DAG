@@ -315,6 +315,10 @@ In the original work of Quillen \cite{quillen} and in work of Dwyer and Spalinsk
 Let $\mathcal M$ be a model category. Then $\mathcal M^\mathrm{op}$ carries a model category structure in a natural way: weak equivalences in $\mathcal M^\mathrm{op}$ are the same as in $\mathcal M$; fibrations in $\mathcal M^\mathrm{op}$ are the cofibrations of $\mathcal M$, and cofibrations of $\mathcal M^\mathrm{op}$ are the fibrations of $\mathcal M$. The check that this defines a model structure is straightforward and it is left to the reader.
 \end{eg}
 
+\begin{eg} \label{eg model structure overcategories}
+INDUCED MODEL STRUCTURE ON OVERCATEGORIES AND UNDERCATEGORIES
+\end{eg}
+
 \begin{rmk}
 The previous example shows that the theory of model categories is self-dual. It follows that we can apply a duality argument to shorten proofs.
 \end{rmk}
@@ -833,7 +837,49 @@ The category of grupoids will play a central role in these seminars, so we will 
 
 \section{Quillen adjunctions and total derived functors}
 
-\section{Uniqueness of the model structure for $\grpd$}
+\section{Mapping spaces}
+
+\subsection{Informal ideas and motivations}
+
+As we already said, the homotopy category of a model category $\mathcal M$ describes only a small part of the information contained in $\mathcal M$; intuitively, we can say that $\mathrm{Ho}(\mathcal M)$ extracts the 1-homotopical information in $\mathcal M$. There are other invariants (under Quillen equivalence, let's say) which represent an attempt to describe the higher homotopical content of $\mathcal M$. In this section we will concerned with one of them: the mapping spaces.
+
+If one has some familiarity with the language of $(\infty,1)$-categories in the sense of Lurie (cfr. \cite{htt}), he will know that the theory of quasicategories is equivalent in an appropriate sense to the theory of topological categories and to the theory of simplicial categories. In these two last cases, for each pair of objects $X,Y$ we are given, by the very definition, a mapping space
+\[
+\mathrm{Map}_{\mathcal C}(X,Y)
+\]
+which is a topological space or a simplicial set. However, in the language of quasicategories, the existence of such object is not obvious at all. Lurie propose at least three different models for this space; we will choose one of them for sake of clarity (and leave the details of these constructions to successive seminars): if $S$ is a quasicategory and $x,y$ are vertices, define
+\begin{equation} \label{eq lurie mapping space}
+\Hom_{\sset}(\Delta^n, \mathrm{Map}_S(x,y)) := \Hom_{\sset}^{x,y}(\Delta^n \times \Delta^1, S)
+\end{equation}
+where the apex means that we are considering only the maps $f$ such that
+\[
+f |_{\Delta^n \times 0} = x, \qquad f |_{\Delta^n \times 1} = y
+\]
+It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sset$ is defined
+\[
+\mathbf{Hom}(K,S)_n := \Hom_{\sset}(K \times \Delta^n, S)
+\]
+Thus \eqref{eq lurie mapping space} is nothing but the subcomplex of
+\[
+\mathbf{Hom}(\Delta^1,S)
+\]
+spanned by those elements ``starting from $x$'' and ``reaching $y$''.
+
+\subsection{Reedy Categories}
+
+\subsection{(Co)simplicial resolutions}
+
+\subsection{Mapping spaces I}
+
+\subsection{Hammock localization}
+
+\subsection{Mapping spaces II}
+
+\section{Bousfield localization}
+
+\section{Complements to Chapter 1}
+
+\subsection{Uniqueness of the model structure for $\grpd$}
 
 The goal of this section is to provide a proof of the following:\footnote{I learned this theorem from a post of Chris Schommer-Pries which can be found at \url{http://sbseminar.wordpress.com/2012/11/16/the-canonical-model-structure-on-cat/}. In this section I simply adapt the proof given there to the case of grupoids, as suggested by Mike Shulman in his answer.}
 
@@ -907,6 +953,44 @@ Now we are ready to prove the main theorem:
 \begin{proof}[Proof of Theorem \ref{thm uniqueness grpd}]
 Thanks to Corollary \ref{cor uniqueness 3} we only need to prove that every cofibration is a canonical cofibration. Assume this is not the case and choose a grupoid $\mathcal G$ with one object and non-trivial automorphism group. A fibrant replacement for $\mathcal G$ will be gaunt by Lemma \ref{lemma uniqueness 4} and Lemma \ref{lemma uniqueness 5}; but then $\mathcal G$ cannot be equivalent to its fibrant replacement, contradiction. The thesis follows.
 \end{proof}
+
+\subsection{Proper Model Categories}
+
+\begin{defin}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item $\mathcal M$ is said to be left proper if every pushout of  a weak equivalence along a cofibration is a weak equivalence;
+\item $\mathcal M$ is right proper if every pullback of a weak equivalence along a fibration is a weak equivalence;
+\item $\mathcal M$ is proper if it is both left and right proper.
+\end{enumerate}
+\end{defin}
+
+\begin{prop}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item every pushout of a weak equivalence between cofibrant objects along a cofibration is a weak equivalence;
+\item every pullback of a weak equivalence between fibrant objects along a fibration is a weak equivalence.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+The second statement follows from the first by duality. Let's prove this one: let $f \colon A \to B$ be a weak equivalence between cofibrant objects and let $i \colon A \to C$ be a cofibration.
+\end{proof}
+
+\begin{cor}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item if every object of $\mathcal M$ is cofibrant, $\mathcal M$ is left proper;
+\item if every object of $\mathcal M$ is fibrant, $\mathcal M$ is right proper;
+\item if every object of $\mathcal M$ is both fibrant and cofibrant, $\mathcal M$ is proper.
+\end{enumerate}
+\end{cor}
+
+\begin{cor}
+$\sset$ and $\grpd$ are left proper; $\Top$ is right proper.
+\end{cor}
+
+\subsection{Comparison for mapping spaces}
 
 \appendix
 
