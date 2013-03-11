@@ -362,3 +362,291 @@ Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathc
 \end{enumerate}
 The pair $(R,s)$ is called a left (resp. right) deformation retraction from $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. If $\mathbf W = \mathcal C$, we will say that $(R,s)$ is an absolute deformation retraction of $\mathcal C$ to $\mathcal C_0$.
 \end{defin}
+
+
+\begin{lemma} \label{lemma localizing subcategories}
+Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. Let $R \colon \mathcal C \to \mathcal C_0$ be an absolute left deformation retraction. Assume that for every object $C \in \Ob(\mathcal C)$ the map $s_C$ is in $\mathbf W$; if $\mathbf W$ satisfies the 2-out-of-3 then $R$ sends $\mathbf W$ into $\mathbf W \cap \mathcal C_0$. If $\mathcal C_0$ is a full subcategory, then for every $C_0 \in \Ob(\mathcal C_0)$, the map $s_{C_0}$ is in $\mathbf W \cap \mathcal C_0$.
+\end{lemma}
+
+\begin{proof}
+Let $f \colon A \to B$ be an arrow in $\mathbf W$; consider the commutative square
+\[
+\xymatrix{
+R(A) \ar[d]^{R(f)} \ar[r]^{s_A} & A \ar[d]^f \\ R(B) \ar[r]^{s_B} & B
+}
+\]
+Then $f \circ s_A$ and $s_B$ are in $\mathbf W$; the 2-out-of-3 implies that $R(f)$ is in $\mathbf W$. The second statement is trivial, since $s_{C_0} \colon R(C_0) \to C_0$ is an arrow between objects of $\mathcal C_0$.
+\end{proof}
+
+\begin{prop} \label{prop localizing subcategories}
+Let $\mathcal C$ be a category and let $\mathcal C_0, \mathbf W \subset \mathcal C$ be subcategories; write $\mathbf W_0 := \mathcal C_0 \cap \mathbf W$. Let $(R,s)$ be a left (or right) deformation retraction of $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. Let $\mathbb V$ be a Grothendieck universe where the localizations $\mathcal C[\mathbf W^{-1}]$ exist. Then
+\begin{enumerate}
+\item the induced inclusion $\mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$ is an equivalence of categories;
+\item $\mathcal C[\mathbf W^{-1}]$ exists if and only if $\mathcal C_0[\mathbf W_0^{-1}]$ does.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Let $j_0 \colon \mathcal C_0 \to \mathcal C$ be the inclusion functor. The universal property of localization show that both $j_0$ and $R$ define functors $\widetilde{R} \colon \mathcal C[\mathbf W^{-1}] \to \mathcal C_0[\mathbf W_0^{-1}]$ and $\widetilde{\jmath}_0 \colon \mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$. The natural transformation $s \colon j_0 R \to \mathrm{Id}_{\mathcal C}$ define a natural transformation
+\[
+\widetilde{s} \colon \widetilde{\jmath}_0 \circ \widetilde{R} \to \mathrm{Id}_{\mathcal C[\mathbf W^{-1}]}
+\]
+By construction, $\widetilde{s}_C = s_C$. Therefore, $\widetilde{s}$ is a natural isomorphism. Condition 3. in Definition \ref{def localizing subcategories} shows that $s$ restricts to a natural transformation $R j_0 \to \mathrm{Id}_{\mathcal C_0}$. For the same reasons of above, this natural transformation lifts to a natural isomorphism $\widetilde{R} \circ  \widetilde{\jmath}_0 \to \mathrm{Id}_{\mathcal C_0[\mathbf W_0^{-1}]}$. This gives the desired equivalence of categories. The second statement is an obvious consequence of the first.
+\end{proof}
+
+Let now $\mathcal M$ be a model category. Introduce the following notations:
+
+\begin{notation}
+Let $\mathcal M$ be a model category. We will consider the following subcategories:
+\begin{itemize}
+\item $\mathcal M_c$, the full subcategory whose objects are the cofibrant objects of $\mathcal M$;
+\item $\mathcal M_f$, the full subcategory whose objects are the fibrant objects of $\mathcal M$;
+\item $\mathcal M_{cf}$, the full subcategory whose objects are both fibrant and cofibrant objects of $\mathcal M$.
+\end{itemize}
+\end{notation}
+
+Using the factorization axiom {\bfseries MC5} and Lemma \ref{lemma localizing subcategories} it is immediate to prove the following:
+
+\begin{prop} \label{prop reduction step}
+For every model category $\mathcal M$:
+\begin{enumerate}
+\item $\mathcal M_{cf}$ and $\mathcal M_c$ are left deformation retracts of $\mathcal M_f$ and $\mathcal M$ with respect to weak equivalences;
+\item $\mathcal M_{cf}$ and $\mathcal M_f$ are right deformation retracts of $\mathcal M_c$ and $\mathcal M$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+We will show that $\mathcal M_c$ is a left deformation retraction of $\mathcal M$ with respect to weak equivalences. The other statements are similar. Let's fix an initial object $\emptyset$; there exists a functor
+\[
+F \colon \mathcal M \to \mathbf{Arr}(\mathcal M)
+\]
+sending an object $A$ to the (unique) arrow $\emptyset \to A$; this assignment extends easily to arrows, and it is functorial. Introduce next the $(\cofib,\fib \cap W)$-factorization functor
+\[
+G \colon \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M)
+\]
+Finally, denote by $\pi_0$ and $\pi_1$ the projection functors
+\[
+\pi_i \colon \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M)
+\]
+Consider the functor
+\[
+Q := \mathbf d_0 \circ \pi_1 \circ G \circ F \colon \mathcal M \to \mathcal M_c
+\]
+For each object $A \in \Ob(\mathcal M)$ we have an arrow
+\[
+p_A := \pi_1(G(F(A)) \colon Q(A) \to A
+\]
+which is a trivial fibration. It's clear that the family $\{p_A\}_{A \in \Ob(\mathcal M)}$ defines a natural transformation $j_c \circ Q \to \mathrm{Id}_{\mathcal M}$ (here $j_c \colon \mathcal M_c \to \mathcal M$ denotes the natural inclusion). This, together with Lemma \ref{lemma localizing subcategories}, implies that $\mathcal M_c$ is a left deformation retract of $\mathcal M$.
+\end{proof}
+
+Combining Propositions \ref{prop localizing subcategories} and \ref{prop reduction step} it follows that we only need to show the existence of $\mathrm{Ho}(\mathcal M_{cf})$. This will be accomplished in the following paragraph.
+
+\begin{rmk}
+In absence of functorial factorization Proposition \ref{prop reduction step} doesn't need to be true. However, it can be shown that even in that case the localization of a model category exists. For a proof which doesn't make use of the functoriality of factorization, the reader is referred to \cite[Section 4]{dwsp}.
+\end{rmk}
+
+\subsection{Homotopy relations}
+
+To construct the localization of $\mathcal M_{cf}$ with respect to weak equivalences, we will need some machinery.
+
+\begin{defin}
+Let $\mathcal M$ be a model category and let $X \in \Ob(\mathcal M)$ be any object.
+\begin{enumerate}
+
+\item A cylinder object for $X$ is a factorization of the fold map
+\[
+\nabla \colon X \sqcup X \stackrel{i}{\hookrightarrow} X \times I \stackrel{\sim}{\twoheadrightarrow} X
+\]
+in a cofibration followed by a trivial fibration.
+
+\item A path object for $X$ is a factorization of the diagonal map
+\[
+\Delta \colon X \stackrel{\sim}{\hookrightarrow} X^I \twoheadrightarrow X \times X
+\]
+in a trivial cofibration followed by a fibration.
+\end{enumerate}
+\end{defin}
+
+\begin{rmk}
+A functorial cylinder (path) object always exist, thanks to the factorization axiom. However, it is important to remark that a cylinder (path) object is \emph{any} factorization of the fold (diagonal) map.
+\end{rmk}
+
+\begin{notation}
+If $\mathcal M$ is a model category and $X \times I$ is a cylinder object for $X$, we will denote by $\mathrm{in}_k \colon X \to X \times I$ the two arrows making the diagram
+\[
+\xymatrix{ X \ar[d]^{i_0} \ar@/^.5pc/[dr]^{\mathrm{in}_0} \\ X \sqcup X \ar@{^(->}[r] & X \times I \\ X \ar[u]_{i_1} \ar@/_.5pc/[ur]_{\mathrm{in}_1} }
+\]
+commutative. Observe that the 2-out-of-3 axiom implies that $\mathrm{in}_k$ is always a weak equivalence. Similarly, we denote the dual maps for path objects as $\mathrm{pr}_k$.
+\end{notation}
+
+We can use cylinder and path objects to introduce the notion of homotopy between two maps:
+
+\begin{defin}
+Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be two arrows.
+\begin{enumerate}
+\item A left homotopy from $f$ to $g$ is a pair $(A \times I, H)$ where $A \times I$ is a cylinder object for $A$ and $H \colon A \times I \to X$ is a map making the diagram
+\[
+\xymatrix{
+A \ar[d]_{\mathrm{in}_0} \ar@/^.5pc/[dr]^f \\ A \times I \ar[r]^-H & X \\ A \ar[u]^{\mathrm{in}_1} \ar@/_.5pc/[ur]_g
+}
+\]
+commutative. We say that $f$ is left homotopic to $g$ if a left homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{l}{\sim} g$;
+
+\item A right homotopy from $f$ to $g$ is a pair $(X^I, K)$ where $X^I$ is a path object for $X$ and $K \colon A \to X^I$ is a map making the diagram
+\[
+\xymatrix{
+& X \\
+A \ar@/^.5pc/[ur]^f \ar[r]^K \ar@/_.5pc/[dr]_g & X^I \ar[u]_{\mathrm{pr}_0} \ar[d]^{\mathrm{pr}_1} \\ & X
+}
+\]
+commutative. We say that $g$ is right homotopic to $g$ if a right homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{g}{\sim} g$.
+\end{enumerate}
+\end{defin}
+
+\begin{lemma} \label{lemma homotopy category 0}
+If $f \colon A \to B$ is left homotopic to a weak equivalence, then $f$ is a weak equivalence.
+\end{lemma}
+
+\begin{proof}
+Choose a cylinder object $A \times I$ for $A$ and a homotopy $H \colon A \times I \to B$. Since $\mathrm{in}_0, \mathrm{in}_1$ are weak equivalences, and $H \circ \mathrm{in}_1$ is a weak equivalence by hypothesis, it follows from the 2-out-of-3 axiom that $H$ is a weak equivalence. Therefore, $f = K \circ \mathrm{in}_0$ is a weak equivalence too.
+\end{proof}
+
+\begin{lemma} \label{lemma homotopy category 1}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item If $A$ is a cofibrant object, then $\stackrel{l}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $X \in \Ob(\mathcal M)$;
+\item if $X$ is a fibrant object, then $\stackrel{r}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $A \in \Ob(\mathcal M)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{defin}
+Let $\mathcal M$ be a model category. Let $A,X \in \Ob(\mathcal M)$; we denote by $\pi^l(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ under the equivalence relation \emph{generated} by left homotopy. Similarly, we will denote by $\pi^r(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ by the equivalence relation \emph{generated} by right homotopy.
+\end{defin}
+
+\begin{lemma} \label{lemma homotopy category 2}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item If $A$ is cofibrant and $p \colon X \to Y$ is an acyclic fibration or a weak equivalence between fibrant objects, then the map
+\[
+p_* \colon \Hom_{\mathcal M}(A,X) \to \Hom_{\mathcal M}(A,Y)
+\]
+induces a bijection
+\[
+p_* \colon \pi^l(A,X) \to \pi^l(A,Y)
+\]
+\item If $X$ is fibrant and $i \colon A \to B$ is an acyclic cofibration of a weak equivalence between cofibrant objects, then the map
+\[
+i^* \colon \Hom_{\mathcal M}(B,X) \to \Hom_{\mathcal M}(A,X)
+\]
+induces a bijection
+\[
+i^* \colon \pi^r(B,X) \to \pi^r(A,X)
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma} \label{lemma hom homotopy category}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item If $X$ is fibrant then composition in $\mathcal M$ induces a map
+\[
+\pi^l(A',A) \times \pi^l(A,X) \to \pi^l(A',X)
+\]
+\item If $A$ is cofibrant the composition in $\mathcal M$ induces a map
+\[
+\pi^r(A,X) \times \pi^r(A,X') \to \pi^r(A,X')
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma}
+Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be maps.
+\begin{enumerate}
+\item If $A$ is cofibrant and $f \stackrel{l}{\sim} g$, then $f \stackrel{r}{\sim} g$;
+\item if $X$ is fibrant and $f \stackrel{r}{\sim} g$, then $f \stackrel{l}{\sim} g$.
+\end{enumerate}
+\end{lemma}
+
+\begin{notation}
+If $A$ is cofibrant and $X$ is fibrant, previous lemma shows that the two relations $\stackrel{l}{\sim}$ and $\stackrel{r}{\sim}$ on $\Hom_{\mathcal M}(A,X)$ coincide. In this case we will denote both by $\sim$ and we will refer to it as the homotopy equivalence relation.
+\end{notation}
+
+With these notations we have the following:
+
+\begin{cor} \label{cor weak homotopy category}
+The homotopy relation on morphisms of $\mathcal M_{cf}$ is an equivalence relation and it is compatible with composition. Hence the category $\mathcal M_{cf} / \sim$ exists.
+\end{cor}
+
+The following proposition is the key result in our proof of Theorem \ref{thm homotopy localization}. It is the equivalent, in our abstract setting, of Whitehead's Theorem \ref{thm concrete whitehead}.
+
+\begin{prop}
+Let $\mathcal M$ be a model category and let $f \colon A \to X$ be a map between objects which are both fibrant and cofibrant. Then $f$ is a weak equivalence if and only if it is a homotopy equivalence.
+\end{prop}
+
+\begin{proof}[Sketch of the proof.]
+Suppose that $f \colon A \to B$ is a weak equivalence of objects in $\mathcal M_{cf}$. Then Lemma \ref{lemma homotopy category 2} shows that for any other fibrant and cofibrant object $X$ we have an induced bijection
+\[
+f_* \colon \pi(X,A) \to \pi(X,B)
+\]
+For $X = B$ we find $g \colon B \to A$ such that $fg \sim \mathrm{id}_B$; then $fgf \sim f$ and taking $X = A$ we can cancel $f$ obtaining $gf \sim \mathrm{id}_A$. Thus $f$ is a homotopy equivalence.
+
+Conversely, suppose that $f$ is a homotopy equivalence. Factor $f$ as
+\[
+A \xrightarrow{g} C \xrightarrow{p} B
+\]
+with $g$ acyclic cofibration. Since $C$ is fibrant and cofibrant, it follows that $g$ is a homotopy equivalence. Let $f' \colon B \to A$ be a homotopy inverse for $f$ and choose a left homotopy
+\[
+H \colon B \times I \to B
+\]
+from $ff'$ to $1_B$. Since $B$ is cofibrant the map $\mathrm{in}_0 \colon B \to B \times I$ is an acyclic cofibration; therefore we can choose a lifting $H' \colon B \times I \to C$ in the following diagram:
+\[
+\xymatrix{
+B \ar[d]_{\mathrm{in}_0} \ar[r]^{gf'} & C \ar[d]^p \\ B \times I \ar@{.>}[ur]^{H'} \ar[r]_H & B
+}
+\]
+Set
+\[
+q := H' \circ \mathrm{in}_1
+\]
+Then $pq = 1_B$ and $H'$ is a left homotopy from $gf'$ to $q$. If $g'$ is a homotopy inverse for $g$ we get $p \sim pgg' \sim fg'$, i.e.
+\[
+qp \sim (gf') (fg') \sim 1_C
+\]
+Lemma \ref{lemma homotopy category 0} implies now that $qp$ is a weak equivalence. But the diagram
+\[
+\xymatrix{
+C \ar[r]^{1_C} \ar[d]^p & C \ar[r]^{1_C} \ar[d]^{qp} & C \ar[d]^p \\ B \ar[r]^q & C \ar[r]^p & B
+}
+\]
+expresses $p$ as retract of $qp$.
+\end{proof}
+
+\begin{cor} \label{cor homotopy for fibrant cofibrant}
+Let $\mathcal M$ be a model category; the quotient map $\gamma \colon \mathcal M_{cf} \to \mathcal M_{cf} / \sim$ is the localization of $\mathcal M_{cf}$ with respect to weak equivalences.
+\end{cor}
+
+\begin{proof}
+Let $F \colon \mathcal M_{cf} \to \mathcal C$ be a functor sending every weak equivalence to an isomorphism. Let $f,g \colon A \to B$ be homotopic maps. Choose a cylinder object for $A$
+\[
+A \sqcup A \xrightarrow{i} A \times I \xrightarrow{p} A
+\]
+and a (left) homotopy $H \colon A \times I \to B$ from $f$ to $g$. Since $p$ is a weak equivalence $F(p)$ is an isomorphism; therefore:
+\[
+F(p) \circ F(\mathrm{in}_0) = F(p \circ \mathrm{in}_0) = F(p \circ \mathrm{in}_1) F(p) \circ F(\mathrm{in}_1)
+\]
+and thus $F(\mathrm{in}_0) = F(\mathrm{in}_1)$. It follows that
+\[
+F(f) = F(H \mathrm{in}_0) = F(H) F(\mathrm{in}_0) = F(H) F(\mathrm{in}_1) = F(H \circ \mathrm{in_1}) = F(g)
+\]
+The universal property of the quotient therefore produces a unique morphism
+\[
+\overline{F} \colon \mathcal M_{cf} / \sim \to \mathcal C
+\]
+and a unique natural isomorphism $t \colon \overline{F} \circ \gamma \to F$. Universality follows from universal property of the quotient, with considerations similar to the ones above.
+\end{proof}
+
+We are now ready to provide a proof of Theorem \ref{thm homotopy localization}:
+
+\begin{proof}[Proof of Theorem \ref{thm homotopy localization}.]
+With Proposition \ref{prop reduction step} we were reduced to prove that the localization of $\mathcal M_{cf}$ with respect to weak equivalences exists. This is done in Corollary \ref{cor homotopy for fibrant cofibrant}.
+\end{proof}
