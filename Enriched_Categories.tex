@@ -1,0 +1,114 @@
+\chapter{Enriched Category Theory}
+
+This appendix is not meant to prove anything in detail. We will collect here the definitions commonly used in Enriched Category Theory in order to recall them in an easier way. However, we will give appropriate references to every statement.
+
+\section{Monoidal categories}
+
+The reader is referred for example to \cite[Ch. VII]{cwm} for a detailed exposition of the theory of monoidal categories.
+
+\begin{defin}
+A \emph{monoidal category} is a 6-tuple $(\mathcal C, \otimes, I, \alpha, \lambda, \rho)$, where $\mathcal C$ is a category,
+\[
+\otimes \colon \mathcal C \times \mathcal C \to \mathcal C
+\]
+is a bifunctor, $I \in \Ob(\mathcal C)$ is an object of $\mathcal C$ and $\alpha, \lambda, \rho$ are natural isomorphisms:
+\begin{gather*}
+\alpha \colon - \otimes (- \otimes -) \simeq (- \otimes -) \otimes - \\
+\lambda \colon I \otimes - \simeq \mathrm{Id}_{\mathcal C} \\
+\rho \colon - \otimes I \simeq \mathrm{Id}_{\mathcal C}
+\end{gather*}
+making commutative the coherence diagrams
+\[
+\xymatrix{
+A \otimes (B \otimes (C \otimes D)) \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \alpha} \ar[r]^-\alpha & (A \otimes B) \otimes (C \otimes D) \ar[r]^\alpha & ((A \otimes B) \otimes C) \otimes D \\ A \otimes ((B \otimes C) \otimes D) \ar[rr]^\alpha & & (A \otimes (B \otimes C)) \otimes D \ar[u]^{\alpha \otimes \mathrm{Id}_{\mathcal C}}
+}
+\]
+and
+\[
+\xymatrix{
+A \otimes (I \otimes C) \ar[rr]^-\alpha  \ar[dr]_{\mathrm{Id}_{\mathcal C} \otimes \lambda} & & (A \otimes I) \otimes C \ar[dl]^{\rho \otimes \mathrm{Id}_{\mathcal C}} \\ & A \otimes C
+}
+\]
+Finally we require that $\lambda_I = \rho_I \colon I \otimes I \to I$.
+\end{defin}
+
+These conditions imply that a very large class of diagrams will commute in every monoidal category. These diagrams are those that can be obtained by specializing commutative diagrams in the free monoidal category on one generator. For more details, see \cite[Ch. VII.2]{cwm}.
+
+\begin{rmk}
+We will systematically abuse notations and refer to a monoidal category simply as a triple $(\mathcal C, \otimes, I)$, omitting the natural isomorphisms.
+\end{rmk}
+
+\begin{defin}
+A monoidal category $(\mathcal C, \otimes, I)$ is said to by symmetric if it is equipped with natural isomorphisms
+\[
+\gamma_{A,B} \colon A \otimes B \to B \otimes A
+\]
+such that the diagrams
+\begin{gather*}
+\gamma_{A,B} \circ \gamma_{B,A} = \mathrm{Id}_{\mathcal C}, \qquad \rho_B = \lambda_B \gamma_{B,I} \\
+\xymatrix{
+A \otimes (B \otimes C) \ar[r]^-\alpha \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \gamma} & (A \otimes B) \otimes C \ar[r]^\gamma & C \otimes (A \otimes B) \ar[d]^\alpha \\ A \otimes (C \otimes B) \ar[r]^\alpha & (A \otimes C) \otimes B \ar[r]^{\gamma \otimes \mathrm{Id}_{\mathcal C}} & (C \otimes A) \otimes B
+}
+\end{gather*}
+commute.
+\end{defin}
+
+\begin{defin}
+A monoidal category $(\mathcal C, \otimes, I)$ is said to be \emph{closed} if for every $X \in \Ob(\mathcal C)$ the functor
+\[
+- \otimes X \colon \mathcal C \to \mathcal C
+\]
+has a \emph{specified} right adjoint.
+\end{defin}
+
+\section{Enriched categories}
+
+We will follow the exposition given in \cite{kelly}.
+
+\begin{defin}
+Let $\mathbb V = (\mathcal V, \otimes, I)$ be a monoidal category. A $\mathbb V$-category consists of the following data:
+\begin{enumerate}
+\item a class of \emph{objects} $\mathcal A$;
+\item for each pair of objects $A,B \in \mathcal A$, the given of a \emph{hom-object} $\mathcal A(A,B;\mathbb V) \in \mathcal V$;
+\item for each triple of objects $A,B,C \in \mathcal A$ a composition law
+\[
+\mu_{A,B,C} \colon \mathcal A(A,B; \mathbb V) \otimes \mathcal A(B,C; \mathbb V) \to \mathcal A(A,C;\mathbb V)
+\]
+\item for each object $A \in \mathcal A$ an identity
+\[
+j_A \colon I \to \mathcal A(A,A;\mathbb V)
+\]
+\end{enumerate}
+Moreover, we require this data to satisfy the following compatibility relations: 
+\begin{enumerate}
+\item for each 4-tuple of objects $A,B,C,D \in \mathcal A$ the pentagonal diagram
+\[
+\xymatrix{
+(\mathcal A(A,B; \mathbb V) \otimes \mathcal A(B,C; \mathbb V)) \otimes \mathcal A(C,D;\mathbb V) \ar[d]_\alpha \ar[rr]^-{\mu_{A,B,C} \otimes 1} & & \mathcal A(A,C;\mathbb V) \otimes \mathcal A(C,D;\mathbb V) \ar[dd]^{\mu_{A,C,D}} \\
+\mathcal A(A,B; \mathbb V) \otimes (\mathcal A(B,C; \mathbb V) \otimes \mathcal A(C,D;\mathbb V)) \ar[d]_{1 \otimes \mu_{B,C,D}} \\ \mathcal A(A,B;\mathbb V) \otimes \mathcal A(B,D;\mathbb V) \ar[rr]^-{\mu_{A,B,D}} & & \mathcal A(A,D;\mathbb V)
+}
+\]
+commutes;
+\item for each pair of objects $A,B \in \mathcal A$ the diagram
+\[
+\xymatrix{
+\mathcal A(A,A) \otimes \mathcal A(A,B) \ar[rr]^-{\mu_{A,A,B}} & & \mathcal A(A,B) & & \mathcal A(A,B) \otimes \mathcal A(B,B) \ar[ll]_-{\mu_{A,B,B}} \\ I \otimes \mathcal A(A,B) \ar[u]^{j_A \otimes 1} \ar[urr]_{\lambda} & & & & \mathcal A(A,B) \otimes I \ar[u]_{1 \otimes j_B} \ar[ull]^{\rho}
+}
+\]
+commutes.
+\end{enumerate}
+\end{defin}
+
+%\expandthis{Definition of enriched functor, of enriched natural transformation.}
+%\expandthis{2-categorical structure, fibered category blah blah}
+
+\section{Tensor and cotensor}
+
+
+\section{Induced structures}
+
+Let $\mathbb V_1 = (\mathbf V_1, \otimes_1, I_1)$ and $\mathbb V_2 = (\mathbf V_2, \otimes_2, I_2)$ be two monoidal categories. Let $F \colon \mathbb V_1 \to \mathbb V_2$ be a strong monoidal functor. If $\mathbf A$ is a $\mathbb V_1$-category, then setting for every $X,Y \in \Ob(\mathbf A)$
+\[
+\mathbf V_2(X,Y) := F(\mathbf V_1(X,Y))
+\]
+gives to $\mathbf A$ a $\mathbb V_2$-enriched structure.
