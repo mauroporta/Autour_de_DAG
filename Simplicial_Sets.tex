@@ -1,0 +1,477 @@
+\chapter{Simplicial Sets}
+
+It is a fact that Topology is absolutely central in Mathematics; this general framework developed in the first decades of the XXth century provides powerful techniques to handle problems in Analysis, Geometry, Algebra. Perhaps even more importantly, Topology gives a unifying point of view and shows how branches of Mathematics apparently unrelated, in reality share a deep connection. During a first approach, we have been taught to think about (point-set) topology as something axiomatizing the notion of ``being close''. This is a static vision of Topology; there is another one, concerning deformations and homotopies. ``Reduce to a simpler case'', this is one of the fundamental \emph{mantras} of Mathematics; in the topological context, where pathological examples abound, one of the most useful techniques is to deform the object of study into a nicer one, obviously preserving the properties we are interested in. More recently, certain mathematicians began to realize that deformations techniques can be successfully employed in several areas, for example in Algebraic Geometry. One of the goals of these notes is to convince the readers that the topological situation is universal with respect to deformation theories, as much as we think sets as universal with respect to (the most of the) Mathematics.
+
+Simplicial sets were born as an attempt to minimize the structure needed in order to develop a homotopy theory, without changing the final result. In a sense, we can look at simplicial sets as a ``homotopical skeleton'' of topological spaces. The resulting theory is quite powerful, and it took the foundational position of topological spaces in all the questions concerning homotopy theory. In Chapter 1, for example, we show that it is always possible to construct \emph{meaningful} functors from any model category to the category of simplicial sets, taking the place of the hom-sets in classical category theory.
+
+If this reduction process is convenient from a foundational and conceptual point of view, however, it surely adds more technicalities. Simple reasoning in topology can be impossible to literally translate in this new world; still, it is a good enough principle to think that every deep result in $\Top$ translates into an analogous statement for $\sset$. As a practical example, consider the definition of homotopy itself: in $\Top$ we have several different ways to define homotopy, and they are all more or less trivially equivalent. In $\sset$ the definitions can be easily translated; however, the proof of the equivalence requires more work. As general tool, the theory of anodyne extensions provides a way to skip many of these tedious details, at the price of a new set of standard arguments and tricks that one has to learn.
+
+\section{The category $\SDelta$ and (co)simplicial objects}
+
+\begin{notation}
+For every $n \in \N$ let $\mathbf n$ be the category associated to the (unique) linearly ordered set with $n$ elements.
+\end{notation}
+
+\begin{defin}
+Let $\SDelta$ be the full subcategory of $\Cat$ spanned by the categories $\mathbf n$ as $n$ varies in $\N$.
+\end{defin}
+
+\begin{rmk}
+$\SDelta$ is thus the category whose objects are finite totally ordered sets and whose arrows are (weakly) increasing functions.
+\end{rmk}
+
+Let $\mathbf n, \mathbf m \in \SDelta$. We want an easy (= combinatorial) way to describe the hom-set
+\[
+\Hom_{\SDelta}(\mathbf n, \mathbf m)
+\]
+The idea is to look for elementary arrows. For example, if $\mathbf m = \mathbf{n+1}$ then we have exactly $n+1$ \emph{strictly} increasing arrows, namely $d^i \colon \mathbf n \to \mathbf{n+1}$ ($i \in \{0,1,\ldots,n+1\}$) defined by
+\[
+d^i(j) = \begin{cases} j & \text{if } j < i \\ j + 1 & \text{if } j \ge i \end{cases}
+\]
+We will call the maps $d^i$ the coface maps.
+
+Similarly, we can construct $n+1$ arrows $s^i \colon \mathbf{n+1} \to \mathbf n$ by requiring that exactly two successive numbers have the same image:
+\[
+s^i(j) = \begin{cases} j & \text{if } j \le i \\ j - 1 & \text{if } j > i \end{cases}
+\]
+We will call the maps $s^i$ the codegeneracy maps.
+
+The first basic result is that those arrows allows to completely describe all the arrows in $\SDelta$:
+
+\begin{thm} \label{thm factorization epi-mono for Delta}
+Let $f \colon \mathbf n \to \mathbf m$ be any arrow in $\SDelta$. Then there are uniquely determined maps $d,s \in \mathrm{Ar}(\SDelta)$ such that
+\[
+f = d \circ s
+\]
+where
+\begin{equation} \label{eq increasing part}
+d = d^{i_1} \circ \ldots \circ d^{i_s} \qquad 0 \le i_s \le \ldots \le i_1 \le m
+\end{equation}
+and
+\begin{equation} \label{eq decreasing part}
+s = s^{j_1} \circ \ldots \circ s^{j_r} \qquad 0 \le j_1 < \ldots < j_t < n
+\end{equation}
+\end{thm}
+
+\begin{rmk}
+Before starting the proof, let's observe that if $f \colon \mathbf n \to \mathbf m$ is injective (surjective) as map of sets, then it is monic (epi) in $\SDelta$. This is essentially obvious, and has as simple consequence the fact that any iterated composition of the face maps $d^i$ is monic.
+\end{rmk}
+
+\begin{proof}
+Let $i_s < \ldots < i_1$ be the elements in $\mathbf m$ not in the image of $f$, and let $j_1 < \ldots < j_t$ be the elements in $\mathbf n$ such that $f(j) = f(j+1)$. Write also
+\[
+p = n -t = m - s
+\]
+We claim that with this choice of indexes, equations \eqref{eq increasing part} and \eqref{eq decreasing part} gives the desired factorization:
+\[
+\xymatrix{ \mathbf n \ar[r]^d & \mathbf p \ar[r]^s & \mathbf m }
+\]
+In fact, fix $k \in \{0,1,\ldots,n\}$. Assume that $j_h \le k < j_{h+1}$. Then necessarily $f(k)$ is the $(k-h)$-th element in $\mathbf m \setminus \{i_1,\ldots,i_s\}$; therefore
+\[
+f(k) = d(k-h) = d(s(k))
+\]
+The factorization is unique because if $f$ miss $i_s,\ldots,i_1$, then $f$ must factor through $d$, hence $f = d s'$, and since $d$ is mono, $s' = s$.
+\end{proof}
+
+Theorem \ref{thm factorization epi-mono for Delta} shows us that the collection of coface maps and codegeneracy maps generates all the arrows in $\SDelta$. We can describe their mutual relations by the so-called co-simplicial identities:
+
+\begin{equation} \label{eq cosimplicial identities}
+\begin{gathered}
+d^j d^i = d^i d^{j-1} \quad \text{if } i < j \\
+s^j s^i = s^i s^{j+1} \quad \text{if } i \le j \\
+s^j d^i = \begin{cases} d^i s^{j-1} & \text{if } i < j \\
+\text{id} & \text{if } i = j \text{ or } i = j + 1 \\
+d^{i-1} s^j & \text{if } i > j+1 \end{cases}
+\end{gathered}
+\end{equation}
+
+The proof does not give any deeper insight. The easiest way to convince yourself of those identities is to draw these maps of linearly ordered sets. We will skip on the details. The importance of the cosimplicial identities is that they completely describe the internal structure of $\SDelta$. This can be formalized as following:
+
+\begin{thm} \label{thm presentation for Delta}
+Let $\mathcal D$ be the graph whose objects are natural numbers and such that for each $n \in \N$ there are exactly $n+2$ arrows $\delta^i_n$ ($i \in \{0\,\ldots,n+1\}$) with source $n$ and target $n+1$, and exactly $n+1$ arrows $\sigma^i_n$ ($i \in \{0,\ldots,n\}$) with source $n$ and target $n-1$. Then $\SDelta$ is obtained as the quotient of the free category $F \mathcal D$ via the relations \eqref{eq cosimplicial identities}.
+\end{thm}
+
+\begin{proof}
+We have to check the universal property of the quotient. Let $G \colon F \mathcal D \to \mathcal C$ be a functor such that the maps $G(\delta^i_n)$ and $G(\sigma^i_n)$ satisfy the cosimplicial identities. Then define $\overline{G} \colon \SDelta \to \mathcal C$ using the factorization epi-mono provided in Theorem \ref{thm factorization epi-mono for Delta}; the simplicial identities allows to check functoriality of this definition. Uniqueness is clear.
+\end{proof}
+
+\begin{rmk}
+Previous theorem gives us a presentation for $\SDelta$.
+\end{rmk}
+
+\begin{defin} \label{def (co)simplicial objects}
+Let $\mathcal C$ be any category. A cosimplicial object in $\mathcal C$ is a functor $F \colon \SDelta \to \mathcal C$; a simplicial object is $\mathcal C$ is a functor $F \colon \SDelta^\text{op} \to \mathcal C$.
+\end{defin}
+
+As consequence of Theorem \ref{thm presentation for Delta} we get immediately
+
+\begin{cor}
+Let $\mathcal C$ be any category. To give a cosimplicial object $A$ in $\mathcal C$, it is necessary and sufficient to give a sequence of objects $\{A^n\}_{n \in \N}$ together with coface operators $\partial^i \colon A^{n-1} \to A^n$ and codegeneracy operators $\sigma^i \colon A^{n+1} \to A^n$ ($i = 0,\ldots,n$) satisfying the cosimplicial identities
+\begin{gather*}
+\partial^j \partial^i = \partial^i \partial^{j-1} \quad \text{if } i < j \\
+\sigma^j \sigma^i = \sigma^i \sigma^{j+1} \quad \text{if } i < j \\
+\sigma^j \partial^i = \begin{cases}
+\partial^i \sigma^{j-1} & \text{if } i < j \\
+\mathrm{id} & \text{if } i = j \text{ or } i = j+1 \\
+\partial^{i-1} \sigma^j & \text{if } i > j+1
+\end{cases}
+\end{gather*}
+\end{cor}
+
+\begin{cor}
+Let $\mathcal C$ be any category. To give a simplicial object in $\mathcal C$ it is necessary and sufficient to give a sequence of objects $\{A_n\}_{n \in \N}$ together with face operators $\partial_i \colon A^{n+1} \to A^n$ and degeneracy operators $\sigma_i \colon A_{n-1} \to A_n$ ($i = 0, \ldots, n$) satisfying the simplicial identities
+\begin{gather*}
+\partial_i \partial_j = \partial_{j-1} \partial_i \quad \text{if } i < j \\
+\sigma_i \sigma_j = \sigma_{j+1} \sigma_i \quad \text{if } i < j \\
+\partial_i \sigma_j = \begin{cases} \sigma_{j-1} \partial_i & \text{if } i < j \\
+\mathrm{id} & \text{if } i = j \text{ or } i = j+1 \\ \sigma_j \partial_{i-1} & \text{if } j > j+1 \end{cases}
+\end{gather*}
+\end{cor}
+
+\begin{proof}
+Just observe that these simplicial identities are exactly the dual of the cosimplicial ones.
+\end{proof}
+
+\section{Simplicial sets}
+
+\subsection{Definitions and examples}
+
+According to Definition \ref{def (co)simplicial objects}, a simplicial set is just a presheaf over $\SDelta$. We will denote this category by $\sset$. The reader should know that this abstract definition won't be of any help in understanding the rich theory of simplicial sets. However, it allows to develop quickly a large amount of theory.
+
+\begin{defin}
+Let $K \in \sset$. For each $n \in \N$, the set $K_n := K(\mathbf n)$ is called the set of $n$-simplices in $K$; an element $\alpha \in K_n$ is said to be an $n$-simplex of $K$.
+\end{defin}
+
+For example, our experience in classical category theory leads us to consider immediately special simplicial sets, namely those corresponding to representable functors.
+
+\begin{defin}
+Let $n \in \N$. The standard $n$-simplex $\Delta^n$ is by definition the representable functor
+\[
+\Delta^n := \Hom_{\SDelta}(-,\mathbf n)
+\]
+\end{defin}
+
+\begin{prop} \label{prop simplicial morphisms with Yoneda identification}
+Let $K \in \sset$ be a simplicial set. Then
+\[
+K_n = \Hom_{\sset}(\Delta^n,K)
+\]
+Moreover, if $f \colon \mathbf m \to \mathbf n$ is any map in $\mathbf \Delta$ and $x \in K_n$ corresponds to $\omega \colon \Delta^n \to K$, then $K(f)(x)$ corresponds to $\omega \circ f_*$.
+\end{prop}
+
+\begin{proof}
+It's simply Yoneda lemma.
+\end{proof}
+
+Our abstract definition shows immediately that $\sset$ is a topos, hence in particular it is complete and cocomplete, it is Barr-exact, and it admits a subobject classifier. 
+
+\begin{defin}
+Let $K \in \sset$ be a simplicial set and let $\omega$ be a simplex in $K$. We say that $\omega$ is degenerate if it can be written as $K(s)(\omega')$ where $s \colon \mathbf m \to \mathbf n$ is a composition of degeneracy maps. We say that $\omega$ is non-degenerate if it is not degenerate.
+\end{defin}
+
+\begin{defin} \label{def simplicial set of finite dimension}
+Let $K \in \sset$ be a simplicial set. We say that $K$ is \emph{finite dimensional} (or of \emph{finite dimension}) if there exists a non-negative integer $N \in \N$ such that every non-degenerate simplex of $K$ is of degree $\le N$.
+\end{defin}
+
+\subsection{Sub-simplicial sets, skeleta}
+
+Usually, in presence of some kind of algebraic structure, the notions of generator and sub-structure play an important role. Simplicial sets aren't an exception to this rule.
+
+Let's begin with the notion of sub-simplicial set. If $\mathbf A$ is an algebraic category of some sort (e.g. abelian groups) and we consider the category of presheaves $\mathbf A^{\mathcal C^\mathrm{op}}$, we inherit in a natural way a notion of sub-structure directly from the category of $\mathbf A$: if $\{F_i\}_{i \in I}$ are sub-presheaves of a given presheaf $F$ it makes sense to consider the intersection of this family. It follows that if we assign (generalized) elements
+\[
+\{m_k \colon A_k \to F(C_k)\}_{k \in J}
+\]
+it also makes sense to consider the smallest sub-presheaf $G$ of $F$ such that for each $k \in J$ it holds a factorization
+\[
+m_k \colon A_k \to G(C_k) \to F(C_k)
+\]
+This $G$ will be called the sub-presheaf $G$ of $F$ generated by the elements $m_k$:
+
+\begin{defin}
+Let $\mathcal A$ be a category with pullbacks and let $F \colon \mathcal C^{\mathrm{op}} \to \mathcal A$ be an $\mathcal A$-valued presheaf. Let $\{m_k \colon A_k \to F(C_k)\}_{k \in J}$ be a family of generalized elements of $F$; we define the $\mathcal A$-valued presheaf generated by $m_k$ to be the intersection of all the sub-presheaves of $F$ containing the elements $m_k$.
+\end{defin}
+
+For simplicial sets, the Theorem \ref{thm presentation for Delta} allows a simple description of the sub-simplicial set generated by a number of simplexes of a given simplicial set.
+
+\begin{prop} \label{prop sub simplicial set}
+Let $X$ be a simplicial set and let $\{\omega_i\}_{i \in I}$ be a family of simplices of $X$. The sub-simplicial set $Y$ generated by those simplices is characterized as follows:
+\[
+\Hom_{\sset}(\Delta^n,Y) = \{\omega \in X_n \mid \exists f \colon \mathbf n \to \mathbf m, \: \exists \: \omega_i \in X_m \text{ such that } \omega = X(f)(\omega_i) \}
+\]
+\end{prop}
+
+\begin{proof}
+It's the standard model-theoretic proof: the right-hand side is contained in all the sub-presheaves of $X$ containing the family $\{\omega_i\}_{i \in I}$; since it is a sub-presheaf on its own, it is exactly the sub-presheaf generated by those elements by definition.
+\end{proof}
+
+\begin{defin}
+The \emph{boundary of the standard $n$-simplex} is by definition the sub-simplicial set $\partial \Delta^n$ of $\Delta^n$ generated by the ($n-1$)-simplexes of $\Delta^n$.
+\end{defin}
+
+\begin{defin}
+Let $K$ be a simplicial set and let $N \in \N$ be a non-negative integer. We define the $N$-th skeleton of $K$ to be the sub-simplicial set of $K$ generated by the simplexes of $K$ of degree $\le N$. We will denote the $N$-th skeleton of $K$ by $\mathrm{sk}_N(K)$.
+\end{defin}
+
+\begin{rmk}
+$\mathrm{sk}_N(K)$ is also the sub-simplicial set generated by $K_N$. In particular we have the identity:
+\[
+\partial \Delta^n = \mathrm{sk}_{n-1}(\Delta^n)
+\]
+\end{rmk}
+
+\subsection{Eilenberg-Zilber's Lemma and consequences}
+
+\begin{lemma}[Eilenberg-Zilber's Lemma] \label{lemma Eilenberg Zilber}
+For any simplicial set $K$ and any simplex $\omega \colon \Delta^n \to K$ there is an epimorphism $s \colon \mathbf n \to \mathbf m$ and a non-degenerate simplex $\omega' \colon \Delta^m \to K$ such that $\omega = K(s)(\omega')$. Moreover, the pair $(s,\omega')$ is uniquely determined by $\omega$.
+\end{lemma}
+
+\begin{proof}
+The existence is easily proved by induction. Assume now that $(s_1,\omega_1)$ and $(s_2,\omega_2)$ are two pairs realizing the decomposition of $\omega$ as degeneracy of a non-degenerate simplex. Let's write
+\[
+s_1 \colon \mathbf n \to \mathbf m_1, \qquad s_2 \colon \mathbf n \to \mathbf m_2
+\]
+and let's choose sections
+\[
+t_1 \colon \mathbf m_1 \to \mathbf n, \qquad t_2 \colon \mathbf m_2 \to \mathbf n
+\]
+of $s_1,s_2$. Then
+\begin{align*}
+\omega_1 & = K(s_1 t_1) (\omega_1) = (K(t_1) \circ K(s_1)) (\omega_1) \\
+& = K(t_1)(\omega) = (K(t_1) \circ K(s_2))(\omega_2) \\
+& = K(s_2 t_1)(\omega_2)
+\end{align*}
+Since $\omega_1$ is non-degenerate, the morphism $s_2 t_1 \colon \mathbf m_1 \to \mathbf m_2$ must be injective because of Theorem \ref{thm factorization epi-mono for Delta}. It follows that $m_1 \le m_2$; symmetrically $m_2 \le m_1$, and so $s_2 t_1$ and $s_1 t_2$ have to coincide with the identity of $m = m_1 = m_2$. In particular
+\[
+\omega_1 = \omega_2
+\]
+Moreover, since this is true for \emph{every} section of $s_1$ and $s_2$, it follows that these two maps have same fibers, hence
+\[
+s_1 = s_2
+\]
+which was the thesis.
+\end{proof}
+
+\begin{defin}
+Let $K$ be a simplicial set. For any simplex $\omega$, the pair $(s,\omega')$ constructed in Lemma \ref{lemma Eilenberg Zilber} is called the \emph{Eilenberg-Zilber decomposition} of $\omega$.
+\end{defin}
+
+\begin{cor}
+Let $f \colon X \to Y$ be a morphism of simplicial sets. If $X = \mathrm{sk}_N(X)$ and $Y = \mathrm{sk}_N(Y)$ then $f$ is an isomorphism if and only if $f_n$ is an isomorphism for every $n \le N$.
+\end{cor}
+
+\begin{proof}
+If $f$ is an isomorphism, the thesis holds trivially. Let's assume that $f_n$ is an isomorphism for every $n \le N$.
+
+First of all, we will show that $f$ is mono. If $x_1,x_2$ are two simplexes such that $f(x_1) = f(x_2)$ apply Eilenberg-Zilber's Lemma \ref{lemma Eilenberg Zilber} to produce decompositions
+\[
+x_i = X(s_i)(y_i), \quad i \in \{ 1,2 \}
+\]
+Applying $f$ we obtain the Eilenberg-Zilber decomposition of $f(x_1) = f(x_2)$:
+\[
+f(x_1) = Y(s_1)(f(y_2)) = f(x_2) = Y(s_2)(f(y_2))
+\]
+It follows from the uniqueness of such a decomposition that $s_1 = s_2$ and $f(y_1) = f(y_2)$. However, since $y_i$ are non-degenerate and $X = \mathrm{sk}_N(X)$, we see that the $y_i$ must be $n$-simplexes for some $n \le N$, so that
+\[
+f_n(y_1) = f_n(y_2)
+\]
+implies $y_1 = y_2$ by hypothesis, and now
+\[
+x_1 = X(s_1)(y_1) = X(s_2)(y_2) = x_2
+\]
+which were the thesis.
+
+Let's show now that $f$ is epi. If $x$ is a simplex in $Y$, let
+\[
+x = Y(s)(y)
+\]
+be an Eilenberg-Zilber decomposition. Since $Y = \mathrm{sk}_N(Y)$, $y$ is an $n$-simplex for some $n \le N$. It follows by hypothesis that
+\[
+y = f(z)
+\]
+for some $n$-simplex $z \colon \Delta^n \to X$. Thus
+\[
+x = Y(s)f(z) = f(X(s)z)
+\]
+showing surjectivity of $f$.
+\end{proof}
+
+\begin{prop}
+Let $K \in \sset$ be a simplicial set. Then $K$ is finitely dimensional (cfr. Definition \ref{def simplicial set of finite dimension}) if and only if $K = \mathrm{sk}_N(K)$ for some non-negative integer $N \in \N$.
+\end{prop}
+
+\begin{proof}
+Assume that $K$ is finitely dimensional. Then there is a non-negative integer $N \in \N$ such that all non-degenerate simplexes of $K$ are in degree $\le N$. Eilenberg-Zilber's Lemma \ref{lemma Eilenberg Zilber} implies that every simplex $\omega$ in $K$ can be written (uniquely) as
+\[
+K(s)(\omega')
+\]
+where $\omega'$ is a non-degenerate simplex; by hypothesis $\omega' \in K_n$ with $n \le N$. It follows from Proposition \ref{prop sub simplicial set} that $\mathrm{sk}_N(K) \subseteq K$, i.e. $K = \mathrm{sk}_N(K)$.
+
+The converse is obviously implies by the explicit description of $\mathrm{sk}_N(K)$ given in Proposition \ref{prop sub simplicial set}.
+\end{proof}
+
+\section{Geometric realization}
+
+\begin{thm} \label{thm exactness of geometric realization}
+The geometric realization functor $| \cdot | \colon \sset \to \mathbf{CGHaus}$ commutes with finite limits and with colimits. Moreover it reflects isomorphisms.
+\end{thm}
+
+\begin{proof}
+\cite[Ch. III.3]{gz}.
+\end{proof}
+
+The last part is useful if combined with the following easy categorical lemma:
+
+\begin{lemma} \label{lem colimit reflection}
+Let $\mathcal C$ be a cocomplete category and let $F \colon \mathcal C \to \mathcal D$ be a functor preserving colimits. If in addition $F$ reflects isomorphisms, then $F$ reflects colimits.
+\end{lemma}
+
+\begin{proof}
+Straightforward.
+\end{proof}
+
+\begin{cor} \label{cor colimit in sset}
+The geometric realization functor $| \cdot | \colon \sset \to \mathbf{CGHaus}$ reflects colimits.
+\end{cor}
+
+\begin{proof}
+It's consequence of Theorem \ref{thm exactness of geometric realization} and Lemma \ref{lem colimit reflection}, since $\sset$ is cocomplete.
+\end{proof}
+
+\section{Homotopy theory in $\sset$}
+
+In this section, we develop the fundamental tools of the homotopy theory for simplicial sets. First of all, we will be concerned with a bunch of spontaneous definitions for the homotopy of maps; we will state those definitions and prove the equivalence. Later on, we will introduce the (higher) fundamental groups and prove some basic facts about fiber sequences. All the exposition is strongly influenced by the first two chapters of \cite{may} and (in a minor way) the first chapter of \cite{gj}.
+
+
+
+The following Proposition will become an useful tool to deal with the homotopy theory for simplicial sets:
+
+\begin{prop} \label{prop homotopy theory for sset coequalizer}
+The diagram
+\[
+\xymatrix{
+\Delta^1 \ar@<.5ex>[r]^-{d_1} \ar@<-.5ex>[r]_-{d_1} & \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1
+}
+\]
+where $f$ is defined by
+\[
+\xymatrix{
+\Delta^2 \ar[d] \ar@/^.5pc/[dr]^{s^0 \times s^1} \\ \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1 \\ \Delta^2 \ar[u] \ar@/_.5pc/[ur]_{s^1 \times s^0}
+}
+\]
+is a coequalizer.
+\end{prop}
+
+\begin{proof}
+Applying $| \cdot |$ we get a coequalizer in $\mathbf{CGHaus}$.
+\end{proof}
+
+\section{Fundamental Groupoid}
+
+In this section we will show how to associate to each simplicial set $X$ a grupoid. There are at least three different ways to do that; we will describe two of them and prove their equivalence. The interested reader is referred to \cite[Ch. I.8]{gj} and \cite[Ch. III.1]{gj} for the general discussion.
+
+First of all we begin this discussion assuming that $X$ is a fibrant simplicial object. Let $\pi_f(X)$ be the graph whose vertices are the $0$-simplexes of $X$ and such that, if $x, y \in X_0$, then arrows from $x$ to $y$ are in bijection with homotopy equivalence ($\text{rel. } \partial \Delta^1$) classes of 1-simplices $\omega \in X_1$ making the diagram
+\[
+\xymatrix{
+\Delta^0 \ar[d]_{d^0} \ar@/^.5pc/[dr]^x \\ \Delta^1 \ar[r]^\omega & X \\ \Delta^0 \ar[u]^{d^1} \ar@/_.5pc/[ur]_y
+}
+\]
+commutative. If $v_2 \colon x \to y$ and $v_0 \colon y \to z$ are two representatives of arrows, we can define a composition using Kan condition:
+\[
+d_1 v_2 = v_2 \circ d^1 = y, \qquad d_0 v_0 = v_0 \circ d^0 = y
+\]
+hence there is a 2-simplex $\alpha \colon \Delta^2 \to X$ such that
+\[
+d_2 \alpha = v_2, \qquad d_1 \alpha = v_1
+\]
+We wish then to set
+\begin{equation} \label{eq composition fundamental grupoid}
+[v_0] \circ [v_2] := [d_1 \alpha]
+\end{equation}
+
+\begin{lemma}
+Equation \eqref{eq composition fundamental grupoid} doesn't depend on the choice of representatives for $[v_0]$ and $[v_2]$.
+\end{lemma}
+
+\begin{proof}
+We will show that equation \ref{eq composition fundamental grupoid} doesn't depend on the choice of a representative for $[v_0]$. Let $w_0$ be another representative for $v_0$ and choose an homotopy ($\text{rel. } \partial \Delta^1$)
+\[
+\xymatrix{
+\Delta^1 \ar[d]_{1 \times d^0 s^0} \ar@/^.5pc/[dr]^{v_0} \\ \Delta^1 \times \Delta^1 \ar[r]^-h & X \\ \Delta^1 \ar[u]^{1 \times d^1 s^0} \ar@/_.5pc/[ur]_{w_0}
+} \qquad
+\xymatrix{
+\Delta^1 \times \Delta^1 \ar[r]^-h & X \\ \partial \Delta^1 \times \Delta^1 \ar[u]^i \ar[r] & \partial \Delta^1 \ar[u]_{v_0 |_{\partial \Delta^1} = w_0 |_{\partial \Delta^1}}
+}
+\]
+Choose now $\alpha,\beta \colon \Delta^2 \to X$ satisfying
+\begin{gather*}
+d_0 \alpha = v_0, \quad d_2 \alpha = v_2 \\
+d_0 \beta = w_0, \quad d_2 \beta = v_2
+\end{gather*}
+Recall the pushout diagram of Proposition \ref{prop homotopy theory for sset coequalizer}:
+\[
+\xymatrix{
+\Delta^1 \ar@<.5ex>[r]^-{d_1} \ar@<-.5ex>[r]_-{d_1} & \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1
+}
+\]
+where
+\[
+f = \langle s^0 \times s^1, s^1 \times s^0 \rangle
+\]
+Consider now the 2-simplexes
+\begin{gather*}
+a_0 = s_1(v_0) \\
+a_1 \colon \Delta^2 \xrightarrow{s^1 \times s^0} \Delta^1 \times \Delta^1 \xrightarrow{h} X \\
+a_2 \colon \Delta^2 \xrightarrow{s^0 \times s^1} \Delta^1 \times \Delta^1 \xrightarrow{h} X
+\end{gather*}
+Then we have (cfr. Proposition \ref{prop simplicial morphisms with Yoneda identification}):
+\begin{align*}
+d_0 a_1 & = h \circ (s^1 \times s^0) \circ d^0 = h \circ (d^0 s^0 \times 1) & d_0 a_0 & = d_0 s_1 (v_0) = s_0(d_0(v_0)) \\
+& = v_0 |_{\partial \Delta^1} \circ d^0 \circ s^0 = z \circ s^0 = s_0(z) & & = s_0(z) \\
+d_0 a_2 & = h \circ (s^0 \times s^1) \circ d^0 & d_1 a_0 & = d_1 s_1(v_0) = v_0 \\
+& = h \circ (1 \times d^0 s^0) = v_0 \\
+d_1 a_2 & = h \circ (s^0 \times s^1) \circ d^1 = h \circ (1 \times 1) & d_1 a_1 & = h \circ (s^1 \times s^0) \circ d^1 = h \circ (1 \times 1)
+\end{align*}
+Since $X$ is fibrant, we can choose $\omega \colon \Delta^3 \to X$ such that
+\[
+d_0 \omega = s_1 v_0, \quad d_2 \omega = a_2, \quad d_1 \omega = a_1
+\]
+Define
+\[
+\omega' := d_3 \omega
+\]
+Observe that
+\[
+d_1 \omega' = w_0, \quad d_2 \omega' = s_0(y)
+\]
+Introduce
+\[
+c_0 = s_0(v_0), \quad c_2 = \beta, c_3 = \alpha
+\]
+We have
+\begin{gather*}
+d_0 c_2 = w_0, \quad d_1 c_0 = w_0 \\
+d_0 c_3 = v_0, \quad d_2 c_0 = v_0 \\
+d_2 c_3 = v_2, \quad d_2 c_2 = v_2
+\end{gather*}
+We can apply again the extension condition to produce $\gamma \colon \Delta^3 \to X$ such that
+\[
+d_3 \gamma = \alpha, \quad d_2 \gamma = \beta, \quad d_0 \gamma = \omega'
+\]
+Moreover, $\delta := d_1 \gamma$ satisfies
+\[
+d_0 \delta = s_0(z), \quad d_1 \delta = d_1 \beta, \quad d_2 \delta = d_1 \alpha
+\]
+Proposition \ref{prop homotopy theory for sset coequalizer} allows to extend this 2-simplex to a homotopy $d_1 \alpha \to d_1 \beta$.
+\end{proof}
+
+\begin{defin}
+Let $X$ be a simplicial set. We define $\pi_f(X)$ as the grupoid whose objects are the vertices $X_0$ of $X$ and whose arrows are freely generated by the 1-simplexes $X_1$ satisfying the relations
+\[
+d_0 x \circ d_2 x = d_1 x
+\]
+for every 2-simplex $x \in X_2$.
+\end{defin}
+
+
+
+\section{The Nerve Construction}
