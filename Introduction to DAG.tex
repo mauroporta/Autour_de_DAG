@@ -20,13 +20,13 @@
 \fancyhead[LO]{\bfseries\footnotesize\nouppercase{\rightmark}}
 \setpapersize{A4}
 \setmarginsrb{35mm}{10mm}{35mm}{10mm}%
-             {0mm}{10mm}{5mm}{10mm}
+             {12pt}{10mm}{5mm}{10mm}
 
 %Crossreferences
 %%%Packages
-\usepackage[pdftex]{hyperref}
+\usepackage[pdftex, bookmarks = true]{hyperref}
 %%%Settings
-\hypersetup{bookmarks=true, bookmarksopen = true, bookmarksopenlevel = 1, colorlinks=true,
+\hypersetup{bookmarksopen = true, bookmarksopenlevel = 1, colorlinks=true,
 linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 %Mathematical Fonts
@@ -56,16 +56,18 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 %Misc Packages
 \usepackage{xcolor}
 \usepackage{xparse}
+\usepackage{tikz}
+\usepackage{comment}
 
-%Todo notes
-%%%Packages
-\usepackage[colorinlistoftodos, textsize = small]{todonotes}
-%%%Settings
-\newcounter{todocounter}
-\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+%%Todo notes
+%%%%Packages
+%\usepackage[colorinlistoftodos, textsize = small]{todonotes}
+%%%%Settings
+%\newcounter{todocounter}
+%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
 
 %Cursive operators: sheaves Hom, Ext, Bil
 %\makeatletter
@@ -81,17 +83,17 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem*{thm*}{Theorem}
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{prop}{Proposition}[section]
-\newtheorem{cor}{Corollary}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{defin}{Definition}[section]
-\newtheorem{exercise}{Exercise}[section]
-\newtheorem{eg}{Example}[section]
+\newtheorem{defin}[thm]{Definition}
+\newtheorem{exercise}[thm]{Exercise}
+\newtheorem{eg}[thm]{Example}
 
 \theoremstyle{remark}
-\newtheorem{rmk}{Remark}[section]
+\newtheorem{rmk}[thm]{Remark}
 \newtheorem*{notation}{Notation}
 
 %Number sets, projective symbol
@@ -100,6 +102,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\proj}{\mathbb{P}}
 
@@ -121,8 +124,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ext}{\mathrm{Ext}}
 \newcommand{\Tor}{\mathrm{Tor}}
-\newcommand{\colim}{\mathrm{colim}}
-\newcommand{\setdef}{\stackrel{def.}{=}}
+\newcommand{\colim}{\mathrm{colim} \,}
 \newcommand{\Max}{\mathrm{Max}}
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Char}{\mathrm{char}}
@@ -131,7 +133,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\trdeg}{\text{trdeg}}
 \newcommand{\underscore}{\underline{\hphantom{\space{5}}}}
 \newcommand{\Os}{\mathscr O}
-\newcommand{\coker}{\text{coker }}
+\newcommand{\coker}{\mathrm{coker}\,}
 \newcommand{\dual}{\text{\textasciicaron}}
 \newcommand{\fascio}[1]{\mathscr #1}
 \newcommand{\Ob}{\mathrm{Ob}}
@@ -139,9 +141,15 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\cofib}{\textsc{Cofib}}
 \newcommand{\tot}{\mathrm{Tot}}
 \newcommand{\sing}{\mathrm{Sing}}
+\newcommand{\diag}{\mathrm{diag} \,}
+\newcommand{\Ho}{\mathrm{Ho} \,}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\mathrm{Im} \,}
+\newcommand{\map}{\mathrm{map}}
+\newcommand{\Map}{\mathrm{Map}}
 
 \title{Introduction to DAG}
-\author{Groupe de travail organisé par Gabriele Vezzosi}
+\author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}
 
 \begin{document}
 
@@ -153,7 +161,22 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 \chapter*{Introduction}
 
-\listoftodos
+The purpose of these notes is to provide a written background for the seminars taught by the working group organized by Gabriele Vezzosi in the Spring of 2013. The main goal is to give a wide introduction to Derived Algebraic Geometry, starting from the very foundations. In the present notes, we added more details with respect to the expositions, to make easier for the not (yet) specialised reader to go over them.
+
+The work is organized as follows:
+
+\begin{enumerate}
+\item Chapter 1 contains a survey of the theory of model categories: the homotopy category, function complexes, left and right (Bousfield) localizations, standard simplicial localization and hammock localization. The relative seminar has been taught the 3/15/2013 by Mauro Porta and Brice Legrignou;
+\item Chapter 2 contains a survey of all the known models for $(\infty,1)$-categories, and the details of three of those constructions (quasicategories, Segal categories and Segal spaces). The relative seminar will be taught the 3/22/2013 by Yan Zhao and Valerio Melani;
+\item Chapter 3 contains a survey of of the theory of simplicial presheaves and their application to the theory of (higher) stacks. The relative seminar has been taught the 3/29/2013 by Mauro Porta and Pietro Vertechi;
+\item
+\end{enumerate}
+
+Finally, the Appendixes contain material which is somehow more foundational: we collected some basic results from the theory of simplicial sets, enriched category theory... Essentially because the authors wanted to learn all these theories in a better way.
+
+{\bfseries This is a work in progress}
+
+%\listoftodos
 
 \section*{Notations}
 
@@ -176,12 +199,15 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \mainmatter
 
 \input{Capitoli/Model_Categories.tex}
+\input{Capitoli/simplicial_localization.tex}
+\input{Capitoli/Quasicategories.tex}
+\input{Capitoli/Segal.tex}
+\input{Capitoli/Simplicial_Presheaves.tex}
 
 \appendix
 
 \input{Appendici/Simplicial_Sets.tex}
 \input{Appendici/Enriched_Categories.tex}
-
 
 \cleardoublepage
 \phantomsection
