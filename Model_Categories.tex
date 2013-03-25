@@ -39,14 +39,22 @@ For example, we can consider singular (co)homology, or homotopy groups. For exam
 \]
 and then defines for every $X \in \mathrm{Ob}(\Top)$:
 \[
-H_n^{\mathrm{sing}}(X) := \Z \Hom_{\Top}(|\Delta^n|,X) \in \Ab
+C_n^{\mathrm{sing}}(X) := \Z \Hom_{\Top}(|\Delta^n|,X) \in \Ab
 \]
-Each $H_n^{\mathrm{sing}}$ is, accordingly to our Definition \ref{algebraic invariant}, an algebraic invariant. The cosimplicial structure on $\{|\Delta^n|\}_{n \in \N}$ produces interesting properties of the set of functors $\{H_n^{\mathrm{sing}}\}$; for example, they can be arranged in a complex. See \cite[Ch. 8.2]{weibel} (in particular Example 8.2.3) for the details of this construction. Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[Ch. 2.2]{hatcher} for more details on computation tools).
+Each $C_n^{\mathrm{sing}}$ is, accordingly to our Definition \ref{algebraic invariant}, an algebraic invariant. The cosimplicial structure on $\{|\Delta^n|\}_{n \in \N}$ produces interesting properties of the set of functors $\{C_n^{\mathrm{sing}}\}$; for example, they can be arranged in a complex $\{C_n^{\mathrm{sing}},d_n\}_{n \in \N}$. See \cite[Ch. 8.2]{weibel} (in particular Example 8.2.3) for the details of this construction; one then can use this complex to define the singular homology groups:
+\[
+H_n^{\mathrm{sing}}(X) := H_n(C_\bullet^{\mathrm{sing}},d_n)
+\]
+Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[Ch. 2.2]{hatcher} for more details on computation tools).
 
 The homotopy groups construction shares the same philosophy, but it is more involved from a technical point of view. In this case, the group operation is not simply formal, but it reflects the structure of the topological space we are considering. This implies of course that homotopy groups carry more informations than singular homology groups, but they are also more difficult to compute.
 
 \begin{eg}
-Let $S$ be a compact orientable surface of genus $g \ge 2$. Then $S$ cannot be a topological group. The proof relies on the simple fact that if $g \ge 2$ then $\pi_1(S) = \Z^{*g}$, which is not abelian; on the other side a simple Eckmann-Hilton argument shows that the first fundamental group of every topological group is abelian.
+Let $S$ be a compact orientable surface of genus $g \ge 2$. Then $S$ cannot be a topological group. The proof relies on the simple fact that if $g \ge 2$ then
+\[
+\pi_1(S) = \left\langle a_i,b_i \mid \prod_{i = 1}^g [a_i,b_i] = 1 \right\rangle
+\]
+which is not abelian; on the other side a simple Eckmann-Hilton argument shows that the first fundamental group of every topological group is abelian.
 \end{eg}
 
 Homotopy groups can identify almost completely certain kind of ``good'' spaces, namely CW-complexes. In fact, a classical result of Algebraic Topology, known as Whitehead's theorem says that:
@@ -173,7 +181,7 @@ Let $\mathcal C$ be any category. A model structure on $\mathcal C$ is the given
 \item[{\bfseries MC4.}] every arrow in $W \cap \fib$ has the RLP with respect to every arrow in $\cofib$ and every arrow in $\fib$ has the RLP with respect to every arrow in $W \cap \cofib$;
 \item[{\bfseries MC5.}] there are functorial $(W \cap \cofib, \fib)$ and $(\cofib, W \cap \fib)$ factorizations in $\mathcal C$.
 \end{itemize}
-We will denote by $(\mathcal C, W,\fib,\cofib)$ a category with a model structure; we will also say that the arrows in $W$ are the \emph{weak equivalences}, that those in $\fib$ are the fibrations and that those in $\cofib$ are the cofibrations with respect to the given model structure.
+We will denote by $(\mathcal C, W,\fib,\cofib)$ a category with a model structure; we will also say that the arrows in $W$ are the \emph{weak equivalences}, that those in $\fib$ (resp. in $\fib \cap W)$ are the fibrations (resp. trivial fibrations or acyclic fibrations) and that those in $\cofib$ (resp. in $\cofib \cap W)$ are the cofibrations (resp. trivial cofibrations or acyclic cofibrations) with respect to the given model structure.
 \end{defin}
 
 \begin{defin}
@@ -248,7 +256,7 @@ Let $\mathcal M$. Then
 \begin{enumerate}
 \item an object $X \in \Ob(\mathcal M)$ is said to be cofibrant if the map $\emptyset \to X$ is a cofibration;
 \item an object $X \in \Ob(\mathcal M)$ is said to be fibrant if the map $X \to *$ is a fibration;
-\item a cofibrant approximation to an object $X \in \Ob(\mathcal M)$ is a pair $(\widetilde{X},i)$ where $\widetilde{X}$ is a cofibrant object and $i \colon X \to \widetilde{X}$ is a weak equivalence;
+\item a cofibrant approximation to an object $X \in \Ob(\mathcal M)$ is a pair $(\widetilde{X},i)$ where $\widetilde{X}$ is a cofibrant object and $i \colon \widetilde{X} \to X$ is a weak equivalence;
 \item a fibrant approximation to an object $X \in \Ob(\mathcal M)$ is a pair $(\widehat{X},j)$ where $\widehat{X}$ is a fibrant object and $j \colon X \to \widehat{X}$ is a weak equivalence;
 \item a cofibrant approximation to an arrow $f \colon X \to Y$ is the given of cofibrant approximations $(\widetilde{X},i_X)$, $(\widetilde{Y},i_Y)$ to $X$ and $Y$ and an arrow $\widetilde{f} \colon \widetilde{X} \to \widetilde{Y}$ such that the diagram
 \[
@@ -1093,6 +1101,20 @@ Let $F_1,F_2 \colon \mathcal G \to \mathcal H$ be functors between groupoids. Th
 This is an easy consequence of Proposition \ref{prop cylinder for groupoids} (using a standard reformulation of natural transformation).
 \end{proof}
 
+\subsection{Categories} \label{model structure on cat}
+
+The category of all small categories $\Cat$ has a model structure which doesn't differ much from that of groupoids. However, we state it as a theorem for future references:
+
+\begin{thm} \label{thm model structure on cat}
+$\Cat$ has a model structure where:
+\begin{itemize}
+\item weak equivalences are equivalences of categories;
+\item cofibrations are functors injective on objects;
+\item fibrations are functors with the RLP with respect to the map $\Delta^0_{\grpd} \to \Delta^1_{\grpd}$.
+\end{itemize}
+\end{thm}
+
+
 \section{Quillen adjunctions and total derived functors}
 
 The goal of this section is to introduce a notion of morphism between model categories. It is a subtle question to decide how much of the model structure must be preserved by a functor; the na\"if idea is probably to consider functors $F \colon \mathcal M \to \mathcal N$ sending fibrations, cofibrations and weak equivalences of $\mathcal M$ in their correspondents of $\mathcal N$. However, it turns out that this notion is too much restrictive, and there aren't many examples of such functors.
@@ -1372,7 +1394,7 @@ we obtain
 which is the ``correct'' result.
 \end{rmk}
 
-\section{Homotopy limits and colimits}
+\section{Homotopy limits and colimits} \label{homotopy limits}
 
 Last section contains a brief summary about the construction of the homotopy pushout. If we want to deal with diagrams of more general shapes, we have to take in account an additional difficulty: the category $\mathcal M^{\mathcal C}$ doesn't need to come equipped with a natural model structure. There are several ways to overcome this problem: for example, one can restricts to nice enough diagrams; or one can consider only sufficiently well-behaved model categories. In this exposition, we will consider only Reedy diagrams. However, before the technical details, we would like to explain a more general approach to this problem, that doesn't require additional hypothesis.
 
@@ -1499,6 +1521,12 @@ Let $\mathcal C$ be a Reedy category and let $\mathcal M$ be a model category. A
 \end{prop}
 
 \begin{proof}
+We will prove the second statement. Observe that the map $f_\alpha \colon X_\alpha \to Y_\alpha$ can be factored as
+\[
+\mathbf X_\alpha \to \mathbf X_\alpha \sqcup_{\mathrm L_\alpha \mathbf X} \mathrm L_\alpha \mathbf Y \to \mathbf Y_\alpha
+\]
+can be
+
 See \cite[Proposition 15.3.11]{hirschhorn}.
 \end{proof}
 
