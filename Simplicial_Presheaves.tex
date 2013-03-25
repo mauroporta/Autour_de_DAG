@@ -1,0 +1,472 @@
+\chapter{Simplicial Presheaves}
+
+The goal of this chapter is to explain the transition from the classical theory of stacks to the homotopical one. The main reference is \cite{hollander}. This chapter is organized as follows:
+\begin{enumerate}
+\item an introductory section about the classical theory of stacks, with some example;
+\item the model structure on presheaves in groupoids and the equivalence;
+\item the model structure on simplicial presheaves;
+\item higher stacks and examples.
+\end{enumerate}
+
+\begin{flushright}
+Mauro Porta
+\end{flushright}
+
+\section{Fibered Categories and Stacks}
+
+We will assume some familiarity with Grothendieck topologies. I strongly recommend the book of MacLane and Moerdijk \cite[Ch. III]{sheaves} for a clear exposition of this theory. A neat treatment can be also found in the article \cite[Ch. II]{vistoli}.
+
+\subsection{Fibered Categories}
+
+\subsubsection*{Definitions and generalities}
+
+Our exposition will follow \cite[Ch. III]{vistoli}, with some integration from \cite[Exposé VI]{sga1}. I strongly recommend the reader to think to fiber bundle (vector bundle if he prefers) while reading these notes.
+
+For the whole exposition $\mathcal C$ will denote a fixed category.
+
+\begin{notation}
+If $\mathcal C$ is a category and $U \in \Ob(\mathcal C)$ is an object in $\mathcal C$, we will denote by $\kappa(U)$ the subcategory of $\mathcal C$ having $U$ as unique object and $\mathrm{id}_U$ as unique morphism, i.e. $\kappa(U)$ is the unique morphism $\Delta^0 \to \mathcal C$ defined by $* \mapsto U$.
+\end{notation}
+
+\begin{defin}
+Let $p \colon \mathcal F \to \mathcal C$ be a category over $\mathcal C$ and let $U \in \Ob(\mathcal C)$. We define the fiber of $\mathcal F$ over $U$ as the subcategory of $\mathcal F$ mapping to $\kappa(U)$ via $p$. We will denote the fiber of $\mathcal F$ over $U$ as $\mathcal F_U$.
+\end{defin}
+
+\begin{rmk}
+If $p \colon \mathcal F \to \mathcal C$ is a category over $\mathcal C$ and $U \in \Ob(\mathcal C)$, then $\mathcal F_U$ can be clearly described as the pullback (computed in $\Cat$):
+\[
+\xymatrix{
+\mathcal F_U \ar[d] \ar[r] & \mathcal F \ar[d]^p \\ \kappa(U) \ar[r] & \mathcal C
+}
+\]
+\end{rmk}
+
+\begin{defin}
+Let $\mathcal C$ be a category and let $p_\mathcal{F} \colon \mathcal F \to \mathcal C$ be a category over $\mathcal C$. An arrow $\phi \colon \xi \to \eta$ in $\mathcal F$ is said to be \emph{cartesian} if for every other arrow $\psi \colon \zeta \to \eta$ and any arrow $h \colon p_\mathcal{F} \zeta \to p_{\mathcal F} \xi$ in $\mathcal C$ such that $p_{\mathcal F} \phi \circ h = p_{\mathcal F} \psi$ there exists a unique arrow $\theta \colon \zeta \to \xi$ with $p_{\mathcal F} \theta = h$ and $\phi \circ \theta = \psi$.
+\end{defin}
+
+The following lemma contains some trivial but useful properties:
+
+\begin{lemma} \label{lemma cartesian arrows}
+Let $p \colon \mathcal F \to \mathcal C$ be a category over $\mathcal C$. Then:
+\begin{enumerate}
+\item the composition of two cartesian arrows is still cartesian;
+\item if $\phi \colon \xi \to \eta$ is a cartesian arrow lying over $\mathrm{id}_{p(\eta)}$, then $\phi$ is an isomorphism;
+\item every isomorphism in $\mathcal C$ is cartesian over its image.
+\end{enumerate}
+\end{lemma}
+
+\begin{defin}
+Let $p_{\mathcal F} \colon \mathcal F \to \mathcal C$ be a category over $\mathcal C$. We say that $\mathcal F$ is fibered over $\mathcal C$ if for every arrow $f \colon y \to x$ in $\mathcal C$ and any object $\eta \in \Ob(\mathcal F)$ such that $p_{\mathcal F}(\eta) = x$ there is a cartesian arrow $\phi \colon \xi \to \eta$ lying over $f$.
+\end{defin}
+
+\begin{eg} \label{eg cartesian serre fibration}
+Consider a (Serre) fibration $p \colon X \to Y$ in $\cghaus$. Applying the fundamental groupoid functor $\Pi \colon \cghaus \to \grpd$ we get a functor $\Pi(p) \colon \Pi(X) \to \Pi(Y)$, and we claim that this functor defines a fibered category. In fact, choose an object $\eta \in \Pi(X)$, set $x = \Pi(p)(\eta)$. For every arrow $[\gamma] \colon y \to x$, represented by a continuous path
+\[
+\gamma \colon I = [0,1] \to Y
+\]
+introduce $\overline{\gamma} \colon I \to Y$, $\overline{\gamma}(t) = \gamma(1-t)$; since $p$ is a fibration we can lift $\overline{\gamma}$ to a path $[0,1] \to X$ sending $0$ to $\eta$. The lifting is unique up-to-homotopy, hence we obtain (taking again the inverse) an arrow
+\[
+[\phi] \colon \xi \to \eta
+\]
+mapping via $\Pi(p)$ to $[\gamma]$. Since $[\phi]$ is an isomorphism, it is cartesian (Lemma \ref{lemma cartesian arrows}), and so the assertion is proved.
+\end{eg}
+
+A fibered category has a property of homogeneity of fibers, as we are going to prove. Let's fix some notation. If $p \colon \mathcal F \to \mathcal C$ is a fibered category and $f \colon V \to U$ is an arrow in $\mathcal C$, denote by
+\[
+(\mathcal F \downarrow \mathcal F_U)_f
+\]
+the full subcategory of $(\mathcal F \downarrow \mathcal F_U)_f$ consisting of arrows $\phi$ such that $p(\phi) = f \circ g$ for some $g$ in $\mathcal C$.
+
+\begin{lemma} \label{lemma homogeneity fibers}
+Let $p \colon \mathcal F \to \mathcal C$ be a fibered category. For every arrow $f \colon V \to U$ in $\mathcal C$, there exists a functor
+\[
+\Phi_f \colon \mathcal F_U \to \mathcal (\mathcal F \downarrow \mathcal F_U)_f
+\]
+sending an object $\eta \in \Ob(\mathcal F_U)$ to a \emph{cartesian} arrow $\phi \colon \xi \to \eta$, with $\xi \in \Ob(\mathcal F_V)$.
+is a cartesian arrow.
+\end{lemma}
+
+\begin{proof}
+Consider the second projection functor:
+\[
+\Psi_f \colon (\mathcal F \downarrow \mathcal F_U)_f \to \mathcal F_U
+\]
+For each $\eta \in \Ob(\mathcal F_U)$ choose a cartesian arrow $\phi \colon \xi \to \eta$ lying over $f$. Then the pair $(\phi, \mathrm{id}_\eta)$ is a universal arrow from $\Psi_f$ to $\eta$.\footnote{This is the very definition of cartesian arrow, but remember also that all the arrows in $\mathcal F_U$ maps to the identity of $U$ via $p$.} It follows from the standard characterization of adjunctions (cfr. \cite[Theorem IV.1.2.(iv)]{cwm} that $\Psi_f$ has a right adjoint
+\[
+\Phi_f \colon \mathcal F_U \to (\mathcal F_V \downarrow \mathcal F_U)
+\]
+\end{proof}
+
+Denote by $(\mathcal F_V \downarrow \mathcal F_U)_f$ the full subcategory of $(\mathcal F_V \downarrow \mathcal F_U)_f$ of arrows mapping to $f$ via $p$. Let
+\[
+\mathbf d \colon (\mathcal F_V \downarrow \mathcal F_U)_f \to \mathcal F_V
+\]
+the projection on the first component. Then, consider the functor $f^*$ defined as
+\[
+f^* := \mathbf d \circ \Phi_f \colon \mathcal F_U \to \mathcal F_V
+\]
+In this construction we are hiding the axiom of choice. We know from \cite[Theorem IV.1.2.(iv)]{cwm} that to construct the adjoint $f^*$ one has only to choose universal arrows for every object in $\mathcal F_U$. If we make this choice for every arrow $f \colon V \to U$ we obtain what is traditionally called a \emph{cleavage}:
+
+\begin{defin}
+A \emph{cleavage} of a fibered category $p \colon \mathcal F \to \mathcal C$ consists of a class $K$ of cartesian arrows in $\mathcal F$ such that for each arrow $f \colon U \to V$ in $\mathcal C$ and each object $\eta$ in $\mathcal F_V$ there exists a unique arrow in $K$ with target $\eta$ mapping to $f$ via $p$.
+\end{defin}
+
+\begin{lemma} \label{lemma pseudo functor 1}
+Let $p \colon \mathcal F \to \mathcal C$ be a fibered category with cleavage $K$. Then
+\begin{enumerate}
+\item for each object $U \in \Ob(\mathcal C)$ there is an isomorphism
+\[
+\varepsilon_U \colon \mathrm{id}_U^* \to \mathrm{Id}_{\mathcal F_U}
+\]
+
+\item for each pair of composable arrows $f \colon V \to U$ and $g \colon W \to V$ in $\mathcal C$ there is a natural isomorphism
+\[
+\alpha_{f,g} \colon g^* f^* \to (fg)^*
+\]
+
+\item for each arrow $f \colon V \to U$ strict equalities
+\[
+\alpha_{\mathrm{id}_V,f} = \varepsilon_V f^*, \qquad \alpha_{f,\mathrm{id}_U} = f^* \varepsilon_U
+\]
+
+\item for each triple of arrows
+\[
+\xymatrix{ T \ar[r]^h & W \ar[r]^g & V \ar[r]^f & U }
+\]
+a diagram (strictly) commutative
+\[
+\xymatrix{
+h^* g^* f^* \ar[d]_{h^* \alpha_{h,g}} \ar[r]^{\alpha_{h,g} f^*} & (gh)^* f^* \ar[d]^{\alpha_{gh,f}} \\ h^*(fg)^* \ar[r]^{\alpha_{h,fg}} & (fgh)^*
+}
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The existence of the natural transformations $\varepsilon_U$ and $\alpha_{f,g}$ is a trivial consequence of the uniqueness of the uniqueness up-to-natural-isomorphism of the adjoint (thus for example we observe that $\Phi_{fg}$ and $\Phi_g \circ \Phi_f$ give right adjoints to $\Psi_{fg}$ in the notation of the proof of Lemma \ref{lemma homogeneity fibers}, so that we obtain $\widetilde{\alpha}_{f,g} \colon \Phi_{fg} \to \Phi_g \circ \Phi_f$, and applying $\mathbf d$ we get the desired $\alpha_{f,g}$). The other checks are still a consequence of the adjointness; the technical details can be found in \cite[Prop. 3.11]{vistoli}.
+\end{proof}
+
+Accordingly to the traditional definitions, Lemma \ref{lemma pseudo functor 1} says that we can associate to every fibered category $p \colon \mathcal F \to \mathcal C$ a pseudo-functor
+\[
+\mathcal C^{\mathrm{op}} \to \Cat
+\]
+
+Conversely, we can associate to every pseudo-functor a fibered category:
+
+\begin{lemma} \label{lemma pseudo functor 2}
+Given a pseudo-functor $\Phi \colon \mathcal C^{\mathrm{op}} \to \Cat$ there is a fibered category $p \colon \mathcal F \to \mathcal C$ such that $\mathcal F_U = \Phi(U)$.
+\end{lemma}
+
+\begin{proof}[Sketch of the proof.]
+The idea is roughly speaking to mimic the construction of a vector bundle starting from local trivializations. Define a category $\mathcal F$ whose objects are
+\[
+\bigcup_{U \in \Ob(\mathcal C)} \Ob(\Phi(U))
+\]
+If $(U,x)$ and $(V,y)$ are two objects in $\mathcal F$, define an arrow
+\[
+(U,x) \to (V,y)
+\]
+to be a pair $(f, \tau)$ where $f \colon U \to V$ is an arrow in $\mathcal C$ and $\tau \colon x \to \Phi(f)(y)$ is an arrow in $\Phi(U)$. The details for the construction can be found in \cite[Ch 3.1.3]{vistoli}.
+\end{proof}
+
+Finally the two constructions given in Lemma \ref{lemma pseudo functor 1} and \ref{lemma pseudo functor 2} are mutually inverse in a higher categorical sense.
+
+\subsubsection*{Categories fibered in groupoids and in sets}
+
+The equivalence between fibered categories and pseudo-functors with values in $\Cat$ suggests that fibered categories should be thought of as ``presheaves'' with values in $\Cat$. We will develop in detail this point of view later on. For the moment, we observe that it might be interesting to restrict the attention to categories whose fibers satisfy additional properties. Classically, the main interest is for categories fibered in groupoids.
+
+\begin{defin}
+A fibered category $p \colon \mathcal F \to \mathcal C$ is said to be \emph{fibered in groupoids} if each fiber $\mathcal F_U$ is a groupoid.
+\end{defin}
+
+An useful characterization is the one that follows:
+
+\begin{prop} \label{prop fibered in groupoids}
+A category $p \colon \mathcal F \to \mathcal C$ over $\mathcal C$ is fibered in groupoids if and only if:
+\begin{enumerate}
+\item every arrow in $\mathcal F$ is cartesian;
+\item given any arrow $f \colon V \to U$ in $\mathcal C$ and any object $\eta \in \mathcal F_U$, there is an arrow $\phi \colon \xi \to \eta$ such that $p(\phi) = f$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Straightforward (for details, see \cite[Proposition 3.22]{vistoli}.
+\end{proof}
+
+As a particular case, we have categories fibered in sets:
+
+\begin{defin}
+A fibered category $p \colon \mathcal F \to \mathcal C$ is said to be \emph{fibered in sets} if each fiber $\mathcal F_U$ is a set.
+\end{defin}
+
+\begin{prop} \label{prop fibered in sets}
+A category $p \colon \mathcal F \to \mathcal C$ over $\mathcal C$ is fibered in sets if and only if for any object $\eta$ of $\mathcal F$ and any arrow $f \colon U \to p\eta$ of $\mathcal C$ there is a \emph{unique} arrow $\phi \colon \xi \to \eta$ of $\mathcal F$ with $p(\phi) = f$.
+\end{prop}
+
+\begin{proof}
+Straighforward (see \cite[Proposition 3.25]{vistoli} for details).
+\end{proof}
+
+\begin{cor} \label{cor fibered in sets}
+Let $p \colon \mathcal F \to \mathcal \mathcal C$ be a category fibered in sets. The associated pseudo-functor of Lemma \ref{lemma pseudo functor 1} is a functor that factorizes through $\Set \subset \Cat$.
+\end{cor}
+
+\begin{proof}
+Proposition \ref{prop fibered in sets} implies that the isomorphisms $\alpha_{f,g}$ and $\varepsilon_U$ must be the identities. It follows that $\Phi$ is a functor; the factorization property descends from the very definition.
+\end{proof}
+
+\begin{rmk} \label{rmk fibered in sets}
+Corollary \ref{cor fibered in sets} is saying that categories fibered in sets corresonds, under the equivalence sketched in Lemma \ref{lemma pseudo functor 1} and \ref{lemma pseudo functor 2}, to presheaves (of sets).
+\end{rmk}
+
+\subsubsection{The 2-category $(\Cat \downarrow \mathcal C)$}
+
+
+
+\subsection{Descent Condition}
+
+As we remarked at the end of previous section, fibered categories represents an extension of presheaves of sets. When the base category is endowed with a (Grothendieck) topology we can look for presheaves well-behaved with respect to the topology; classically, this leads to the notion of sheaf. In the more general context of categories fibered in groupoids, we will obtain stacks. The theoretical difficulty in this passage is contained in the fact that $\grpd$ is a 2-category, hence certain limits have to be understood in a 2-categorical sense. This suggests that we can, more generally, consider presheaves with values in a category carrying homotopical information; in that context, we will ask for limits and colimits to be understood in the homotopical sense (cfr. Section \ref{homotopy limits}).
+
+\subsubsection*{Descent data}
+
+There are several ways to define descent data and descent condition. We will follow the exposition given in \cite[Ch. 4]{vistoli}.
+
+Let $(\mathcal C, J)$ be a site and let $p \colon \mathcal F \to \mathcal C$ be a category fibered in sets. For each object $U \in \Ob(\mathcal C)$ and each covering sieve $R$ on $U$, let
+\begin{equation} \label{eq matching family}
+\mathcal F(U)_R := \varprojlim_{V \to U \in R} \mathcal F_V
+\end{equation}
+It is well-known that this gives a description of the compatible families of objects with respect to the sieve $R$. A presheaf $\mathcal F$ is a sheaf if and only if the natural morphism
+\begin{equation} \label{eq sheaf condition}
+\mathcal F_U \to \mathcal F(U)_R
+\end{equation}
+is an isomorphism. If we want to generalize this construction to the context of categories fibered in groupoids, we have to give the correct meaning to equation \eqref{eq matching family}, and we will have to substitute the isomorphism \eqref{eq sheaf condition} with an equivalence of categories. Let's begin with the following observation:
+
+\begin{lemma} \label{lemma transition sheaf stack}
+With the previous notations and denoting by $\mathcal F$ the functor (cfr. Lemma \ref{rmk fibered in sets}) associated to $p \colon \mathcal F \to \mathcal C$, we have an isomorphism
+\[
+\mathcal F(U)_R \simeq \Hom(R,\mathcal F)
+\]
+\end{lemma}
+
+\begin{proof}
+Let $f \colon V \to U$ be an arrow in $R$ and define
+\[
+\alpha_f \colon \mathrm{Nat}(R, \mathcal F) \to \mathcal F(V)
+\]
+by setting
+\[
+\alpha_f(\varphi) := \varphi_V(V \to U)
+\]
+This gives a cone over $\{\mathcal F(V \to U)\}_{V \to U \in R}$ and so we get a morphism
+\[
+\Hom(R,\mathcal F) \to \mathcal F(U)_R
+\]
+It is straighforward to check that this is a bijection (cfr. \cite[Prop. 2.39]{vistoli}).
+\end{proof}
+
+Motivated by Lemma \ref{lemma transition sheaf stack} we give the following definition:
+
+\begin{defin}
+Let $p \colon \mathcal F \to \mathcal C$ be a fibered category over a site $(\mathcal C,J)$. For every covering sieve $R$ over an object $U \in \Ob(\mathcal C)$, define the descent data of $\mathcal F$ with respect to $R$ to be
+\[
+\mathcal F(U)_R := \mathbf{Hom}_{\mathcal C}(R, \mathcal F)
+\]
+where $R$ is reviewed as a full subcategory of $(\mathcal C \downarrow U)$.
+\end{defin}
+
+Observe that we have a natural arrow
+\begin{equation} \label{eq stack condition}
+\mathcal F_U \to \mathcal F(U)_R
+\end{equation}
+corresponding via the adjunction to the natural morphism
+\[
+\mathcal F_U \times_{\mathcal C} R \to \mathcal F
+\]
+
+Others description are possible. See \cite[Ch. 4.1.2]{vistoli} for a detailed explanation.
+
+\begin{defin}
+Let $p \colon \mathcal F \to \mathcal C$ be a fibered category on a site $(\mathcal C,J)$. We will say that:
+\begin{enumerate}
+\item $\mathcal F$ is a \emph{prestack} over $\mathcal C$ if for every covering sieve the natural functor \eqref{eq stack condition} is fully faithful;
+\item $\mathcal F$ is a \emph{stack} over $\mathcal C$ if for every covering sieve the natural functor \eqref{eq stack condition} is an equivalence of categories.
+\end{enumerate}
+\end{defin}
+
+\begin{prop}
+Let $(C,J)$ be a site and let $p \colon \mathcal F \to \mathcal C$ be a category fibered in sets. Then
+\begin{enumerate}
+\item $\mathcal F$ is a prestack if and only if it is a separated functor;
+\item $F$ is a stack if and only if it is a sheaf.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+This is an immediate consequence of Lemma \ref{lemma transition sheaf stack}.
+\end{proof}
+
+\subsection{Examples}
+
+\subsubsection{Quasi-coherent sheaves}
+
+\begin{lemma} \label{lemma fpqc topology}
+For any scheme $X$ say that a collection $\{\varphi_i \colon U_i \to X\}_{i \in I}$ is a fpqc covering if each $\varphi_i$ is flat and quasi-compact and if the family of maps is jointly surjective. Then the fpqc covers satisfy the axioms for a pretopology.
+\end{lemma}
+
+\begin{proof}
+We have to show that a fpqc morphism is stable under base change, but this is clear.
+\end{proof}
+
+\begin{defin}
+Let $S$ be a scheme. The (big) fpqc site over $S$ is the category $\mathbf{Sch} / S$ endowed with the fpqc topology defined in Lemma \ref{lemma fpqc topology}.
+\end{defin}
+
+Fix a scheme $S$ and consider the (big) fpqc site over $S$, $(\mathbf{Sch}/S)_{\mathrm{fpqc}}$. Define a pseudo-functor
+\[
+\Phi \colon (\mathbf{Sch}/S)_{\mathrm{fpqc}}^{\mathrm{op}} \to \Cat
+\]
+on objects as
+\[
+\Phi(X) := \mathrm{QCoh}(X)
+\]
+the category of quasi-coherent $\mathcal O_X$-modules. To define the action on arrows, recall the following lemma:
+
+\begin{lemma}
+Let $f \colon X \to Y$ be a morphism of schemes. Then if $\mathcal G$ is a quasi-coherent module over $Y$, $f^* \mathcal G$ is a quasi-coherent module over $X$.
+\end{lemma}
+
+\begin{proof}
+Immediate consequence of the exactness of $f^{-1}$ and the right-exactness of
+\[
+- \otimes_{\mathcal O_R} \mathcal F \colon \mathbf{Mod}_{\mathcal O_R} \to \mathbf{Mod}_{\mathcal O_R}
+\]
+where $\mathcal O_R$ is a sheaf of rings and $\mathcal F$ is a $\mathcal O_R$-module (the reader not at ease with Algebraic Geometry might would like to check on \cite[Prop. II.5.8.(a)]{hartshorne}).
+\end{proof}
+
+To check that we obtain a pseudo-functor we observe that $\mathrm{QCoh}(X)$ is a full subcategory of $\mathbf{Mod}_{\mathcal O_X}$ and that $f^*$ is defined also for the larger category.
+
+
+The difference, is that the functor
+\[
+f^* \colon \mathbf{Mod}_{\mathcal O_Y} \to \mathbf{Mod}_{\mathcal O_X}
+\]
+has a right adjoint, namely
+\[
+f_* \colon \mathbf{Mod}_{\mathcal O_X} \to \mathbf{Mod}_{\mathcal O_Y}
+\]
+
+\begin{rmk}
+Recall that in general $f_*$ doesn't induce a functor
+\[
+f_* \colon \mathrm{QCoh}(X) \to \mathrm{QCoh}(Y)
+\]
+For example it is not true that a skyscraper sheaf is quasi-coherent,\footnote{Observe that if $\widetilde{M}_x \ne 0$, then for each $y \in \overline\{x\}$ we have also $\widetilde{M}_y \ne 0$. This allows to construct a simple counter-example over a non-closed point.} at least without additional hypothesis on $f$ (e.g. quasi-compact and separated).
+\end{rmk}
+
+The adjointness allows to construct the required isomorphisms $\alpha_{f,g}$ and $\varepsilon_X$. For the details, see \cite[Ch. 3.2.1]{vistoli}. Let now
+\[
+\mathbf{QCoh}_S \to \mathbf{Sch}/S
+\]
+be the fibered category associated to $\Phi$ via the construction in Lemma \ref{lemma pseudo functor 2}. We can show:
+
+\begin{thm}
+$\mathbf{QCoh}_S \to \mathbf{Sch}/S$ is a stack.
+\end{thm}
+
+\begin{proof}
+See \cite[Thm. 4.23]{vistoli}.
+\end{proof}
+
+\subsubsection{Elliptic curves}
+
+The current goal is twofold: showing that stacks provide an useful enlargement of sheaves and construct an interesting example. More in detail, we want to show that if we want to deal with elliptic curves over a scheme, the na{\"i}f approach of taking isomorphism classes fails (we do not get back a sheaf); however, if we don't forget isomorphisms and we consider the category fibered in groupoids, we get a stack.
+
+\begin{defin}
+Let $S$ be a scheme. An elliptic curve over $S$ is a triple $(E,f,0)$ where
+\begin{enumerate}
+\item $f \colon E \to S$ is proper, smooth and of relative dimension $1$;
+\item for every $s \in S$ the fiber $E_s$ is a geometrically connected curve of genus $1$;
+\item $0 \colon S \to E$ is a section of $f$.
+\end{enumerate}
+\end{defin}
+
+Consider the site $\mathbf{Sch}_{\mathrm{{\'e}t}}$. Define a presheaf
+\[
+\Phi \colon \mathbf{Sch}_{\mathrm{{\'e}t}} \to \Set
+\]
+sending a scheme $S$ to the set of isomorphism classes of elliptic curves over $S$. If $g \colon S' \to S$ is a morphism of scheme and $(E,f,0)$ is an elliptic curve over $S$ we construct an elliptic curve $(E',f',0')$ over $S'$ via the fiber product:
+\[
+\xymatrix{
+E' = E \times_S S' \ar[d]^{f'} \ar[r] & E \ar[d]^f \\ S' \ar[r]^g & S
+}
+\]
+From \cite[Prop. 3.3.16.(c)]{liu} we see that $f'$ is still proper; from \cite[Prop. 4.3.38]{liu} we see that $f' \colon E' \to S'$ is still a smooth morphism. Recall that in this case the relative dimension at a point $x$ is the rank of $\Omega^1_{E'/S'}$ at $x$; \cite[Prop. 1.8.(a)]{liu} shows then that $f' \colon E' \to S'$ is still of relative dimension $1$. The fibers of $f'$ are again geometrically connected because this property is stable under base change; finally, the genus is invariant under field extensions, and this is sufficient to conclude.
+
+The functoriality of this construction shows that isomorphism classes of elliptic curves over $S$ are sent into isomorphism classes if elliptic curves over $S'$, hence we get a map
+\[
+g^* \colon \Phi(S) \to \Phi(S')
+\]
+It is straightforward to check that the so-defined $\Phi$ is a presheaf. We want to show that $\Phi$ cannot be a sheaf: let $S = \mathrm{Spec}(\mathbb F_3)$ and consider the elliptic curves
+\begin{gather*}
+C := \{(x,y) \in \mathbb A^2_{\mathbb F_3} \mid y^2 = x^3 - x - 1 \} \\
+D := \{(x,y) \in \mathbb A^2_{\mathbb F_3} \mid y^3 = x^3 - x + 1 \}
+\end{gather*}
+They cannot be isomorphic because a simple direct check shows that $C$ doesn't have $\mathbb F_3$-rational points, while $D$ has $7$ $\mathbb F_3$-rational points. However, if $K$ is a finite field extension of $\mathbb F_3$ containing a square root of $1$, then
+\[
+\mathrm{Spec}(K) \to \mathrm{Spec}(\mathbb F_3)
+\]
+is an étale covering of $\mathrm{Spec}(\mathbb F_3)$, and $C_K$ is isomorphic to $D_K$. Therefore, the canonical map
+\[
+\xymatrix{
+\Phi(\mathbb F_3) \ar[r] & \Phi(K) \ar@<.5ex>[r]^{\mathrm{id}} \ar@<-.5ex>[r]_{\mathrm{id}} & \Phi(K)
+}
+\]
+is not injective; in particular $\Phi$ cannot be a sheaf. Under the identification constructed before, we can also say that $\Phi$ is not a stack.
+
+The situation changes drastically if we don't take isomorphism classes of elliptic curves. Define
+\[
+\mathcal M_{\mathrm{ell}} \colon \mathbf{Sch}_{\mathrm{{\'e}t}} \to \grpd
+\]
+defined on objects sending a scheme $S$ into the category $\mathcal M_{\mathrm{ell}}(S)$ whose objects are elliptic curves over $S$ and whose morphisms are isomorphisms of elliptic curves. $\mathcal M_{\mathrm{ell}}$ is in fact a pseudo-functor: the construction $\alpha_{f,g}$ is, as usual, due to the universal property of the pull-back that we are using.\footnote{We are sloppy on these checks because in fact the $(\infty,1)$ viewpoint \emph{should} allow a \emph{complete} and \emph{formal} proof of these facts, using the property that maps obtained via a (standard categorical) universal property define always a contractible space.} 
+
+We want to check 
+
+\subsubsection{Quotients}
+
+Stacks are well-suited to deal with quotients by group action. We will discuss in general this example, and we will specialize it to two different situation: an algebraic one, and a differentiable one.
+
+\section{Model structure on presheaves in groupoids}
+
+As we were suggesting, the difficulty that separates the notion of sheaf from that of stack is related to the fact that $\grpd$ carries a homotopical structure (see Theorem \ref{model structure on groupoids}). In this section we reformulate the notion of stack using the machinery of model categories developed in Chapter 1.
+
+
+\subsection{Via the adjunction}
+
+\subsection{Via Bousfield localization}
+
+\section{Simplicial Presheaves}
+
+\cite{jardinepresheaves}
+
+\subsection{Injective Model Structure}
+
+\subsection{Hypercovers}
+
+\cite{hypercover}
+
+\subsection{Characterization of fibrant objects}
+
+
+\section{Higher Stacks}
+
+\section{Complements to Chapter 3}
+
+\subsection{Cartesian closedness of $\Cat$}
+
+The main reference is \cite[Ch. VI]{sga1}.
+
+\begin{lemma} \label{lemma internal hom adjunctions}
+For each category $\mathcal C$ the functor $\mathbf{hom}(\mathcal C, -) \colon \Cat \to \Cat$ preserves the adjunctions.
+\end{lemma}
+
