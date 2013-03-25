@@ -1,0 +1,151 @@
+\chapter{Quasi--categories}
+
+This chapter is intented to give an intuition of what $(\infty,1)$-categories are and to present an informal introduction to one of theirs models, namely quasi-categories (sometimes called weak Kan complexes). We show how some basic concepts of ordinary category theory extend to the $(\infty,1)$-categorical context, and specifically to the model of quasi-categories.
+
+\begin{flushright}
+Valerio Melani
+\end{flushright}
+
+\section{Intuition and first models}
+
+We start by trying to give some intuition for what these $(\infty,1)$-categories are, and how one could search for a suitable formalism to describe them. Next, we will concentrate our efforts in starting to understand one of the different models for $(\infty,1)$-categories, namely the so-called \emph{quasi-categories}.
+
+\
+
+Heuristically speaking, an $(\infty,1)$-category is of course first of all an $\infty$-category. This means that we have objects, morphisms between objects, 2-morphisms between morphisms, 3-morphisms between 2-morphisms, and so on. Put this way, this is not yet a very precise object, because actually we want to have some kind of compositions between these $k$-morphisms, and these compositions must of course have some nice properties that fit our general intuition. This is (one of the) main reason why higher category theory has a reputation of being overcomplicated and messy; for a general discussion about the problems of defining higher categories, we recommend for example the lecture of ???.
+
+Luckily we will not have to go into these kind of details, as we just want to describe the special case of $(\infty,1)$-categories, who are just $\infty$-categories whose $k$-morphisms are invertible for $k>1$. This sensibly simplifies our task : generalizations of classical ideas from (ordinary) category theory becomes much more complicated if we allow the existence of non-invertible $k$-morphisms (k>2).
+
+That being said, where should we start looking for a possible model of $(\infty,1)$-categories? We observe that if $x$ and $y$ are two "objects" of a wanna-be $(\infty,1)$-category, the morphisms between them form an $\infty$-category whose all morphisms are invertible, even the $1$-morphisms ; this is what is called an $\infty$-groupoid.
+$\infty$-groupoids have been extensively studied under the false name of topological spaces. In fact, a general principle of higher category theory (the \emph{homotopy hypothesis}) states exactly that $\infty$-groupoids and topological spaces are same thing, homotopically speaking. To be more precise, if we are given a topological space $X$, we can easily associate to it an $\infty$-groupoid : the classical construction of the fundamental groupoid of a topological space can be extended in a natural way to get an $\infty$-groupoid $\pi_{\infty}X$ as follows. The objects of $\pi_{\infty}X$ are the points of $X$. If $x,y \in X$, then the morphisms from $x$ to $y$ in $\pi_{\infty}X$ are the continuous paths in $X$ starting at $x$ and ending at $y$. The $2$-morphisms are homotopies of paths, the $3$-morphisms are homotopies between homotopies of paths, and so on all  the way to $\infty$. What we get is an $\infty$-groupoid who remembers all the homotopical information of $X$. The homotopy hypothesis tells us the converse : every $\infty$-groupoid is of the form $\pi_{\infty}X$ for some topological space $X$.
+
+So saying that morphisms between two objects of an $\infty$-category form an $\infty$-groupoid is the same that saying that they form a topological space. We can therefore try and give the following definition.
+
+\begin{defin}
+An $\infty$-category is a \emph{topological category}, i.e. a category which is enriched over the category of topological spaces.
+\end{defin}
+
+But in homotopy theory, there are many equivalent ways to describe spaces: using one of them, we are led to the following different interpretation of an $\infty$-category.
+
+\begin{defin}
+An $\infty$-category is a \emph{simplicial category}, i.e. a category which is enriched over the category of simplicial sets.
+\end{defin}
+
+These are two definitions who can be both used as a foundation for higher category theory. They look simple enough, but taking one of these approaches lead to some technical difficulties that we would like to avoid. A first alternative definition of an $\infty$-category will be given in the next section.
+
+\section{Quasi-categories}
+
+There are two classes of examples we certainly wish to have in any theory of $\infty$-categories:
+\begin{itemize}
+\item $\infty$-groupoids (i.e. spaces), as they are of course a special case of $\infty$-category ;
+\item ordinary categories, as they can be thought as $\infty$-categories where for $k >1$ the only $k$-morphisms are the identities.
+\end{itemize}
+
+So the question is to find a formalism in containing both these theories. And one possible answer is the theory of simplicial sets. Given a topological space $X$, the classical construction of his singular complex $\text{Sing}(X)$ is a simplicial set who determines $X$ up to weak homotopy equivalence. The simplicial set $\text{Sing}(X)$ has the important property of being a \emph{Kan complex}
+
+\begin{defin}
+A simplicial set $S$ is a \emph{Kan complex} if every map $\Lambda_k^n \to S$ extends to a map $\Delta^n \to S$.
+\end{defin}
+
+It is quite clear that if $X$ is a topological space, then $\text{Sing}(X)$ is a Kan complex : this is due to the fact the horns are retracts of the simplex $\Delta^n$ in the world of topological spaces. The converse is also true : Kan complexes are topological spaces, in the sense that just as $\infty$-groupoids they are models for homotopy types.
+Now given a category $\mathcal C$, we can construct a simplicial space $N(\mathcal C)$ called the \emph{nerve} of $\mathcal C$ as follows. We just let the $n$-simplices of $N(\mathcal C)$ be the strings of $n$ composable morphisms of $\mathcal C$. If you think about it, this simplicial set knows all about the category $\mathcal C$, it just encodes the information in another language. But what kind of simplicial set do we get? The following proposition gives us the answer.
+
+\begin{prop}
+A simplicial set $S$ is isomorphic to the nerve of some category if and only if every map $\Lambda_k^n \to S$ with $0<k<n$ extends uniquely to a map $\Delta^n \to S$.
+\end{prop}
+
+Knowing that we are trying to generalize spaces and categories, the following definition should not surprise us.
+
+\begin{defin}
+A \emph{quasi-category} is a simplicial set $S$ in which every map $\Lambda_k^n \to S$ with $0<k<n$ extends to a map $\Delta^n \to S$.
+\end{defin}
+
+Part of the literature on the subject refers to quasi-categories as \emph{weak Kan complexes}, to stress the analogy with the precedent notion.
+We state that quasi-categories are a good model for the theory of $(\infty,1)$-categories. The rest of this notes is devoted to convincing us of this fact.
+
+\subsection{Mapping spaces}
+
+As we said earlier, we know we should be able to find a space (or a good homotopy types) between any two objects of a $(\infty,1)$-categories. This is easy in the world of topological (or simplicial) categories. It is less obvious in our setting of quasi-categories.
+
+We should now point out that there are actually explicit adjoint functors that establish an equivalence between the theory of simplicial categories that of quasi-categories. So the problem of finding mapping spaces in a quasi-category could be bypassed by taking a simplicial category which is equivalent to our quasi-category, and take mapping spaces there. Here we try to avoid this point of view, partly because the two adjoint functors are quite complicated, and the resulting mapping spaces could be quite obscure. Details can be found on \cite{htt}.
+
+The question of how to define mapping spaces in quasi-categories is of independent interest, and has been studied in \cite{DS}. Here we just show one way of defining them.
+
+If $x$ and $y$ are objects of an $(\infty,1)$-category $\mathcal C$ (i.e. they are vertices of $\mathcal C$ as a simplicial set) we define a simplicial set $\Hom^R(x,y)$, called the space of right morphisms from $x$ to $y$. This is done by letting $\Hom_{SSet}(\Delta^n,\Hom^R(x,y))$ be the set of all maps $f: \Delta^{n+1} \to \mathcal C$ such that $f$ sends the $(n+1)$-th vertex to $y$ and the first $n$ to x (as a degenerate simplex).
+
+We can prove that is what we were looking for :  $\Hom^R(x,y)$ is a Kan complex, and it is equivalent to other more abstract definitions of the mapping space.
+
+
+
+\subsection{The homotopy category}
+
+We now define the homotopy category of a quasi-category $\mathcal C$. This is to be thought as the underlying ordinary category of $\mathcal C$, who remembers only low homotopical information and forgets about the higher one. 
+
+Again, if we think in terms of topological (or simplicial) categories, all is easy : we can take the set of morphisms between two objects $x,y$ to be the $\pi_0$ of the topological space (or simplicial set) $\Hom (x,y)$. Now that we dispose of mapping spaces in the setting of quasi-categories, we can do the same.
+
+\begin{defin}
+If $\mathcal C$ is a  quasi-category, his homotopy category $h\mathcal C$ is the category whose objects are the objects of $\mathcal C$ and whose morphisms are the path-connected components of the mapping spaces of $\mathcal C$.
+\end{defin}
+
+Another way to describe it is to notice that the nerve functor defined earlier in the text admits a left adjoint $h: SSet \to Cat$, who does exactly what we wanted : it only keeps the 1-categorical information contained in $\mathcal C$.
+
+Let's get a more explicit understanding of what the homotopy category concretely is.
+
+Given two vertices $x,y \in \C$ and two edges $f,g : x \to y$ (meaning that the edges start at $x$ and end at $y$), we say that $f$ and $g$ are homotopic if there is a $2$-simplex in $\mathcal C$ who has $f$ as the $0\to 1$ edge, $g$ as the $0\to 2$ edge, and the degenerate edge at $y$ as $1 \to 2$ edge. (This is very clear if you try and draw the diagram).
+
+The fact that $\mathcal C$ is a quasi-category means that ``being homotopic'' is an equivalence relation. The homotopy category is now just the category whose objects are the the objects of $\mathcal C$ and whose morphisms are the equivalence classes of edges of $\mathcal C$.
+
+
+
+\subsection{Functors between quasi-categories}
+
+We now describe the category of functors between quasi-categories. This is one of the cases in which some technical problem with the topological (and simplicial) categories arise. In any reasonable model, we expect to be able to construct an $(\infty,1)$-category of functors between two $(\infty,1)$-categories. The problem is that there is not an obvious way to give a good definition of this category in the setting of topological (simplicial) category.
+
+Here quasi-categories give their best, and the definition are much easier.
+
+\begin{defin}
+Given two quasi-categories $\mathcal C$ and $\mathcal D$, the simplicial set $\Hom_{SSet}(\mathcal C,\mathcal D)$ is called the \emph{$(\infty,1)$-category of functors} from $\mathcal C$ to $\mathcal D$.
+\end{defin}
+
+Here we used the fact that the category of simplicial sets has internal Hom objects, and we are defining the maps of quasi-categories as maps of simplicial sets. Notice that $\Hom_{SSet}(\mathcal C,\mathcal D)$ has the right to be called an $(\infty,1)$-category thanks to the following proposition.
+
+\begin{prop}
+If $\mathcal C$ is a quasi-category, then the simplicial set $\Hom_{SSet}(S,\mathcal C)$ is a quasi-category for every simplicial set $S$.
+\end{prop}
+
+In particular, a functor between quasi-categories is an equivalence if and only if it is essentially surjective on objects and induces homotopy equivalences between mapping spaces.
+
+
+\subsection{Limits and colimits}
+
+In this section we explain how to define limits and colimits in the setting of quasi-categories.
+
+In the same way that limits and colimits in an ordinary category can be defined using the definition of limits and colimits in the category of sets, limits and colimits in a quasi-category can be defined using the notion of homotopy limits and colimits in the model category of spaces.
+If we want to be concise, we could give the following definition: given a functor $I \to \mathcal C$ between two $(\infty,1)$-categories, its limit and colimit (if they exist) are determined by asking that the natural maps
+
+$$\Hom(X, \lim F(i)) \to \text{holim }\Hom(X,F(i))  $$
+
+$$ \Hom(\text{colim }F(i),X) \to \text{hocolim } \Hom(F(i),X) $$
+
+are weak equivalences of spaces that are natural in $X$.
+
+
+\subsection{Model structure}
+
+In order to prove later that the different models of $(\infty,1)$-categories are equivalent, we now give the definition of a model structure on the category of simplicial sets which is different from the standard one.
+
+%In order to do this, we let $h_0(S,S')$ be the set of isomorphism classes of objects in the homotopy category of $\Hom(S,S')$.
+We say then that a map of simplicial sets $S \to S'$ is a \emph{weak categorical equivalence} if the induced map $\Hom(S',X) \to \Hom(S,X)$ is an equivalence of quasi-categories for any quasi-category $X$.
+
+\begin{thm}[Joyal] There exists a model structure on the category $SSet$ of simplicial sets with the following properties:
+\begin{itemize}
+\item weak equivalences are the weak categorical equivalences ;
+\item cofibrations are just monomorphisms of simplicial sets ;
+\item the fibrant objects are precisely the quasi-categories.
+\end{itemize}
+\end{thm}
+
+
+
+In particular, this means that for this model structure weak equivalences between fibrant objects are precisely equivalences of quasi-categories.
+
