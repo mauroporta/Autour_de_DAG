@@ -309,6 +309,8 @@ where $\omega'$ is a non-degenerate simplex; by hypothesis $\omega' \in K_n$ wit
 The converse is obviously implies by the explicit description of $\mathrm{sk}_N(K)$ given in Proposition \ref{prop sub simplicial set}.
 \end{proof}
 
+\subsection{Kan fibrations}
+
 \section{Geometric realization}
 
 \begin{thm} \label{thm exactness of geometric realization}
@@ -337,9 +339,308 @@ The geometric realization functor $| \cdot | \colon \sset \to \mathbf{CGHaus}$ r
 It's consequence of Theorem \ref{thm exactness of geometric realization} and Lemma \ref{lem colimit reflection}, since $\sset$ is cocomplete.
 \end{proof}
 
+\section{Anodyne extensions}
+
+In this section we develop a technical tool allowing to avoid many combinatorial argument, and in particular the use of $(p,q)$-shuffle. The idea here has been developed for the first time to the best of our knowledge in \cite{gz}; our exposition will follow \cite[Ch. I.4]{gj}, even though some (categorical) optimization is proposed. The reader who desires to get into the combinatorial arguments, can refer to \cite{may}.
+
+\subsection{Categorical preliminaries}
+
+The first couple of results concern classes of morphisms saturated with respect to certain (colimit) operations. Obviously, we can develop a dual theory of co-saturated classes, but since we won't need it, we leave this to the reader willing to enjoy himself with categorical yoga.
+
+\begin{defin}
+A category $\mathcal C$ is said to be mono-regular if monomorphisms are stable under pushouts, countable composition and arbitrary disjoint union.
+\end{defin}
+
+\begin{defin} \label{defin saturation}
+Let $\mathcal C$ be a mono-regular category. Let $S$ be a class of monomorphisms in $\mathcal C$. We say that $S$ is saturated if the following requirements are satisfied:
+\begin{enumerate}
+\item every isomorphism is in $S$;
+\item $S$ is closed under pushout;
+\item $S$ is closed under retracts;
+\item $S$ is closed under countable composition and arbitrary disjoint union.
+\end{enumerate}
+\end{defin}
+
+\begin{lemma} \label{lemma llp saturation}
+Let $\mathcal C$ be any category. Let $f \colon X \to Y$ be any arrow and define $S_f$ to be the class of maps having the LLP with respect to $f$. Then $S_f$ is saturated.
+\end{lemma}
+
+\begin{proof}
+The proof is straightforward.
+\end{proof}
+
+\begin{lemma} \label{lemma intersection saturated classes}
+The intersection of saturated class of maps is still saturated. In particular, every class of maps is contained in a minimal saturated class of maps.
+\end{lemma}
+
+\begin{proof}
+Trivial.
+\end{proof}
+
+We will need a more technical tool to produce saturated classes of monomorphisms. First of all, recall the following result:
+
+\begin{lemma} \label{lemma src tgt creates}
+Let $\mathcal C$ be any category. The functor $\mathbf d_0 \times \mathbf d_1 \colon \mathbf{Arr}(\mathcal C) \to \mathcal C \times \mathcal C$ creates both limits and colimits. In particular $\mathbf d_0 \times \mathbf d_1$ preserves and reflects both limits and colimits.
+\end{lemma}
+
+\begin{proof}
+This is a standard exercise in universal properties.
+\end{proof}
+
+\begin{lemma} \label{lemma saturation of families}
+Let $\mathcal C$ and $\mathcal D$ be mono-regular categories having initial objects $\emptyset_{\mathcal C}$ and $\emptyset_{\mathcal D}$ respectively. Let $F \colon \mathbf{Arr}( \mathcal C) \to \mathbf{Arr}(\mathcal D)$ a functor satisfying the following conditions:
+\begin{enumerate}
+\item for any object $A \in \Ob(\mathcal C)$
+\[
+(\mathbf d_0 \circ F)(\emptyset_{\mathcal C} \to A) = \emptyset_{\mathcal D}
+\]
+\item $F$ preserves colimits in $\mathbf{Arr}(\mathcal C)$.
+\end{enumerate}
+Then if $S$ is a saturated class of arrows of $\mathcal D$, the class
+\[
+S_F := \{f \in \mathrm{Arr}(\mathcal D) \mid f \text{ is monic and } F(f) \in S\} \subset \mathrm{Arr}(\mathcal C)
+\]
+is saturated.
+\end{lemma}
+
+\begin{proof}
+Observe first of all that Lemma \ref{lemma src tgt creates} implies that a diagram $\varphi_\alpha \colon T_\alpha \to T$ is a colimit in $\mathcal C$ if and only if the induced diagram
+\[
+\xymatrix{
+\emptyset \ar[r] \ar[d] & T_\alpha \ar[d]^{\varphi_\alpha} \\ \emptyset \ar[r] & T
+}
+\]
+is a colimit in $\mathbf{Arr}(\mathcal C)$. The hypothesis on $F$ and Lemma \ref{lemma src tgt creates} guarantee that $\mathbf d_1 \circ F$ sends this diagram into a colimit of $\mathcal D$.
+
+Now, if $f \in \mathrm{Arr}(\mathcal C)$ is an isomorphism, $F(f)$ is an isomorphism and therefore $F(f) \in S$, i.e. $f \in S_F$. Consider next a pushout diagram
+\[
+\xymatrix{
+A \ar[r]^i \ar[d] & B \ar[d] \\ C \ar[r]_j & D
+}
+\]
+where $i \in S_F$. Applying $\mathbf d_0 \circ F$ to the diagram
+\[
+\xymatrix{
+& \emptyset \ar[rr] \ar[dd]|{\hole} & & B \ar[dd] \\ \emptyset \ar[ur] \ar[dd] \ar[rr] & & A \ar[ur]^i \ar[dd] \\ & \emptyset \ar[rr]|{\hole} & & D \\ \emptyset \ar[ur] \ar[rr] & & C \ar[ur]_j
+}
+\]
+yields a pushout diagram in $\mathcal D$ by hypothesis, and so $F(j) \in S$, i.e. $j \in S_F$. 
+
+If $f$ is a retract of $g \in S_F$, then $F(f)$ is a retract of $F(g) \in S$, hence $F(f) \in S$ and $f \in S_F$.
+
+Finally, if $\{f_n \colon X_n \to X_{n+1}\}_{n \in \N}$ is a countable family of composable arrows in $S_F$ and
+\[
+X_\infty = \varinjlim X_n
+\]
+while
+\[
+f_\infty \colon X_0 \to X_\infty
+\]
+is the natural map of the colimit, then
+\[
+F(X_\infty) = \varinjlim F(X_n)
+\]
+and the natural map $F(X_0) \to F(X_\infty)$ is exactly $F(f_\infty)$. It follows that $F(f_\infty) \in S$, i.e. $f_\infty \in S_F$. A similar argument shows that $S_F$ is closed under direct sums.
+\end{proof}
+
+Secondly, we will need the notion of Kan extension. Recall the definition:
+
+\begin{defin}
+Let $K \colon \mathcal M \to \mathcal C$ and $T \colon \mathcal M \to \mathcal A$ be functors. A left Kan extension of $T$ along $K$ is a universal arrow $(R,\eta)$ from $T \in \mathcal A^{\mathcal M}$ to $K^* \colon \mathcal A^{\mathcal C} \to \mathcal A^{\mathcal M}$.
+\end{defin}
+
+\begin{lemma} \label{lemma representable kan extension}
+Let $j \colon \mathcal A \to \mathcal B$ be the inclusion of a \emph{full} subcategory. Let $A \in \Ob(\mathcal A)$ be an object and let $h_A := \Hom_{\mathcal B}(-,A)$, $h_A^{\mathcal A} := h_A \circ j$. Then $(h_A, \mathrm{id}_{h_A^{\mathcal A}})$ is left Kan extension of $h_A^{\mathcal A}$ along $j$.
+\end{lemma}
+
+\begin{proof}
+Let $S \colon \mathcal B \to \Set$ be any functor and let $\tau \colon h_A^{\mathcal A} \to S \circ j$. Since $\mathcal A$ is a full subcategory, then $h_A^{\mathcal A} = \Hom_{\mathcal A}(-,A)$; therefore, Yoneda lemma implies
+\[
+\mathrm{Nat}(h_A^{\mathcal A}, S \circ j) \cong S(A) \cong \mathrm{Nat}(h_A, S)
+\]
+and both the isomorphisms are natural in $A$ and $S$. It follows the thesis.
+\end{proof}
+
+\begin{cor}
+The non-degenerate $(n+m)$-simplexes of the simplicial set $\Delta^n \times \Delta^m$ are in bijection with the $(n,m)$-shuffles of $n+m$.
+\end{cor}
+
+\begin{proof}
+Consider the category $\mathbf{Pos}$ whose objects are partially ordered sets and whose morphisms are weakly increasing functions. We have a natural inclusion
+\[
+j \colon \mathbf \Delta \subset \mathbf{Pos}
+\]
+and $\mathbf \Delta$ is realized as full subcategory of $\mathbf{Pos}$. Moreover,\footnote{Here $\mathbf n \times \mathbf m$ denotes the (categorical) product in $\mathbf{Pos}$. Observe that $\mathbf n \times \mathbf m$ is \emph{not} a totally ordered set.}
+\[
+\Delta^n \times \Delta^m = \Hom_{\mathbf{Pos}}(j(-), \mathbf n) \times \Hom_{\mathbf{Pos}}(j(-),\mathbf m) = \Hom_{\mathbf{Pos}}(j(-),\mathbf n \times \mathbf m)
+\]
+It follows from Lemma \ref{lemma representable kan extension} that
+\[
+\Hom_{\sset}(\Delta^{n+m}, \Delta^n \times \Delta^m) \cong \Hom_{\mathbf{Pos}}(j(\mathbf{n + m}), \mathbf n \times \mathbf m)
+\]
+and this last set is composed by the $(m,n)$-shuffles of $n+m$ (by definition).
+\end{proof}
+
+\subsection{Anodyne maps}
+
+For the moment we will take care simply of the classical anodyne extensions. In Chapter 2, it is necessary to consider a slight modification in order to compare simplicial categories with quasicategories. We will omit the technical details for the moment.
+
+Working in $\sset$, we will consider only classes of monomorphisms. Since in $\sset$ monomorphisms are stable under pushouts, countable composition and disjoint union, it makes sense to give the following definition:
+
+\begin{defin}
+A class of maps $S$ in $\sset$ is mono-saturated if it is saturated and if every object in $S$ is a monomorphism.
+\end{defin}
+
+Given a class of monomorphisms, it always 
+
+The main result of this section consists in proving that three classes of morphisms have the same saturation. More precisely, we will consider the following classes:
+\begin{itemize}
+\item $\mathbf B_1$, the class of all inclusions $\Lambda^n_k \to \Delta^n$ for $n \in \N$, $n > 0$ and $0 \le k \le n$;
+\item $\mathbf B_2$, the class of all inclusions
+\[
+(\partial \Delta^n \times \Delta^1) \cup (\Delta^n \times \{e\}) \to \Delta^n \times \Delta^1
+\]
+for $e \in \{0,1\}$;
+\item $\mathbf B_3$, the class of all inclusions
+\[
+(Y \times \Delta^1) \cup (X \times \{e\}) \to X \times \Delta^1
+\]
+induced by inclusions $Y \to X$.
+\end{itemize}
+
+We will need a lemma.
+
+\begin{lemma}
+Write $\mathcal C := \mathbf{Arr}(\sset)$; fix moreover an inclusion $\alpha \colon Y \to X$ of simplicial sets. There is a functor $F \colon \mathcal C \to \mathcal C$ sending the arrow $f \colon L \to K$ into
+\[
+(f \times 1) \cup (1 \times \alpha) \colon (L \times X) \cup (K \times Y) \to K \times X
+\]
+Moreover, $F$ sends monomorphisms to monomorphisms and colimit diagrams into colimit diagrams.
+\end{lemma}
+
+\begin{proof}
+The universal properties employed show that $F$ is functorial. It's moreover easy to check directly that $F$ sends monomorphisms to monomorphisms. Finally, if $T \colon \mathcal D \to \sset$ is a small diagram and $\varphi \colon T \to \Delta_L$ is a universal cocone, we observe that both
+\[
+\varphi \times \mathrm{id}_Y \colon T \times Y \to \Delta_{L \times Y} \text{ and } \varphi \times \mathrm{id}_X \colon T \times X \to \Delta_{L \times X}
+\]
+are still universal cocones because $- \times X$ and $- \times Y$ are left adjoint.
+\end{proof}
+
+\begin{thm} \label{thm anodyne extensions}
+The classes $\mathbf B_1$, $\mathbf B_2$ and $\mathbf B_3$ have the same saturation.
+\end{thm}
+
+\begin{proof}
+Denote by $M_{\mathbf B_1}$, $M_{\mathbf B_2}$ and $M_{\mathbf B_3}$ the saturation of those three classes. We have $\mathbf B_2 \subset \mathbf B_3$, hence $M_{\mathbf B_2} \subset M_{\mathbf B_3}$. Let's show that $\mathbf B_3 \subset M_{\mathbf B_2}$. Let $Y \to X$ be any inclusion. Define
+\begin{gather*}
+Y^{(0)} := Y \\
+Y^{(n)} := Y \cup \mathrm{sk}_{n-1}(X), \quad n > 0
+\end{gather*}
+Then we have natural inclusions $Y^{(n)} \to Y^{(n+1)}$ and obviously
+\[
+Y^{(\infty)} := \varinjlim Y^{(n)} = X
+\]
+while the colimit map $Y = Y^{(0)} \to X$ is simply the inclusion we started with. Therefore, it is sufficient to show that 
+\end{proof}
+
+\begin{cor}
+A map is a fibration if and only if it has the RLP with respect to all anodyne extensions.
+\end{cor}
+
+\begin{proof}
+If $f$ has the RLP with respect to all anodyne extensions, it has in particular the RLP with respect to all the horn inclusions $\Lambda^n_k \subset \Delta^n$, $n \in \N$, $n > 0$ and $0 \le k \le n$; hence $f$ is a fibration. Conversely, if $f$ is a fibration, then the class of monomorphisms $S_f$ having the LLP with respect to $f$ is a saturated class thanks to Lemma \ref{lemma llp saturation}; since it contains $\mathbf B_1$, it follows that $S_f$ contains all the anodyne extensions, hence the thesis.
+\end{proof}
+
+\begin{cor}
+If $i \colon K \to L$ is an anodyne extension and $\omega \colon Y \to X$ is an arbitrary inclusion then the induced map
+\[
+(K \times X) \cup (L \times Y) \to L \times X
+\]
+is anodyne.
+\end{cor}
+
+\begin{proof}
+Let $\mathcal C$ be the category $\mathbf{Arr}(\sset)$. Define $F \colon \mathcal C \to \mathcal C$ by sending a morphism $f \colon A \to B$ into
+\[
+(A \times X) \cup (B \times Y) \to B \times X
+\]
+It's easily checked that $F$ is a functor. Moreover, $F$ sends monomorphisms into monomorphisms, and colimit diagrams into colimit diagrams (because $- \times X$ and $- \times Y$ are left adjoints, being $\sset$ cartesian closed). It follows from Lemma \ref{lemma saturation of families} that the class $S$ of monomorphisms $f$ such that $F(f)$ is anodyne is saturated. But it contains the maps
+\[
+(A \times \Delta^1) \cup (B \times \{e\}) \to B \times \Delta^1, \quad e \in \{0,1\}
+\]
+for every inclusion $A \subset B$. It follows by Theorem \ref{thm anodyne extensions} that $S$ contains all the anodyne extensions, hence we get the thesis.
+\end{proof}
+
+\section{Function complexes}
+
+\subsection{Cartesian Closedness}
+
+The very definition we gave of $\sset$ makes clear that this category is a topos. Therefore, the categorical structure of $\sset$ is especially rich; in particular, we know that $\sset$ is cartesian closed. We will now construct explicitly an adjoint for the functor $- \times X \colon \sset \to \sset$. Consider the functor
+\[
+F \colon \mathbf \Delta^{\mathrm{op}} \times \sset^{\mathrm{op}} \times \sset \to \Set
+\]
+defined on objects by the assignment
+\[
+F(\mathbf n, X,Y) := \Hom_{\sset}(X \times \Delta^n, Y)
+\]
+and in the obvious way on arrows (functoriality is for free, since we are dealing with a composition of functors). Using cartesian closedness of $\Cat$ we obtain
+\begin{align*}
+\mathrm{Funct}(\mathbf \Delta^{\mathrm{op}} \times \sset^{\mathrm{op}} \times \sset, \Set) & \cong \mathrm{Funct}(\sset^{\mathrm{op}} \times \sset, \mathbf{Funct}(\mathbf{\Delta}^{\mathrm{op}}, \Set)) \\
+& = \mathrm{Funct}(\sset^{\mathrm{op}} \times \sset, \sset)
+\end{align*}
+We denote by
+\[
+\mathbf{hom} \colon \sset^{\mathrm{op}} \times \sset \to \sset
+\]
+the functor corresponding to $F$. Explicitly we have
+\[
+\Hom_{\sset}(\Delta^n, \mathbf{hom}(X,Y)) = \Hom_{\sset}(\Delta^n \times X, Y)
+\]
+while the degeneracy and face maps are induced in the obvious functorial way (we can build $\mathbf{hom}$ explicitly as composition of functors).
+
+\begin{prop} \label{prop sset cartesian closed}
+For each simplicial set $X$, the functor $\mathbf{hom}(X,-) \colon \sset \to \sset$ is right adjoint to $- \times X$.
+\end{prop}
+
+\begin{proof}
+Given simplicial sets $Y$ and $Z$ denote by
+\[
+\int_{\mathbf \Delta^{\mathrm{op}}} Y
+\]
+the category of objects of $Y$. Recall that for each small category $\mathcal C$ we have a functor
+\[
+\Set^{\mathcal C^{\mathrm{op}}} \to \Cat
+\]
+sending a presheaf into the category of elements of that presheaf. Moreover,
+\[
+\colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Delta^n = Y
+\]
+It follows that
+\begin{align*}
+\Hom_{\sset}(Y, \mathbf{hom}(X,Z)) & \cong \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Hom_{\sset}(\Delta^n, \mathbf{hom}(X,Z) & \text{(by Yoneda)} \\
+& \cong \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Hom_{\sset} (\Delta^n \times X, Z) & \text{(by definition)} \\
+& \cong \Hom_{\sset} \left( \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} (\Delta^n \times X), Z \right) & \text{(by Yoneda)} \\
+& \cong \Hom_{\sset} \left( \left( \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Delta^n \right) \times X, Z \right) & \text{($- \times X$ is left adjoint)} \\
+& \cong \Hom_{\sset} (Y \times X, Z)
+\end{align*}
+All the isomorphisms displayed are natural, hence it follows the adjunction property.
+\end{proof}
+
+
 \section{Homotopy theory in $\sset$}
 
 In this section, we develop the fundamental tools of the homotopy theory for simplicial sets. First of all, we will be concerned with a bunch of spontaneous definitions for the homotopy of maps; we will state those definitions and prove the equivalence. Later on, we will introduce the (higher) fundamental groups and prove some basic facts about fiber sequences. All the exposition is strongly influenced by the first two chapters of \cite{may} and (in a minor way) the first chapter of \cite{gj}.
+
+\begin{defin}
+Let $f,g \colon K \to X$ be maps of simplicial sets and let $i \colon L \subset K$ be a sub-complex such that $f |_L = g|_L$. We will say that $f$ and $g$ are homotopic relative to $L$ if there exists a map $h \colon X \times \Delta^1 \to Y$ such that the diagrams
+\[
+\xymatrix{
+K \times \Delta^0 \ar[d]_{1 \times d^0} \ar@/^1pc/[dr]^f \\ K \times \Delta^1 \ar[r]^-h & X \\ K \times \Delta^0 \ar[u]^{1 \times d^1} \ar@/_1pc/[ur]_g
+} \qquad \xymatrix{K \times \Delta^1 \ar[r]^-h & X \\ L \times \Delta^1 \ar[u]^{i \times 1} \ar[r]^p & L \ar[u]_{f|_L = g|_L}
+}
+\]
+commute.
+\end{defin}
 
 
 
@@ -475,3 +776,4 @@ for every 2-simplex $x \in X_2$.
 
 
 \section{The Nerve Construction}
+
