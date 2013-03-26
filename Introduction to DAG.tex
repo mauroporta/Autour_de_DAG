@@ -51,7 +51,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage[style = alphabetic, backend = biber, abbreviate = true, dateabbrev = long, alldates = long]{biblatex}
 %%%Settings
 \renewcommand*{\newunitpunct}{\addcomma\space} %Substitutes dots (.) with commas (,)
-\bibliography{Bibliografia/Bibliography} %Path of the bibliography
+\bibliography{Bibliography} %Path of the bibliography
 
 %Misc Packages
 \usepackage{xcolor}
@@ -61,13 +61,13 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 %%Todo notes
 %%%%Packages
-%\usepackage[colorinlistoftodos, textsize = small]{todonotes}
+\usepackage[colorinlistoftodos, textsize = small]{todonotes}
 %%%%Settings
-%\newcounter{todocounter}
-%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
 
 %Cursive operators: sheaves Hom, Ext, Bil
 %\makeatletter
@@ -119,6 +119,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\grpd}{\mathbf{Grpd}}
 \newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\cghaus}{\mathbf{CGHaus}}
+\newcommand\dgCat{\ensuremath{\textrm{dg\,Cat}}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -147,6 +148,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\im}{\mathrm{Im} \,}
 \newcommand{\map}{\mathrm{map}}
 \newcommand{\Map}{\mathrm{Map}}
+\newcommand\dash{\nobreakdash-\hspace{0pt}}
 
 \title{Introduction to DAG}
 \author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}
@@ -198,16 +200,17 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 
 \mainmatter
 
-\input{Capitoli/Model_Categories.tex}
-\input{Capitoli/simplicial_localization.tex}
-\input{Capitoli/Quasicategories.tex}
-\input{Capitoli/Segal.tex}
-\input{Capitoli/Simplicial_Presheaves.tex}
+%\input{Model_Categories.tex}
+%\input{simplicial_localization.tex}
+%\input{Quasicategories.tex}
+%\input{Segal.tex}
+%\input{Simplicial_Presheaves.tex}
+\input{dg}
 
 \appendix
 
-\input{Appendici/Simplicial_Sets.tex}
-\input{Appendici/Enriched_Categories.tex}
+%\input{Simplicial_Sets.tex}
+%\input{Enriched_Categories.tex}
 
 \cleardoublepage
 \phantomsection
