@@ -39,6 +39,8 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage{mathtools}
 \usepackage{calligra}
 
+\usepackage{microtype}
+
 %Diagrams and Pictures
 \usepackage[all,cmtip]{xy}
 \usepackage{graphicx}
@@ -83,6 +85,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 %Environments
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
+\newtheorem{theorem}[thm]{Theorem}
 \newtheorem*{thm*}{Theorem}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
@@ -119,10 +122,12 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Cat}{\mathbf{Cat}}
 \newcommand{\sset}{\mathbf{sSet}}
 \newcommand{\ch}{\mathbf{Ch}}
+\newcommand{\Ch}{\mathbf{Ch}}
 \newcommand{\grpd}{\mathbf{Grpd}}
 \newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\cghaus}{\mathbf{CGHaus}}
 \newcommand\dgCat{\ensuremath{\textrm{dg\,Cat}}}
+\DeclareDocumentCommand\dgMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathrm{dg\,Mod}}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -153,6 +158,8 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
+\DeclareMathOperator\HH{H}
+\mathchardef\mhyphen="2D
 
 \title{Introduction to DAG}
 \author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}

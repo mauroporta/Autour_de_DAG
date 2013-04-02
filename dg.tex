@@ -25,6 +25,9 @@ The goal of this expos\'e is to
   \item explain how to construct a dg~category from a~$(\infty,1)$\dash category.
 \end{enumerate}
 
+The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}\expandthis.
+
+
 \section{Differential graded categories}
 From now on we fix a commutative ring~$k$. Every construction is relative to this base ring. Whenever the ring is required to be a field it will be specified. We moreover use cochain complexes, i.e.\ the degree of the differential is~$1$, but the exposition can be done completely the same using chain complexes and morphisms of degree~$-1$.
 
@@ -42,8 +45,67 @@ is a morphism of dg~$k$\dash modules. Remark that the tensor product of graded~$
   (V^\bullet\otimes_k W^\bullet)^n\coloneqq\bigoplus_{\mathclap{p+q=n}}V^p\otimes_k W^q.
 \end{equation}
 
+\expandthis{discuss dg modules}
 
 \section{Model category structures on~$\dgCat_k$}
+It is possible to put at least two different model category structures on~$\dgCat_k$: one with quasi-equivalences as weak equivalences, and the other with Morita morphisms as weak equivalences.
+
+We start with the ``canonical'' model category structure, where the quasi-equivalences are inverted.
+\begin{definition}
+  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$, i.e.\ a dg~functor between dg~categories. It is said to be \emph{quasi-fully faithful} if for all~$X,Y\in\Ob(\mathcal{C})$ the map
+  \begin{equation}
+    f_{X,Y}\colon\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{D}}(f(X),f(Y))^\bullet
+  \end{equation}
+  of cochain complexes is a quasi-isomorphism. It is said to be \emph{quasi-essentially surjective} if the induced functor
+  \begin{equation}
+    \HH^0(f)\colon\HH^0(\mathcal{C})\to\HH^0(\mathcal{D})
+  \end{equation}
+  on the level of ($k$\dash linear) categories is essentially surjective.
+\end{definition}
+These are versions of the two conditions necessary to define the equivalence of categories that are compatible with the enrichment, hence we can define the following.
+\begin{definition}
+  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{quasi-equivalence} if it is both quasi-fully faithful and quasi-essentially surjective.
+\end{definition}
+We now introduce the fibrations in this model category structure.
+\begin{definition}
+  \label{definition:quasi-fibration}
+  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{quasi-fibration}\index{quasi-!fibration} if
+  \begin{enumerate}
+    \item for all~$X,Y\in\Ob(\mathcal{C})$ the map
+      \begin{equation}
+        f_{X,Y}\colon\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{D}}(f(X),f(Y))^\bullet
+      \end{equation}
+      is a fibration in~$\Ch(k)$ for the projective model category structure on~$\Ch(k)$, i.e.\ is it an epimorphism in every degree;
+    \item for all~$X\in\Ob(\mathcal{C})=\Ob(\HH^0(\mathcal{C}))$ and for all isomorphisms~$v\colon\HH^0(f)(X)\to Y$ in~$\HH^0(\mathcal{D})$ we can lift~$v$ to an isomorphism~$u\colon X\to Y$ in~$\HH^0(\mathcal{C})$ such that~$\HH^0(f)(u)=v$.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[\cite{tabuada}]
+  \label{theorem:quasi-equivalences-model-category-structure}
+  If we take take the quasi-equivalences as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
+\end{theorem}
+
+In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. Its main uses are \expandthis{what is it good for?}
+\begin{definition}
+  Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}~$\mathbf{D}\dgMod{\mathcal{C}}_k$ is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
+\end{definition}
+Associated to a dg~functor~$f\colon\mathcal{C}\to\mathcal{D}$ is the restriction functor
+\begin{equation}
+  f^*\colon\dgMod{\mathcal{D}}_k\to\dgMod{\mathcal{C}}_k
+\end{equation}
+given by composition. This yields the following definition.
+\begin{definition}
+  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{Morita morphism} if
+  \begin{equation}
+    \mathbf{D}f^*\colon\mathbf{D}\dgMod{\mathcal{D}}_k\to\mathbf{D}\dgMod{\mathcal{C}}_k
+  \end{equation}
+  is an equivalence of categories.
+\end{definition}
+
+\begin{theorem}[\cite{tabuada-2}]
+  \label{theorem:morita-morphisms-model-category-structure}
+  If we take take the Morita morphisms as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
+\end{theorem}
 
 \section{Mapping spaces}
 
