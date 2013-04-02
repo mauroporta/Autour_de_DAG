@@ -4,21 +4,44 @@
 \end{flushright}
 
 \section{Introduction}
-Up to now we have seen that there are different models for~$(\infty,1)$\dash categories. The models we have discussed so far are quasicategories, relative categories using simplicial localisation, Segal categories and complete Segal spaces. These are all models for the general theory of~$(\infty,1)$\dash categories. One could restrict himself on the other hand to certain subclasses of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known.
+The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem\expandthis{why exactly is this a problem?}. To put it more bluntly:
+\begin{quote}
+  ``This `nonfunctoriality of a cone' is the first symptom that something is going wrong in the axioms of a triangulated category.''
+\end{quote}
+\begin{flushright}
+  \cite[section IV.7]{gelfandmanin}
+\end{flushright}
+Another symptom is that certain theorems involving derived categories are ``weak'', in the sense that one might suspect them to hold in a more general context. By enriching the category before applying the constructions from homological algebra, we can retain enough information about the original category to solve some of the issues.
 
-Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. These were originally introduced to solve issues with triangulated categories, and they have already found many applications outside the world of~$(\infty,1)$\dash categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra.
+In a more abstract context: up to now we have seen that there are different models for~$(\infty,1)$\dash categories. The models we have discussed so far are quasicategories, relative categories using simplicial localisation, Segal categories and complete Segal spaces. These are all models for the general theory of~$(\infty,1)$\dash categories. One could restrict himself on the other hand to certain subclasses of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known. Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra.
 
-Whereas topological or simplicial categories are categories enriched over topological spaces or simplicial sets, a differential graded category is a category enriched over chain complexes of~$k$\dash modules, for~$k$ a commutative ring. So we restrict ourselves from~$\infty$\dash groupoids to so called abelian and fully strict~$\infty$\dash groupoids, these are exactly the~$\infty$\dash groupoids modelled by chain complexes\expandthis{more context}.
+Whereas topological or simplicial categories are categories enriched over topological spaces or simplicial sets, a differential graded category is a category enriched over (co)chain complexes of~$k$\dash modules, for~$k$ a commutative ring. So we restrict ourselves from~$\infty$\dash groupoids to so called abelian and fully strict~$\infty$\dash groupoids, these are exactly the~$\infty$\dash groupoids modelled by chain complexes.
 
 The goal of this expos\'e is to
 \begin{enumerate}
   \item introduce dg~categories;
   \item discuss the model category structures on the category of dg~categories;
   \item give some applications of this machinery;
-  \item explain how this fits into derived algebraic geometry.
+  \item explain how to construct a dg~category from a~$(\infty,1)$\dash category.
 \end{enumerate}
 
 \section{Differential graded categories}
+From now on we fix a commutative ring~$k$. Every construction is relative to this base ring. Whenever the ring is required to be a field it will be specified. We moreover use cochain complexes, i.e.\ the degree of the differential is~$1$, but the exposition can be done completely the same using chain complexes and morphisms of degree~$-1$.
+
+As already suggested, the definition of a dg~category is easy. We will freely use the language of enriched categories, but whenever a down-to-earth interpretation can be made it will be given.
+\begin{definition}
+  \label{definition:dg-category-enriched}
+  A \emph{dg~category} is a category enriched over cochain complexes of~$k$\dash modules.
+\end{definition}
+A cochain complex can equivalently be considered as a dg~$k$\dash module: it is a graded~$k$\dash module equipped with a differential~$\dd$ of degree~$1$. The monoidal structure of~$k\textrm{-}\Mod$ implies that the composition in a dg~category~$\mathcal{C}$
+\begin{equation}
+  \Hom_{\mathcal{C}}(Y,Z)^\bullet\otimes_k\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{C}}(X,Z)^\bullet
+\end{equation}
+is a morphism of dg~$k$\dash modules. Remark that the tensor product of graded~$k$\dash modules~$V^\bullet$ and~$W^\bullet$ is given by
+\begin{equation}
+  (V^\bullet\otimes_k W^\bullet)^n\coloneqq\bigoplus_{\mathclap{p+q=n}}V^p\otimes_k W^q.
+\end{equation}
+
 
 \section{Model category structures on~$\dgCat_k$}
 
