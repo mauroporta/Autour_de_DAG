@@ -47,7 +47,7 @@ is a morphism of dg~$k$\dash modules. Remark that the tensor product of graded~$
 
 \expandthis{discuss dg modules}
 
-\section{Model category structures on~$\dgCat_k$}
+\section{Model category structures on \texorpdfstring{$\dgCat_k$}{dgCat\textunderscore k}}
 It is possible to put at least two different model category structures on~$\dgCat_k$: one with quasi-equivalences as weak equivalences, and the other with Morita morphisms as weak equivalences.
 
 We start with the ``canonical'' model category structure, where the quasi-equivalences are inverted.
@@ -75,7 +75,7 @@ We now introduce the fibrations in this model category structure.
       \begin{equation}
         f_{X,Y}\colon\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{D}}(f(X),f(Y))^\bullet
       \end{equation}
-      is a fibration in~$\Ch(k)$ for the projective model category structure on~$\Ch(k)$, i.e.\ is it an epimorphism in every degree;
+      is a fibration in~$\Ch(k\mhyphen\Mod)$ for the projective model category structure on~$\Ch(k\mhyphen\Mod)$, i.e.\ is it an epimorphism in every degree;
     \item for all~$X\in\Ob(\mathcal{C})=\Ob(\HH^0(\mathcal{C}))$ and for all isomorphisms~$v\colon\HH^0(f)(X)\to Y$ in~$\HH^0(\mathcal{D})$ we can lift~$v$ to an isomorphism~$u\colon X\to Y$ in~$\HH^0(\mathcal{C})$ such that~$\HH^0(f)(u)=v$.
   \end{enumerate}
 \end{definition}
@@ -97,7 +97,7 @@ given by composition. This yields the following definition.
 \begin{definition}
   Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{Morita morphism} if
   \begin{equation}
-    \mathbf{D}f^*\colon\mathbf{D}\dgMod{\mathcal{D}}_k\to\mathbf{D}\dgMod{\mathcal{C}}_k
+    \mathbf{D}f^*\colon\mathbf{D}(\dgMod{\mathcal{D}}_k)\to\mathbf{D}(\dgMod{\mathcal{C}}_k)
   \end{equation}
   is an equivalence of categories.
 \end{definition}
@@ -107,10 +107,60 @@ given by composition. This yields the following definition.
   If we take take the Morita morphisms as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
 \end{theorem}
 
+\begin{remark}
+  From this point on, whenever we denote~$\Ho(\dgCat_k)$ it will be the homotopy category of~$\dgCat_k$ with respect to the model category structure using quasi-equivalences. This is in line with \cite{toen} on which most of the results in this expos\'e are based.
+\end{remark}
+
 \section{Mapping spaces}
+The following section is a discussion of the main technical result in \cite{toen}. Its actual proof is rather long and technical, and there is not enough room here to discuss even the necessary definitions and notations. One needs cosimplicial resolution functors, restrictions to specific subcategories, diagonals of bisimplicial sets and nerves just to write down the statement. So immediately its interpretation in terms of the homotopy category is given.\expandthis{rqr not defined yet}
+
+\begin{theorem}
+  \label{theorem:fundamental-bijection}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. We have a functorial bijection
+  \begin{equation}
+    \label{equation:fundamental-bijection}
+    \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( \dgMod{(\mathcal{C}\LLLotimes\mathcal{D}^\opp)}_k^\rqr \right) \right).
+  \end{equation}
+\end{theorem}
+Hence every dg~functor in the homotopy category can be represented in a unique way by a right quasi-representable bimodule. If one is familiar with Morita theory this might ring a bell. The remainder of \cite{toen} is based on the technical result that underlies this theorem. One of these is the 
 
 \section{Monoidal structure}
+Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunately, this structure does not descend to the homotopy category, as the tensor product of two cofibrant dg~categories is not necessarily cofibrant. So in order to prove the existence of a closed monoidal structure one needs to do some work.\expandthis{Int not yet defined}
+\begin{theorem}
+  \label{theorem:internal-Hom}
+  We can equip the monoidal category~$(\Ho(\dgCat_k,-\LLLotimes-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover characterised by
+  \begin{equation}
+    \RRRHHom(\mathcal{C},\mathcal{D})\cong\Int\left( \dgMod{(\mathcal{C}\LLLotimes\mathcal{D}^\opp)}_k^\rqr \right)
+  \end{equation}
+  for~$\mathcal{C},\mathcal{D}\in\Ob(\Ho(\dgCat_k))$.
+\end{theorem}
+So we have the derived tensor-Hom adjunction
+\begin{equation}
+  \label{equation:tensor-Hom-adjunction}
+  \Hom_{\Ho(\dgCat_k)}(\mathcal{C}\LLLotimes\mathcal{D},\mathcal{E})\cong\Hom_{\Ho(\dgCat_k)}(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
+\end{equation}
+for all~$\mathcal{C},\mathcal{D}$ and~$\mathcal{E}$ dg~categories.
 
-\section{Derived dg categories}
+This closed monoidal structure is moreover compatible with the derived simplicial structure as introduced before.
+\begin{corollary}
+  \label{corollary:simplicial-compatibility}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be two dg~categories. Let~$K$ be a simplicial set. Then we have the functorial isomorphism
+  \begin{equation}
+    K\LLLotimes_\simp(\mathcal{C}\LLLotimes\mathcal{D})\cong(K\LLLotimes_\simp\mathcal{C})\LLLotimes\mathcal{D}
+  \end{equation}
+  in~$\Ho(\dgCat_k)$.
+\end{corollary}
+This corollary yields the following enriched tensor-Hom adjunction.
+\begin{corollary}
+  \label{corollary:internal-Hom-Map-adjointness}
+  Let~$\mathcal{C},\mathcal{D},\mathcal{E}$ be dg~categories. Then we have the functorial isomorphism
+  \begin{equation}
+    \label{equation:internal-Hom-Map-adjointness}
+    \Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C}\LLLotimes\mathcal{D},\mathcal{E})\cong\Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
+  \end{equation}
+  in~$\Ho(\sSet)$.
+\end{corollary}
 
-\section{$(\infty,1)$ and dg categories}
+\section{Applications}
+
+\section{\texorpdfstring{$(\infty,1)$-}{(oo,1)-} and dg categories}

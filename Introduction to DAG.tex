@@ -90,6 +90,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
+\newtheorem{corollary}[thm]{Corollary}
 
 \theoremstyle{definition}
 \newtheorem{defin}[thm]{Definition}
@@ -100,6 +101,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 \theoremstyle{remark}
 \newtheorem{rmk}[thm]{Remark}
+\newtheorem{remark}[thm]{Remark}
 \newtheorem*{notation}{Notation}
 
 %Number sets, projective symbol
@@ -128,6 +130,9 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\cghaus}{\mathbf{CGHaus}}
 \newcommand\dgCat{\ensuremath{\textrm{dg\,Cat}}}
 \DeclareDocumentCommand\dgMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathrm{dg\,Mod}}}
+\newcommand\sSet{\ensuremath{\simplicialCat{\Set}}}
+\newcommand\simplicialCat[1]{\ensuremath{\mathbf{s\,\!#1}}}
+\newcommand\simp{\ensuremath{\mathrm{s}}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -160,6 +165,13 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand\dd{\mathrm{d}}
 \DeclareMathOperator\HH{H}
 \mathchardef\mhyphen="2D
+\DeclareMathOperator\Isom{Isom}
+\newcommand\LLLotimes{\ensuremath{\otimes^{\mathbf{L}}}}
+\newcommand\rqr{\ensuremath{\mathrm{r\,qr}}}
+\newcommand\opp{\mathrm{op}}
+\newcommand\RRRHHom{\ensuremath{\mathbf{R}\HHom}}
+\DeclareMathOperator\HHom{\mathcal{H}om}
+\DeclareMathOperator\Int{Int}
 
 \title{Introduction to DAG}
 \author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}
