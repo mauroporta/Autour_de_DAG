@@ -4,7 +4,7 @@
 \end{flushright}
 
 \section{Introduction}
-The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem\expandthis{why exactly is this a problem?}. To put it more bluntly:
+The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem\expandthis{find a nice and concrete example if possible}. To put it more bluntly:
 \begin{quote}
   ``This `nonfunctoriality of a cone' is the first symptom that something is going wrong in the axioms of a triangulated category.''
 \end{quote}
@@ -25,7 +25,7 @@ The goal of this expos\'e is to
   \item explain how to construct a dg~category from a~$(\infty,1)$\dash category.
 \end{enumerate}
 
-The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}\expandthis.
+The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}.
 
 
 \section{Differential graded categories}
@@ -42,8 +42,39 @@ A cochain complex can equivalently be considered as a dg~$k$\dash module: it is 
 \end{equation}
 is a morphism of dg~$k$\dash modules. Remark that the tensor product of graded~$k$\dash modules~$V^\bullet$ and~$W^\bullet$ is given by
 \begin{equation}
-  (V^\bullet\otimes_k W^\bullet)^n\coloneqq\bigoplus_{\mathclap{p+q=n}}V^p\otimes_k W^q.
+  (V^\bullet\otimes_k W^\bullet)^n\coloneqq\bigoplus_{\mathclap{p+q=n}}V^p\otimes_k W^q
 \end{equation}
+and tensor products of morphisms are equipped with the Leibniz sign rule.
+
+Recall that we can generalize the notion of a ring by allowing multiple objects. A dg~category is the same game, using dg~modules over a dg~algebra. Hence we get the following example.
+\begin{example}
+  \label{example:dg-category-of-algebra}
+  A dg~$k$\dash algebra~$A^\bullet$ can be interpreted as a dg~category with a single object. Such a dg~algebra can be considered as a cochain complex and a~$k$\dash algebra. Examples are Koszul complexes or tensor algebras. Remark that the Koszul sign rule implies that the multiplication in a dg~$k$\dash algebra satisfies the \emph{graded Leibniz rule}
+  \begin{equation}
+    \dd_{A^\bullet}(ab)=\dd_{A^\bullet}(a)b+(-1)^pa\dd_{A^\bullet}(b)
+  \end{equation}
+  for~$a\in A^p$.
+  
+  If we equip a~$k$\dash algebra~$A$ with the trivial differential, i.e.\ $\dd_A=0$ we get an instance of a dg~category.
+\end{example}
+There are also less trivial examples, which generalize the notion of modules over a ring with multiple objects.
+\begin{example}
+  \label{example:Ch-dg(A-mod)}
+  Let~$A$ again be a~$k$\dash algebra, consider the category~$\Ch(\Mod{A})$ of complexes of (right)~$A$\dash modules. Instead of taking the usual morphisms of cochain complexes we will introduce the category~$\Ch_\dg(\Mod{A})$ which has exactly the cochain complexes of~$A$\dash modules as objects.
+  
+  But for the morphisms we define the dg~$k$\dash module~$\Hom_{\Ch_\dg(\Mod{A})}(M^\bullet,N^\bullet)^\bullet$ for cochain complexes~$M^\bullet$ and~$N^\bullet$ to have in its~$n$th degree the morphisms of degree~$n$, i.e.~for each~$p\in\mathbb{Z}$ the map~$f^p\colon M^p\to N^{n+p}$ is a morphism of~$A$\dash modules, composition being the composition of graded morphisms which clearly is compatible with this structure. The differential between these~$\Hom$\dash structures is defined by setting
+  \begin{equation}
+    \dd(f)=\dd_{N^\bullet}\circ f-(-1)^nf\circ\dd_{M^\bullet}
+  \end{equation}
+  for~$f$ a morphism of degree~$n$ and this is where the original structure of cochain complexes is used. To check that this defines a differential, we check that
+  \begin{equation}
+    \begin{aligned}
+      \dd^2(f)&=\dd_{N^\bullet}\left( \dd_{N^\bullet}\circ f-(-1)^nf\circ\dd_{M^\bullet} \right)-(-1)^{n+1}\left( \dd_{N^\bullet}\circ f-(-1)^nf\circ\dd_{M^\bullet} \right)\circ\dd_{M^\bullet} \\
+      &=\dd_{N^\bullet}^2\circ f-(-1)^n\dd_{N^\bullet}\circ f\circ\dd_{M^\bullet}-(-1)^{n+1}\dd_{N^\bullet}\circ f\circ\dd_{M^\bullet}+(-1)^{2n+1}f\circ\dd_{M^\bullet}^2 \\
+      &=0.
+    \end{aligned}
+  \end{equation}
+\end{example}
 
 As we have enriched categories, there is a notion of underlying category.
 \begin{definition}
@@ -63,13 +94,6 @@ This category could also be called the \emph{cocycle category} in this specific 
   \end{equation}
 \end{definition}
 
-\begin{definition}
-  The \emph{graded cohomology category}~$\HH^\bullet(\mathcal{C})$ is the category with~$\Ob(\HH^\bullet(\mathcal{C}))\coloneqq\Ob(\mathcal{C})$ but we take\fixthis{(question) might it be better to use the terminology (graded) (co)homology category?}
-  \begin{equation}
-    \Hom_{\HH^\bullet(\mathcal{C})}(X,Y)^\bullet\coloneqq\HH^\bullet\left( \Hom_{\mathcal{C}}(X,Y)^\bullet \right).
-  \end{equation}
-\end{definition}
-
 Now that we have defined these related categories we can see how they might provide a solution to the problem of triangulated categories using this~$\Ch(k\mhyphen\Mod)$\dash enrichment.
 \begin{example}
   \label{example:Z0(Ch-dg(A-mod))}
@@ -86,7 +110,126 @@ Now that we have defined these related categories we can see how they might prov
   where~$\KKK(A\mhyphen\Mod)$ is the \emph{category of complexes up to homotopy}, as it occurs in the (classical) construction of the derived category of the category of chain complexes. So the higher homotopies are in a way contained in~$\Ch_\dg(A\mhyphen\Mod)$ and we will be able to use them.
 \end{example}
 
-\expandthis{discuss dg modules}
+\section{The category of differential graded categories}
+Now we will define the category of all small dg~categories, which we'll denote~$\dgCat_k$.
+\begin{definition}
+  A \emph{dg~functor}\index{functor!differential graded}~$F\colon\mathcal{C}\to\mathcal{C}'$ where~$\mathcal{C}$ and~$\mathcal{C}'$ are two (small) dg~categories is a map~$F\colon\Ob(\mathcal{C})\to\Ob(\mathcal{C}')$ on the level of the objects such that for~$X,Y\in\Ob(\mathcal{C})$ we have a morphism
+  \begin{equation}
+    F_{X,Y}\colon\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{C}'}(F(X),F(Y))^\bullet
+  \end{equation}
+  of dg~$k$\dash modules between the morphism spaces. These maps are required to be compatible with composition and units, which implies the commutativity of
+  \begin{equation}
+    \begin{tikzcd}
+      \Hom_{\mathcal{C}}(Y,Z)^\bullet\otimes_k\Hom_{\mathcal{C}}(X,Y)^\bullet \arrow{r}{-\circ-} \arrow[swap]{d}{F_{Y,Z}\otimes F_{X,Y}} & \Hom_{\mathcal{C}}(X,Z)^\bullet \arrow{d}{F_{X,Z}} \\
+      \Hom_{\mathcal{C}'}(F(Y),F(Z))^\bullet\otimes_k\Hom_{\mathcal{C}'}(F(X),F(Y))^\bullet \arrow{r}{-\circ-} & \Hom_{\mathcal{C}'}(F(X),F(Z))^\bullet
+    \end{tikzcd}
+  \end{equation}
+  and
+  \begin{equation}
+    \begin{tikzcd}
+      k \arrow{r}{\unit_X} \arrow{rd}[swap]{\unit_{F(X)}} & \Hom_{\mathcal{C}}(X,X)^\bullet \arrow{d}{F_{X,X}} \\
+      & \Hom_{\mathcal{C}'}(F(X),F(X))^\bullet
+    \end{tikzcd}
+  \end{equation}
+  for~$X,Y,Z\in\Ob(\mathcal{C})$.
+
+  The \emph{category of small dg~categories}\index{category!of small differential graded categories}~$\dgCat_k$ is the category of all small dg~categories together with the dg~functors as morphisms.
+\end{definition}
+
+\begin{remark}
+  \label{remark:dgCat-initial-final}
+  The category~$\dgCat_k$ has the empty dg~category as initial object and the dg~category with one object~$*$, equipped with the zero endomorphism ring (i.e.~$\Hom_{\dgCat_k}(*,*)^\bullet=0$), as final object.
+\end{remark}
+
+We can endow the category~$\dgCat_k$ with a tensor product and an internal Hom-functor, hence it will become a closed symmetric tensor category. This is nothing but using the enrichment over the symmetric monoidal category~$\Ch(k\mhyphen\Mod)$ \cite[Section~1.4]{lnm145}.
+\begin{definition}
+  The \emph{tensor product}\index{tensor product!of differential graded categories}~$\mathcal{C}\otimes\mathcal{D}$ of two dg~categories~$\mathcal{C}$ and~$\mathcal{D}$ is defined by taking~$\Ob(\mathcal{C}\otimes\mathcal{D})\coloneqq\Ob(\mathcal{C})\times\Ob(\mathcal{C})$ and setting
+  \begin{equation}
+    \label{equation:tensor-product-dg-categories}
+    \Hom_{\mathcal{C}\otimes\mathcal{D}}\left( (X,Y),(X',Y') \right)^\bullet\coloneqq\Hom_{\mathcal{C}}(X,X')^\bullet\otimes_k\Hom_{\mathcal{D}}(Y,Y')^\bullet.
+  \end{equation}
+\end{definition}
+\begin{remark}
+  \label{remark:unit-monoidal-structure}
+  The unit for the monoidal structure is the dg~category~$k$, where~$k$ by abuse of notation denotes both the dg~category and the dg~algebra with~$k$ concentrated in degree~$0$, using example \ref{example:dg-category-of-algebra}.
+\end{remark}
+
+To define the internal Hom-functor we need to explain how we will use the~$\Ch(k\mhyphen\Mod)$\dash enrichment. Again this is just a special case of the theory of enriched categories.
+\begin{definition}
+  \label{definition:complex-of-graded-morphisms}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. Let~$F,G\colon\mathcal{C}\to\mathcal{D}$ be two dg~functors. A \emph{natural transformation of degree~$n$}\index{natural transformation!of degree~$n$}~$\phi\colon F\Rightarrow G$ is a family of morphisms~$(\phi_X)_{X\in\Ob(\mathcal{C})}$ such that~$\phi_X\in\Hom_{\mathcal{D}}(F(X),G(X))^n$ for~$X\in\Ob(\mathcal{C})$ satisfying~$G(f)(\phi_X)=\phi_Y(F(f))$ for all~$f\in\Hom_{\mathcal{C}}(X,Y)$ and~$Y\in\Ob(\mathcal{C})$. In other words, if~$f$ is homogeneous of degree~$m$, we have the commutativity of the diagram
+  \begin{equation}
+    \begin{tikzcd}
+      F(X) \arrow{r}{\phi_X} \arrow[swap]{d}{F(f)} & G(X) \arrow{d}{G(f)} \\
+      F(Y) \arrow{r}{\phi_Y} & G(Y)
+    \end{tikzcd}
+  \end{equation}
+  up to the sign~$(-1)^{nm}$.
+
+  The \emph{complex of graded morphisms}\index{complex!of graded morphisms}~$\HHom(F,G)^\bullet$ for two dg~functors~$F,G\colon\mathcal{C}\to\mathcal{D}$ is the complex of graded morphisms (or natural transformations) such that~$\HHom(F,G)^n$ consists of the natural transformations of degree~$n$. The differential in this complex is given for each~$X\in\Ob(\mathcal{C})$ by
+  \begin{equation}
+    \dd_{\HHom(F,G)}^n(\phi)(X)\coloneqq\dd_{\Hom_{\mathcal{D}}(F(X),G(X))}^n(\phi_X)
+  \end{equation}
+  which lands in~$\Hom_{\mathcal{D}}(F(X),G(X))^{n+1}$.
+\end{definition}
+
+\begin{example}
+  Just like in example \ref{example:Z0(Ch-dg(A-mod))} we get that~$\ZZ^0(\HHom(F,G)^\bullet)$ describes the (classical) natural transformations~$F\Rightarrow G$.
+\end{example}
+
+\begin{definition}
+  \label{definition:internal-Hom-dgCat}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be two dg~categories. The \emph{internal Hom}\index{Hom!internal} for~$\mathcal{C}$ and~$\mathcal{D}$ is the dg~category~$\HHom_{\dgCat_k}(\mathcal{C},\mathcal{D})$ which has the dg~functors between~$\mathcal{C}$ and~$\mathcal{D}$ as objects and the complex of graded morphisms~$\HHom(F,G)^\bullet$ between two dg~functors~$F,G\colon\mathcal{C}\to\mathcal{D}$ as morphism spaces.
+\end{definition}
+If we take the dg~category with the single object~$k$ as discussed in example \ref{example:dg-category-of-algebra} as the unit object, we have that the category~$\dgCat_k$ is a symmetric tensor category, i.e.\ we have the adjunction
+\begin{equation}
+  \Hom_{\dgCat_k}(\mathcal{A}\otimes\mathcal{B},\mathcal{C})\cong\Hom_{\dgCat_k}(\mathcal{A},\HHom(\mathcal{B},\mathcal{C}))
+  \label{equation:tensor-Hom-Chk-adjunction}
+\end{equation}
+for~$\mathcal{A},\mathcal{B},\mathcal{C}$ dg~categories.
+
+The pair~$(\otimes,\HHom_{\dgCat_k})$ make~$\dgCat_k$ into a closed symmetric monoidal category. This structure will be important for the remainder of this work. We want our localisations to be compatible with it, but this is the source of an important issue.
+
+
+\section{Differential graded modules}
+We've generalized (dg) algebras to (dg) algebras with multiple objects as discussed in examples \ref{example:dg-category-of-algebra} and \ref{example:Ch-dg(A-mod)}. The same game can be played with dg modules.
+
+\begin{definition}
+  Let~$\mathcal{C}$ be a small dg~category. We will define a \emph{left dg~$\mathcal{C}$\dash module}\index{module!left differential graded~$\mathcal{C}$\dash} to be a dg~functor~$L\colon\mathcal{C}\to\Ch_\dg(k\mhyphen\Mod)$ while a \emph{right dg~$\mathcal{C}$\dash module}\index{module!right differential graded~$\mathcal{C}$\dash} is a dg~functor~$M\colon\mathcal{C}^\opp\to\Ch_\dg(k\mhyphen\Mod)$.
+\end{definition}
+So a dg~$\mathcal{C}$\dash module could also be defined as a ``$\Ch(k\mhyphen\Mod)$\dash enriched presheaf on the dg~category~$\mathcal{C}$''. This terminology is not standard though, and we will not use it. But keeping this in mind can help in understanding the philosophy of certain statements and proofs.
+
+As usual we can consider all dg~modules and endow them with the structure of a category.
+\begin{definition}
+  \label{definition:category-of-dg-modules}
+  Let~$\mathcal{C}$ be a small dg~category. The \emph{category of dg~$\mathcal{C}$\dash modules}\index{category!of differential graded $\mathcal{C}$\dash modules}~$\dgMod{\mathcal{C}}_k$ has all dg~$\mathcal{C}$\dash modules as objects and morphisms of dg~functors as morphism spaces. 
+\end{definition}
+It is an abelian category, where epi- resp.\ monomorphisms can be checked degreewise.
+
+We can generalize the notion of a dg~$\mathcal{C}$\dash module which has values in the model category~$\Ch(k\mhyphen\Mod)$ to ``dg $\mathcal{C}$\dash modules with coefficients in a~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$''
+\begin{definition}
+  \label{definition:C-dgMod(M)}
+  Let~$\mathcal{C}$ be a dg~category and~$\mathcal{M}$ a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category. A~\emph{dg~$\mathcal{C}$\dash module with values in~$\mathcal{M}$}\index{module!differential graded $\mathcal{C}$\dash\ldots with values in a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category} is a dg~functor~$\mathcal{C}\to\mathcal{M}$, where~$\mathcal{M}$ is a dg~category because its Hom-sets are by assumption enriched over~$\Ch(k\mhyphen\Mod)$.
+  
+  The \emph{category of dg~$\mathcal{C}$\dash modules with values in~$\mathcal{M}$} has as objects the dg~functors~$\mathcal{C}\to\mathcal{M}$ and its morphisms are given by the complexes of graded morphisms (or natural transformations). It will be denoted~$\dgMod{\mathcal{C}}_k(\mathcal{M})$.
+\end{definition}
+
+For every~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$ we can define its associated ``internal dg~category'' (even without the assumption that it is cofibrantly generated). This provides a dg~enrichment of the homotopy category~$\Ho\mathcal{M}$, as is shown in proposition \ref{proposition:internal-category-is-dg-enrichment}.
+\begin{definition}
+  Let~$\mathcal{M}$ be a~$\Ch(k\mhyphen\Mod)$\dash model category. Its \emph{internal category}\index{category!internal}~$\Int(\mathcal{M})$ is the dg~category whose objects are the both fibrant and cofibrant objects of~$\mathcal{M}$, i.e.\ $\Ob(\Int(\mathcal{M}))=\Ob(\mathcal{M}_{\cof,\mathrm{fib}})$. Its cochain complexes of morphisms are obtained using the~$\Ch(k\mhyphen\Mod)$\dash enrichment of~$\mathcal{M}$, i.e.\ we set
+  \begin{equation}
+    \Hom_{\Int(\mathcal{M})}(X,Y)^\bullet\coloneqq\Hom_{\mathcal{M}}(X,Y)^\bullet
+  \end{equation}
+  for~$X,Y\in\Ob(\Int(\mathcal{M}))$.
+\end{definition}
+This dg~category serves as an enrichment for~$\Ho\mathcal{m}$, as one might already guess from its definition.
+\begin{proposition}
+  \label{proposition:internal-category-is-dg-enrichment}
+  Let~$\mathcal{M}$ be a~$\Ch(k\mhyphen\Mod)$\dash model category. We have the equivalence
+  \begin{equation}
+    \Ho(\mathcal{M})\cong\HH^0(\Int(\mathcal{M})).
+  \end{equation}
+\end{proposition}
 
 
 \section{Model category structures on \texorpdfstring{$\dgCat_k$}{dgCat\textunderscore k}}
@@ -127,7 +270,7 @@ We now introduce the fibrations in this model category structure.
   If we take take the quasi-equivalences as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
 \end{theorem}
 
-In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. Its main uses are \expandthis{what is it good for?}
+In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. Its main uses are \expandthis{what are interesting applications?} To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
 \begin{definition}
   Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}~$\mathbf{D}\dgMod{\mathcal{C}}_k$ is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
 \end{definition}
@@ -153,9 +296,23 @@ given by composition. This yields the following definition.
   From this point on, whenever we denote~$\Ho(\dgCat_k)$ it will be the homotopy category of~$\dgCat_k$ with respect to the model category structure using quasi-equivalences. This is in line with \cite{toen} on which most of the results in this expos\'e are based.
 \end{remark}
 
-\section{Mapping spaces}
-The following section is a discussion of the main technical result in \cite{toen}. Its actual proof is rather long and technical, and there is not enough room here to discuss even the necessary definitions and notations. One needs cosimplicial resolution functors, restrictions to specific subcategories, diagonals of bisimplicial sets and nerves just to write down the statement. So immediately its interpretation in terms of the homotopy category is given.\expandthis{rqr not defined yet}
 
+\section{Mapping spaces}
+The following section is a discussion of the main technical result in \cite{toen}. Its actual proof is rather long and technical, and there is not enough room here to discuss even the necessary definitions and notations. One needs cosimplicial resolution functors, restrictions to specific subcategories, diagonals of bisimplicial sets and nerves just to write down the statement. So immediately its interpretation in terms of the homotopy category is given.
+
+If we consider~$\dgMod{\mathcal{C}\otimes\mathcal{D}^\opp}_k$ we can define for every~$X\in\Ob(\mathcal{C})$ a morphism of dg~categories~$\mathcal{D}^\opp\to\mathcal{C}\otimes\mathcal{D}^\opp$ which on the level of objects is defined as~$Y\mapsto(X,Y)$ and therefore on the level of the morphisms as
+\begin{equation}
+  \Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet\mapsto\Hom_{\mathcal{C}\otimes\mathcal{D}^\opp}\left( (X,Y),(X,Z) \right)^\bullet\overset{\eqref{equation:tensor-product-dg-categories}}{=}\Hom_{\mathcal{C}}(X,X)^\bullet\otimes_k\Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet
+\end{equation}
+for~$Y,Z\in\Ob(\mathcal{D}^\opp)$. Because the cofibrant replacement functor of~$\dgCat_k$ can be taken to be the identity on the objects \cite[proposition 2.3]{toen} this naturally defines
+\begin{equation}
+  i_X\colon\mathcal{D}^\opp\to\cofibrrepl(\mathcal{C})\otimes\mathcal{D}^\opp=\mathcal{C}\LLLotimes\mathcal{D}^\opp.
+\end{equation}
+We can then define the following.
+\begin{definition}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$\mathcal{C}\LLLotimes\mathcal{D}^\opp$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$.
+\end{definition}
+We can now state the theorem.
 \begin{theorem}
   \label{theorem:fundamental-bijection}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. We have a functorial bijection
@@ -164,10 +321,11 @@ The following section is a discussion of the main technical result in \cite{toen
     \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( \dgMod{(\mathcal{C}\LLLotimes\mathcal{D}^\opp)}_k^\rqr \right) \right).
   \end{equation}
 \end{theorem}
-Hence every dg~functor in the homotopy category can be represented in a unique way by a right quasi-representable bimodule. If one is familiar with Morita theory this might ring a bell. The remainder of \cite{toen} is based on the technical result that underlies this theorem. One of these is the 
+Hence every dg~functor in the homotopy category can be represented in a unique way by a right quasi-representable bimodule. If one is familiar with Morita theory this might ring a bell. The remainder of \cite{toen} is based on the technical result that underlies this theorem.  
+
 
 \section{Monoidal structure}
-Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunately, this structure does not descend to the homotopy category, as the tensor product of two cofibrant dg~categories is not necessarily cofibrant. So in order to prove the existence of a closed monoidal structure one needs to do some work.\expandthis{Int not yet defined}
+Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunately, this structure does not descend to the homotopy category, as the tensor product of two cofibrant dg~categories is not necessarily cofibrant. So in order to prove the existence of a closed monoidal structure one needs to do some work.
 \begin{theorem}
   \label{theorem:internal-Hom}
   We can equip the monoidal category~$(\Ho(\dgCat_k,-\LLLotimes-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover characterised by
@@ -203,6 +361,8 @@ This corollary yields the following enriched tensor-Hom adjunction.
   in~$\Ho(\sSet)$.
 \end{corollary}
 
+
 \section{Applications}
+
 
 \section{\texorpdfstring{$(\infty,1)$-}{(oo,1)-} and dg categories}

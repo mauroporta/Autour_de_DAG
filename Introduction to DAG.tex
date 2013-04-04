@@ -39,6 +39,8 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage{mathtools}
 \usepackage{calligra}
 
+\usepackage{tikz-cd}
+
 \usepackage{microtype}
 
 %Diagrams and Pictures
@@ -89,6 +91,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newtheorem*{thm*}{Theorem}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
+\newtheorem{proposition}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{corollary}[thm]{Corollary}
 
@@ -133,6 +136,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand\sSet{\ensuremath{\simplicialCat{\Set}}}
 \newcommand\simplicialCat[1]{\ensuremath{\mathbf{s\,\!#1}}}
 \newcommand\simp{\ensuremath{\mathrm{s}}}
+\DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathrm{gr-Mod}}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -175,6 +179,11 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \DeclareMathOperator\ZZ{Z}
 \newcommand\dg{\mathrm{dg}}
 \DeclareMathOperator\KKK{\mathbf{K}}
+\newcommand\unit{\mathrm{e}}
+\newcommand\simeqto{\ensuremath{\mathop{\overset{\simeq}{\vphantom{\rule{0pt}{2pt}}\smash{\to}}}}}
+\DeclareMathOperator\cofibrrepl{Q}
+\newcommand\cof{\ensuremath{\mathrm{cof}}}
+
 
 \title{Introduction to DAG}
 \author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}
