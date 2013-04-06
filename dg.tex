@@ -4,7 +4,7 @@
 \end{flushright}
 
 \section{Introduction}
-The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem\expandthis{find a nice and concrete example if possible}. To put it more bluntly:
+The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem. To put it more bluntly:
 \begin{quote}
   ``This `nonfunctoriality of a cone' is the first symptom that something is going wrong in the axioms of a triangulated category.''
 \end{quote}
@@ -21,11 +21,11 @@ The goal of this expos\'e is to
 \begin{enumerate}
   \item introduce dg~categories;
   \item discuss the model category structures on the category of dg~categories;
-  \item give some applications of this machinery;
-  \item explain how to construct a dg~category from a~$(\infty,1)$\dash category.
+  \item give some applications of this machinery, demonstrating how derived algebraic geometry can be used to generalize results from algebraic geometry;
+  \item explain how to construct a~$(\infty,1)$\dash category for every dg~category and discuss the properties of this construction.
 \end{enumerate}
 
-The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}.
+The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}\expandthis{more interesting papers}.
 
 
 \section{Differential graded categories}
@@ -270,7 +270,7 @@ We now introduce the fibrations in this model category structure.
   If we take take the quasi-equivalences as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
 \end{theorem}
 
-In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. Its main uses are \expandthis{what are interesting applications?} To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
+In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. An important use of this model category structure are sheaves on higher stacks \cite{chern}. To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
 \begin{definition}
   Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}~$\mathbf{D}\dgMod{\mathcal{C}}_k$ is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
 \end{definition}
@@ -368,7 +368,7 @@ This corollary yields the following enriched tensor-Hom adjunction.
 \section{\texorpdfstring{$(\infty,1)$-}{(oo,1)-} and dg categories}
 As discussed in the introduction: dg~categories provide a good way to study stable~$(\infty,1)$\dash categories. To do so, one has to associate an~$(\infty,1)$\dash category to a dg~category. This will be done using the \emph{dg~nerve} construction. This is nothing but a nerve construction that incorporates the dg~enrichment, and it is given in definition \ref{definition:dg-nerve}. Its definition is rather formal, so an interpretation of it in low degrees is given in example \ref{example:low-degree-interpretation}.
 
-The important property of this dg~nerve construction is that it is equivalent to the ``naive'' construction of an~$(\infty,1)$\dash category of chain complexes with values in an additive category. This construction is rather involved, and uses right-lax monoidal functors, the Dold-Kan correspondence, the Alexander-Whitney construction, \ldots. But it can be proved that the down-to-earth construction yields equivalent (yet not isomorphic)~$(\infty,1)$\dash categories \cite[proposition 1.3.1.17]{htt}. So the study of dg~categories is important in the context of~$(\infty,1)$\dash categories, it is not superseded by the generality of~$(\infty,1)$\dash categories.
+The important property of the dg~nerve construction is that it is equivalent to the ``naive'' construction of an~$(\infty,1)$\dash category of chain complexes with values in an additive category. This construction is rather involved, and uses right-lax monoidal functors, the Dold-Kan correspondence, the Alexander-Whitney construction, \ldots. But it can be proved that the reasonably down-to-earth construction of the dg~nerve yields equivalent (yet not isomorphic)~$(\infty,1)$\dash categories \cite[proposition 1.3.1.17]{htt}. So the study of dg~categories is important in the context of~$(\infty,1)$\dash categories, it is not just superseded by the generality of~$(\infty,1)$\dash categories.
 
 This section is based on \cite[section 1.3.1]{htt}. Remark that the model used for~$(\infty,1)$\dash categories are the quasicategories, and that statements are translated to the cohomological convention in this text.
 
