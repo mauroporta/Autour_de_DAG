@@ -138,7 +138,11 @@ Now we will define the category of all small dg~categories, which we'll denote~$
 
 \begin{remark}
   \label{remark:dgCat-initial-final}
-  The category~$\dgCat_k$ has the empty dg~category as initial object and the dg~category with one object~$*$, equipped with the zero endomorphism ring (i.e.~$\Hom_{\dgCat_k}(*,*)^\bullet=0$), as final object.
+  The category~$\dgCat_k$ has the empty dg~category as initial object and the dg~category with one object~$*$, equipped with the zero endomorphism ring, i.e.
+  \begin{equation}
+    \Hom_{\dgCat_k}(*,*)^\bullet=0,
+  \end{equation}
+  as final object.
 \end{remark}
 
 We can endow the category~$\dgCat_k$ with a tensor product and an internal Hom-functor, hence it will become a closed symmetric tensor category. This is nothing but using the enrichment over the symmetric monoidal category~$\Ch(k\mhyphen\Mod)$ \cite[Section~1.4]{lnm145}.
@@ -370,7 +374,7 @@ As discussed in the introduction: dg~categories provide a good way to study stab
 
 The important property of the dg~nerve construction is that it is equivalent to the ``naive'' construction of an~$(\infty,1)$\dash category of chain complexes with values in an additive category. This construction is rather involved, and uses right-lax monoidal functors, the Dold-Kan correspondence, the Alexander-Whitney construction, \ldots. But it can be proved that the reasonably down-to-earth construction of the dg~nerve yields equivalent (yet not isomorphic)~$(\infty,1)$\dash categories \cite[proposition 1.3.1.17]{htt}. So the study of dg~categories is important in the context of~$(\infty,1)$\dash categories, it is not just superseded by the generality of~$(\infty,1)$\dash categories.
 
-This section is based on \cite[section 1.3.1]{htt}. Remark that the model used for~$(\infty,1)$\dash categories are the quasicategories, and that statements are translated to the cohomological convention in this text.
+This section is based on \cite[section 1.3.1]{htt}. Observe that in this text the model used for~$(\infty,1)$\dash categories are the quasicategories, and that statements are translated to the cohomological convention in this text.
 
 \begin{definition}
   \label{definition:dg-nerve}
@@ -406,7 +410,7 @@ To see that this is actually a nerve construction that incorporates the dg infor
   \begin{itemize}
     \item The~$0$\dash simplices are the objects of~$\mathcal{C}$, as the condition on~$f_I$ is empty.
     \item The~$1$\dash simplices are the morphisms of the underlying category of~$\mathcal{C}$, as the pairs consist of objects~$X,Y$ of~$\mathcal{C}$ and a single map~$f\in\Hom_{\mathcal{C}}(X,Y)^0$ such that~$\dd f=0$.
-    \item The~$2$\dash simplices are triples~$(X,Y,Z)$ of objects in~$\mathcal{C}$ together with triples~$f,g,z)$ of morphisms in~$\mathcal{C}$ such that
+    \item The~$2$\dash simplices are triples~$(X,Y,Z)$ of objects in~$\mathcal{C}$ together with triples~$(f,g,z)$ of morphisms in~$\mathcal{C}$ such that
       \begin{equation}
         \begin{gathered}
           f\in\Hom_{\mathcal{C}}(X,Y)^0 \\
@@ -424,4 +428,11 @@ And of course, we have to prove that the dg~nerve construction actually yields a
     See \cite[proposition 1.3.1.10]{htt}.
   \end{proof}
 \end{proposition}
-
+This construction is moreover functorial, and satisfies an important Quillen adjointness property.
+\begin{proposition}
+  The dg~nerve is a right Quillen functor from~$\dgCat_k$ to~$\sSet$, where we equip~$\sSet$ with the Joyal model structure.
+  \begin{proof}
+    See \cite[proposition 1.3.1.20]{htt}.
+  \end{proof}
+\end{proposition}
+The fibrant objects are exactly the quasicategories in the Joyal model structure, and one can prove that every object in~$\dgCat_k$ is fibrant. So the dg~nerve being right Quillen yields us again that the image of the dg~nerve construction is a~$(\infty,1)$\dash category. And recall that the weak equivalences in the Joyal model structure are exactly the generalisations of categorical equivalences, so the dg~nerve construction sends quasi-equivalences to~$(\infty,1)$\dash categorical equivalences.
