@@ -4,7 +4,7 @@
 \end{flushright}
 
 \section{Introduction}
-The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not-functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem. To put it more bluntly:
+The notion of triangulated category lies at the heart of homological algebra. This type of category is essential in the study of derived categories and stable homotopy categories of spectra. But there are some problems with this concept: the cone construction is not functorial. Already in Verdier's PhD thesis there is the result that if the cones in a (countably) (co)complete triangulated category are functorial that category is necessarily semisimple abelian \cite[proposition II.1.2.13]{verdierphd}. As not every triangulated category is abelian \cite[exercise 1.4.5]{weibel} this is a problem. To put it more bluntly:
 \begin{quote}
   ``This `nonfunctoriality of a cone' is the first symptom that something is going wrong in the axioms of a triangulated category.''
 \end{quote}
@@ -13,19 +13,21 @@ The notion of triangulated category lies at the heart of homological algebra. Th
 \end{flushright}
 Another symptom is that certain theorems involving derived categories are ``weak'', in the sense that one might suspect them to hold in a more general context. By enriching the category before applying the constructions from homological algebra, we can retain enough information about the original category to solve some of the issues.
 
-In a more abstract context: up to now we have seen that there are different models for~$(\infty,1)$\dash categories. The models we have discussed so far are quasicategories, relative categories using simplicial localisation, Segal categories and complete Segal spaces. These are all models for the general theory of~$(\infty,1)$\dash categories. One could restrict himself on the other hand to certain subclasses of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known. Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra.
+In a more abstract context: up to now we have seen that there are different models for~$(\infty,1)$\dash categories. The models we have discussed so far are quasicategories, relative categories using simplicial localisation, Segal categories and complete Segal spaces. These are all models for the \emph{general} theory of~$(\infty,1)$\dash categories.
+
+One could restrict himself on the other hand to certain \emph{subclasses} of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known. Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra. Under the appropriate conditions we will see that dg~categories are equivalent to stable~$(\infty,1)$\dash categories enriched over de monoidal~$(\infty,1)$\dash category of~$k$\dash module spectra, whatever that may mean at this point.
 
 Whereas topological or simplicial categories are categories enriched over topological spaces or simplicial sets, a differential graded category is a category enriched over (co)chain complexes of~$k$\dash modules, for~$k$ a commutative ring. So we restrict ourselves from~$\infty$\dash groupoids to so called abelian and fully strict~$\infty$\dash groupoids, these are exactly the~$\infty$\dash groupoids modelled by chain complexes.
 
 The goal of this expos\'e is to
 \begin{enumerate}
-  \item introduce dg~categories;
+  \item introduce dg~categories and related constructions;
   \item discuss the model category structures on the category of dg~categories;
   \item give some applications of this machinery, demonstrating how derived algebraic geometry can be used to generalize results from algebraic geometry;
   \item explain how to construct a~$(\infty,1)$\dash category for every dg~category and discuss the properties of this construction.
 \end{enumerate}
 
-The main expository references for dg~categories are \cite{lnm2008,keller}. The results in this expos\'e are obtained in \cite{toen}. Other interesting papers are \cite{toen-vaquie}\expandthis{more interesting papers}.
+The main expository references for dg~categories are \cite{lnm2008,keller}. The results of this expos\'e are mostly obtained in \cite{toen} while, at the end the discussion is based on \cite{ha}.
 
 
 \section{Differential graded categories}
@@ -36,7 +38,7 @@ As already suggested, the definition of a dg~category is easy. We will freely us
   \label{definition:dg-category-enriched}
   A \emph{dg~category} is a category enriched over cochain complexes of~$k$\dash modules.
 \end{definition}
-A cochain complex can equivalently be considered as a dg~$k$\dash module: it is a graded~$k$\dash module equipped with a differential~$\dd$ of degree~$1$. The monoidal structure of~$k\textrm{-}\Mod$ implies that the composition in a dg~category~$\mathcal{C}$
+A cochain complex can equivalently be considered as a dg~$k$\dash module: it is a graded~$k$\dash module equipped with a differential~$\dd$ of degree~$1$. So dg~categories are categories in which the Hom-sets carry the structure of a cochain complex. The monoidal structure of~$k\textrm{-}\Mod$ implies that the composition in a dg~category~$\mathcal{C}$
 \begin{equation}
   \Hom_{\mathcal{C}}(Y,Z)^\bullet\otimes_k\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{C}}(X,Z)^\bullet
 \end{equation}
@@ -55,14 +57,14 @@ Recall that we can generalize the notion of a ring by allowing multiple objects.
   \end{equation}
   for~$a\in A^p$.
   
-  If we equip a~$k$\dash algebra~$A$ with the trivial differential, i.e.\ $\dd_A=0$ we get an instance of a dg~category.
+  If we equip a (non-dg)~$k$\dash algebra~$A$ with the trivial differential, i.e.\ $\dd_A=0$ we get an instance of a dg~category.
 \end{example}
 There are also less trivial examples, which generalize the notion of modules over a ring with multiple objects.
 \begin{example}
   \label{example:Ch-dg(A-mod)}
-  Let~$A$ again be a~$k$\dash algebra, consider the category~$\Ch(\Mod{A})$ of complexes of (right)~$A$\dash modules. Instead of taking the usual morphisms of cochain complexes we will introduce the category~$\Ch_\dg(\Mod{A})$ which has exactly the cochain complexes of~$A$\dash modules as objects.
+  Let~$A$ again be a~$k$\dash algebra, consider the category~$\Ch(A\mhyphen\Mod)$ of complexes of (right)~$A$\dash modules. Instead of taking the usual morphisms of cochain complexes we will introduce the category~$\Ch_\dg(A\mhyphen\Mod)$ which has exactly the cochain complexes of~$A$\dash modules as objects.
   
-  But for the morphisms we define the dg~$k$\dash module~$\Hom_{\Ch_\dg(\Mod{A})}(M^\bullet,N^\bullet)^\bullet$ for cochain complexes~$M^\bullet$ and~$N^\bullet$ to have in its~$n$th degree the morphisms of degree~$n$, i.e.~for each~$p\in\mathbb{Z}$ the map~$f^p\colon M^p\to N^{n+p}$ is a morphism of~$A$\dash modules, composition being the composition of graded morphisms which clearly is compatible with this structure. The differential between these~$\Hom$\dash structures is defined by setting
+  But for the morphisms we define the dg~$k$\dash module~$\Hom_{\Ch_\dg(A\mhyphen\Mod)}(M^\bullet,N^\bullet)^\bullet$ for cochain complexes~$M^\bullet$ and~$N^\bullet$ to have in its~$n$th degree the morphisms of degree~$n$, i.e.~for each~$p\in\mathbb{Z}$ the map~$f^p\colon M^p\to N^{n+p}$ is a morphism of~$A$\dash modules, composition being the composition of graded morphisms which clearly is compatible with this structure. The differential between these~$\Hom$\dash structures is defined by setting
   \begin{equation}
     \dd(f)=\dd_{N^\bullet}\circ f-(-1)^nf\circ\dd_{M^\bullet}
   \end{equation}
@@ -85,7 +87,7 @@ As we have enriched categories, there is a notion of underlying category.
   \end{equation}
   To be more precise, the morphisms in~$\ZZ^0(\mathcal{C})$ are exactly those morphisms who live in the kernel of~$\dd\colon\Hom_{\mathcal{C}}(X,Y)^0\to\Hom_{\mathcal{C}}(X,Y)^1$.
 \end{definition}
-This category could also be called the \emph{cocycle category} in this specific case, but it seems I am the only one doing this in the context of dg~categories. Besides the underlying category there are two more construction of a category out of a dg~category.
+This category could also be called the \emph{cocycle category} in this specific context, but it seems I am the only one thinking of doing this. Aside from the underlying category there is another construction of a category given a dg~category.
 \begin{definition}
   \label{definition:homotopy-category}
   The \emph{cohomology category}~$\HH^0(\mathcal{C})$ is the category with~$\Ob(\HH^0(\mathcal{C}))\coloneqq\Ob(\mathcal{C})$ but we take
@@ -111,7 +113,7 @@ Now that we have defined these related categories we can see how they might prov
 \end{example}
 
 \section{The category of differential graded categories}
-Now we will define the category of all small dg~categories, which we'll denote~$\dgCat_k$.
+Now we will define the category of all small dg~categories, which we'll denote~$\dgCat_k$. We add the adjective ``small'' to prevent certain size issues to come up, just like we consider only the category of small categories.
 \begin{definition}
   A \emph{dg~functor}\index{functor!differential graded}~$F\colon\mathcal{C}\to\mathcal{C}'$ where~$\mathcal{C}$ and~$\mathcal{C}'$ are two (small) dg~categories is a map~$F\colon\Ob(\mathcal{C})\to\Ob(\mathcal{C}')$ on the level of the objects such that for~$X,Y\in\Ob(\mathcal{C})$ we have a morphism
   \begin{equation}
@@ -158,7 +160,7 @@ We can endow the category~$\dgCat_k$ with a tensor product and an internal Hom-f
   The unit for the monoidal structure is the dg~category~$k$, where~$k$ by abuse of notation denotes both the dg~category and the dg~algebra with~$k$ concentrated in degree~$0$, using example \ref{example:dg-category-of-algebra}.
 \end{remark}
 
-To define the internal Hom-functor we need to explain how we will use the~$\Ch(k\mhyphen\Mod)$\dash enrichment. Again this is just a special case of the theory of enriched categories.
+To define the internal Hom-functor we need to explain how we will use the~$\Ch(k\mhyphen\Mod)$\dash enrichment.
 \begin{definition}
   \label{definition:complex-of-graded-morphisms}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. Let~$F,G\colon\mathcal{C}\to\mathcal{D}$ be two dg~functors. A \emph{natural transformation of degree~$n$}\index{natural transformation!of degree~$n$}~$\phi\colon F\Rightarrow G$ is a family of morphisms~$(\phi_X)_{X\in\Ob(\mathcal{C})}$ such that~$\phi_X\in\Hom_{\mathcal{D}}(F(X),G(X))^n$ for~$X\in\Ob(\mathcal{C})$ satisfying~$G(f)(\phi_X)=\phi_Y(F(f))$ for all~$f\in\Hom_{\mathcal{C}}(X,Y)$ and~$Y\in\Ob(\mathcal{C})$. In other words, if~$f$ is homogeneous of degree~$m$, we have the commutativity of the diagram
@@ -192,7 +194,7 @@ If we take the dg~category with the single object~$k$ as discussed in example \r
 \end{equation}
 for~$\mathcal{A},\mathcal{B},\mathcal{C}$ dg~categories.
 
-The pair~$(\otimes,\HHom_{\dgCat_k})$ make~$\dgCat_k$ into a closed symmetric monoidal category. This structure will be important for the remainder of this work. We want our localisations to be compatible with it, but this is the source of an important issue.
+The pair~$(\otimes,\HHom_{\dgCat_k})$ make~$\dgCat_k$ into a closed symmetric monoidal category. This structure will be important for the remainder of this work. We want our localisations to be compatible with it, but this is the source of an important issue in the obvious model category structure as it will be introduced in what follows.
 
 
 \section{Differential graded modules}
@@ -210,7 +212,7 @@ As usual we can consider all dg~modules and endow them with the structure of a c
 \end{definition}
 It is an abelian category, where epi- resp.\ monomorphisms can be checked degreewise.
 
-We can generalize the notion of a dg~$\mathcal{C}$\dash module which has values in the model category~$\Ch(k\mhyphen\Mod)$ to ``dg $\mathcal{C}$\dash modules with coefficients in a~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$''
+We can generalize the notion of a dg~$\mathcal{C}$\dash module which has values in the model category~$\Ch(k\mhyphen\Mod)$ to ``dg $\mathcal{C}$\dash modules with coefficients in a~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$''. For this we use the theory of monoidal model categories \cite[section 4.2]{hovey}.
 \begin{definition}
   \label{definition:C-dgMod(M)}
   Let~$\mathcal{C}$ be a dg~category and~$\mathcal{M}$ a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category. A~\emph{dg~$\mathcal{C}$\dash module with values in~$\mathcal{M}$}\index{module!differential graded $\mathcal{C}$\dash\ldots with values in a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category} is a dg~functor~$\mathcal{C}\to\mathcal{M}$, where~$\mathcal{M}$ is a dg~category because its Hom-sets are by assumption enriched over~$\Ch(k\mhyphen\Mod)$.
@@ -226,7 +228,7 @@ For every~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$ we can define i
   \end{equation}
   for~$X,Y\in\Ob(\Int(\mathcal{M}))$.
 \end{definition}
-This dg~category serves as an enrichment for~$\Ho\mathcal{m}$, as one might already guess from its definition.
+This dg~category serves as an enrichment for~$\Ho\mathcal{M}$, as one might already guess from its definition.
 \begin{proposition}
   \label{proposition:internal-category-is-dg-enrichment}
   Let~$\mathcal{M}$ be a~$\Ch(k\mhyphen\Mod)$\dash model category. We have the equivalence
@@ -237,7 +239,7 @@ This dg~category serves as an enrichment for~$\Ho\mathcal{m}$, as one might alre
 
 
 \section{Model category structures on \texorpdfstring{$\dgCat_k$}{dgCat\textunderscore k}}
-It is possible to put at least two different model category structures on~$\dgCat_k$: one with quasi-equivalences as weak equivalences, and the other with Morita morphisms as weak equivalences.
+It is possible to put at least two different model category structures on~$\dgCat_k$: one with quasi-equivalences as weak equivalences, and the other with Morita equivalences as weak equivalences.
 
 We start with the ``canonical'' model category structure, where the quasi-equivalences are inverted.
 \begin{definition}
@@ -276,7 +278,7 @@ We now introduce the fibrations in this model category structure.
 
 In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. An important use of this model category structure are sheaves on higher stacks \cite{chern}. To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
 \begin{definition}
-  Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}~$\mathbf{D}\dgMod{\mathcal{C}}_k$ is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
+  Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}, which we'll denote~$\mathbf{D}(\dgMod{\mathcal{C}}_k)$, is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
 \end{definition}
 Associated to a dg~functor~$f\colon\mathcal{C}\to\mathcal{D}$ is the restriction functor
 \begin{equation}
@@ -284,7 +286,7 @@ Associated to a dg~functor~$f\colon\mathcal{C}\to\mathcal{D}$ is the restriction
 \end{equation}
 given by composition. This yields the following definition.
 \begin{definition}
-  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{Morita morphism} if
+  Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{Morita equivalence} if
   \begin{equation}
     \mathbf{D}f^*\colon\mathbf{D}(\dgMod{\mathcal{D}}_k)\to\mathbf{D}(\dgMod{\mathcal{C}}_k)
   \end{equation}
@@ -293,7 +295,7 @@ given by composition. This yields the following definition.
 
 \begin{theorem}[\cite{tabuada-2}]
   \label{theorem:morita-morphisms-model-category-structure}
-  If we take take the Morita morphisms as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
+  If we take take the Morita equivalence as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a model category structure on~$\dgCat_k$.
 \end{theorem}
 
 \begin{remark}
@@ -304,7 +306,7 @@ given by composition. This yields the following definition.
 \section{Mapping spaces}
 The following section is a discussion of the main technical result in \cite{toen}. Its actual proof is rather long and technical, and there is not enough room here to discuss even the necessary definitions and notations. One needs cosimplicial resolution functors, restrictions to specific subcategories, diagonals of bisimplicial sets and nerves just to write down the statement. So immediately its interpretation in terms of the homotopy category is given.
 
-If we consider~$\dgMod{\mathcal{C}\otimes\mathcal{D}^\opp}_k$ we can define for every~$X\in\Ob(\mathcal{C})$ a morphism of dg~categories~$\mathcal{D}^\opp\to\mathcal{C}\otimes\mathcal{D}^\opp$ which on the level of objects is defined as~$Y\mapsto(X,Y)$ and therefore on the level of the morphisms as
+If we consider~$\dgMod{(\mathcal{C}\otimes\mathcal{D}^\opp)}_k$ we can define for every~$X\in\Ob(\mathcal{C})$ a morphism of dg~categories~$\mathcal{D}^\opp\to\mathcal{C}\otimes\mathcal{D}^\opp$ which on the level of objects is defined as~$Y\mapsto(X,Y)$ and therefore on the level of the morphisms as
 \begin{equation}
   \Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet\mapsto\Hom_{\mathcal{C}\otimes\mathcal{D}^\opp}\left( (X,Y),(X,Z) \right)^\bullet\overset{\eqref{equation:tensor-product-dg-categories}}{=}\Hom_{\mathcal{C}}(X,X)^\bullet\otimes_k\Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet
 \end{equation}
@@ -329,7 +331,7 @@ Hence every dg~functor in the homotopy category can be represented in a unique w
 
 
 \section{Monoidal structure}
-Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunately, this structure does not descend to the homotopy category, as the tensor product of two cofibrant dg~categories is not necessarily cofibrant. So in order to prove the existence of a closed monoidal structure one needs to do some work.
+Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunately, this structure does not descend to the homotopy category, as the tensor product of two cofibrant dg~categories is not necessarily cofibrant. So in order to prove the existence of a closed monoidal structure on~$\Ho(\dgCat_k)$ one needs to do some work. On the other hand, almost by the very definition of the Morita equivalences the internal Hom descends to the homotopy category with respect to this structure. The statements in this section will nevertheless use the classical model category structure.
 \begin{theorem}
   \label{theorem:internal-Hom}
   We can equip the monoidal category~$(\Ho(\dgCat_k,-\LLLotimes-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover characterised by
@@ -345,7 +347,7 @@ So we have the derived tensor-Hom adjunction
 \end{equation}
 for all~$\mathcal{C},\mathcal{D}$ and~$\mathcal{E}$ dg~categories.
 
-This closed monoidal structure is moreover compatible with the derived simplicial structure as introduced before.
+It is also possible to introduce a simplicial structure on~$\dgCat_k$, which moreover descends to a~$\Ho(\sSet)$\dash structure on~$\Ho(\dgCat_k)$. The internal Hom is compatible with this structure.
 \begin{corollary}
   \label{corollary:simplicial-compatibility}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be two dg~categories. Let~$K$ be a simplicial set. Then we have the functorial isomorphism
@@ -367,14 +369,36 @@ This corollary yields the following enriched tensor-Hom adjunction.
 
 
 \section{Applications}
+Differential graded categories, and the model structures on~$\dgCat_k$ have already found many applications. Two will be discussed here, a myriad others exist. One of them motivates the philosophy that dg~categories are the correct tool for studying derived categories, as it fixes the lack of functoriality in the cone construction in the context of triangulated categories. The second application is a generalisation of Orlov's result on Fourier-Mukai transforms \cite{orlov}.
+
+We will call a dg~category~$\mathcal{C}$ \emph{pretriangulated} if~$\HH^0(\mathcal{C})$ is triangulated category. Let~$\Delta_k^1$ be the dg~category on two objects~$0$ and~$1$ with a ``unique arrow'' between them, i.e.~$\Hom_{\Delta_k^1}(0,1)^\bullet=k$ and the endomorphism algebras~$\Hom_{\Delta_k^1}(x,x)^\bullet=k$ are generated by the identity element.  Then one can prove that there exists a morphism
+\begin{equation}
+  \mathcal{C}\to\RRRHHom(\Delta_k^1,\mathcal{C})\eqqcolon\Mor_\dg(\mathcal{C}).
+\end{equation}
+This morphism yields the functorial cone construction. For a non-dg category~$\mathcal{A}$ one has its category of morphisms~$\Mor(\mathcal{A})$, and using the dg~enriched category of morphisms one can obtain a natural functor
+\begin{equation}
+  \HH^0(\Mor_\dg(\mathcal{C}))\to\Mor(\HH^0(\mathcal{C}))
+\end{equation}
+which is in general essentially surjective and full. But it is not faithful, which corresponds to the failure of the functoriality of the cone construction. For a more detailed discussion, see \cite[section 5.1]{lnm2008}.
+
+Assuming one is familiar with the theory of Fourier-Mukai transforms \cite{huybrechts}, one is inclined to generalise the theory \cite[conjecture 6.4]{caldararu}. Unfortunately, in the context of (triangulated) derived categories this statement is false \cite[example 6.5]{caldararu}. If one uses the dg~enrichment on the other hand, the statement becomes true for a certain class of schemes and (continuous) morphisms.
+\begin{theorem}[Continuous transformations are representable]
+  \label{theorem:integral-transforms}
+  Let~$X$ and~$Y$ be quasicompact and separated schemes over a field~$k$ such that at least one of them is flat over~$\Spec k$. Then we have the isomorphism
+  \begin{equation}
+    \RRRHHom_\cont\left( \Int(\Ch(\Qcoh_X)),\Int(\Ch(\Qcoh)) \right)\cong\Int\left( \Ch(\Qcoh_{X\times_kY})) \right)
+  \end{equation}
+  in~$\Ho(\dgCat_k)$.
+\end{theorem}
+Remark that the conditions on~$X$ and~$Y$ originate from the theory of compact generators of derived categories, and are not imposed by the theory of dg~categories. And we have started using quasicoherent sheaves. But a similar result can be proven for perfect complexes, which is closer to the original theory. For a generalisation in the context of derived algebraic geometry, see \cite{ben-zvi}.
 
 
 \section{\texorpdfstring{$(\infty,1)$-}{(oo,1)-} and dg categories}
 As discussed in the introduction: dg~categories provide a good way to study stable~$(\infty,1)$\dash categories. To do so, one has to associate an~$(\infty,1)$\dash category to a dg~category. This will be done using the \emph{dg~nerve} construction. This is nothing but a nerve construction that incorporates the dg~enrichment, and it is given in definition \ref{definition:dg-nerve}. Its definition is rather formal, so an interpretation of it in low degrees is given in example \ref{example:low-degree-interpretation}.
 
-The important property of the dg~nerve construction is that it is equivalent to the ``naive'' construction of an~$(\infty,1)$\dash category of chain complexes with values in an additive category. This construction is rather involved, and uses right-lax monoidal functors, the Dold-Kan correspondence, the Alexander-Whitney construction, \ldots. But it can be proved that the reasonably down-to-earth construction of the dg~nerve yields equivalent (yet not isomorphic)~$(\infty,1)$\dash categories \cite[proposition 1.3.1.17]{htt}. So the study of dg~categories is important in the context of~$(\infty,1)$\dash categories, it is not just superseded by the generality of~$(\infty,1)$\dash categories.
+The important property of the dg~nerve construction is that it is equivalent to the ``naive'' construction of an~$(\infty,1)$\dash category of chain complexes with values in an additive category. This construction is rather involved, and uses right-lax monoidal functors, the Dold-Kan correspondence, the Alexander-Whitney construction, \ldots. But it can be proved that the reasonably down-to-earth construction of the dg~nerve yields equivalent (yet not isomorphic)~$(\infty,1)$\dash categories \cite[proposition 1.3.1.17]{ha}. So the study of dg~categories is important in the context of~$(\infty,1)$\dash categories, it is not just superseded by the generality of~$(\infty,1)$\dash categories.
 
-This section is based on \cite[section 1.3.1]{htt}. Observe that in this text the model used for~$(\infty,1)$\dash categories are the quasicategories, and that statements are translated to the cohomological convention in this text.
+This section is based on \cite[section 1.3.1]{ha}. Observe that in this text the model used for~$(\infty,1)$\dash categories are the quasicategories, and that statements are translated to the cohomological convention in this text.
 
 \begin{definition}
   \label{definition:dg-nerve}
@@ -425,14 +449,14 @@ And of course, we have to prove that the dg~nerve construction actually yields a
 \begin{proposition}
   Let~$\mathcal{C}$ be a dg~category. Then the dg~nerve~$\nerve_\dg(\mathcal{C})$ is a~$(\infty,1)$\dash category.
   \begin{proof}
-    See \cite[proposition 1.3.1.10]{htt}.
+    See \cite[proposition 1.3.1.10]{ha}.
   \end{proof}
 \end{proposition}
 This construction is moreover functorial, and satisfies an important Quillen adjointness property.
 \begin{proposition}
   The dg~nerve is a right Quillen functor from~$\dgCat_k$ to~$\sSet$, where we equip~$\sSet$ with the Joyal model structure.
   \begin{proof}
-    See \cite[proposition 1.3.1.20]{htt}.
+    See \cite[proposition 1.3.1.20]{ha}.
   \end{proof}
 \end{proposition}
 The fibrant objects are exactly the quasicategories in the Joyal model structure, and one can prove that every object in~$\dgCat_k$ is fibrant. So the dg~nerve being right Quillen yields us again that the image of the dg~nerve construction is a~$(\infty,1)$\dash category. And recall that the weak equivalences in the Joyal model structure are exactly the generalisations of categorical equivalences, so the dg~nerve construction sends quasi-equivalences to~$(\infty,1)$\dash categorical equivalences.
