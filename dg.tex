@@ -15,7 +15,7 @@ Another symptom is that certain theorems involving derived categories are ``weak
 
 In a more abstract context: up to now we have seen that there are different models for~$(\infty,1)$\dash categories. The models we have discussed so far are quasicategories, relative categories using simplicial localisation, Segal categories and complete Segal spaces. These are all models for the \emph{general} theory of~$(\infty,1)$\dash categories.
 
-One could restrict himself on the other hand to certain \emph{subclasses} of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known. Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra. Under the appropriate conditions we will see that dg~categories are equivalent to stable~$(\infty,1)$\dash categories enriched over de monoidal~$(\infty,1)$\dash category of~$k$\dash module spectra, whatever that may mean at this point.
+One could restrict himself on the other hand to certain \emph{subclasses} of~$(\infty,1)$\dash categories. An important example of this phenomenon are model categories, which provide a model for certain~$(\infty,1)$\dash categories that are both complete and cocomplete. Whether they can model \emph{all} complete and cocomplete~$(\infty,1)$\dash categories is not known. Another possible subclass of~$(\infty,1)$\dash categories is the one modelled using differential graded categories. They are so called ``linear'' models, in the same sense that homological algebra is a linear version of homotopical algebra. Under the appropriate conditions we will see that dg~categories are equivalent to stable~$(\infty,1)$\dash categories enriched over the monoidal~$(\infty,1)$\dash category of~$k$\dash module spectra, whatever that may mean at this point.
 
 Whereas topological or simplicial categories are categories enriched over topological spaces or simplicial sets, a differential graded category is a category enriched over (co)chain complexes of~$k$\dash modules, for~$k$ a commutative ring. So we restrict ourselves from~$\infty$\dash groupoids to so called abelian and fully strict~$\infty$\dash groupoids, these are exactly the~$\infty$\dash groupoids modelled by chain complexes.
 
@@ -194,7 +194,7 @@ If we take the dg~category with the single object~$k$ as discussed in example \r
 \end{equation}
 for~$\mathcal{A},\mathcal{B},\mathcal{C}$ dg~categories.
 
-The pair~$(\otimes,\HHom)$ make~$\dgCat_k$ into a closed symmetric monoidal category. This structure will be important for the remainder of this work. We want our localisations to be compatible with it, but this is the source of an important issue in the obvious model category structure as it will be introduced in what follows.
+The pair~$(\otimes,\HHom)$ makes~$\dgCat_k$ into a closed symmetric monoidal category. This structure will be important for the remainder of this work. We want our localisations to be compatible with it, but this is the source of an important issue in the obvious model category structure as it will be introduced in what follows.
 
 
 \section{Differential graded modules}
@@ -233,7 +233,7 @@ This dg~category serves as an enrichment for~$\Ho\mathcal{M}$, as one might alre
   \label{proposition:internal-category-is-dg-enrichment}
   Let~$\mathcal{M}$ be a~$\Ch(k\mhyphen\Mod)$\dash model category. We have the equivalence
   \begin{equation}
-    \Ho(\mathcal{M})\cong\HH^0(\Int(\mathcal{M})).
+    \Ho\mathcal{M}\cong\HH^0(\Int(\mathcal{M})).
   \end{equation}
 \end{proposition}
 
@@ -316,7 +316,7 @@ by the mapping~$f\mapsto\mathrm{id}_X\otimes f$, for~$Y,Z\in\Ob(\mathcal{D}^\opp
 \end{equation}
 We can then define the following.
 \begin{definition}
-  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$\mathcal{C}\LLLotimes\mathcal{D}^\opp$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$, i.e.\ it is representable in~$\Ho(\dgMod{\mathcal{C}}_k)$ by an object~$C$ of~$\mathcal{C}$.
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$(\mathcal{C}\LLLotimes\mathcal{D}^\opp)$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$, i.e.\ it is representable in~$\Ho(\dgMod{\mathcal{D}^\opp}_k)$ by an object~$D$ of~$\mathcal{D}$.
 \end{definition}
 We can now state the theorem.
 \begin{theorem}
@@ -426,7 +426,7 @@ This section is based on \cite[section 1.3.1]{ha}. Observe that in this text the
       \end{equation}
       such that
       \begin{equation}
-        \dd f_I=\sum_{1\leq j\leq m}(-1)^j\left( f_{I\setminus\{i_j\}}-f_{\{i_j<\dotso<i_1<i_+\}}\circ f_{\{i_-<i_m<\dotso<i_j\}} \right)
+        \dd(f_I)=\sum_{1\leq j\leq m}(-1)^j\left( f_{I\setminus\{i_j\}}-f_{\{i_j<\dotso<i_1<i_+\}}\circ f_{\{i_-<i_m<\dotso<i_j\}} \right)
       \end{equation}
   \end{enumerate}
   For~$\alpha\colon[m]\to[n]$ a non-decreasing function we define~$\nerve_\dg(\mathcal{C})_n\to\nerve_\dg(\mathcal{C})_m$ by
@@ -448,7 +448,7 @@ To see that this is actually a nerve construction that incorporates the dg infor
   \label{example:low-degree-interpretation}
   \begin{itemize}
     \item The~$0$\dash simplices are the objects of~$\mathcal{C}$, as the condition on~$f_I$ is empty.
-    \item The~$1$\dash simplices are the morphisms of the underlying category of~$\mathcal{C}$, as the pairs consist of objects~$X,Y$ of~$\mathcal{C}$ and a single map~$f\in\Hom_{\mathcal{C}}(X,Y)^0$ such that~$\dd f=0$.
+    \item The~$1$\dash simplices are the morphisms of the underlying category of~$\mathcal{C}$, as the pairs consist of objects~$X,Y$ of~$\mathcal{C}$ and a single map~$f\in\Hom_{\mathcal{C}}(X,Y)^0$ such that~$\dd(f)=0$.
     \item The~$2$\dash simplices are triples~$(X,Y,Z)$ of objects in~$\mathcal{C}$ together with triples~$(f,g,h)$ of morphisms in~$\mathcal{C}$ such that
       \begin{equation}
         \begin{gathered}
@@ -457,7 +457,7 @@ To see that this is actually a nerve construction that incorporates the dg infor
           h\in\Hom_{\mathcal{C}}(X,Z)^0 \\
         \end{gathered}
       \end{equation}
-      such that~$\dd f=\dd g=\dd h=0$ and there is given a morphism~$z\in\Hom_{\mathcal{C}}(X,Z)^1$ such that we can write~$\dd z=h-g\circ f$.
+      such that~$\dd(f)=\dd(g)=\dd(h)=0$ and there is given a morphism~$z\in\Hom_{\mathcal{C}}(X,Z)^1$ such that we can write~$\dd(z)=h-g\circ f$.
   \end{itemize}
 \end{example}
 And of course, we have to prove that the dg~nerve construction actually yields an~$(\infty,1)$\dash category, and not just an arbitrary simplicial set.
