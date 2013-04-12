@@ -1,0 +1,371 @@
+\chapter{Higher derived stacks}
+
+\section{Higher stacks}
+
+The classical definition of sheaf can be generalised in two different directions: first of all the arrival category of sets may be replaced by the 
+$\infty$-category of $\infty$-groupoids (simplicial sets with the Kan-Quillen model structure). Furthermore instead of a site in the classical sense we can 
+take a more general $\infty$-category with a topology.\\
+\subsection{Definition and comparison with the classical notion}
+\begin{defin}
+A topology on an $\infty$-category $\mathcal C$ is simply a topology on its homotopy category $\Ho(\mathcal C)$
+\end{defin}
+
+\begin{rmk}
+This is the natural definition, because it would be absurd if the topology would distinguish between homotopically equivalent sieves: if one is covering, so must be the other.
+\end{rmk}
+
+
+The $\infty$-category of prestacks on $(\mathcal C,\tau)$ is simply the category of functors from $\mathcal C^{op}$ to $sSets$, which we denote $\hat{\mathcal C}$.
+That $\infty$-category correspond to a model category, whose weak equivalences and fibrations are defined objectwise.\\
+
+\begin{rmk} $\hat{\mathcal C}$ possesses limits and colimits. Furthermore
+$\hat{\mathcal C}$ is characterised by a universal property: given an $\infty$-category $\mathcal D$ with colimits, $Fun_{cont}(\hat{\mathcal C}, \mathcal D)\simeq Fun(\mathcal C,\mathcal D)$, where
+$Fun_{cont}$ are colimit preserving functors.\\
+It's interesting to remark that this is the same universal property that defines the category of presheaves in the 1-categorical world.
+\end{rmk}
+
+In classical sheaf theory it is possible to define the category of sheaves without actually knowing what a sheaf is, simply by localising the category of
+presheaves with respect to local equivalences. We will use the same technique in this setting, so the first step is understanding how to generalise the
+notion of local equivalence.\\
+\begin{defin}
+Let $F:\mathcal C\to\mathcal D$ be a map between two $\infty$-categories. We say that F is essentially k-surjective if for all parallel (k-1)-arrows $\phi,\psi\in \mathcal C$ and k-arrow $\chi \in \mathcal D$
+between $F(\phi)$ and $F(\psi)$ there exist a k-arrow $\eta\in\mathcal C$ from $\phi$ to $\psi$ such that $F(\eta)$ and $\chi$ are homotopically equivalent.
+\end{defin}
+A map between two $\infty$-categories is an equivalence if and only if it is essentially k-surjective for all k. For sets it is equivalent to say that a function
+between sets is an equivalent if and only if it is 0-essentially surjective (that is to say surjective) and 1-essentially surjective (that is to say injective).\\
+It is particularly easy to explain what it means to be locally essentially k-surjective, so we will say that a morphism between prestacks is a local equivalence
+if it is locally essentially k-surjective for all k.
+
+\begin{defin}
+Let $f: F\to G$ be a morphism of prestacks.\\
+1) f is locally essentially k-surjective if it has the following property:\\
+for any object $X\in Ob(\mathcal C)$ and any morphism $h_x\to G$ there exist a covering sieve R of X such that for any morphism $h_u\to h_x$ in R there is an arrow
+$h_u\to F$ making the following diagram commute up to homotopy:
+
+\begin{displaymath}
+\xymatrix{
+F^{\Delta_k} \ar[r] &  F^{\partial\Delta_k}\times_{G^{\partial\Delta_k}}G^{\Delta_k}\\
+ h_u \ar[u] \ar[r] & h_x\ar[u]
+}
+\end{displaymath}
+we are simply saying that any object of G lifts locally and up to homotopy to an object of F.\\
+2) f is a local equivalence if it is locally essentially k-surjective for all k.
+\end{defin}
+
+\begin{rmk}
+If F and G are 0-presheaves, we are just saying that a map between presheaves is a local equivalence iff:
+\begin{itemize}
+ \item for all X and $x\in G(X)$, there is a covering of X in which the restrictions of X come from elements of F
+\item for all X, if we take $x,y\in F(X)$ which are sent on the same element of G(X) than there is a covering of X in which they are equal.
+\end{itemize}
+
+\end{rmk}
+
+\begin{defin}
+A stack is a prestack which is local with respect to local equivalences.\\
+The $\infty$-category of stacks is the full subcategory of $\hat{\mathcal C}$ spanned by stacks. 
+\end{defin}
+
+\begin{prop}[{\citehigherstacks{tv}}]
+The forgetful functor from $St(\mathcal C)$ to $\hat{\mathcal C}$ has an exact left adjoint, called the sheafification functor, which exhibits $St(\mathcal C)$ as the localisation of $\hat{\mathcal C}$
+with respect to local equivalences. 
+\end{prop}
+
+\begin{proof} [sketch]
+As far as I know it is quite difficult to prove this statement directly in the setting of higher categories. One should rather find a model category which correspond to
+$\hat{\mathcal C}$, for example the category of functors of simplicial categories between a simplicial category equivalent to $\mathcal C$ and the simplicial category of simplicial sets.
+The model structure is the projective model structure (fibrations and weak equivalences are defined objectwise). Then, in this model category, one disposes of the general
+machinery of Bousfield localisation which produces a Quillen adjunction between the model category of prestacks and the model category of stacks. When passing to $\infty$
+categories the Quillen adjunction induces an adjunction of $\infty$
+categories.
+\end{proof}
+
+\begin{prop}[{\citehigherstacks{hagII}}]
+We might have started, rather than with weak equivalences, with another (more restrained) class of functions, namely maps of the tipe $|U_*|\to h_X$ where $U_*$ is a split
+hypercovering of X. In HAG I it is proved that this set of maps and local equivalences induce the same left Bousfield localisation, so one has a more explicit description
+of stacks: they are prestacks such that, for every object X and split hypercovering $U_*\to X$ the natural morphism
+$$F(X)\to\lim_{[n]\in\Delta} F(U_n)$$
+is an equivalence.
+\end{prop}
+
+\begin{rmk}
+Thanks to the previous proposition, we have a nice characterisation of colimit-preserving functors from $St(\mathcal C)$:\\
+if $\mathcal{D}$ is any $\infty$-category with colimits, a functor $\mathcal C\to\mathcal{D}$ can be extended to a unique colimit preserving functor $\hat{\mathcal C}\to\mathcal{D}$ which
+factorises through a (always colimit preserving) functor $St(\mathcal C)\to \mathcal{D}$ iff for all $X\in\mathcal C$ and for all hypercovering $U_*\to X$ the natural map
+$$\mathrm{col}_{[n]\in\Delta^{op}} F(U_n)\to F(X)$$
+is an isomorphism.\\
+Furthermore the adjunction $St(\mathcal C)\rightleftarrows \hat{\mathcal C}$ assures the existence of limits and colimits in $St(\mathcal C)$, so we can characterise such category by a
+universal property.
+\end{rmk}
+
+\begin{rmk}
+Classical sheaves and stacks are a particulare case of this formalism. In general we define an n-stack to be a stack which takes values in the category of n-truncated
+simplicial sets (that is to say simplicial sets whose homotopy is concentrated in degrees $\le n$). The inclusion of n-truncated simplicial sets in simplicial sets has a left 
+adjoint, denoted $t_{\le n}$ which induces an adjunction $n-St\rightleftarrows St$. It can be verified that 0-stacks are sheaves and 1-stacks are stacks in the classical sense.
+\end{rmk}
+
+One might ask why we said we were inverting morphisms that are locally essentially k-surjective for all k and not morphisms that are locally equivalences, which would have been easier to define.
+The fact is, a morphism which is locally essentially k-surjective for all k is not locally an equivalence, because a priori we can't find a single covering on which it
+is k-surjective for all k at the same time. Of course for truncated stacks there is no difference.\\
+The problem with the second choice (inverting local equivalences) is that it produces a topos which is not hypercomplete, that is to say a map $X\to Y$ might induce
+isomorphisms on the $\pi_0$ and on all homotopy groups for all base points and still not be an equivalence. Instead, with the definition we've chosen, we have:
+
+\begin{prop}
+$St(\mathcal C)$ is hypercomplete.
+\end{prop}
+
+
+\subsection{Sheaves of model categories}
+
+Actually, from these definition it may be rather difficult to prove that a given functor $S^{op}\to sSets$ is a stack. There is, however, a practical way of doing so
+ in the case in which S is the $\infty$-category associated to a cofibrantly generated model category T.
+\begin{defin}
+A left Quillen presheaf is a functor from T to LModCat, the category of model categories in which arrows are left Quillen functors.\\
+More explicitely to each object $X\in T$ we associate a model category M(X) and to each arrow $f:X\to Y$ we associate a left Quillen functor $f^*:M(Y)\to M(X)$.\\
+Furthermore we demand $(f\circ g)*=f^*\circ g^*$ for any pair of composable arrows.
+\end{defin}
+
+Given a split hypercovering $U_*\to X$ we can consider the cosimplicial diagram $[n]\mapsto M(U_n)$ ($U_n$ is a coproduct of representables, and we define $M(U_n)$ to be
+ the product of the values of M on those representables).\\
+Let's define the category of weak descent data, denoted $M^U$. Its objects are families of objects $x_n\in M(U_n)$ with morphisms $\phi_u:u^*(x_m)\to x_n$ for each 
+map $u:U_n\to U_m$ induced by a map $[m]\to [n]$
+satisfying the usual cocycle condition. Its morphisms are families of morphisms $f_n: x_n\to y_n$ such that $f_i\circ \phi_u=\phi_u\circ f_j$ for any map $[i]\to[j]$.\\
+There is a model category structure on $M^U$ in which fibrations and weak equivalences are defined levelwise.\\
+An object $x\in M^U$ is called homotopy cartesian if the maps $\phi_u$ induce isomorphims in the homotopy category $\Ho(M_n)$. We denote $M^U_{cart}$ the full subcategory
+spanned by homotopy cartesian objects.
+
+\begin{defin}
+M is a sheaf of model categories if, for any $X\in T$ and any hypercovering $U_*\to X$ the natural map $M(X)\to M^U$ induces an equivalence of categories $\Ho(M(X))\to \Ho(M^U_{cart})$
+\end{defin}
+
+\begin{thm}[{\citehigherstacks{hagII}}]
+\label{quillen sheaf}
+If M is a sheaf of model categories, then $X\to |W(X)^c|$ is a stack. 
+\end{thm}
+
+
+\section{Derived Algebraic Geometry}
+
+Classically, it is sometimes useful to substitute a k-scheme with the functor $k-Alg\to Sets$ it represents, the so called functor of points.\\
+The name comes from the fact that if a scheme is given by a system of equations with coefficients in k, than the functor associates to each k-algebra A the set
+of solutions of those equations in A. This is a rather useful point of view even in the classical setting: for example a group structure on a scheme $G$
+is simply the datum of a group structure on each $G(A)$ in a compatible way and if we are given another scheme X, an action of G on X is simply an
+action of $G(A)$ on $X(A)$ for all A compatibly.\\
+Unfortunately in this setting quotienting by a group action is a rather poorly behaved operation.\\
+A solution to this problem is to enlarge the setting and consider not only sheaves but stacks as well. Besides, to improve intersections as well (classically the schematic
+intersection loses some information), we will consider the $\infty$-category of DG k-algebras rather than the category of k-algebras.\\
+
+\subsection{Basic definitions}
+
+\begin{defin}
+Let $Mod_k$ denote the monoidal category of unbounded complexes of k-modules with the projective model structure.
+\end{defin}
+
+\begin{prop}
+$Mod_k$ is a simplicial model category in the following way: the space $\Map(A,B)$ is the simplicial k-module associated to the truncation of the function complex between
+A and B. By abuse of notation we will call $Mod_k$ also the $\infty$-category spanned by fibrant cofibrant objects in $Mod_k$
+\end{prop}
+
+\begin{defin}
+$DG_kAlg_{\le 0}$ is the $\infty$-category of coconnective differential graded algebra.
+\end{defin}
+
+In order to do some algebraic geometry on this category, we need to generalise the standard definitions of algebraic geometry to this new context (following ToÃ«n).\\
+\begin{defin}
+A morphism $f:A\to B$ is flat (resp. smooth, Ã©tale, a Zariski open immersion) if:\\
+1) The induced morphism of affine schemes $\spec H_0(B)\to \spec H_0(A)$ is flat (resp. smooth, Ã©tale, a Zariski open immersion)\\
+2) For any $i>0$ the natural map:
+$$H_{-i}(A)\otimes_{H_0(A)}H_0(B)\to H_{-i}(B) $$
+is an isomorphism
+\end{defin}
+
+
+\begin{defin}
+A finite family of morphisms $\{ f_i:A\to B_i\}$ in $\dalg$ is a ffqc covering if each $f_i$ is flat and the induced morphism of affine schemes
+$$\coprod \spec H_0(B_i)\to \spec H_0(A)$$
+is surjective
+\end{defin}
+
+Now it is possible to define a topology on the $\infty$-category $\dalg^{op}$ saying that a sieve is covering if it contains a ffqc covering.\\
+Using the formalism of the previous setting, we define a derived stack to be a stack for this $\infty$ site.\\
+
+
+\begin{rmk}
+There is an obvious adjunction $t_0:\dalg\rightleftarrows k-Alg:i$ which induces an adjunction $i^*:St_k\rightleftarrows Sh(k-Alg):t_0^*$.\\
+We say that a stack X is a derived enhancement of a sheaf of k-algebras F if $i(X)=F$. Every sheaf possess a trivial enhancement: $t_0(F)$, which
+is always a 0-stack.
+However in many cases the best enhancement is not $t_0(F)$, but a more natural one.
+\end{rmk}
+
+
+\subsection{Two examples of stacks}
+
+\begin{defin}[Stack of quasi-coherent sheaves]
+Assigning to each DG-algebra A the model category of DG A-modules and to each $\pi: S\to R$ the Quillen functor $S-mod\to R-mod$ corresponding to the extension of scalars
+is a sheaf of model categories, denoted QC. So if we consider $X\mapsto |W(QC(X))^c|$ we obtain an example of stack, the classifier of quasi-coherent sheaves. 
+\end{defin}
+
+\begin{defin}
+We can proceed as above, but restraining our attention to perfect A-modules, that is to say with some finitude conditions: namely a DG-module M is perfect if it is a compact object
+in the homotopy category $\Ho(DG-mod)$. We thus get the stack $Perf$, which classifies perfect quasi coherent sheaves.
+\end{defin}
+
+\section{Affinisation}
+
+We want to introduce the notion of affine stack (ToÃ«n), which is a homotopical generalisation of the notion of affine scheme and will be useful for dealing
+with CW complexes considered as derived stacks.\\
+\begin{defin}
+The category of affine stacks is the opposite of the category of DG algebras, without any coconnectivity assumptions: $Aff_k:=DGAlg_k^{op}$
+\end{defin}
+
+\begin{rmk}
+There is an evident map $\spec: Aff_k \to St_k $ given by the Yoneda functor: $\spec(R)(A):=\Hom_{DGAlg_k}(R,A)$
+\end{rmk}
+
+As in the classical case, this functor has a left adjoint $\mathcal O: St_k \to Aff_k$ which is the only functor sending each derived affine scheme to the corresponding coconnective
+DG algebra and preserving colimits.\\
+The monad $\mathrm{Aff}:= \spec\circ\mathcal O$ is called the affinisation functor. Each stack X comes equipped with a universal arrow $X\to\mathrm{Aff}(X)$ through which every arrow
+from X to an affine stack factorises.\\
+
+Now we will try to understand what the affinisation functor does on CW complexes. In order to do that, we need to be able to understand how to interprete
+CW complexes as derived stacks.\\
+\begin{prop}
+There is an adjunction $sSets \rightleftarrows DPrSt_k$ where the left adjoint sends each simplicial set 
+to the corresponding constant prestack and the right adjoint sends each prestack X to the simplicial set X(k)
+\end{prop}
+
+\begin{proof}
+$\Map(S,X(k))=\Map(S,\Hom(\spec(k), X))=\Hom(\spec(k)\otimes S, X)$ and $\spec(k)\otimes S$ is the constant simplicial prestack associated to S, as colimits are taken objectwise
+and the prestack $\spec(k)$ associates to each DG algebra a point.
+\end{proof}
+
+We can compose $sSets \rightleftarrows DPrSt_k$ with the adjunction: $DPrSt_k\rightleftarrows DSt_k$ between the forget and the sheafification functor, as in section 1.\\
+We get maps $sSets \rightleftarrows DSt_k$ which allows us to consider simplicial sets as a particular case of derived stacks.
+In particular, as left adjoints preserve colimits, and finite simplicial
+sets can be expressed as finite colimits of copies of the point, we can recover finite simplicial sets (or equivalently finite CW complexes) as those stacks 
+which are finite colimits of copies
+of $\spec(k)$.\\
+For example the circle $S^1$ is the derived stack:
+$$\spec(k)\coprod_{\spec(k)\coprod \spec(k)}\spec(k)$$
+Instead general simplicial sets correspond to arbitrary colimits of copies of $\spec(k)$.\\
+
+
+\section{Cohomology}
+
+In classical algebraic topology cohomology is represented by the Eilenberg-MacLane spaces $K(G,n)=B^nG$. We will be interested in cohomology with coefficient
+in k, that is to say $G=\mathbb G_a$ is the additive group. What does $B^n\mathbb G_a$ look like? 
+
+\begin{prop}
+For $n\ge 1$ we have $B^n\mathbb G_a\simeq \spec(S_n)$ where $S_n$ is the free
+DG algebra on the module $k[-n]$.
+\end{prop}
+\begin{proof}
+Let us consider the functor $\mathcal O$ as a contravariant functor from $St_k$ to $DGMod_k$. It sends pushout squares to pullback squares (which are also pushout squares
+as the category $DGMod_k$ is stable).\\
+If we consider the pushout diagram:
+
+
+\begin{displaymath}
+\xymatrix{
+S^{d-1} \ar[r] \ar[d] &  pt \ar[d]\\
+ pt \ar[r] & S^d\\
+}
+\end{displaymath}
+
+It maps to the pushout/pullback diagram:
+
+\begin{displaymath}
+\xymatrix{
+\mathcal O(S^{d}) \ar[r] \ar[d] &  k \ar[d]\\
+ k \ar[r] & \mathcal O(S^{d-1})\\
+}
+\end{displaymath}
+
+which allows us to calculate $\mathcal O(S^d)$ (as a DG module) recursively: $\mathcal O(S^d)=k\oplus k[-d]$ \\
+It follows from this calculation that
+\[
+[S^d,\spec S_n]\simeq \pi_0(\Hom_{DGAlg}[S_n,\mathcal O(S^d)])\simeq \pi_0(\Hom_{DGMod}(k[-n],k\oplus k[d])
+\]
+which is k if d=n and 0 otherwise.\\
+On the other hand, $[S^d,B^n\mathbb G_a]\simeq H^n(S^d)$ which is k if d=n and 0 otherwise, so $\spec(S_n)$ and $B^n\mathbb G_a$ have the same homotopy groups 
+and only one of them is nontrivial, so they are equivalent.\\
+
+\end{proof}
+
+
+\begin{thm}
+For X a CW complex, $\mathcal O(X)=C^*(X)$ where the right member of the equality is the cochain complex.
+\end{thm}
+
+\begin{proof}
+$H^n(X)=\Map(X,B^n\mathbb G_a)=\Hom_{DGAlg}(S_n,\mathcal O(X))=H^n(\mathcal O(X))$. We have a natural map $C^*(X)\simeq C^*(\mathrm{col}\spec(k))\to \lim C^*(\spec(k))\simeq \lim k\simeq \mathcal O(X)$\\
+\end{proof}
+\begin{rmk}
+Actually we have a particularly nice description of the algebra $S_1$: it is generated by one element of degree one $\epsilon$ and the algebra structure
+is trivial as $\epsilon\epsilon=-\epsilon\epsilon$ (by graded-commutativity) so both sides are equal to 0.\\
+So $S_1\simeq k[\epsilon]/(\epsilon^2)\simeq \mathcal O(S^1)$ so $B\mathbb G_a\simeq \mathrm{Aff}(S^1)$
+\end{rmk}
+
+
+\section{Groups and group action}
+
+\begin{defin}
+A group stack G is simply a functor $G:\dalg\to A_{\infty}-alg$ such that the induced functor $\dalg\to A_{\infty}-alg\to sSets$ is a stack.\\
+Similarly, if G is a group stack and X a stack, a G action on X is an objectwise action af G(A) on X(A) for all $A\in\dalg$ in a compatible way.
+\end{defin}
+
+\begin{rmk}
+One disposes of the following adjunctions:
+$$sSets\rightleftarrows E_1-alg\rightleftarrows sSets_{\bullet}$$
+where the first is the free/forget adjunction and the second is the B/$\Omega$ adjunction. Clearly $B\circ free=\Sigma$. So $\Omega\Sigma=\Omega\circ B\circ free=free$, so
+if X is a stack the free group on X is simply $\Omega\Sigma X$.
+\end{rmk}
+
+\begin{eg}
+$X=S^1$. $\Omega S^2 =\Omega\Sigma S^1$ is the corresponding free group, so a $\Omega S^2$ action on X is simply a morphism of stacks $S^1\times X\to X$\\
+It is entertaining to understand what the universal group morphism $\Omega S^2\to S^1$ correspond to in more traditional terms. We start from the Hopf fibration $S^1\to S^3\to S^2$
+which is classified by the following pullback square:
+
+\begin{displaymath}
+\xymatrix{
+S^3 \ar[r] \ar[d] &  S^2 \ar[d]\\
+ pt \ar[r] & BS^1\\
+}
+\end{displaymath}
+
+As the functor $\Omega$ is a right adjoint, it preserves pullback squares, so we have:
+
+\begin{displaymath}
+\xymatrix{
+\Omega S^3 \ar[r] \ar[d] &  \Omega S^2 \ar[d]\\
+ pt \ar[r] & S^1\\
+}
+\end{displaymath}
+
+where the vertical map on the right is the universal group morphism $\Omega S^2\to S^1$ induced by the group structure on $S^1$
+\end{eg}
+
+The quotient of a stack by a group stack action is the component-wise homotopical quotient.
+
+\begin{prop}
+QC(X/G) is the category of G-equivariant quasi-coherent sheaves over X.
+\end{prop}
+ 
+\begin{proof}
+We only need to prove it for an affine $X=\spec(A)$. In that case X/G is the colimit of a BG(A) shaped diagram where the only object is $\spec(A)$ and to each arrow we assign
+the corresponging element of G. As QC sends colimits to limits, the thesis follows.
+\end{proof}
+
+In particular, the category of modules with G-action is simply $QC(*/G)=QC(BG)$
+
+\begin{rmk}
+Actually, the preceding reasoning is based on the following rather intresting fact, which is quite interesting per se:\\
+if G is a simplicial group, we can form an $\infty$-category that has only an object * and $\Hom(*,*)=G$. This category is an $\infty$-groupoid and so, by the homotopy
+hypothesis, it corresponds to a topological space (via the $\Pi_{\infty}$ construction). Such a topological space is the principal G-bundles classifier BG.\\
+So, a good theory of $\infty$-categories must include a way of delooping groups. For example, Segal categories (which I personally believe are particularly well suited to
+doing derived algebraic geometry) correspond to Segal delooping machine: taking the diagonal of the bisimplicial set corresponding to the Segal category we have constructed
+just above.
+\end{rmk}
+
+\nocitehigherstacks{hypercover, htt, lurieHA, to1, to2, to3}
+\printbibliography[heading = local, category = higherstacks]
