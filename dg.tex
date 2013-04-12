@@ -115,11 +115,11 @@ Now that we have defined these related categories we can see how they might prov
 \section{The category of differential graded categories}
 Now we will define the category of all small dg~categories, which we'll denote~$\dgCat_k$. We add the adjective ``small'' to prevent certain size issues to come up, just like we consider only the category of small categories.
 \begin{definition}
-  A \emph{dg~functor}\index{functor!differential graded}~$F\colon\mathcal{C}\to\mathcal{C}'$ where~$\mathcal{C}$ and~$\mathcal{C}'$ are two (small) dg~categories is a map~$F\colon\Ob(\mathcal{C})\to\Ob(\mathcal{C}')$ on the level of the objects such that for~$X,Y\in\Ob(\mathcal{C})$ we have a morphism
+  A \emph{dg~functor}\index{functor!differential graded}~$F\colon\mathcal{C}\to\mathcal{C}'$ where~$\mathcal{C}$ and~$\mathcal{C}'$ are two (small) dg~categories is a map~$F\colon\Ob(\mathcal{C})\to\Ob(\mathcal{C}')$ on the level of the objects with the data of a morphism~$f_{X,Y}$ for~$X,Y\in\Ob(\mathcal{C})$ which is a morphism
   \begin{equation}
     F_{X,Y}\colon\Hom_{\mathcal{C}}(X,Y)^\bullet\to\Hom_{\mathcal{C}'}(F(X),F(Y))^\bullet
   \end{equation}
-  of dg~$k$\dash modules between the morphism spaces. These maps are required to be compatible with composition and units, which implies the commutativity of
+  of dg~$k$\dash modules. These maps are required to be compatible with composition and units, which implies the commutativity of
   \begin{equation}
     \begin{tikzcd}
       \Hom_{\mathcal{C}}(Y,Z)^\bullet\otimes_k\Hom_{\mathcal{C}}(X,Y)^\bullet \arrow{r}{-\circ-} \arrow[swap]{d}{F_{Y,Z}\otimes F_{X,Y}} & \Hom_{\mathcal{C}}(X,Z)^\bullet \arrow{d}{F_{X,Z}} \\
@@ -235,6 +235,22 @@ This dg~category serves as an enrichment for~$\Ho\mathcal{M}$, as one might alre
   \begin{equation}
     \Ho\mathcal{M}\cong\HH^0(\Int(\mathcal{M})).
   \end{equation}
+
+  \begin{proof}
+    By the very definition of~$\HH^0(\Int(\mathcal{M}))$ its objects are the objects of~$\mathcal{M}_{\cof,\fib}$, and we know that this category (after a suitable quotient) is equivalent to~$\Ho\mathcal{M}$, so we can use this equivalence to define the functor~$\Ho(\mathcal{M})\to\HH^0(\Int(\mathcal{M}))$ on the level of objects. Now the essential surjectivity as obtained from this equivalence immediately gives the \emph{essential surjectivity} in this situation.
+
+    On the morphisms this functor is defined by sending~$f\colon X\to Y$ in~$\Ho\mathcal{M}$ first to the corresponding morphism in~$\mathcal{M}_{\cof,\fib}$ and then by using the~$\Ch(\Mod{k})$\dash enrichment we can interpret it as a morphism in~$\Hom_{\Int(\mathcal{M})}(X,Y)^0$ the zeroth degree of the complex. So after taking the~$\HH^0$ of this morphism we get a well-defined morphism in~$\HH^0(\Int(\mathcal{M}))$ which is compatible with the map as we've defined it on the objects. To see that it is \emph{fully faithful} we observe that
+    \begin{equation}
+      \begin{aligned}
+        &\Hom_{\HH^0(\Int(\mathcal{M}))}(X,Y) \\
+        &\qquad=\HH^0(\RRR\Hom_{\Int(\mathcal{M})}(X,Y)^\bullet) & \text{definition} \\ 
+        &\qquad\cong\Hom_{\Ho(\Ch(\Mod{k}))}(k,\RRR\Hom_{\Int(\mathcal{M})}(X,Y)^\bullet) & \text{Yoneda with~$k$ in degree 0} \\
+        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(k\LLLotimes X,Y) & \text{total derived adjunction} \\
+        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(X,Y) & \text{$k$ is unit for~$-\LLLotimes-$}
+      \end{aligned}
+    \end{equation}
+    for~$X$ and~$Y$ by abuse of notation and the fundamental theorem of model categories both in~$\HH^0(\Int(\mathcal{M}))$ and~$\Ho(\mathcal{M})$. So we can conclude that~$\HH^0(\Int(\mathcal{M}))$ and~$\Ho(\mathcal{M})$ are indeed equivalent categories.
+  \end{proof}
 \end{proposition}
 
 
@@ -273,7 +289,7 @@ We now introduce the fibrations in this model category structure.
 
 \begin{theorem}[\cite{tabuada}]
   \label{theorem:quasi-equivalences-model-category-structure}
-  If we take take the quasi-equivalences as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a cofibrantly generated model category structure on~$\dgCat_k$.
+  If we take the quasi-equivalences as weak equivalences, the quasi-fibrations as fibrations, and the dg~functors satisfying the right lifting property with respect to the trivial fibrations as cofibrations we obtain a cofibrantly generated model category structure on~$\dgCat_k$.
 \end{theorem}
 
 In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. An important use of this model category structure are sheaves on higher stacks \cite{chern}. To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
