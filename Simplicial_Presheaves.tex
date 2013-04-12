@@ -1,6 +1,6 @@
-\chapter{Simplicial Presheaves}
+\chapter{Simplicial presheaves}
 
-The goal of this chapter is to explain the transition from the classical theory of stacks to the homotopical one. The main reference is \cite{hollander}. This chapter is organized as follows:
+The goal of this chapter is to explain the transition from the classical theory of stacks to the homotopical one. The main reference is \citesimpsheaf{hollander}. This chapter is organized as follows:
 \begin{enumerate}
 \item an introductory section about the classical theory of stacks, with some example;
 \item the model structure on presheaves in groupoids and the equivalence;
@@ -12,15 +12,82 @@ The goal of this chapter is to explain the transition from the classical theory 
 Mauro Porta
 \end{flushright}
 
-\section{Fibered Categories and Stacks}
+\section{Review of sheaf theory}
 
-We will assume some familiarity with Grothendieck topologies. I strongly recommend the book of MacLane and Moerdijk \cite[Ch. III]{sheaves} for a clear exposition of this theory. A neat treatment can be also found in the article \cite[Ch. II]{vistoli}.
+We add this section just for sake of completeness. It wasn't included in the exposition of the 03/29/2013. It gives some major motivation for constructions introduced later, and fixes notations and results.
 
-\subsection{Fibered Categories}
+\subsection{Grothendieck topologies}
+
+The reader is supposed to already have a familiarity with Grothendieck topologies. I strongly recommend the book of MacLane and Moerdijk \citesimpsheaf[Ch. III]{sheaves} for a clear exposition of this theory. A neat treatment can be also found in the article \citesimpsheaf[Ch. II]{vistoli}.
+
+A Grothendieck topology is a sort of generalization of the notion of covering. It consists in a family of given covering maps for each object in the category.
+
+\begin{defin}
+Let $\mathcal C$ be a category. A sieve on an object $X \in \Ob(\mathcal C)$ is a subfunctor $R \subset h_X$.
+\end{defin}
+
+\begin{notation}
+Let $\mathcal C$ be a category, $X \in \Ob(X)$; if $R$ is a sieve on $X$ and $\varphi \colon Y \to X$ is any morphism in $\mathcal C$ we can form the pullback diagram
+\[
+\xymatrix{
+h_Y \times_{h_X} R \ar[d]^{j} \ar[r] & R \ar[d]^i \\ h_Y \ar[r]^{\varphi^*} & h_X
+}
+\]
+Since mono are stable under pullback, we see that $h_Y \times_{h_X} R$ is a sieve on $Y$. We will denote such sieve with the notation $\varphi^* R$.
+\end{notation}
+
+\begin{rmk}
+A sieve on $X$ can be described alternatively as a set of arrows $\{\varphi_i \colon U_i \to X \}_{i \in I}$ whose target is $X$ and which is closed for composition on the right. Under identification, we have
+\[
+\varphi^* R := \{f \colon U \to Y \mid \varphi \circ f \in R\}
+\]
+\end{rmk}
+
+\begin{defin}
+Let $\mathcal C$ be a category. A (Grothendieck) topology on $\mathcal C$ is a family $\mathcal J = \{J(X)\}_{X \in \Ob(\mathcal C)}$ where each $J(X)$ is a collection of sieves on $X$, called \emph{covering sieves}, satisfying the following conditions:
+\begin{enumerate}
+\item $h_X \in J(X)$ for each $X \in \Ob(X)$;
+\item if $R \in J(X)$ and $\varphi \colon Y \to X$ is any arrow in $\mathcal C$, $\varphi^* R \in J(Y)$;
+\item if $R \in J(X)$ and $S$ is a sieve on $X$ such that, for each $\varphi \colon U \to X \in R$, $\varphi^* S \in J(U)$, then $S \in J(X)$.
+\end{enumerate}
+\end{defin}
+
+\begin{eg}
+\begin{enumerate}
+\item Let $(X,\tau)$ be a topological space...
+\item the étale topology
+\item the fpqc topology
+\item the fppf topology
+\end{enumerate}
+\end{eg}
+
+\begin{itemize}
+\item pretopologies, elementary properties.
+\end{itemize}
+
+\subsection{Grothendieck topoi}
+
+\begin{itemize}
+\item the set of descent data;
+\item the notion of sheaf: as object with properties;
+\item the notion of sheaf: as local object
+\item the notion of point; stalks.
+\end{itemize}
+
+\begin{thm}
+Let $(C,\mathcal J)$ be a site. Let $S$ be the class of arrows formed by all the inclusions of covering sieves $R \subset h_X$, $R \in J(X)$. Then the inclusion $\mathrm{Sh}(\mathcal C, \mathcal J) \to \mathrm{PSh}(\mathcal C)$ induces an equivalence
+\[
+\mathrm{Sh}(\mathcal C, \mathcal J) \to \mathrm{PSh}(\mathcal C)[S^{-1}]
+\]
+\end{thm}
+
+\section{Fibered categories and stacks} \label{fibered categories}
+
+\subsection{Fibered categories}
 
 \subsubsection*{Definitions and generalities}
 
-Our exposition will follow \cite[Ch. III]{vistoli}, with some integration from \cite[Exposé VI]{sga1}. I strongly recommend the reader to think to fiber bundle (vector bundle if he prefers) while reading these notes.
+Our exposition will follow \citesimpsheaf[Ch. III]{vistoli}, with some integration from \citesimpsheaf[Exposé VI]{sga1}. I strongly recommend the reader to think to fiber bundle (vector bundle if he prefers) while reading these notes.
 
 For the whole exposition $\mathcal C$ will denote a fixed category.
 
@@ -92,7 +159,7 @@ Consider the second projection functor:
 \[
 \Psi_f \colon (\mathcal F \downarrow \mathcal F_U)_f \to \mathcal F_U
 \]
-For each $\eta \in \Ob(\mathcal F_U)$ choose a cartesian arrow $\phi \colon \xi \to \eta$ lying over $f$. Then the pair $(\phi, \mathrm{id}_\eta)$ is a universal arrow from $\Psi_f$ to $\eta$.\footnote{This is the very definition of cartesian arrow, but remember also that all the arrows in $\mathcal F_U$ maps to the identity of $U$ via $p$.} It follows from the standard characterization of adjunctions (cfr. \cite[Theorem IV.1.2.(iv)]{cwm} that $\Psi_f$ has a right adjoint
+For each $\eta \in \Ob(\mathcal F_U)$ choose a cartesian arrow $\phi \colon \xi \to \eta$ lying over $f$. Then the pair $(\phi, \mathrm{id}_\eta)$ is a universal arrow from $\Psi_f$ to $\eta$.\footnote{This is the very definition of cartesian arrow, but remember also that all the arrows in $\mathcal F_U$ maps to the identity of $U$ via $p$.} It follows from the standard characterization of adjunctions (cfr. \citesimpsheaf[Theorem IV.1.2.(iv)]{cwm} that $\Psi_f$ has a right adjoint
 \[
 \Phi_f \colon \mathcal F_U \to (\mathcal F_V \downarrow \mathcal F_U)
 \]
@@ -106,7 +173,7 @@ the projection on the first component. Then, consider the functor $f^*$ defined 
 \[
 f^* := \mathbf d \circ \Phi_f \colon \mathcal F_U \to \mathcal F_V
 \]
-In this construction we are hiding the axiom of choice. We know from \cite[Theorem IV.1.2.(iv)]{cwm} that to construct the adjoint $f^*$ one has only to choose universal arrows for every object in $\mathcal F_U$. If we make this choice for every arrow $f \colon V \to U$ we obtain what is traditionally called a \emph{cleavage}:
+In this construction we are hiding the axiom of choice. We know from \citesimpsheaf[Theorem IV.1.2.(iv)]{cwm} that to construct the adjoint $f^*$ one has only to choose universal arrows for every object in $\mathcal F_U$. If we make this choice for every arrow $f \colon V \to U$ we obtain what is traditionally called a \emph{cleavage}:
 
 \begin{defin}
 A \emph{cleavage} of a fibered category $p \colon \mathcal F \to \mathcal C$ consists of a class $K$ of cartesian arrows in $\mathcal F$ such that for each arrow $f \colon U \to V$ in $\mathcal C$ and each object $\eta$ in $\mathcal F_V$ there exists a unique arrow in $K$ with target $\eta$ mapping to $f$ via $p$.
@@ -144,7 +211,7 @@ h^* g^* f^* \ar[d]_{h^* \alpha_{h,g}} \ar[r]^{\alpha_{h,g} f^*} & (gh)^* f^* \ar
 \end{lemma}
 
 \begin{proof}
-The existence of the natural transformations $\varepsilon_U$ and $\alpha_{f,g}$ is a trivial consequence of the uniqueness of the uniqueness up-to-natural-isomorphism of the adjoint (thus for example we observe that $\Phi_{fg}$ and $\Phi_g \circ \Phi_f$ give right adjoints to $\Psi_{fg}$ in the notation of the proof of Lemma \ref{lemma homogeneity fibers}, so that we obtain $\widetilde{\alpha}_{f,g} \colon \Phi_{fg} \to \Phi_g \circ \Phi_f$, and applying $\mathbf d$ we get the desired $\alpha_{f,g}$). The other checks are still a consequence of the adjointness; the technical details can be found in \cite[Prop. 3.11]{vistoli}.
+The existence of the natural transformations $\varepsilon_U$ and $\alpha_{f,g}$ is a trivial consequence of the uniqueness of the uniqueness up-to-natural-isomorphism of the adjoint (thus for example we observe that $\Phi_{fg}$ and $\Phi_g \circ \Phi_f$ give right adjoints to $\Psi_{fg}$ in the notation of the proof of Lemma \ref{lemma homogeneity fibers}, so that we obtain $\widetilde{\alpha}_{f,g} \colon \Phi_{fg} \to \Phi_g \circ \Phi_f$, and applying $\mathbf d$ we get the desired $\alpha_{f,g}$). The other checks are still a consequence of the adjointness; the technical details can be found in \citesimpsheaf[Prop. 3.11]{vistoli}.
 \end{proof}
 
 Accordingly to the traditional definitions, Lemma \ref{lemma pseudo functor 1} says that we can associate to every fibered category $p \colon \mathcal F \to \mathcal C$ a pseudo-functor
@@ -167,7 +234,7 @@ If $(U,x)$ and $(V,y)$ are two objects in $\mathcal F$, define an arrow
 \[
 (U,x) \to (V,y)
 \]
-to be a pair $(f, \tau)$ where $f \colon U \to V$ is an arrow in $\mathcal C$ and $\tau \colon x \to \Phi(f)(y)$ is an arrow in $\Phi(U)$. The details for the construction can be found in \cite[Ch 3.1.3]{vistoli}.
+to be a pair $(f, \tau)$ where $f \colon U \to V$ is an arrow in $\mathcal C$ and $\tau \colon x \to \Phi(f)(y)$ is an arrow in $\Phi(U)$. The details for the construction can be found in \citesimpsheaf[Ch 3.1.3]{vistoli}.
 \end{proof}
 
 Finally the two constructions given in Lemma \ref{lemma pseudo functor 1} and \ref{lemma pseudo functor 2} are mutually inverse in a higher categorical sense.
@@ -191,7 +258,7 @@ A category $p \colon \mathcal F \to \mathcal C$ over $\mathcal C$ is fibered in 
 \end{prop}
 
 \begin{proof}
-Straightforward (for details, see \cite[Proposition 3.22]{vistoli}.
+Straightforward (for details, see \citesimpsheaf[Proposition 3.22]{vistoli}.
 \end{proof}
 
 As a particular case, we have categories fibered in sets:
@@ -205,7 +272,7 @@ A category $p \colon \mathcal F \to \mathcal C$ over $\mathcal C$ is fibered in 
 \end{prop}
 
 \begin{proof}
-Straighforward (see \cite[Proposition 3.25]{vistoli} for details).
+Straighforward (see \citesimpsheaf[Proposition 3.25]{vistoli} for details).
 \end{proof}
 
 \begin{cor} \label{cor fibered in sets}
@@ -220,17 +287,73 @@ Proposition \ref{prop fibered in sets} implies that the isomorphisms $\alpha_{f,
 Corollary \ref{cor fibered in sets} is saying that categories fibered in sets corresonds, under the equivalence sketched in Lemma \ref{lemma pseudo functor 1} and \ref{lemma pseudo functor 2}, to presheaves (of sets).
 \end{rmk}
 
+\subsubsection{Building techniques}
+
+We propose here a first building technique for fibered categories that eases some of the work required in the examples of next section. Then, we discuss a way to extract a category fibered in groupoids from any fibered category.
+
+We fix a category $\mathcal C$ with pullbacks.
+
+\begin{defin} \label{def stable arrows}
+A full subcategory $\mathcal P$ of $\mathbf{Arr}(\mathcal C)$ is said to be stable if:
+\begin{enumerate}
+\item it is closed under isomorphisms in $\mathbf{Arr}(\mathcal C)$;
+\item it is closed under pullback: if
+\[
+\xymatrix{
+U \times_V Y \ar[r] \ar[d]^g & Y \ar[d]^f \\ U \ar[r] & V
+}
+\]
+is a pullback square and $f \in \Ob(\mathcal P)$, then $g \in \Ob(\mathcal P)$.
+\end{enumerate}
+\end{defin}
+
+\begin{prop} \label{prop stable arrows}
+Let $\mathcal C$ be a category with pullbacks and let $\mathcal P \subset \mathbf{Arr}(\mathcal C)$ be a stable class of maps in $\mathcal C$. The restriction of the codomain functor
+\[
+\mathbf d_1 \colon \mathcal P \to \mathcal C
+\]
+defines a fibered category over $\mathcal C$.
+\end{prop}
+
+\begin{proof}
+Given an arrow $f \colon U \to V$ in $\mathcal C$ and an object $g \colon Y \to V$ in $\mathcal P$ mapping to $V$, form the pullback
+\[
+\xymatrix{
+U \times_V Y \ar[d]^h \ar[r]^p & Y \ar[d]^g \\ U \ar[r]^f & V
+}
+\]
+Then $h \in \Ob(\mathcal P)$ by hypothesis. The universality coincides exactly with the universal property of pullback, as it is easily seen.
+\end{proof}
+
+Now we show how to extract a full subcategory of any fibered category which is fibered in groupoids.
+
+\begin{prop} \label{prop extracting groupoids}
+Let $\mathcal F \to \mathcal C$ be a fibered category. Denote by $\mathcal F_{\mathrm{cart}}$ the full subcategory of $\mathcal F$ formed by cartesian arrows. Then $\mathcal F_{\mathrm{cart}} \to \mathcal C$ is a category fibered in groupoids.
+\end{prop}
+
+\begin{proof}
+This is an immediate consequence of Proposition \ref{prop fibered in groupoids}.
+\end{proof}
+
 \subsubsection{The 2-category $(\Cat \downarrow \mathcal C)$}
 
+\begin{itemize}
+\item Definition of $\mathbf{Hom}$;
+\item Definition of $\mathbf{Hom}_{\mathcal C}$;
+\item show that $\mathcal F_{\mathrm{cart}} = \mathbf{Hom}_{\mathcal C}( \mathcal C, \mathcal F)$;
+\item properties of $\mathbf{Hom}_{\mathcal C}$ (when it is a groupoid);
+\item deduce from the previous point that $\grpd / \mathcal C$ is enriched over $\grpd$ with tensor and cotensor.
+\end{itemize}
 
+\subsubsection{Straightening}
 
-\subsection{Descent Condition}
+\subsection{Descent condition}
 
 As we remarked at the end of previous section, fibered categories represents an extension of presheaves of sets. When the base category is endowed with a (Grothendieck) topology we can look for presheaves well-behaved with respect to the topology; classically, this leads to the notion of sheaf. In the more general context of categories fibered in groupoids, we will obtain stacks. The theoretical difficulty in this passage is contained in the fact that $\grpd$ is a 2-category, hence certain limits have to be understood in a 2-categorical sense. This suggests that we can, more generally, consider presheaves with values in a category carrying homotopical information; in that context, we will ask for limits and colimits to be understood in the homotopical sense (cfr. Section \ref{homotopy limits}).
 
 \subsubsection*{Descent data}
 
-There are several ways to define descent data and descent condition. We will follow the exposition given in \cite[Ch. 4]{vistoli}.
+There are several ways to define descent data and descent condition. We will follow the exposition given in \citesimpsheaf[Ch. 4]{vistoli}.
 
 Let $(\mathcal C, J)$ be a site and let $p \colon \mathcal F \to \mathcal C$ be a category fibered in sets. For each object $U \in \Ob(\mathcal C)$ and each covering sieve $R$ on $U$, let
 \begin{equation} \label{eq matching family}
@@ -262,7 +385,7 @@ This gives a cone over $\{\mathcal F(V \to U)\}_{V \to U \in R}$ and so we get a
 \[
 \Hom(R,\mathcal F) \to \mathcal F(U)_R
 \]
-It is straighforward to check that this is a bijection (cfr. \cite[Prop. 2.39]{vistoli}).
+It is straighforward to check that this is a bijection (cfr. \citesimpsheaf[Prop. 2.39]{vistoli}).
 \end{proof}
 
 Motivated by Lemma \ref{lemma transition sheaf stack} we give the following definition:
@@ -284,9 +407,9 @@ corresponding via the adjunction to the natural morphism
 \mathcal F_U \times_{\mathcal C} R \to \mathcal F
 \]
 
-Others description are possible. See \cite[Ch. 4.1.2]{vistoli} for a detailed explanation.
+Others description are possible. See \citesimpsheaf[Ch. 4.1.2]{vistoli} for a detailed explanation.
 
-\begin{defin}
+\begin{defin} \label{def stack}
 Let $p \colon \mathcal F \to \mathcal C$ be a fibered category on a site $(\mathcal C,J)$. We will say that:
 \begin{enumerate}
 \item $\mathcal F$ is a \emph{prestack} over $\mathcal C$ if for every covering sieve the natural functor \eqref{eq stack condition} is fully faithful;
@@ -310,8 +433,12 @@ This is an immediate consequence of Lemma \ref{lemma transition sheaf stack}.
 
 \subsubsection{Quasi-coherent sheaves}
 
+\begin{defin}
+Say that a morphism of schemes $f \colon X \to Y$ is a fpqc morphism if it is faithfully flat and each quasi-compact open subset of $Y$ is the image of a quasi-compact open subset of $X$.
+\end{defin}
+
 \begin{lemma} \label{lemma fpqc topology}
-For any scheme $X$ say that a collection $\{\varphi_i \colon U_i \to X\}_{i \in I}$ is a fpqc covering if each $\varphi_i$ is flat and quasi-compact and if the family of maps is jointly surjective. Then the fpqc covers satisfy the axioms for a pretopology.
+For any scheme $X$ say that a collection $\{\varphi_i \colon U_i \to X\}_{i \in I}$ is a fpqc covering it is jointly surjective and the natural morphism $\coprod U_i \to X$ is a fpqc morphism. Then the fpqc covers satisfy the axioms for a pretopology.
 \end{lemma}
 
 \begin{proof}
@@ -341,7 +468,7 @@ Immediate consequence of the exactness of $f^{-1}$ and the right-exactness of
 \[
 - \otimes_{\mathcal O_R} \mathcal F \colon \mathbf{Mod}_{\mathcal O_R} \to \mathbf{Mod}_{\mathcal O_R}
 \]
-where $\mathcal O_R$ is a sheaf of rings and $\mathcal F$ is a $\mathcal O_R$-module (the reader not at ease with Algebraic Geometry might would like to check on \cite[Prop. II.5.8.(a)]{hartshorne}).
+where $\mathcal O_R$ is a sheaf of rings and $\mathcal F$ is a $\mathcal O_R$-module (the reader not at ease with Algebraic Geometry might would like to check on \citesimpsheaf[Prop. II.5.8.(a)]{hartshorne}).
 \end{proof}
 
 To check that we obtain a pseudo-functor we observe that $\mathrm{QCoh}(X)$ is a full subcategory of $\mathbf{Mod}_{\mathcal O_X}$ and that $f^*$ is defined also for the larger category.
@@ -361,10 +488,10 @@ Recall that in general $f_*$ doesn't induce a functor
 \[
 f_* \colon \mathrm{QCoh}(X) \to \mathrm{QCoh}(Y)
 \]
-For example it is not true that a skyscraper sheaf is quasi-coherent,\footnote{Observe that if $\widetilde{M}_x \ne 0$, then for each $y \in \overline\{x\}$ we have also $\widetilde{M}_y \ne 0$. This allows to construct a simple counter-example over a non-closed point.} at least without additional hypothesis on $f$ (e.g. quasi-compact and separated).
+at least without additional hypothesis on $f$ (e.g. quasi-compact and separated, see \citesimpsheaf[Prop. II.5.8.(c)]{hartshorne}).
 \end{rmk}
 
-The adjointness allows to construct the required isomorphisms $\alpha_{f,g}$ and $\varepsilon_X$. For the details, see \cite[Ch. 3.2.1]{vistoli}. Let now
+The adjointness allows to construct the required isomorphisms $\alpha_{f,g}$ and $\varepsilon_X$. For the details, see \citesimpsheaf[Ch. 3.2.1]{vistoli}. Let now
 \[
 \mathbf{QCoh}_S \to \mathbf{Sch}/S
 \]
@@ -375,7 +502,7 @@ $\mathbf{QCoh}_S \to \mathbf{Sch}/S$ is a stack.
 \end{thm}
 
 \begin{proof}
-See \cite[Thm. 4.23]{vistoli}.
+See \citesimpsheaf[Thm. 4.23]{vistoli}.
 \end{proof}
 
 \subsubsection{Elliptic curves}
@@ -385,15 +512,15 @@ The current goal is twofold: showing that stacks provide an useful enlargement o
 \begin{defin}
 Let $S$ be a scheme. An elliptic curve over $S$ is a triple $(E,f,0)$ where
 \begin{enumerate}
-\item $f \colon E \to S$ is proper, smooth and of relative dimension $1$;
+\item $f \colon E \to S$ is proper, smooth of finite type and of relative dimension $1$;
 \item for every $s \in S$ the fiber $E_s$ is a geometrically connected curve of genus $1$;
 \item $0 \colon S \to E$ is a section of $f$.
 \end{enumerate}
 \end{defin}
 
-Consider the site $\mathbf{Sch}_{\mathrm{{\'e}t}}$. Define a presheaf
+Consider the site $\mathbf{Sch}_{\mathrm{fpqc}}$. Define a presheaf
 \[
-\Phi \colon \mathbf{Sch}_{\mathrm{{\'e}t}} \to \Set
+\Phi \colon \mathbf{Sch}_{\mathrm{fpqc}} \to \Set
 \]
 sending a scheme $S$ to the set of isomorphism classes of elliptic curves over $S$. If $g \colon S' \to S$ is a morphism of scheme and $(E,f,0)$ is an elliptic curve over $S$ we construct an elliptic curve $(E',f',0')$ over $S'$ via the fiber product:
 \[
@@ -401,7 +528,58 @@ sending a scheme $S$ to the set of isomorphism classes of elliptic curves over $
 E' = E \times_S S' \ar[d]^{f'} \ar[r] & E \ar[d]^f \\ S' \ar[r]^g & S
 }
 \]
-From \cite[Prop. 3.3.16.(c)]{liu} we see that $f'$ is still proper; from \cite[Prop. 4.3.38]{liu} we see that $f' \colon E' \to S'$ is still a smooth morphism. Recall that in this case the relative dimension at a point $x$ is the rank of $\Omega^1_{E'/S'}$ at $x$; \cite[Prop. 1.8.(a)]{liu} shows then that $f' \colon E' \to S'$ is still of relative dimension $1$. The fibers of $f'$ are again geometrically connected because this property is stable under base change; finally, the genus is invariant under field extensions, and this is sufficient to conclude.
+
+\begin{lemma} \label{lemma elliptic fibered}
+Let $\mathcal E$ be the class of elliptic curves in $\mathbf{Sch}$. Then $\mathcal E$ is stable in the sense of Definition \ref{def stable arrows}.
+\end{lemma}
+
+\begin{proof}
+First of all, recall the following facts:
+\begin{enumerate}
+\item proper morphisms are stable under base change. See \citesimpsheaf[Prop. 3.3.16.(c)]{liu};
+\item smooth morphisms are stable under base change. See \citesimpsheaf[Prop 4.3.38]{liu};
+\item morphisms of finite type are stable under base change. See \citesimpsheaf[Prop 3.2.4.(c)]{liu};
+\item if $f \colon X \to Y$ is a smooth morphism and $x \in X$ is a point, the relative dimension of $f$ at $x$ can be computed as the rank of $\Omega^1_{X/Y}$ at $x$; see \citesimpsheaf[Def. 6.4.10]{liu}.
+\end{enumerate}
+Now, consider a pullback diagram
+\[
+\xymatrix{
+E' \ar[d]^{f'} \ar[r]^{g'} & E \ar[d]^f \\ S' \ar[r]^g & S
+}
+\]
+where $f$ is an elliptic curve. Then facts 1. and 2. imply that $f'$ is proper and smooth. Let $x' \in E'$ be any point and set
+\[
+x := g'(x'), \quad y' := f'(x), \quad y := g(y')
+\]
+The computation is local, so we can assume $S = \mathrm{Spec}(A)$, $E = \mathrm{Spec}(B)$, $S' = \mathrm{Spec}(A')$ and $E' = \mathrm{Spec}(B')$. With these notations we have\footnote{The last equality follows from Nakayama lemma and the proof of the following fact: over a local ring, the properties of being projective and finitely generated, free of finite rank, flat and finitely presented are all equivalent.}
+\[
+\mathrm{rank} \: \Omega^1_{E'/S',x'} = \mathrm{rank} \: \left( \Omega^1_{B'/A'} \right)_{x'} = \dim_{\kappa(x')} \Omega^1_{B'/A'} \otimes_{B'} \kappa(x')
+\]
+However, by construction
+\[
+B' := B \otimes_A A'
+\]
+so that \citesimpsheaf[Prop 6.1.8.(a)]{liu} implies that
+\[
+\Omega^1_{B'/A'} \simeq \Omega^1_{B/A} \otimes_B B'
+\]
+Therefore
+\begin{align*}
+\dim_{\kappa(x')} \Omega^1_{B'/A'} \otimes_{B'} \kappa(x') & = \dim_{\kappa(x')} \Omega^1_{B/A} \otimes_B B' \otimes_{B'} \kappa(x') \\
+& = \dim_{\kappa(x')} \Omega^1_{B/A} \otimes_B \kappa(x') \\
+& = \dim_{\kappa(x')} \left( \Omega^1_{B/A} \otimes_B \kappa(x) \right) \otimes_{\kappa(x)} \kappa(x') \\
+& = \dim_{\kappa(x)} \Omega^1_{B/A} \otimes_B \kappa(x) = \mathrm{rank} \left( \Omega^1_{B/A} \right)_x = 1
+\end{align*}
+Finally, we have to check the properties of the fibers. If $s' \in S$ is any point, let $s = g(s)$; then
+\[
+E'_{s'} = E_s \times_S \kappa(s')
+\]
+and since $E_s$ is geometrically connected, the same is true for $E_s \times_S \kappa(s')$. The condition on genus is still satisfied because we have an isomorphism\footnote{This is a consequence of the Cech resolution.}
+\[
+H^i(X,\mathcal F) \otimes_k K \simeq H^i(X \times_{\mathrm{Spec}(k)} \mathrm{Spec}(K), \mathcal F \otimes_k K)
+\]
+for every coherent sheaf $\mathcal F$ on $X$.
+\end{proof}
 
 The functoriality of this construction shows that isomorphism classes of elliptic curves over $S$ are sent into isomorphism classes if elliptic curves over $S'$, hence we get a map
 \[
@@ -412,61 +590,578 @@ It is straightforward to check that the so-defined $\Phi$ is a presheaf. We want
 C := \{(x,y) \in \mathbb A^2_{\mathbb F_3} \mid y^2 = x^3 - x - 1 \} \\
 D := \{(x,y) \in \mathbb A^2_{\mathbb F_3} \mid y^3 = x^3 - x + 1 \}
 \end{gather*}
-They cannot be isomorphic because a simple direct check shows that $C$ doesn't have $\mathbb F_3$-rational points, while $D$ has $7$ $\mathbb F_3$-rational points. However, if $K$ is a finite field extension of $\mathbb F_3$ containing a square root of $1$, then
+They cannot be isomorphic because a simple direct check shows that $C$ doesn't have $\mathbb F_3$-rational points, while $D$ has seven $\mathbb F_3$-rational points. However, if $K$ is a finite field extension of $\mathbb F_3$ containing a square root of $1$, then
 \[
 \mathrm{Spec}(K) \to \mathrm{Spec}(\mathbb F_3)
 \]
-is an étale covering of $\mathrm{Spec}(\mathbb F_3)$, and $C_K$ is isomorphic to $D_K$. Therefore, the canonical map
+is a fpqc covering of $\mathrm{Spec}(\mathbb F_3)$, and $C_K$ is isomorphic to $D_K$. Therefore, the canonical map
 \[
 \xymatrix{
-\Phi(\mathbb F_3) \ar[r] & \Phi(K) \ar@<.5ex>[r]^{\mathrm{id}} \ar@<-.5ex>[r]_{\mathrm{id}} & \Phi(K)
+\Phi(\mathbb F_3) \ar[r] & \Phi(K) \ar@<.5ex>[r] \ar@<-.5ex>[r] & \Phi(K \times_{\mathbb F_3} K)
 }
 \]
 is not injective; in particular $\Phi$ cannot be a sheaf. Under the identification constructed before, we can also say that $\Phi$ is not a stack.
 
-The situation changes drastically if we don't take isomorphism classes of elliptic curves. Define
+\begin{rmk}
+Recall that the fpqc topology is subcanonical. This observation and the previous reasoning imply that the moduli problem $\mathcal M_{\mathrm{ell}} \colon \mathbf{Sch} \to \Set$ doesn't have a fine moduli space.
+\end{rmk}
+
+Consider now
 \[
-\mathcal M_{\mathrm{ell}} \colon \mathbf{Sch}_{\mathrm{{\'e}t}} \to \grpd
+\Psi \colon \mathbf{Sch} \to \Cat
 \]
-defined on objects sending a scheme $S$ into the category $\mathcal M_{\mathrm{ell}}(S)$ whose objects are elliptic curves over $S$ and whose morphisms are isomorphisms of elliptic curves. $\mathcal M_{\mathrm{ell}}$ is in fact a pseudo-functor: the construction $\alpha_{f,g}$ is, as usual, due to the universal property of the pull-back that we are using.\footnote{We are sloppy on these checks because in fact the $(\infty,1)$ viewpoint \emph{should} allow a \emph{complete} and \emph{formal} proof of these facts, using the property that maps obtained via a (standard categorical) universal property define always a contractible space.} 
+defined on objects sending a scheme $S$ into the category $\mathcal M_{\mathrm{ell}}(S)$ whose objects are elliptic curves over $S$ and whose morphisms are morphisms of elliptic curves. Our building technique (Proposition \ref{prop stable arrows} applies because of Lemma \ref{lemma elliptic fibered}, yielding a fibered category and hence (via Lemma \ref{lemma pseudo functor 1}) a pseudo-functor. Proposition \ref{prop extracting groupoids} produces then a category fibered in groupoids:
+\[
+\mathcal M_{\mathrm{ell}} := \Psi_{\mathrm{cart}}
+\]
+The previous counterexample breaks down because the isomorphism built over $K$ does not satisfy the descent condition. It is indeed easy to check the stack condition for étale coverings of a field (Weierstrass equation shows that every descent data is effective). However, I do not know a proof for the general statement (for the moment), nor I have a good reference for it.
 
-We want to check 
+\subsubsection{Higher genus curves}
 
-\subsubsection{Quotients}
+It can be shown that if, instead of consider elliptic curves, we consider curves of a given genus $g \ge 2$, we obtain objects more well-behaved, that do form a stack.
 
-Stacks are well-suited to deal with quotients by group action. We will discuss in general this example, and we will specialize it to two different situation: an algebraic one, and a differentiable one.
+The proof is lengthy, so we will simply sketch the main ideas of it, without going into details. First of all, let us give the correct definition:
 
-\section{Model structure on presheaves in groupoids}
+\begin{defin}
+Let $S$ be a scheme. A curve of genus $g$ over $S$ is a scheme $f \colon C \to S$ such that:
+\begin{enumerate}
+\item $f$ is proper, smooth and of relative dimension $1$;
+\item for each $s \in S$, the fiber $C_s$ is a geometrically connected curve of genus $g$.
+\end{enumerate}
+\end{defin}
 
-As we were suggesting, the difficulty that separates the notion of sheaf from that of stack is related to the fact that $\grpd$ carries a homotopical structure (see Theorem \ref{model structure on groupoids}). In this section we reformulate the notion of stack using the machinery of model categories developed in Chapter 1.
+These morphisms form a local class in $\mathbf{Sch}/S$, hence they define a fibered category in groupoids. To check that they do form a stack if $g \ge 2$, we will employ a general descent technique: the descent via ample invertible sheaves. Let us give a definition, first:
 
+\begin{defin}
+Let $(\mathcal C, J)$ be a site and suppose that $\mathcal C$ has pullbacks. Then a class of arrows $\mathcal P \subset \mathbf{Arr}(\mathcal C)$ is said to be \emph{local} if it is stable and the following condition holds: for each covering $\{U_i \to U\}$ in $\mathcal C$ and each arrow $X \to U$, if the projections $U_i \times_U X \to U_i$ are in $\mathcal P$, then $X \to U$ is also in $\mathcal P$.
+\end{defin}
 
-\subsection{Via the adjunction}
+\begin{thm}
+Let $S$ be a scheme, $\mathcal F$ be a class of flat, proper morphisms of finite presentation in $\mathbf{Sch}/S$ that is local in the fpqc topology. Suppose that for each object $\xi \colon X \to U$ of $\mathcal F$ is given an invertible sheaf $\mathscr L_\xi$ on $X$, ample relative to $X \to U$, in such a way that each cartesian diagram
+\[
+\xymatrix{
+X \ar[r]^f \ar[d]^\xi & Y \ar[d]^\eta \\ U \ar[r]^\phi & V
+}
+\]
+yields an isomorphism
+\[
+\rho_{f,\phi} \colon f^* \mathscr L_\eta \to \mathscr L_\xi
+\]
+of invertible sheaves. Finally, let's assume that for each cartesian diagram
+\[
+\xymatrix{
+X \ar[r]^f \ar[d]^\xi & Y \ar[r]^g \ar[d]^\eta & Z \ar[d]^\zeta \\ U \ar[r]^\phi & V \ar[r]^\psi & W
+}
+\]
+where $\xi,\eta,\zeta \in \mathcal F$, the diagram
+\[
+\xymatrix{
+f^* g^* \mathscr L_\zeta \ar[rr]^{\alpha_{f,g}(\mathscr L_\zeta)} \ar[d]^{f^* \rho_{g,\psi}} & & (gf)^* \mathscr L_\zeta \ar[d]^{\rho_{gf,\psi\phi}} \\ f^* \mathscr L_\eta \ar[rr]^{\rho_{f,\phi}} & & \mathscr L_\xi
+}
+\]
+commutes. Then $\mathcal F$ is a stack in the fpqc topology.
+\end{thm}
 
-\subsection{Via Bousfield localization}
+\begin{proof}
+See \citesimpsheaf[Thm. 4.38]{vistoli}.
+\end{proof}
 
-\section{Simplicial Presheaves}
+If $g \ge 2$, for a proper smooth morphism $\xi \colon X \to U$ we can take as invertible sheaf the relative cotangent sheaf $\Omega^1_{X/U}$. This satisfies the hypothesis, producing a stack.
 
-\cite{jardinepresheaves}
+\section{Simplicial presheaves}
 
-\subsection{Injective Model Structure}
+\subsection{Motivations}
 
-\subsection{Hypercovers}
+Let $(\mathcal C,J)$ be a site and let $\mathcal F$ be a presheaf over $\mathcal C$. We saw in Lemma \ref{lemma transition sheaf stack} that we can formulate the usual equalizer appearing in the definition of sheaf as
+\[
+\Hom(R,\mathcal F)
+\]
+where $R$ is a covering sieve over a given object $X$. We next used this reformulation to introduce the notion of stack (Definition \ref{def stack}). Now, we would like to reformulate again the notion of stack in a shape more similar to the original definition; we immediately find an obstruction to this: since $\grpd$ is a 2-category, the notion of limit should be weakened. This introduce natural complications, which are very fundamental in the whole theory of stacks and make more complicated notion which \emph{should} (and in fact, \emph{do}) exist, like ``stackification''. Our homotopical point of view, however, can prove really useful in this context.
 
-\cite{hypercover}
+Roughly speaking, a 2-limit is a lax limit, in the sense that universality is required only up to natural isomorphisms. We know another situation where almost the same problem arose: the problem of finding a good model for homotopy limits and colimits. In fact, there the situation was even more complicated, because we were dealing with homotopies of all order. This suggests that a homotopical point of view can really help in dealing with these constructions, and can also yield a unifying overall vision on the subject.
+
+This is effectively done in \citesimpsheaf{hollander}. Here, we start with a more general point of view, and we will go back to the original problem only at the end. Before starting, let's sketch what our journey will be: recall from Theorem \ref{thm groupoids nullification} that we have an adjoint pair
+\[
+\pi_f \colon \sset \rightleftarrows \grpd \colon N
+\]
+inducing a Quillen equivalence between $\grpd$ and the $S^2$ nullification of $\sset$. If our goal is to exploit homotopy theory to deal with the definition of stacks, we should begin with endowing a category containing stacks with a model structure. Since, up to straightening, we can consider strict presheaves in groupoids, let's take this point of view (arguably, the arguments will be easier). This can be done intuitively using the model structure on $\grpd$; a good definition, however, should take into account also the topology of the site we are considering.
+
+A quite natural idea at this point, is to replace $\grpd$ with the $S^2$ nullification of $\sset$; since we are planning to work up to homotopy, the final result shouldn't change. And now we can consider more generally presheaves of simplicial sets (or simplicial presheaves). We will analyze with some detail the possible model structures over this category, and then we will show that the $S^2$ nullification of this model structure yields exactly what we wanted at the beginning. This more general point of view allows to consider, for example, presheaves of quasicategories, which represent a big step toward our notion of $\infty$-stack.
+
+\subsection{Definitions and first properties}
+
+\begin{defin}
+Let $\mathcal C$ be a category. A presheaf of simplicial sets is a contravariant functor $F \colon \mathcal C^{\mathrm{op}} \to \sset$.
+\end{defin}
+
+Presheaves of simplicial sets can be naturally arranged into a category, the functorial category $\mathbf{Hom}(\mathcal C^{\mathrm{op}}, \sset)$. We will denote this category as $\mathrm{sPSh}(\mathcal C)$. The notation, that reminds ``simplicial objects in the category of presheaves'' is justified by the following lemma:
+
+\begin{lemma} \label{lemma simplicial presheaves}
+We have natural isomorphisms
+\[
+\mathrm{sPSh}(\mathcal C) \simeq \mathbf{Hom}(\mathbf \Delta^{\mathrm{op}} \times \mathcal C^{\mathrm{op}}, \Set) \simeq \mathbf{Hom}(\mathbf \Delta^{\mathrm{op}}, \mathrm{PSh}(\mathcal C))
+\]
+In particular, $\mathrm{sPSh}(\mathcal C)$ is a topos.
+\end{lemma}
+
+\begin{proof}
+This is a formal consequence of cartesian closedness of $\Cat$ and the exponential law:
+\begin{align*}
+\mathrm{sPSh}(\mathcal C) & = \mathbf{Hom}(\mathcal C^{\mathrm{op}}, \mathbf{Hom}(\mathbf \Delta^{\mathrm{op}}, \Set)) \\
+& = \mathbf{Hom}(\mathcal C^{\mathrm{op}} \times \mathbf \Delta^{\mathrm{op}}, \Set) \\
+& = \mathbf{Hom}(\mathbf \Delta^{\mathrm{op}}, \mathbf{Hom}(\mathcal C^{\mathrm{op}}, \Set)) \\
+& = \mathbf{Hom}(\mathbf \Delta^{\mathrm{op}}, \mathrm{PSh}(\mathcal C))
+\end{align*}
+\end{proof}
+
+\begin{cor}
+$\mathrm{sPSh}(\mathcal C)$ is cartesian closed.
+\end{cor}
+
+We can easily obtain an enrichment over $\sset$:
+
+\begin{prop} \label{prop enriched simplicial presheaves}
+$\mathrm{sPSh}(\mathcal C)$ is enriched with tensor and cotensor over $\sset$.
+\end{prop}
+
+\begin{proof}
+Given a simplicial set $K$, review it as the constant simplicial presheaf at $K$. For any other simplicial presheaf $F$, define
+\[
+F \otimes K := F \times K
+\]
+Since $\mathrm{sPSh}(\mathcal C)$ is a topos, we can also define
+\[
+F^K := \mathbf{hom}(K,F)
+\]
+where $\mathbf{hom}$ is the internal hom of $\mathrm{sPSh}(\mathcal C)$. Given any simplicial presheaf $F$, we can consider the following cosimplicial object in $\mathrm{sPSh}(\mathcal C)$:
+\[
+\{F \times \Delta^n\}_{n \in \N}
+\]
+For any other simplicial presheaf $G$ define then
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)} (F,G;\sset) := \Hom_{\mathrm{sPSh}(\mathcal C)}(F \times \Delta^\bullet,G)
+\]
+We clearly obtain a simplicial set. Moreover
+\[
+\Hom_{\sset}(\Delta^0, \Hom_{\mathrm{sPSh}(\mathcal C)} (F,G;\sset)) := \Hom_{\mathrm{sPSh}(\mathcal C)}(F,G)
+\]
+and so we also have an obvious choice for the enriched identity:
+\[
+\Delta^0 \to \Hom_{\mathrm{sPSh}(\mathcal C)}(F,F;\sset)
+\]
+It's an exercise in formalism to check that the axioms of Definition \ref{def enriched category} are satisfied. The reader can find all the verifications in \citesimpsheaf[Lemma II.2.4]{gj} in a more general form.
+\end{proof}
+
+Finally, we end this introductory section with a result that will be quite useful in what follows: the ``simplicial Yoneda lemma''. Some notation will be needed. First of all denote by $c \colon \Set \to \sset$ the diagonal functor sending a set into the constant simplicial set associated. If $\mathcal C$ is any category and $X \in \Ob(\mathcal C)$, we obtain the usual Yoneda representable functor
+\[
+h_X := \Hom_{\mathcal C}(-,X) \colon \mathcal C^{\mathrm{op}} \to \Set
+\]
+
+\begin{defin}
+For an object $X \in \Ob(\mathcal C)$ in any category $\mathcal C$, we define the \emph{simplicial Yoneda functor} to be $\mathrm sh_X \colon c \circ h_X$.
+\end{defin}
+
+\begin{thm}[Simplicial Yoneda Lemma] \label{thm simplicial yoneda}
+Let $\mathcal C$ be a category and let $F \in \mathrm{sPSh}(\mathcal C)$ be a simplicial presheaf. For each object $X \in \Ob(\mathcal C)$ we have a natural isomorphism
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X,F;\sset) \simeq F(X)
+\]
+\end{thm}
+
+\begin{proof}
+Using Lemma \ref{lemma set sset adjoints} we get:
+\begin{align*}
+\Hom_{\sset}(\Delta^n, \Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X,F;\sset)) & \simeq \Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X \otimes \Delta^n, F) \\
+& \simeq \Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X, \mathbf{hom}(\Delta^n,F)) \\
+& \simeq \Hom_{\mathrm{PSh}(\mathcal C)}(h_X, p \circ \mathbf{hom}(\Delta^n,F)) \\
+& \simeq (p \circ \mathbf{hom}(\Delta^n,F))(X)
+\end{align*}
+Moreover, the universal property of cotensor induces the following equality of \emph{functors}:
+\begin{align*}
+p \circ \mathbf{hom}(\Delta^n,F) & = \Hom_{\sset}(\Delta^0, \mathbf{hom}(\Delta^n,F)) \\
+& = \Hom_{\sset}(\Delta^0 \times \Delta^n,F) = \Hom_{\sset}(\Delta^n,F)
+\end{align*}
+Thus we obtain a natural isomorphism
+\[
+\Hom_{\sset}(\Delta^n, \Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X,F;\sset)) \simeq F(X)_n
+\]
+Naturality in $\Delta^n$ implies that we get an isomorphism of simplicial sets
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X,F;\sset) \simeq F(X)
+\]
+which is what we wanted.
+\end{proof}
+
+\subsection{Model structures}
+
+The next step is to produce a model structure over $\mathrm{sPSh}(\mathcal C)$. Without assumptions on $\mathcal C$, one can always define two model structure over $\mathrm{sPSh}(\mathcal C)$: the injective model structure (objectwise cofibrations) and the projective model structure (objectwise fibrations). In both cases, weak equivalences are objectwise equivalences. This is possible because $\sset$ is combinatorial (see Definition \ref{def combinatorial} and Theorem \ref{thm combinatorial functor cat}). We state it as a separate theorem for future references:
+
+\begin{thm} \label{thm global model structure}
+There is a left proper, cofibrantly generated, simplicial model structure on $\mathrm{sPSh}(\mathcal C)$ where:
+\begin{itemize}
+\item cofibrations are the objectwise cofibrations;
+\item weak equivalences are the objectwise weak equivalences;
+\item fibrations are the maps with the RLP with respect to the trivial cofibrations.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+This is a corollary of Theorem \ref{thm combinatorial functor cat}.
+\end{proof}
+
+We will denote by $\mathrm{sPSh}(\mathcal C)_H$ the model structure on $\mathrm{sPSh}(\mathcal C)$ of Theorem \ref{thm global model structure}.
+
+\begin{rmk}
+This model structure for presheaves of simplicial sets goes back to the work of Heller \citesimpsheaf{heller}.
+\end{rmk}
+
+However, when we consider a site $(\mathcal C, J)$, we can define a model structure over $\mathrm{sPSh}(\mathcal C)$ taking in account the topology $J$. The idea to do that goes back to Jardine (\citesimpsheaf{jardinepresheaves}), at least to the best of my knowledge, and relies on the notion of sheaf of homotopy groups.
+
+\subsubsection{Sheaves of homotopy groups}
+
+From now on, we fix a site $(\mathcal C, J)$.
+
+\begin{defin}
+Let $F$ be a simplicial presheaf over $(\mathcal C,J)$. Define $\pi_0(F)$ to be the associated sheaf to the presheaf
+\[
+X \mapsto \pi_n(F(X))
+\]
+\end{defin}
+
+\begin{defin}
+Let $F$ be a simplicial presheaf over $(\mathcal C,J)$. For each object $X \in \Ob(\mathcal C)$ and each $0$-simplex in $F(X)$ define $\pi_n(F,x)$ to be the associated sheaf to the presheaf of sets on $\mathcal C / X$ defined by
+\[
+(f \colon U \to X) \mapsto \pi_n(F(U),f^*x)
+\]
+\end{defin}
+
+Following Jardine \citesimpsheaf{jardinepresheaves} we give the following definition:
+
+\begin{defin}
+A map of simplicial presheaf $f \colon F \to G$ is said to be a \emph{local weak equivalence} if the following conditions hold:
+\begin{enumerate}
+\item the induced map $\pi_0(F) \to \pi_0(G)$ is an isomorphism of sheaves on $\mathcal C$;
+
+\item for each object $X \in \Ob(\mathcal C)$ and each 0-simplex $x \in F(X)$, the induced map $\pi_n(F,x) \to \pi_n(G,f(x))$ is an isomorphism of sheaves on $\mathcal C / X$.
+\end{enumerate}
+\end{defin}
+
+\begin{lemma} \label{lemma objectwise w.e. are local}
+Let $f \colon F \to G$ be an objectwise weak equivalence. Then $f$ is also a local weak equivalence.
+\end{lemma}
+
+\begin{proof}
+$f$ induces an isomorphisms of \emph{presheaves} of homotopy groups, hence it induces also an isomorphism of sheaves of homotopy groups (sheafification is a functorial operation).
+\end{proof}
+
+Then we have the following:
+
+\begin{thm} \label{thm local model structure}
+There is a model structure on $\mathrm{sPSh}(\mathcal C)$ where:
+\begin{itemize}
+\item weak equivalences are local weak equivalences;
+\item cofibrations are objectwise cofibrations;
+\item fibrations are the maps with the left lifting property with respect to cofibrations which are also local weak equivalences.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Thm. 2.3]{jardinepresheaves}.
+\end{proof}
+
+We will refer to this model structure as the \emph{local model structure} on $\mathrm{sPSh}(\mathcal C)$, and from this moment on we will assume that $\mathrm{sPSh}(\mathcal C)$ is endowed with this model structure. If confusion may arise, we will denote it as $\mathrm{sPSh}(\mathcal C)_J$ to make the distinction with the model structure $\mathrm{sPSh}(\mathcal C)_H$ of Theorem \ref{thm global model structure}.
+
+Despite being quite intuitive as construction, there is a major drawback: it is not clear at all how to characterize fibrant objects (and more generally fibrations). However, if we want to imitate our construction for presheaves in groupoids and define stacks as fibrant objects with respect to a certain model structure, it is important to have a better understanding of such objects.
+
+\begin{cor}
+Let $S$ be the class of local weak equivalences. Then $\mathrm{sPSh}(\mathcal C)_J$ is the left localization of $\mathrm{sPSh}(\mathcal C)_H$ with respect to $S$.
+\end{cor}
+
+\begin{proof}
+The identity $\mathrm{Id} \colon \mathrm{sPSh}(\mathcal C)_H \to \mathrm{sPSh}(\mathcal C)_L$ takes cofibrations in cofibrations and Lemma \ref{lemma objectwise w.e. are local} implies that $\mathrm{Id}$ preserves also weak equivalences. Thus in the identity adjoint pair $(\mathrm{Id}, \mathrm{Id})$ the left adjoint is also a left Quillen functor. Since we are considering exactly the maps sent to weak equivalences in $\mathrm{sPSh}(\mathcal C)_J$, we see that this is a left localization. 
+\end{proof}
+
+\begin{rmk}
+It can be shown that this left localization is exactly the left Bousfield localization. This means that $S$-local equivalences are exactly the local weak equivalences.
+\end{rmk}
+
+\subsubsection{Local lifting properties}
+
+\begin{defin}
+Let $i \colon K \to L$ be a map of simplicial sets and let $f \colon F \to G$ be a map of simplicial presheaves; for any object $X \in \Ob(\mathcal C)$ we say that the diagram
+\[
+\xymatrix{ K \ar[d]_i \ar[r]^\alpha & F(X) \ar[d]^{f(X)} \\ L \ar[r]_\beta & G(X) }
+\]
+has a local filling if there is a covering sieve $R$ on $X$ such that for each $\varphi \colon U \to X$ in $R$ there exist a commutative diagram
+\[
+\xymatrix{
+K \ar[d]_i \ar[r]^\alpha & F(X) \ar[r]^{\varphi^*} & F(U) \ar[d]^{f(U)} \\ L \ar[urr]|-{\theta_\varphi} \ar[r]_\beta & G(X) \ar[r]_{\varphi^*} & G(U)
+}
+\]
+In this case we will also say that $f(X)$ has the local right lifting property with respect to $i \colon K \to L$.
+\end{defin}
+
+\begin{defin} \label{def local RLP}
+We say that a map of simplicial presheaves $f \colon F \to G$ has the local right lifting property with respect to a map $i \colon K \to L$ of simplicial sets if for every object $X \in \Ob(\mathcal C)$, the map $f(X)$ has the local right lifting property with respect to $i$.
+\end{defin}
+
+There is another way to formulate the local right lifting, which sometimes turns out to be useful. If $X \in \Ob(\mathcal C)$, consider the Yoneda functor
+\[
+h_X := \Hom_{\mathcal C}(-,X) \colon \mathcal C^{\mathrm{op}} \to \Set
+\]
+For each $U \in \Ob(\mathcal C)$ we can think to $h_X(U)$ as a constant simplicial set (concentrated in degree $0$). We will denote by
+\[
+\mathrm sh_X \colon \mathcal C^{\mathrm{op}} \to \sset
+\]
+the so obtained simplicial presheaf ($\mathrm s$ stands for ``simplicial'').
+
+\begin{lemma}
+A map $f \colon F \to G$ of simplicial presheaf has the local right lifting property with respect to a map $i \colon K \to L$ of simplicial sets if and only if for every object $X \in \Ob(\mathcal C)$, each diagram of simplicial presheaves
+\[
+\xymatrix{
+\mathrm sh_X \otimes K \ar[d]_{\mathrm{id} \otimes i} \ar[r] & F \ar[d]^f \\ \mathrm sh_X \otimes L \ar[r] \ar@{.>}[ur] & G 
+}
+\]
+has a diagonal filling as indicated. Here $\otimes$ denotes the tensor of the enriched structure of $\mathrm{sPSh}(X)$ built in Proposition \ref{prop enriched simplicial presheaves}.
+\end{lemma}
+
+\begin{proof}
+The universal property of the tensor gives the following isomorphism:
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X \otimes K, F;\sset) \simeq \mathbf{hom}_{\sset}(K, \Hom_{\mathrm{sPSh}}(\mathrm sh_X,F;\sset))
+\]
+However, simplicial Yoneda Lemma (Theorem \ref{thm simplicial yoneda}) implies
+\[
+\Hom_{\mathrm{sPSh}}(\mathrm sh_X,F;\sset) = F(X)
+\]
+Thus we obtain a natural isomorphism
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X \otimes K, F;\sset) \simeq F(X)
+\]
+and the conclusion at this point is an exercise in formalism.
+\end{proof}
+
+\begin{defin} \label{def local fibration}
+A map of simplicial presheaves $f \colon F \to G$ is a \emph{local fibration} if it has the local right lifting property with respect to all the horn inclusions
+\[
+\Lambda^n_k \to \Delta^n, \quad 0 \le k \le n
+\]
+in the sense of Definition \ref{def local RLP}.
+\end{defin}
+
+\begin{lemma}
+Let $(\mathcal C,J)$ be a site. With respect to the local model structure on $\mathrm{sPSh}(\mathcal C)$, any fibration is a \emph{local fibration} in the sense of Definition \ref{def local fibration}.
+\end{lemma}
+
+\begin{proof}
+In the local model structure, the cofibrations are the objectwise cofibrations. It follows that if we review $\Lambda^n_k$ and $\Delta^n$ as constant simplicial presheaves, the natural inclusion
+\[
+\Lambda^n_k \to \Delta^n
+\]
+is a trivial cofibration (it induces an isomorphism at level of \emph{presheaves} of homotopy groups, hence also at level of sheaves of homotopy groups). For each object $X \in \Ob(\mathcal C)$, the map
+\[
+\mathrm sh_X \otimes \Lambda^n_k \to \mathrm sh_X \otimes \Delta^n
+\]
+is still an objectwise cofibration, hence a cofibration in the local model structure. Moreover, the homotopy groups commutes with the products by trivial arguments, as well as the sheafification functor. It follows that the map
+\[
+\mathrm sh_X \otimes \Lambda^n_k \to \mathrm sh_X \otimes \Delta^n
+\]
+is still a local weak equivalence.
+
+Therefore, if $p \colon F \to G$ is a fibration in the local model structure, every diagram
+\[
+\xymatrix{ \mathrm sh_X \otimes \Lambda^n_k \ar[d] \ar[r] & F \ar[d]^p \\ \mathrm sh_X \otimes \Delta^n \ar@{.>}[ur]^h \ar[r] & G }
+\]
+has a diagonal filling $h$. This implies the thesis.
+\end{proof}
+
+The following theorem characterizes local acyclic fibrations in term of local lifting properties:
+
+\begin{thm} \label{thm local acyclic fibrations}
+A map $p \colon F \to G$ of simplicial presheaves admits local liftings in every square
+\[
+\xymatrix{
+\partial \Delta^n \otimes X \ar[r] \ar[d] & F \ar[d] \\ \Delta^n \otimes X \ar[r] & G
+}
+\]
+if and only if it is a local acyclic fibration.
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Prop. 7.2]{weakequivalences}.
+\end{proof}
 
 \subsection{Characterization of fibrant objects}
 
+We want to relate the notion of ``being fibrant'' and ``satisfy descent condition''. First of all, we will need to develop the machinery of hypercovers. Our main reference is \citesimpsheaf{hypercover}.
 
-\section{Higher Stacks}
+\subsubsection{Hypercovers}
 
-\section{Complements to Chapter 3}
+\begin{defin}
+Let $(\mathcal C, J)$ be a site and let $X \in \Ob(\mathcal C)$. A hypercover of $X$ is a pair $(U,\varepsilon)$ where:
+\begin{enumerate}
+\item $U$ is a simplicial presheaf such that each presheaf
+\[
+U_n := \Hom_{\sset}(\Delta^n, U(-)) \colon \mathcal C^{\mathrm{op}} \to \Set
+\]
+is a coproduct of representable functors;
+\item $\varepsilon$ is a map of simplicial presheaf $\varepsilon \colon U \to \mathrm sh_X$ which is a local acyclic fibration.
+\end{enumerate}
+\end{defin}
+
+\begin{eg}
+Let $(\mathcal C,J)$ be a site and let $\{U_i \to X\}_{i \in I}$ be a cover for an object $X \in \Ob(\mathcal C)$. Denote by $U_{i_1, i_2, \ldots, i_n}$ the fibered product
+\[
+U_{i_1} \times_X U_{i_2} \times_X \ldots \times_X U_{i_n}
+\]
+Then
+\[
+U_\bullet := \left\{ \coprod_{i_1,\ldots,i_n \in I^n} U_{i_1,\ldots,i_n} \right\}_{n \in \N}
+\]
+(where we confused $U_{i_1,\ldots,i_n}$ with the representable functor $\Hom_{\mathcal C}(-,U_{i_1,\ldots,i_n})$) has a natural structure of simplicial object. Moreover, we have a natural map $U_\bullet \to \mathrm sh_X$ which is a local acyclic fibration.
+\end{eg}
+
+\begin{defin}
+A collection of hypercovers $S$ is called \emph{dense} if every hypercover $U \to \mathrm sh_X$ in $\mathrm{sPSh}(\mathcal C)$ can be refined by a hypercover $V \to \mathrm sh_X$ belonging to $S$.
+\end{defin}
+
+\begin{lemma}
+Let $(\mathcal C,J)$ be a site. The class of all hypercovers in $\mathcal C$ contains a subset which is dense.
+\end{lemma}
+
+\begin{proof}
+See \citesimpsheaf[Prop. 6.6]{hypercover}.
+\end{proof}
+
+\begin{thm}
+Let $S$ be a collection of hypercovers which contains a set that is dense. Then the left Bousfield localization of $\mathrm{sPSh}(\mathcal C)$ at $S$ exists and coincides with Jardine's local model structure $\mathrm{sPSh}(\mathcal C)_L$.
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Thm. 6.2]{hypercover}.
+\end{proof}
+
+\subsubsection{Descent with respect to hypercovers}
+
+\begin{defin}
+An objectwise-fibrant simplicial presheaf $F$ satisfies descent for a hypercover $U \to X$ if the natural map from $F(X)$ to the homotopy limit of the diagram
+\[
+\xymatrix{
+\prod_a F(U_0^a) \ar@<.5ex>[r] \ar@<-.5ex>[r] & \prod_a F(U_1^a) \ar@<.8ex>[r] \ar[r] \ar@<-.8ex>[r] & \cdots
+}
+\]
+is a weak equivalence. If $F$ is not obejctwise-fibrant, we say that it satisfies descent if some object-wise fibrant replacement for $F$ does.
+\end{defin}
+
+\begin{lemma}
+A simplicial presheaf $F$ satisfies descent for a hypercover $U \to \mathrm sh_X$ if and only if the map
+\[
+\Hom_{\mathrm{sPSh}(\mathcal C)}(\mathrm sh_X, \widehat{F};\sset) \to \Hom_{\mathrm{sPSh}(\mathcal C)}(U, \widehat{F};\sset)
+\]
+is a weak equivalence of simplicial sets, where $\widehat{F}$ is a fibrant replacement for $F$ with respect to the local model structure $\mathrm{sPSh}(\mathcal C)_L$.
+\end{lemma}
+
+\begin{proof}
+See \citesimpsheaf[Lemma 4.4]{hypercover}.
+\end{proof}
+
+\begin{thm}
+Let $S$ be a collection of hypercovers which contains a set that is dense. A simplicial presheaf $F$ is fibrant in $\mathrm{sPSh}(\mathcal C)_L$ if and only if it is fibrant in $\mathrm{sPSh}(\mathcal C)_H$ and it satisfies descent for all hypercovers in $S$.
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Cor. 7.1]{hypercover}.
+\end{proof}
+
+\subsection{Comparison with presheaves of groupoids}
+
+We finally finish our initial program going back to presheaves in groupoids, which we will denote by $P(\mathcal C,\grpd)$. We begin describing a natural model structure on this category. As for simplicial presheaves, the first model structure we can introduce is a global one:
+
+\begin{thm} \label{thm model structure on presheaves of groupoids}
+There is a left proper, cofibrantly generated model category structures on $P(\mathcal C, \grpd)$ and where
+\begin{itemize}
+\item $f$ is a weak equivalence of a fibration if $\grpd(X,f)$ is one for all $X \in \mathcal C$;
+\item cofibrations are the maps with the LLP with respect to trivial fibrations.
+\end{itemize}
+The maps of the form $X \to X \otimes \Delta^1$, for $X \in \mathcal C$ for a set of generating trivial cofibrations. The maps of the form $X \otimes \partial \Delta^i \to X \otimes \Delta^i$ for $X \in \mathcal C$ and $i = 0,1,2$ form a set of generating cofibrations.
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Thm. 7.1]{hollander}.
+\end{proof}
+
+Next, we can introduce a local model structure using hypercovers.
+
+\begin{defin} \label{def local equivalences}
+Let $(\mathcal C,J)$ be a site. Denote by $S$ the set of maps in $P(\mathcal C, \grpd)$ the class of maps
+\[
+S := \{\mathrm{hocolim} \: U_\bullet \to X \mid \{U_i \to X\} \text{ is a cover in } \mathcal C\} 
+\]
+where $U_\bullet$ denotes the Cech hypercover associated to $\{U_i \to X\}$.
+\end{defin}
+
+\begin{prop}
+The left Bousfield localization of $P(\mathcal C, \grpd)$ with respect to the class $S$ of Definition \ref{def local equivalences} exists. We will denote it by $P(\mathcal C,\grpd)_L$.
+\end{prop}
+
+\begin{proof}
+See \citesimpsheaf[Prop. 7.5]{hollander}
+\end{proof}
+
+Next, as we announced, we can apply the $S^2$ nullification to the local model structure on simplicial presheaves:
+
+\begin{thm}
+The local model structure on presheaves of groupoids $P(\mathcal C, \grpd)_L$ is Quillen equivalent to the $S^2$ nullification of local model structure $\mathrm{sPSh}(\mathcal C)$.
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Cor. 8.10]{hollander}.
+\end{proof}
+
+\subsection{Stacks as fibrant objects}
+
+Since the homotopical theory of $\grpd$ is a truncation of the model structure of $\sset$ (cfr. Proposition \ref{prop S^2 nullification}), we can expect that homotopy limits and colimits are easier to understand if we consider categories enriched over $\grpd$ instead of enriched over the whole $\sset$. For our purpose, the following result is more than enough:
+
+\begin{thm}
+Let $\mathcal M$ be a simplicial model category whose simplicial structure derives from an enrichment over $\grpd$. Let $X^\bullet$ be a cosimplicial object in $\mathcal M$, with each $X^i$ fibrant. A model for the homotopy inverse limit of $X^\bullet$ is given by the equalizer of the natural maps
+\[
+\xymatrix{
+\prod_{i = 0}^2 (X^i)^{\Delta^i} \ar@<.5ex>[r] \ar@<-.5ex>[r] & \prod_{\mathbf j \to \mathbf i}^{i \le 2, \: j \le 1} (X^i)^{\Delta^j}
+}
+\]
+\end{thm}
+
+\begin{proof}
+See \citesimpsheaf[Thm 4.3]{hollander}.
+\end{proof}
+
+
+Fix a category $\mathcal C$. We showed at the end of Section \ref{fibered categories} that the 2-category $\grpd / \mathcal C$ of categories fibered in groupoids over $\mathcal C$ is enriched with tensor and cotensor over $\grpd$. The main theorem is the following:
+
+\begin{thm} \label{thm homotopical descent condition 1}
+A category fibered in groupoids $\mathcal F \to \mathcal C$ is a stack if and only if for all covers $\mathcal U = \{U_i \to X\}$ the natural map
+\[
+\mathbf{Hom}_{\mathcal C}(\mathcal C / X, \mathcal F) \to \mathrm{holim} \: \mathbf{Hom}_{\mathcal C}(\mathcal C / U_\bullet, \mathcal F)
+\]
+is an equivalence. Here $U_\bullet$ denotes the hypercover associated to $\mathcal U$.
+\end{thm}
+
+\begin{rmk}
+2-categorical Yoneda Lemma shows in fact that we have an equivalence of categories
+\[
+\mathbf{Hom}_{\mathcal C}(\mathcal C / X, \mathcal F) \simeq F(X)
+\]
+See \citesimpsheaf[Ch. 3.6.2]{vistoli} for a proof.
+\end{rmk}
+
+\section{Complements to Chapter 5}
 
 \subsection{Cartesian closedness of $\Cat$}
 
-The main reference is \cite[Ch. VI]{sga1}.
+The main reference is \citesimpsheaf[Ch. VI]{sga1}.
 
 \begin{lemma} \label{lemma internal hom adjunctions}
 For each category $\mathcal C$ the functor $\mathbf{hom}(\mathcal C, -) \colon \Cat \to \Cat$ preserves the adjunctions.
 \end{lemma}
 
+\printbibliography[heading = local, category = simpsheaf]
