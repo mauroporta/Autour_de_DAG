@@ -1,4 +1,6 @@
-\chapter{Model Categories}
+\chapter{Model categories}
+
+\begin{refsection}
 
 In this chapter we will introduce one of the main tools of this cycle of seminars, namely model categories. After an informal section concerning motivations coming from others areas of Mathematics, we will introduce the basic definitions and we will state the main theorems, sketching some proof. We will try, whenever possible and within our capacities, to explain the intuitions motivating the definitions, why we should expect a certain theorem to be true and so on; moreover, we selected four examples where we can test the result we will obtain:
 \begin{enumerate}
@@ -15,7 +17,7 @@ There is finally a complement section containing some selected topics which coul
 Mauro Porta
 \end{flushright}
 
-\section{Motivations and Main ideas}
+\section{Motivations and main ideas}
 
 From a historical point of view, the theory of Model Categories was first introduced by D. Quillen in his foundational work \cite{quillen} with the purpose of unifying several constructions which are in common to several areas of Mathematics. To my best knowledge, these areas are
 \begin{enumerate}
@@ -117,7 +119,7 @@ Let $F \colon \mathcal A \to \mathcal B$ be an additive functor between abelian 
 \end{enumerate}
 One technical difficulty in the proof that this gives back a universal cohomological $\delta$-functor is that our definition might depend on the choice of point 2. In fact, 
 
-\section{Model Categories}
+\section{Model categories}
 
 Now that the motivational part is more or less settled, we can start getting serious with the theory of model categories. For sake of completeness, we recall some basic definitions from Category Theory (for more details the reader is referred to \cite{cwm}):
 
@@ -738,7 +740,7 @@ In this section we collect some of the easiest examples of model categories. Eac
 \item explicit computation of the $\Hom$ in the homotopy category $\mathrm{Ho}(\mathcal M)$.
 \end{enumerate}
 
-\subsection{Simplicial Sets}
+\subsection{Simplicial sets}
 
 The theory of simplicial sets are at the core of homotopy theory. They are the first purely algebraic (combinatorial) model for the homotopy category of topological spaces we discovered. Appendix A contains a brief summary of this theory; more specific references are given there. Here we will simply describe the usual model structure given to $\sset$.
 
@@ -812,7 +814,7 @@ $\sset$ has a model structure where:
 \end{itemize}
 \end{thm}
 
-\subsection{Topological Spaces}
+\subsection{Topological spaces}
 
 Among the most important examples of model category there is $\Top$.
 
@@ -882,7 +884,7 @@ Finally, we can anticipate that the adjoint pair composed by geometric realizati
 
 Before passing on, we should at least remark that $\Top$ can be endowed with another model structure, where cofibrations are the inclusions $A \hookrightarrow X$ such that $A$ is a closed subspace of $X$ and the pair $(X,A)$ has the homotopy lifting property. These are called Hurewicz cofibrations. The weak equivalences are unchanged. This gives an example of a model category whose structure is not completely determined by weak equivalences.
 
-\subsection{Chain Complexes over $\Mod_R$}
+\subsection{Chain complexes over $\Mod_R$}
 
 This is a purely algebraic example of model category, and establishes a strong relation with homological algebra. The intuition coming from this example will be useful as analogy in the construction of the total derived functor.
 
@@ -1068,7 +1070,7 @@ i.e. $\Ext^m_R(A,B)$.
 
 The category of groupoids will play a central role in these seminars, so we will explain in detail how to derive a model structure on $\grpd$ starting from that on $\sset$. For technical details, we will refer to the Appendix.
 
-\begin{thm}
+\begin{thm} \label{thm model structure on groupoids}
 $\grpd$ has a model structure where
 \begin{itemize}
 \item weak equivalences are equivalences of categories;
@@ -1167,6 +1169,10 @@ and
 The other statement is dual.
 \end{proof}
 
+\begin{eg} \label{eg groupoids}
+The adjoint pair $\pi_f \colon \sset \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen pair. In fact ... (this is essentially the content of \cite[Lemma 3.3]{hollander})
+\end{eg}
+
 \begin{cor} \label{cor Quillen pair}
 Let $F \colon \mathcal M \rightleftarrows \mathcal N \colon G$ be an adjunction between model categories. The following statements are equivalent:
 \begin{enumerate}
@@ -1188,6 +1194,8 @@ This follows from Lemma \ref{lemma Ken Brown} and Corollary \ref{cor Quillen pai
 \begin{defin}
 Let $(F,G,\varphi) \colon \mathcal M \to \mathcal N$ be a Quillen pair. We say that it is a \emph{Quillen equivalence} if for every cofibrant object $A \in \Ob(\mathcal M)$ and each fibrant object $X \in \Ob(\mathcal N)$ a map $f \colon A \to G(X)$ is a weak equivalence if and only if $\varphi(f) \colon F(A) \to X$ is a weak equivalence.
 \end{defin}
+
+
 
 \subsection{Derived functor}
 
@@ -1410,7 +1418,7 @@ It can be developed a deformation theory for homotopical categories allowing to 
 \]
 well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dhk}, has been further developed in \cite{shulman} and \cite{riehl}.
 
-\subsection{Reedy Categories}
+\subsection{Reedy categories}
 
 \begin{defin}
 A Reedy category is a triple $\left(\mathcal C, \overleftarrow{\mathcal C}, \overrightarrow{\mathcal C}\right)$, where $\mathcal C$ is a category, $\overleftarrow{\mathcal C}$ and $\overrightarrow{\mathcal C}$ are subcategories of $\mathcal C$ both containing all the objects, and the following requirements are satisfied:
@@ -2237,6 +2245,10 @@ is a weak equivalence. In particular, taking $A = \Delta^0$ (since every object 
 Moreover, functoriality of $\pi_0$ and $\pi_1$ allows to reduce to the case of a map $f \colon X \to Y$ with $Y$ fibrant.
 \end{proof}
 
+\begin{thm} \label{thm groupoids nullification}
+The adjoint pair $\pi_f \colon \sset \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen equivalence between $\grpd$ and the $S^2$-nullification of $\sset$.
+\end{thm}
+
 \section{Complements to Chapter 1}
 
 \subsection{Uniqueness of the model structure for $\grpd$}
@@ -2316,7 +2328,7 @@ Thanks to Corollary \ref{cor uniqueness 3} we only need to prove that every cofi
 
 \subsection{The small object argument}
 
-\subsection{Proper Model Categories}
+\subsection{Proper model categories}
 
 \begin{defin}
 Let $\mathcal M$ be a model category.
@@ -2362,9 +2374,21 @@ A \emph{cofibrantly generated model category} is a model category $\mathcal M$ s
 \end{enumerate}
 \end{defin}
 
-\begin{defin}
+\begin{defin} \label{def combinatorial}
 A \emph{combinatorial model category} is a cofibrantly generated model caetgory $\mathcal M$ which is moreover presentable.
 \end{defin}
+
+\begin{thm} \label{thm combinatorial functor cat}
+Let $\mathcal M$ be a combinatorial model category and let $\mathcal C$ be a small category. Then there exist two combinatorial model structure over $\mathcal M^{\mathcal C}$:
+\begin{itemize}
+\item the projective model structure, where weak equivalences and fibrations are defined objectwise;
+\item the injective model structure, where weak equivalences and cofibrations are defined objectwise.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+See \cite[Prop. A.2.8.2]{htt}.
+\end{proof}
 
 \subsection{Cellular Model Categories}
 
@@ -2392,3 +2416,7 @@ defines a cosimplicial resolution of $\mathbf X$.
 \end{prop}
 
 \subsection{Comparison for mapping spaces}
+
+\printbibliography[heading = local]
+
+\end{refsection}
