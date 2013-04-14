@@ -1,5 +1,7 @@
 \chapter{Enriched Category Theory}
 
+\begin{refsection}
+
 This appendix is not meant to prove anything in detail. We will collect here the definitions commonly used in Enriched Category Theory in order to recall them in an easier way. However, we will give appropriate references to every statement.
 
 \section{Monoidal categories}
@@ -65,7 +67,7 @@ has a \emph{specified} right adjoint.
 
 We will follow the exposition given in \cite{kelly}.
 
-\begin{defin}
+\begin{defin} \label{def enriched category}
 Let $\mathbb V = (\mathcal V, \otimes, I)$ be a monoidal category. A $\mathbb V$-category consists of the following data:
 \begin{enumerate}
 \item a class of \emph{objects} $\mathcal A$;
@@ -107,8 +109,17 @@ commutes.
 
 \section{Induced structures}
 
+\begin{thm} \label{thm induced structure}
 Let $\mathbb V_1 = (\mathbf V_1, \otimes_1, I_1)$ and $\mathbb V_2 = (\mathbf V_2, \otimes_2, I_2)$ be two monoidal categories. Let $F \colon \mathbb V_1 \to \mathbb V_2$ be a strong monoidal functor. If $\mathbf A$ is a $\mathbb V_1$-category, then setting for every $X,Y \in \Ob(\mathbf A)$
 \[
 \mathbf V_2(X,Y) := F(\mathbf V_1(X,Y))
 \]
-gives to $\mathbf A$ a $\mathbb V_2$-enriched structure.
+gives to $\mathbf A$ a $\mathbb V_2$-enriched structure. Moreover, if $F$ is right adjoint to $G$ and $\mathbf A$ is enriched with tensor and cotensor over $\mathbb V_1$, it is enriched with tensor and cotensor over $\mathbb V_2$:
+\[
+A \otimes_{\mathbb V_2} V := A \otimes_{\mathbb V_1} G(V), \qquad A^{V}_{\mathbb V_2} := A^{G(V)}_{\mathbb V_1}
+\]
+\end{thm}
+
+\printbibliography[heading = local]
+
+\end{refsection}
