@@ -36,7 +36,12 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage{mathcomp}
 \usepackage{mathrsfs}
 \usepackage[centertags]{amsmath}
+\usepackage{mathtools}
 \usepackage{calligra}
+
+\usepackage{tikz-cd}
+
+\usepackage{microtype}
 
 %Diagrams and Pictures
 \usepackage[all,cmtip]{xy}
@@ -62,13 +67,13 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 %%Todo notes
 %%%%Packages
-%\usepackage[colorinlistoftodos, textsize = small]{todonotes}
+\usepackage[colorinlistoftodos, textsize = small]{todonotes}
 %%%%Settings
-%\newcounter{todocounter}
-%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
 
 %Cursive operators: sheaves Hom, Ext, Bil
 %\makeatletter
@@ -83,18 +88,24 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 %Environments
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
+\newtheorem{theorem}[thm]{Theorem}
 \newtheorem*{thm*}{Theorem}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
+\newtheorem{proposition}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
+\newtheorem{corollary}[thm]{Corollary}
 
 \theoremstyle{definition}
 \newtheorem{defin}[thm]{Definition}
+\newtheorem{definition}[thm]{Definition}
 \newtheorem{exercise}[thm]{Exercise}
 \newtheorem{eg}[thm]{Example}
+\newtheorem{example}[thm]{Example}
 
 \theoremstyle{remark}
 \newtheorem{rmk}[thm]{Remark}
+\newtheorem{remark}[thm]{Remark}
 \newtheorem*{notation}{Notation}
 
 %Number sets, projective symbol
@@ -117,10 +128,18 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Cat}{\mathbf{Cat}}
 \newcommand{\sset}{\mathbf{sSet}}
 \newcommand{\ch}{\mathbf{Ch}}
+\newcommand{\Ch}{\mathbf{Ch}}
 \newcommand{\grpd}{\mathbf{Grpd}}
 \newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\cghaus}{\mathbf{CGHaus}}
 \newcommand{\qcat}{\mathbf{QCat}}
+\newcommand\dgCat{\ensuremath{\mathbf{dg\,Cat}}}
+\DeclareDocumentCommand\dgMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{dg\,Mod}}}
+\newcommand\sSet{\ensuremath{\simplicialCat{\Set}}}
+\newcommand\simplicialCat[1]{\ensuremath{\mathbf{s\,\!#1}}}
+\newcommand\simp{\ensuremath{\mathbf{s}}}
+\DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{gr-Mod}}}
+\newcommand\Qcoh{\mathbf{Qcoh}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -151,7 +170,31 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\Map}{\mathrm{Map}}
 \newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
 
-\title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee
+\newcommand\dash{\nobreakdash-\hspace{0pt}}
+\newcommand\dd{\mathrm{d}}
+\DeclareMathOperator\HH{H}
+\mathchardef\mhyphen="2D
+\DeclareMathOperator\Isom{Isom}
+\newcommand\LLLotimes{\ensuremath{\otimes^{\mathbf{L}}}}
+\newcommand\rqr{\ensuremath{\mathrm{r\,qr}}}
+\newcommand\opp{\mathrm{op}}
+\newcommand\RRRHHom{\ensuremath{\mathbf{R}\HHom}}
+\DeclareMathOperator\HHom{\mathcal{H}om}
+\DeclareMathOperator\Int{Int}
+\DeclareMathOperator\ZZ{Z}
+\newcommand\dg{\mathrm{dg}}
+\DeclareMathOperator\KKK{\mathbf{K}}
+\newcommand\unit{\mathrm{e}}
+\newcommand\simeqto{\ensuremath{\mathop{\overset{\simeq}{\vphantom{\rule{0pt}{2pt}}\smash{\to}}}}}
+\DeclareMathOperator\cofibrrepl{Q}
+\newcommand\cof{\ensuremath{\mathrm{cof}}}
+\DeclareMathOperator\nerve{N}
+\DeclareMathOperator\Spec{Spec}
+\newcommand\cont{\ensuremath{\mathrm{cont}}}
+\newcommand\Mor{\mathrm{Mor}}
+\DeclareMathOperator\RRR{\mathbf{R}}
+
+\title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{Groupe de travail organis\'e par Gabriele Vezzosi}
 
 \begin{document}
@@ -179,7 +222,7 @@ Finally, the Appendixes contain material which is somehow more foundational: we 
 
 {\bfseries This is a work in progress}
 
-%\listoftodos
+\listoftodos
 
 \section*{Notations}
 
@@ -207,11 +250,15 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \input{segal}
 \input{simplicial-presheaves}
 \input{higher-stacks}
+\input{dg}
 
 \appendix
 
 \input{simplicial-sets}
 \input{enriched-categories}
+
+\appendix
+
 
 %\cleardoublepage
 %\phantomsection
