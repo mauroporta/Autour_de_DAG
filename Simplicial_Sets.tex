@@ -1,5 +1,7 @@
 \chapter{Simplicial Sets}
 
+\begin{refsection}
+
 It is a fact that Topology is absolutely central in Mathematics; this general framework developed in the first decades of the XXth century provides powerful techniques to handle problems in Analysis, Geometry, Algebra. Perhaps even more importantly, Topology gives a unifying point of view and shows how branches of Mathematics apparently unrelated, in reality share a deep connection. During a first approach, we have been taught to think about (point-set) topology as something axiomatizing the notion of ``being close''. This is a static vision of Topology; there is another one, concerning deformations and homotopies. ``Reduce to a simpler case'', this is one of the fundamental \emph{mantras} of Mathematics; in the topological context, where pathological examples abound, one of the most useful techniques is to deform the object of study into a nicer one, obviously preserving the properties we are interested in. More recently, certain mathematicians began to realize that deformations techniques can be successfully employed in several areas, for example in Algebraic Geometry. One of the goals of these notes is to convince the readers that the topological situation is universal with respect to deformation theories, as much as we think sets as universal with respect to (the most of the) Mathematics.
 
 Simplicial sets were born as an attempt to minimize the structure needed in order to develop a homotopy theory, without changing the final result. In a sense, we can look at simplicial sets as a ``homotopical skeleton'' of topological spaces. The resulting theory is quite powerful, and it took the foundational position of topological spaces in all the questions concerning homotopy theory. In Chapter 1, for example, we show that it is always possible to construct \emph{meaningful} functors from any model category to the category of simplicial sets, taking the place of the hom-sets in classical category theory.
@@ -311,6 +313,36 @@ The converse is obviously implies by the explicit description of $\mathrm{sk}_N(
 
 \subsection{Kan fibrations}
 
+\subsection{An adjunction}
+
+Denote by
+\[
+c \colon \Set \to \sset
+\]
+the diagonal functor sending a set $X$ into the constant simplicial set $c(X)$ associated to $X$.
+
+\begin{lemma} \label{lemma set sset adjoints}
+The constant simplicial functor $c \colon \Set \to \sset$ has as right adjoint the projection functor $p \colon \sset \to \Set$ sending every simplicial set $K$ into $K_0 = \Hom_{\sset}(\Delta^0,K)$.
+\end{lemma}
+
+\begin{proof}
+Let $K$ be any simplicial set. Then we have a natural inclusion
+\[
+\varepsilon_K \colon c(K_0) \to K
+\]
+This defines obviously a natural transformation $\varepsilon \colon c \circ p \to \mathrm{Id}_{\sset}$. If $X$ is any set and we are given $f \colon c(X) \to K$ as in the following diagram:
+\[
+\xymatrix{
+K_0 & c(K_0) \ar[r]^{\varepsilon_K} & K \\ X \ar@{.>}[u]^{\exists ! \:g} & c(X) \ar@{.>}[u]^{c(g)} \ar[ur]_f
+}
+\]
+to complete the proof we only have to show that $g$ exists uniquely as indicated. Necessarily, the commutativity of the diagram on the right forces
+\[
+g = f_0
+\]
+and this works because $c(X)$ is concentrated in degree 0.
+\end{proof}
+
 \section{Geometric realization}
 
 \begin{thm} \label{thm exactness of geometric realization}
@@ -386,62 +418,62 @@ Let $\mathcal C$ be any category. The functor $\mathbf d_0 \times \mathbf d_1 \c
 \begin{proof}
 This is a standard exercise in universal properties.
 \end{proof}
-
-\begin{lemma} \label{lemma saturation of families}
-Let $\mathcal C$ and $\mathcal D$ be mono-regular categories having initial objects $\emptyset_{\mathcal C}$ and $\emptyset_{\mathcal D}$ respectively. Let $F \colon \mathbf{Arr}( \mathcal C) \to \mathbf{Arr}(\mathcal D)$ a functor satisfying the following conditions:
-\begin{enumerate}
-\item for any object $A \in \Ob(\mathcal C)$
-\[
-(\mathbf d_0 \circ F)(\emptyset_{\mathcal C} \to A) = \emptyset_{\mathcal D}
-\]
-\item $F$ preserves colimits in $\mathbf{Arr}(\mathcal C)$.
-\end{enumerate}
-Then if $S$ is a saturated class of arrows of $\mathcal D$, the class
-\[
-S_F := \{f \in \mathrm{Arr}(\mathcal D) \mid f \text{ is monic and } F(f) \in S\} \subset \mathrm{Arr}(\mathcal C)
-\]
-is saturated.
-\end{lemma}
-
-\begin{proof}
-Observe first of all that Lemma \ref{lemma src tgt creates} implies that a diagram $\varphi_\alpha \colon T_\alpha \to T$ is a colimit in $\mathcal C$ if and only if the induced diagram
-\[
-\xymatrix{
-\emptyset \ar[r] \ar[d] & T_\alpha \ar[d]^{\varphi_\alpha} \\ \emptyset \ar[r] & T
-}
-\]
-is a colimit in $\mathbf{Arr}(\mathcal C)$. The hypothesis on $F$ and Lemma \ref{lemma src tgt creates} guarantee that $\mathbf d_1 \circ F$ sends this diagram into a colimit of $\mathcal D$.
-
-Now, if $f \in \mathrm{Arr}(\mathcal C)$ is an isomorphism, $F(f)$ is an isomorphism and therefore $F(f) \in S$, i.e. $f \in S_F$. Consider next a pushout diagram
-\[
-\xymatrix{
-A \ar[r]^i \ar[d] & B \ar[d] \\ C \ar[r]_j & D
-}
-\]
-where $i \in S_F$. Applying $\mathbf d_0 \circ F$ to the diagram
-\[
-\xymatrix{
-& \emptyset \ar[rr] \ar[dd]|{\hole} & & B \ar[dd] \\ \emptyset \ar[ur] \ar[dd] \ar[rr] & & A \ar[ur]^i \ar[dd] \\ & \emptyset \ar[rr]|{\hole} & & D \\ \emptyset \ar[ur] \ar[rr] & & C \ar[ur]_j
-}
-\]
-yields a pushout diagram in $\mathcal D$ by hypothesis, and so $F(j) \in S$, i.e. $j \in S_F$. 
-
-If $f$ is a retract of $g \in S_F$, then $F(f)$ is a retract of $F(g) \in S$, hence $F(f) \in S$ and $f \in S_F$.
-
-Finally, if $\{f_n \colon X_n \to X_{n+1}\}_{n \in \N}$ is a countable family of composable arrows in $S_F$ and
-\[
-X_\infty = \varinjlim X_n
-\]
-while
-\[
-f_\infty \colon X_0 \to X_\infty
-\]
-is the natural map of the colimit, then
-\[
-F(X_\infty) = \varinjlim F(X_n)
-\]
-and the natural map $F(X_0) \to F(X_\infty)$ is exactly $F(f_\infty)$. It follows that $F(f_\infty) \in S$, i.e. $f_\infty \in S_F$. A similar argument shows that $S_F$ is closed under direct sums.
-\end{proof}
+%
+%\begin{lemma} \label{lemma saturation of families}
+%Let $\mathcal C$ and $\mathcal D$ be mono-regular categories having initial objects $\emptyset_{\mathcal C}$ and $\emptyset_{\mathcal D}$ respectively. Let $F \colon \mathbf{Arr}( \mathcal C) \to \mathbf{Arr}(\mathcal D)$ a functor satisfying the following conditions:
+%\begin{enumerate}
+%\item for any object $A \in \Ob(\mathcal C)$
+%\[
+%(\mathbf d_0 \circ F)(\emptyset_{\mathcal C} \to A) = \emptyset_{\mathcal D}
+%\]
+%\item $F$ preserves colimits in $\mathbf{Arr}(\mathcal C)$.
+%\end{enumerate}
+%Then if $S$ is a saturated class of arrows of $\mathcal D$, the class
+%\[
+%S_F := \{f \in \mathrm{Arr}(\mathcal D) \mid f \text{ is monic and } F(f) \in S\} \subset \mathrm{Arr}(\mathcal C)
+%\]
+%is saturated.
+%\end{lemma}
+%
+%\begin{proof}
+%Observe first of all that Lemma \ref{lemma src tgt creates} implies that a diagram $\varphi_\alpha \colon T_\alpha \to T$ is a colimit in $\mathcal C$ if and only if the induced diagram
+%\[
+%\xymatrix{
+%\emptyset \ar[r] \ar[d] & T_\alpha \ar[d]^{\varphi_\alpha} \\ \emptyset \ar[r] & T
+%}
+%\]
+%is a colimit in $\mathbf{Arr}(\mathcal C)$. The hypothesis on $F$ and Lemma \ref{lemma src tgt creates} guarantee that $\mathbf d_1 \circ F$ sends this diagram into a colimit of $\mathcal D$.
+%
+%Now, if $f \in \mathrm{Arr}(\mathcal C)$ is an isomorphism, $F(f)$ is an isomorphism and therefore $F(f) \in S$, i.e. $f \in S_F$. Consider next a pushout diagram
+%\[
+%\xymatrix{
+%A \ar[r]^i \ar[d] & B \ar[d] \\ C \ar[r]_j & D
+%}
+%\]
+%where $i \in S_F$. Applying $\mathbf d_0 \circ F$ to the diagram
+%\[
+%\xymatrix{
+%& \emptyset \ar[rr] \ar[dd]|{\hole} & & B \ar[dd] \\ \emptyset \ar[ur] \ar[dd] \ar[rr] & & A \ar[ur]^i \ar[dd] \\ & \emptyset \ar[rr]|{\hole} & & D \\ \emptyset \ar[ur] \ar[rr] & & C \ar[ur]_j
+%}
+%\]
+%yields a pushout diagram in $\mathcal D$ by hypothesis, and so $F(j) \in S$, i.e. $j \in S_F$. 
+%
+%If $f$ is a retract of $g \in S_F$, then $F(f)$ is a retract of $F(g) \in S$, hence $F(f) \in S$ and $f \in S_F$.
+%
+%Finally, if $\{f_n \colon X_n \to X_{n+1}\}_{n \in \N}$ is a countable family of composable arrows in $S_F$ and
+%\[
+%X_\infty = \varinjlim X_n
+%\]
+%while
+%\[
+%f_\infty \colon X_0 \to X_\infty
+%\]
+%is the natural map of the colimit, then
+%\[
+%F(X_\infty) = \varinjlim F(X_n)
+%\]
+%and the natural map $F(X_0) \to F(X_\infty)$ is exactly $F(f_\infty)$. It follows that $F(f_\infty) \in S$, i.e. $f_\infty \in S_F$. A similar argument shows that $S_F$ is closed under direct sums.
+%\end{proof}
 
 Secondly, we will need the notion of Kan extension. Recall the definition:
 
@@ -558,18 +590,18 @@ If $i \colon K \to L$ is an anodyne extension and $\omega \colon Y \to X$ is an 
 \]
 is anodyne.
 \end{cor}
-
-\begin{proof}
-Let $\mathcal C$ be the category $\mathbf{Arr}(\sset)$. Define $F \colon \mathcal C \to \mathcal C$ by sending a morphism $f \colon A \to B$ into
-\[
-(A \times X) \cup (B \times Y) \to B \times X
-\]
-It's easily checked that $F$ is a functor. Moreover, $F$ sends monomorphisms into monomorphisms, and colimit diagrams into colimit diagrams (because $- \times X$ and $- \times Y$ are left adjoints, being $\sset$ cartesian closed). It follows from Lemma \ref{lemma saturation of families} that the class $S$ of monomorphisms $f$ such that $F(f)$ is anodyne is saturated. But it contains the maps
-\[
-(A \times \Delta^1) \cup (B \times \{e\}) \to B \times \Delta^1, \quad e \in \{0,1\}
-\]
-for every inclusion $A \subset B$. It follows by Theorem \ref{thm anodyne extensions} that $S$ contains all the anodyne extensions, hence we get the thesis.
-\end{proof}
+%
+%\begin{proof}
+%Let $\mathcal C$ be the category $\mathbf{Arr}(\sset)$. Define $F \colon \mathcal C \to \mathcal C$ by sending a morphism $f \colon A \to B$ into
+%\[
+%(A \times X) \cup (B \times Y) \to B \times X
+%\]
+%It's easily checked that $F$ is a functor. Moreover, $F$ sends monomorphisms into monomorphisms, and colimit diagrams into colimit diagrams (because $- \times X$ and $- \times Y$ are left adjoints, being $\sset$ cartesian closed). It follows from Lemma \ref{lemma saturation of families} that the class $S$ of monomorphisms $f$ such that $F(f)$ is anodyne is saturated. But it contains the maps
+%\[
+%(A \times \Delta^1) \cup (B \times \{e\}) \to B \times \Delta^1, \quad e \in \{0,1\}
+%\]
+%for every inclusion $A \subset B$. It follows by Theorem \ref{thm anodyne extensions} that $S$ contains all the anodyne extensions, hence we get the thesis.
+%\end{proof}
 
 \section{Function complexes}
 
@@ -666,17 +698,15 @@ is a coequalizer.
 Applying $| \cdot |$ we get a coequalizer in $\mathbf{CGHaus}$.
 \end{proof}
 
-\section{Fundamental Groupoid}
+\section{Adjunctions with $\Cat$}
 
-In this section we will show how to associate to each simplicial set $X$ a grupoid. There are at least three different ways to do that; we will describe two of them and prove their equivalence. The interested reader is referred to \cite[Ch. I.8]{gj} and \cite[Ch. III.1]{gj} for the general discussion.
-
-First of all we begin this discussion assuming that $X$ is a fibrant simplicial object. Let $\pi_f(X)$ be the graph whose vertices are the $0$-simplexes of $X$ and such that, if $x, y \in X_0$, then arrows from $x$ to $y$ are in bijection with homotopy equivalence ($\text{rel. } \partial \Delta^1$) classes of 1-simplices $\omega \in X_1$ making the diagram
+Let $X$ be a quasicategory. Let $\mathrm h \: X$ be the graph whose vertices are the $0$-simplexes of $X$ and such that, if $x, y \in X_0$, then arrows from $x$ to $y$ are in bijection with homotopy equivalence ($\text{rel. } \partial \Delta^1$) classes of 1-simplices $\omega \in X_1$ making the diagram
 \[
 \xymatrix{
 \Delta^0 \ar[d]_{d^0} \ar@/^.5pc/[dr]^x \\ \Delta^1 \ar[r]^\omega & X \\ \Delta^0 \ar[u]^{d^1} \ar@/_.5pc/[ur]_y
 }
 \]
-commutative. If $v_2 \colon x \to y$ and $v_0 \colon y \to z$ are two representatives of arrows, we can define a composition using Kan condition:
+commutative. If $v_2 \colon x \to y$ and $v_0 \colon y \to z$ are two representatives of arrows, we can define a composition using weak Kan condition:
 \[
 d_1 v_2 = v_2 \circ d^1 = y, \qquad d_0 v_0 = v_0 \circ d^0 = y
 \]
@@ -766,14 +796,37 @@ Proposition \ref{prop homotopy theory for sset coequalizer} allows to extend thi
 \end{proof}
 
 \begin{defin}
-Let $X$ be a simplicial set. We define $\pi_f(X)$ as the grupoid whose objects are the vertices $X_0$ of $X$ and whose arrows are freely generated by the 1-simplexes $X_1$ satisfying the relations
-\[
-d_0 x \circ d_2 x = d_1 x
-\]
-for every 2-simplex $x \in X_2$.
+Let $X$ be a quasicategory. We define the \emph{homotopy category} of $X$, $\mathrm h \: X$, as the category whose objects are the $0$-simplexes of $X$ and whose arrows are homotopy classes of $1$-simplexes, with the composition defined above.
 \end{defin}
 
+\begin{thm} \label{thm nerve adjunction 1}
+$\mathrm h \colon \qcat \rightleftarrows \Cat \colon N$ is an adjoint pair.
+\end{thm}
 
+\subsection{Adjunctions with $\grpd$}
 
-\section{The Nerve Construction}
+We saw in last section that $\mathrm h \colon \mathbf{QCat} \to \Cat$ gives an adjunction to the nerve functor $N \colon \Cat \to \mathbf{QCat}$. If we compute $\mathrm h$ over a Kan complex we should get back the analogous notion of ``space'' inside $\Cat$, namely groupoids. In fact, this is what happens:
 
+\begin{lemma}
+If $K$ is a fibrant simplicial set, $\mathrm h \: K$ is a groupoid.
+\end{lemma}
+
+\begin{proof}
+Easy exercise.
+\end{proof}
+
+More generally, we define:
+
+\begin{defin}
+Let $X$ be any simplicial set. The fundamental groupoid of $X$ is defined as the homotopy category of a fibrant replacement of $X$. We will denote it by $\pi_{f}(X)$
+\end{defin}
+
+We can see the following adjunction as strictly related to that of Theorem \ref{thm nerve adjunction 1}:
+
+\begin{thm} \label{thm nerve adjunction 2}
+$\pi_f \colon \sset \rightleftarrows \grpd \colon N$ is an adjoint pair.
+\end{thm}
+
+\printbibliography[heading = local]
+
+\end{refsection}
