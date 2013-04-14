@@ -51,7 +51,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage[style = alphabetic, backend = biber, abbreviate = true, dateabbrev = long, alldates = long]{biblatex}
 %%%Settings
 \renewcommand*{\newunitpunct}{\addcomma\space} %Substitutes dots (.) with commas (,)
-\bibliography{Bibliografia/Bibliography} %Path of the bibliography
+\bibliography{bibliography} %Path of the bibliography
 \defbibheading{local}{\section*{References}}
 
 %Misc Packages
@@ -201,17 +201,17 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 
 \mainmatter
 
-\input{Capitoli/Model_Categories.tex}
-\input{Capitoli/simplicial_localization.tex}
-\input{Capitoli/Quasicategories.tex}
-\input{Capitoli/Segal.tex}
-\input{Capitoli/Simplicial_Presheaves.tex}
-\input{Capitoli/higher_stacks.tex}
+\input{model-categories}
+\input{simplicial-localization}
+\input{quasicategories}
+\input{segal}
+\input{simplicial-presheaves}
+\input{higher-stacks}
 
 \appendix
 
-\input{Appendici/Simplicial_Sets.tex}
-\input{Appendici/Enriched_Categories.tex}
+\input{simplicial-sets}
+\input{enriched-categories}
 
 %\cleardoublepage
 %\phantomsection
