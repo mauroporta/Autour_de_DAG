@@ -1,5 +1,7 @@
 \chapter{Quasi--categories}
 
+\begin{refsection}
+
 This chapter is intented to give an intuition of what $(\infty,1)$-categories are and to present an informal introduction to one of theirs models, namely quasi-categories (sometimes called weak Kan complexes). We show how some basic concepts of ordinary category theory extend to the $(\infty,1)$-categorical context, and specifically to the model of quasi-categories.
 
 \begin{flushright}
@@ -9,8 +11,6 @@ Valerio Melani
 \section{Intuition and first models}
 
 We start by trying to give some intuition for what these $(\infty,1)$-categories are, and how one could search for a suitable formalism to describe them. Next, we will concentrate our efforts in starting to understand one of the different models for $(\infty,1)$-categories, namely the so-called \emph{quasi-categories}.
-
-\
 
 Heuristically speaking, an $(\infty,1)$-category is of course first of all an $\infty$-category. This means that we have objects, morphisms between objects, 2-morphisms between morphisms, 3-morphisms between 2-morphisms, and so on. Put this way, this is not yet a very precise object, because actually we want to have some kind of compositions between these $k$-morphisms, and these compositions must of course have some nice properties that fit our general intuition. This is (one of the) main reason why higher category theory has a reputation of being overcomplicated and messy; for a general discussion about the problems of defining higher categories, we recommend for example the lecture of ???.
 
@@ -87,11 +87,9 @@ Again, if we think in terms of topological (or simplicial) categories, all is ea
 If $\mathcal C$ is a  quasi-category, his homotopy category $h\mathcal C$ is the category whose objects are the objects of $\mathcal C$ and whose morphisms are the path-connected components of the mapping spaces of $\mathcal C$.
 \end{defin}
 
-Another way to describe it is to notice that the nerve functor defined earlier in the text admits a left adjoint $h: SSet \to Cat$, who does exactly what we wanted : it only keeps the 1-categorical information contained in $\mathcal C$.
+Another way to describe it is to notice that the nerve functor defined earlier in the text admits a left adjoint $h: \sset \to \Cat$, doing exactly what we want: it only keeps the 1-categorical information contained in $\mathcal C$. See Theorem \ref{thm nerve adjunction 1} for a proof of this statement.
 
-Let's get a more explicit understanding of what the homotopy category concretely is.
-
-Given two vertices $x,y \in \C$ and two edges $f,g : x \to y$ (meaning that the edges start at $x$ and end at $y$), we say that $f$ and $g$ are homotopic if there is a $2$-simplex in $\mathcal C$ who has $f$ as the $0\to 1$ edge, $g$ as the $0\to 2$ edge, and the degenerate edge at $y$ as $1 \to 2$ edge. (This is very clear if you try and draw the diagram).
+Let's get a more explicit understanding of what the homotopy category concretely is: given two vertices $x,y \in \C$ and two edges $f,g : x \to y$ (meaning that the edges start at $x$ and end at $y$), we say that $f$ and $g$ are homotopic if there is a $2$-simplex in $\mathcal C$ who has $f$ as the $0\to 1$ edge, $g$ as the $0\to 2$ edge, and the degenerate edge at $y$ as $1 \to 2$ edge. (This is very clear if you try and draw the diagram).
 
 The fact that $\mathcal C$ is a quasi-category means that ``being homotopic'' is an equivalence relation. The homotopy category is now just the category whose objects are the the objects of $\mathcal C$ and whose morphisms are the equivalence classes of edges of $\mathcal C$.
 
@@ -123,9 +121,10 @@ In this section we explain how to define limits and colimits in the setting of q
 In the same way that limits and colimits in an ordinary category can be defined using the definition of limits and colimits in the category of sets, limits and colimits in a quasi-category can be defined using the notion of homotopy limits and colimits in the model category of spaces.
 If we want to be concise, we could give the following definition: given a functor $I \to \mathcal C$ between two $(\infty,1)$-categories, its limit and colimit (if they exist) are determined by asking that the natural maps
 
-$$\Hom(X, \lim F(i)) \to \text{holim }\Hom(X,F(i))  $$
-
-$$ \Hom(\text{colim }F(i),X) \to \text{hocolim } \Hom(F(i),X) $$
+\begin{gather*}
+\Hom(X, \lim F(i)) \to \text{holim }\Hom(X,F(i)) \\
+\Hom(\text{colim }F(i),X) \to \text{hocolim } \Hom(F(i),X)
+\end{gather*}
 
 are weak equivalences of spaces that are natural in $X$.
 
@@ -145,7 +144,9 @@ We say then that a map of simplicial sets $S \to S'$ is a \emph{weak categorical
 \end{itemize}
 \end{thm}
 
-
-
 In particular, this means that for this model structure weak equivalences between fibrant objects are precisely equivalences of quasi-categories.
 
+\nocite{bergner1}
+\printbibliography[heading = local]
+
+\end{refsection}
