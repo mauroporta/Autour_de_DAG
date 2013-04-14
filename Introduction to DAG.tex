@@ -52,40 +52,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 %%%Settings
 \renewcommand*{\newunitpunct}{\addcomma\space} %Substitutes dots (.) with commas (,)
 \bibliography{Bibliografia/Bibliography} %Path of the bibliography
-\DeclareBibliographyCategory{model} 
-\DeclareBibliographyCategory{simploc}
-\DeclareBibliographyCategory{quasi}
-\DeclareBibliographyCategory{segal}
-\DeclareBibliographyCategory{simpsheaf}
-\DeclareBibliographyCategory{higherstacks}
-\DeclareBibliographyCategory{simpset}
-\DeclareBibliographyCategory{enriched}
-
 \defbibheading{local}{\section*{References}}
-
-\newcommand*{\citemodel}[2][]{\addtocategory{model}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitemodel}[1]{\addtocategory{model}{#1}\nocite{#1}}
-
-\newcommand*{\citesimploc}[2][]{\addtocategory{simploc}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitesimploc}[1]{\addtocategory{simploc}{#1}}
-
-\newcommand*{\citequasi}[2][]{\addtocategory{quasi}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitequasi}[1]{\addtocategory{quasi}{#1}\nocite{#1}}
-
-\newcommand*{\citesegal}[2][]{\addtocategory{segal}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitesegal}[1]{\addtocategory{segal}{#1}\nocite{#1}}
-
-\newcommand*{\citesimpsheaf}[2][]{\addtocategory{simpsheaf}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitesimpsheaf}[1]{\addtocategory{simpsheaf}{#1}\nocite{#1}}
-
-\newcommand*{\citehigherstacks}[2][]{\addtocategory{higherstacks}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitehigherstacks}[1]{\addtocategory{higherstacks}{#1}\nocite{#1}}
-
-\newcommand*{\citesimpset}[2][]{\addtocategory{simpset}{#2}\cite[#1]{#2}}
-\newcommand*{\nocitesimpset}[1]{\addtocategory{simpset}{#1}\nocite{#1}}
-
-\newcommand*{\citeenriched}[2][]{\addtocategory{enriched}{#2}\cite[#1]{#2}}
-\newcommand*{\nociteenriched}[1]{\addtocategory{enriched}{#1}\nocite{#1}}
 
 %Misc Packages
 \usepackage{xcolor}
@@ -153,6 +120,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\grpd}{\mathbf{Grpd}}
 \newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\cghaus}{\mathbf{CGHaus}}
+\newcommand{\qcat}{\mathbf{QCat}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -181,6 +149,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\im}{\mathrm{Im} \,}
 \newcommand{\map}{\mathrm{map}}
 \newcommand{\Map}{\mathrm{Map}}
+\newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
 
 \title{Introduction to DAG}
 \author{Groupe de travail organisé par Gabriele Vezzosi \\ WORK IN PROGRESS}
@@ -237,15 +206,16 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \input{Capitoli/Quasicategories.tex}
 \input{Capitoli/Segal.tex}
 \input{Capitoli/Simplicial_Presheaves.tex}
+\input{Capitoli/higher_stacks.tex}
 
 \appendix
 
 \input{Appendici/Simplicial_Sets.tex}
 \input{Appendici/Enriched_Categories.tex}
 
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\bibname}
-\printbibliography
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\bibname}
+%\printbibliography
 
 \end{document}
