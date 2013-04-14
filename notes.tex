@@ -1,36 +1,35 @@
-\documentclass[a4paper]{book}
+\documentclass[a4paper]{memoir}
+\usepackage{xcolor}
 
 %General Settings
-\usepackage{lmodern}
-\usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
+
 \usepackage[english]{babel}
 \usepackage{enumitem}
 
 %Page layout
 %%%Packages
 \usepackage{vmargin}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+\usepackage{hyphenat}
+\usepackage{multirow}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+
 %%%Settings
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
-\fancyhead[RE]{\bfseries\footnotesize\nouppercase{\leftmark}}
-\fancyhead[LO]{\bfseries\footnotesize\nouppercase{\rightmark}}
-\setpapersize{A4}
-\setmarginsrb{35mm}{10mm}{35mm}{10mm}%
-             {12pt}{10mm}{5mm}{10mm}
+
+\makeevenhead{headings}{\thepage}{}{Expos\'e \thechapter: \leftmark}
+%\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
+%\fancyhead[RE]{\bfseries\footnotesize\nouppercase{\leftmark}}
+%\fancyhead[LO]{\bfseries\footnotesize\nouppercase{\rightmark}}
+%\setpapersize{A4}
+%\setmarginsrb{35mm}{10mm}{35mm}{10mm}%
+%             {12pt}{10mm}{5mm}{10mm}
 
 %Crossreferences
 %%%Packages
-\usepackage[pdftex, bookmarks = true]{hyperref}
-%%%Settings
-\hypersetup{bookmarksopen = true, bookmarksopenlevel = 1, colorlinks=true,
-linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 
 %Mathematical Fonts
-\usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{mathcomp}
@@ -39,17 +38,26 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \usepackage{mathtools}
 \usepackage{calligra}
 
-\usepackage{tikz-cd}
-
-\usepackage{microtype}
-
 %Diagrams and Pictures
 \usepackage[all,cmtip]{xy}
 \usepackage{graphicx}
-\usepackage{epstopdf}
+\usepackage{tikz-cd}
+
+\usepackage[T1]{fontenc}
+\usepackage[charter]{mathdesign}
+\usepackage[scaled]{beramono,berasans}
+\usepackage{eucal}
+\usepackage{microtype}
+
 
 %Index settings
 \setcounter{tocdepth}{1}
+\renewcommand\chaptername{Expos\'e}
+\renewcommand\cftchaptername{Expos\'e }
+
+\usepackage{hyperref}
+%%%Settings
+\hypersetup{hidelinks, bookmarksopen = true, bookmarksopenlevel = 1}
 
 %Bibliography settings
 %%%Packages
@@ -60,10 +68,7 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \defbibheading{local}{\section*{References}}
 
 %Misc Packages
-\usepackage{xcolor}
 \usepackage{xparse}
-\usepackage{tikz}
-\usepackage{comment}
 
 %%Todo notes
 %%%%Packages
@@ -154,20 +159,20 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \newcommand{\trdeg}{\text{trdeg}}
 \newcommand{\underscore}{\underline{\hphantom{\space{5}}}}
 \newcommand{\Os}{\mathscr O}
-\newcommand{\coker}{\mathrm{coker}\,}
+\DeclareMathOperator{\coker}{\mathrm{coker}}
 \newcommand{\dual}{\text{\textasciicaron}}
 \newcommand{\fascio}[1]{\mathscr #1}
-\newcommand{\Ob}{\mathrm{Ob}}
+\DeclareMathOperator{\Ob}{Ob}
 \newcommand{\fib}{\textsc{Fib}}
 \newcommand{\cofib}{\textsc{Cofib}}
-\newcommand{\tot}{\mathrm{Tot}}
-\newcommand{\sing}{\mathrm{Sing}}
-\newcommand{\diag}{\mathrm{diag} \,}
-\newcommand{\Ho}{\mathrm{Ho} \,}
+\DeclareMathOperator{\tot}{\mathrm{Tot}}
+\DeclareMathOperator{\sing}{\mathrm{Sing}}
+\DeclareMathOperator{\diag}{\mathrm{diag} \,}
+\DeclareMathOperator{\Ho}{\mathrm{Ho} \,}
 \newcommand{\id}{\mathrm{id}}
-\newcommand{\im}{\mathrm{Im} \,}
-\newcommand{\map}{\mathrm{map}}
-\newcommand{\Map}{\mathrm{Map}}
+\DeclareMathOperator{\im}{\mathrm{Im} \,}
+\DeclareMathOperator{\map}{\mathrm{map}}
+\DeclareMathOperator{\Map}{\mathrm{Map}}
 \newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
 
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
@@ -195,15 +200,42 @@ linkcolor = black, citecolor = black, urlcolor = black, pdfstartview = FitR}
 \DeclareMathOperator\RRR{\mathbf{R}}
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
-\author{Groupe de travail organis\'e par Gabriele Vezzosi}
+\author{
+  Gabriele~\textsc{Vezzosi} \\[.3em] Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\ Valerio~\textsc{Melani}, Mauro~\textsc{Porta} \\ Pietro~\textsc{Vertechi}, Yan~\textsc{Zhao}
+}
 
 \begin{document}
 
+\begin{titlingpage}
+  \vfill
+  \hbox{
+    \rule{1pt}{\textheight}
+    \hspace*{0.05\textwidth}
+    \parbox[b]{0.9\textwidth}{%
+      \vbox{%
+        {\noindent\huge\bfseries\thetitle} \\[4pt]
+        {\noindent\Large\textcolor{gray}{groupe de travail---spring 2013}}\\[\baselineskip]
+
+        \vspace{0.1\textheight}
+
+        {\Large\nohyphens{\theauthor}}
+
+        \vspace{0.5\textheight}
+
+        \begin{tabular}[c]{cp{5cm}}
+          \multirow{2}{*}{\includegraphics[height=2cm]{diderot.jpg}} & %\vspace{1cm} Universit\'e Paris Diderot -- Paris 7
+        \end{tabular}\\[\baselineskip]
+
+        \vspace{0.05\textheight}
+      }
+    }
+  }
+  \vfill
+\end{titlingpage}
+
 \frontmatter
 
-\maketitle
-
-\tableofcontents
+\tableofcontents*
 
 \chapter*{Introduction}
 
