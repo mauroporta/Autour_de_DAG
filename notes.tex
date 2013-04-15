@@ -50,11 +50,6 @@
 \usepackage{microtype}
 
 
-%Index settings
-\setcounter{tocdepth}{1}
-\renewcommand\chaptername{Expos\'e}
-\renewcommand\cftchaptername{Expos\'e }
-
 \usepackage{hyperref}
 %%%Settings
 \hypersetup{hidelinks, bookmarksopen = true, bookmarksopenlevel = 1}
@@ -79,6 +74,17 @@
 \DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
 \DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
 \DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+
+%Index settings
+\setcounter{tocdepth}{1}
+\renewcommand\chaptername{Expos\'e}
+\renewcommand\cftchaptername{Expos\'e }
+\chapterstyle{madsen}
+
+\makeatletter
+\renewcommand\@chapapp{Expos\'e}
+\makeatother
+
 
 %Cursive operators: sheaves Hom, Ext, Bil
 %\makeatletter
@@ -201,7 +207,7 @@
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
-  Gabriele~\textsc{Vezzosi} \\[.3em] Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\ Valerio~\textsc{Melani}, Mauro~\textsc{Porta} \\ Pietro~\textsc{Vertechi}, Yan~\textsc{Zhao}
+Organised by: \\[.2em] \hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speakers: \\[.2em] \hspace*{.5cm} Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\\hspace*{.5cm} Valerio~\textsc{Melani}, Mauro~\textsc{Porta} \\\hspace*{.5cm} Pietro~\textsc{Vertechi}, Yan~\textsc{Zhao}
 }
 
 \begin{document}
@@ -233,9 +239,17 @@
   \vfill
 \end{titlingpage}
 
+% for some reason just issuing \pagestyle{} doesn't work in the ToC
+\makeatletter
+\renewcommand{\cfttocbeforelisthook}{\pagestyle{simple}\let\ps@plain\ps@empty}
+\renewcommand{\cfttocafterlisthook}{\cleardoublepage\pagestyle{headings}}
+\makeatother
+
 \frontmatter
 
 \tableofcontents*
+
+\pagestyle{headings}
 
 \chapter*{Introduction}
 
