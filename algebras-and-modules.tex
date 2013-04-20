@@ -1,0 +1,408 @@
+\chapter{Algebras and modules in category theory}
+\chapterprecistoc{\textup{by} Mauro Porta}
+
+\begin{refsection}
+
+The goal of this chapter is to review the classical categorical tools developed in order to deal with notions of ``algebra'' and ``module'' in full generality. To the author's best knowledge there are, in the classical setting, two ways of approaching the problem: via the notion of monad and via the notion of internal monoid (module, algebra, etc.). The two approaches are not equivalent and they are both useful to get a complete understanding of the subject.
+
+A monad can be thought, roughly speaking, as an endofunctor detecting objects allowing a certain kind of algebraic structure. This structure is highly variable and depend on the monad itself. More precisely, if we fix a monad $T$, we can form a category of $T$-algebras, and this category comes equipped with a forgetful functor to the starting category; moreover, this forgetful functor has a left adjoint, playing the role of a ``free $T$-algebra functor''.
+
+On the other side, the internalization is a process that allows to associate to a monoidal category various algebraic categories, corresponding to the notion of monoid, module over a monoid, algebra over a monoid and so on. In this case, the kind of algebraic structure is determined by the data we choose and the diagrams we require to be commutative. These algebraic categories come with a forgetful functor over the starting category, and this forgetful functor often has good categorical properties (it often creates limits and colimits, it may have a left adjoint and so on).
+
+This chapter comes with a natural subdivision in two part. In each of them, we will stick to the following pattern:
+\begin{enumerate}
+\item definition of the general framework (i.e. monads, monoidal categories);
+\item definition of algebraic objects of a certain kind; these will form a category $\mathcal A$ equipped with a forgetful functor $U \colon \mathcal A \to \mathcal C$, where $\mathcal C$ is the category we started with;
+\item categorical properties of the forgetful functor $U \colon \mathcal A \to \mathcal C$;
+\item homotopical properties of the forgetful functor $U \colon \mathcal A \to \mathcal C$.
+\end{enumerate}
+
+\section{The theory of monads}
+
+\subsection{Definitions and first properties}
+
+\begin{defin}
+Let $\mathcal C$ be a category. A monad over $\mathcal C$ is a triple $(T, \mu, \eta)$ where
+\[
+T \colon \mathcal C \to \mathcal C
+\]
+is a functor and
+\[
+\mu \colon T^2 \to T, \qquad \eta \colon \mathrm{Id}_{\mathcal C} \to T
+\]
+are natural transformations, making the following diagrams to commute:
+\[
+\xymatrix{
+T^3 \ar[r]^-{\mu_T} \ar[d]_{T \mu} & T^2 \ar[d]^\mu \\ T^2 \ar[r]^\mu & T
+} \qquad
+\xymatrix{
+T \ar@{=}[dr] \ar[r]^-{T \eta} & T^2 \ar[d]_{\mu} & T \ar@{=}[dl] \ar[l]_-{\eta_T} \\ & T
+}
+\]
+\end{defin}
+
+\begin{lemma} \label{lemma adjunction monad}
+Let $(\mathcal C, \mathcal D, F,G, \eta, \varepsilon)$ be an adjunction. Then $(GF, G \varepsilon_F, \eta)$ is a monad over $\mathcal C$.
+\end{lemma}
+
+\begin{proof}
+Essentially, this is a consequence of the triangular identities for an adjunction.
+\end{proof}
+
+An interesting fact is that Lemma \ref{lemma adjunction monad} has a converse: every monad arises from an adjunction. More precisely, there is a whole category of adjunctions on $\mathcal C$ giving rise to the same monad $T$. The classical constructions of Eilenberg-Moore and Kleisli identify final and initial objects of such category.
+
+\subsection{Eilenberg-Moore algebras for a monad}
+
+\begin{defin} \label{def Eilenberg Moore algebras}
+Let $\mathcal C$ be a category and let $(T, \mu, \eta)$ be a monad over $\mathcal C$. A \emph{ (Eilenberg -- Moore}) algebra for $T$ (or a (\emph{Eilenberg -- Moore}) $T$-algebra) is a pair $(A,\varphi)$ where $A \in \Ob(\mathcal C)$ and $\varphi \colon T(A) \to A$ is a morphism making the following diagrams to commute:
+\[
+\xymatrix{
+T^2(A) \ar[r]^{\mu_A} \ar[d]_{T \varphi} & T(A) \ar[d]^{\varphi} \\ T(A) \ar[r]^{\varphi} & A
+} \qquad
+\xymatrix{
+A \ar@{=}[dr] \ar[r]^{T \eta_A} & T(A) \ar[d]^{\varphi} \\ & A
+}
+\]
+\end{defin}
+
+\begin{defin}
+Let $\mathcal C$ be a category and let $(T, \mu, \eta)$ be a monad over $\mathcal C$. Let $(A,\varphi)$ and $(B,\psi)$ be T-algebras. A $T$-morphism from $A$ to $B$ is an arrow $f \colon A \to B$ in $\mathcal C$ such that the diagram
+\[
+\xymatrix{
+T(A) \ar[d]_{T(f)} \ar[r]^{\varphi} & A \ar[d]^f \\ T(B) \ar[r]^{\psi} & B
+}
+\]
+is commutative.
+\end{defin}
+
+\begin{lemma} \label{lemma T-algebras}
+Let $\mathcal C$ be a category and let $(T,\mu,\eta)$ be a monad over $\mathcal C$. The $T$-algebras form a category $\mathcal C^T$ and this category is endowed with a forgetful functor $G^T \colon \mathcal C^T \to \mathcal C$ which creates limits.
+\end{lemma}
+
+\begin{proof}
+The proof is entirely straightforward.
+\end{proof}
+
+\begin{thm} \label{thm Eilenberg-Moore}
+Let $\mathcal C$ be a category and let $(T,\mu,\eta)$ be a monad over $\mathcal C$. The functor $G^T$ of Lemma \ref{lemma T-algebras} has a left adjoint $F^T \colon \mathcal C \to \mathcal C^T$ and the adjunction $F^T \dashv G^T$ gives rise (via the construction of Lemma \ref{lemma adjunction monad}) to the same monad $(T,\mu,\eta)$.
+\end{thm}
+
+\begin{proof}
+See \cite[Thm. VI.2.1]{cwm}.
+\end{proof}
+
+\begin{rmk}
+As we were suggesting before, it is possible to show that the Eilenberg -- Moore construction $F^T \colon \mathcal C \rightleftarrows \mathcal C^T \colon G^T$ is final among all the adjunction on $\mathcal C$ giving rise to the monad $T$ (cfr. \cite[Thm VI.3.1]{cwm}). This subject is particularly rich, in any case: Lemma \ref{lemma T-algebras} shows an interesting property: the forgetful functor $G^T$ creates limits. It becomes interesting, to a certain extent, to be able to decide when an adjunction inducing a given monad $T$ is isomorphic to the Eilenberg -- Moore construction. This is achieved by Beck's monadicity theorem. We refer to \cite[Ch. VI.7]{cwm} for more details.
+\end{rmk}
+
+\begin{rmk}
+From this moment on, when a monad $T$ over a category $\mathcal C$ is given, we shall reserve the word ``$T$-algebra'' for Eilenberg -- Moore $T$-algebras.
+\end{rmk}
+
+We end this review recalling several well-known examples:
+
+\begin{eg}
+\begin{enumerate}
+\item Let $F \colon \Set \rightleftarrows \mathbf{Grp} \colon G$ be the adjunction where $F$ is the free group functor and $G$ is the forgetful one. Then the resulting monad is called the \emph{free group monad}; its algebras are exactly the groups, and the Eilenberg -- Moore construction gives back exactly the free group adjunction;
+\item let $F \colon \Set \rightleftarrows \CRing \colon G$ be the adjunction where $F$ is the free polynomial ring (with coefficient in $\Z$) functor and $G$ is the forgetful one. Then the algebras for the corresponding monad are exactly commutative rings.
+\item More generally, fix a commutative ring (with unit) $A$ and consider the adjunction $F \colon \Set \rightleftarrows \mathbf{Alg}_A \colon G$, where $F$ sends a set $X$ to the free polynomial ring $A[X]$, and $G$ is the forgetful functor. Then the algebras for the corresponding adjunction are exactly the $A$-algebras.
+\end{enumerate}
+\end{eg}
+
+\subsection{Lifting of model structures (I)}
+
+\begin{defin}
+Let $\mathcal C$ be a model category and let $(T,\mu,\eta)$ be a monad over $\mathcal C$. A $T$-path object for a $T$-algebra $A$ is a path object
+\[
+A \xrightarrow{\sim} A^I \to A \times A
+\]
+where $A^I$ is again a $T$-algebra.
+\end{defin}
+
+\begin{thm}
+Let $\mathcal C$ be a cofibrantly generated model category where every object is fibrant; let moreover $I$ (resp. $J$) be a set of generating cofibrations  (resp. generating acyclic cofibrations). Assume that $(T, \mu, \eta)$ is a monad over $\mathcal C$ and write $I_T := F^T(I)$, $J_T := F^T(J)$ (notations being as in Theorem \ref{thm Eilenberg-Moore}). Then if $T$ commutes with filtered direct limits and each $T$-algebra has a $T$-path object, $\mathcal C^T$ has a cofibrantly generated model structure where:
+\begin{itemize}
+\item a map $f$ in $\mathcal C^T$ is a weak equivalence if and only if $G^T(f)$ is a weak equivalence;
+\item a map $f$ in $\mathcal C^T$ is a fibration if and only if $G^T(f)$ is a fibration;
+\item a map $f$ in $\mathcal C^T$ is a cofibration if and only if it has the LLP with respect to all acyclic fibrations.
+\end{itemize}
+Moreover, $I_T$ is a set of generating cofibrations and $J_T$ is a set of generating acyclic cofibrations.
+\end{thm}
+
+\begin{proof}
+See \cite[Lemma 2.3]{schwede}.
+\end{proof}
+
+\section{Monoidal categories} \label{monoidal categories}
+
+\subsection{Definitions}
+
+Another way of producing a categorical analogue of modules and algebras is to use the framework of monoidal categories.
+
+The reader is referred for example to \cite[Ch. VII]{cwm} for a detailed exposition of the theory of monoidal categories.
+
+\begin{defin} \label{def monoidal category}
+A \emph{monoidal category} is a 6-tuple $(\mathcal C, \otimes, I, \alpha, \lambda, \rho)$, where $\mathcal C$ is a category,
+\[
+\otimes \colon \mathcal C \times \mathcal C \to \mathcal C
+\]
+is a bifunctor, $I \in \Ob(\mathcal C)$ is an object of $\mathcal C$ and $\alpha, \lambda, \rho$ are natural isomorphisms:
+\begin{gather*}
+\alpha \colon - \otimes (- \otimes -) \simeq (- \otimes -) \otimes - \\
+\lambda \colon I \otimes - \simeq \mathrm{Id}_{\mathcal C} \\
+\rho \colon - \otimes I \simeq \mathrm{Id}_{\mathcal C}
+\end{gather*}
+making commutative the coherence diagrams
+\[
+\xymatrix{
+A \otimes (B \otimes (C \otimes D)) \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \alpha} \ar[r]^-\alpha & (A \otimes B) \otimes (C \otimes D) \ar[r]^\alpha & ((A \otimes B) \otimes C) \otimes D \\ A \otimes ((B \otimes C) \otimes D) \ar[rr]^\alpha & & (A \otimes (B \otimes C)) \otimes D \ar[u]^{\alpha \otimes \mathrm{Id}_{\mathcal C}}
+}
+\]
+and
+\[
+\xymatrix{
+A \otimes (I \otimes C) \ar[rr]^-\alpha  \ar[dr]_{\mathrm{Id}_{\mathcal C} \otimes \lambda} & & (A \otimes I) \otimes C \ar[dl]^{\rho \otimes \mathrm{Id}_{\mathcal C}} \\ & A \otimes C
+}
+\]
+Finally we require that $\lambda_I = \rho_I \colon I \otimes I \to I$.
+\end{defin}
+
+These conditions imply that a very large class of diagrams will commute in every monoidal category. These diagrams are those that can be obtained by specializing commutative diagrams in the free monoidal category on one generator. For more details, see \cite[Ch. VII.2]{cwm}.
+
+\begin{rmk}
+We will systematically abuse notations and refer to a monoidal category simply as a triple $(\mathcal C, \otimes, I)$, omitting the natural isomorphisms.
+\end{rmk}
+
+\begin{defin}
+A monoidal category $(\mathcal C, \otimes, I)$ is said to by symmetric if it is equipped with natural isomorphisms
+\[
+\gamma_{A,B} \colon A \otimes B \to B \otimes A
+\]
+such that the diagrams
+\begin{gather*}
+\gamma_{A,B} \circ \gamma_{B,A} = \mathrm{Id}_{\mathcal C}, \qquad \rho_B = \lambda_B \gamma_{B,I} \\
+\xymatrix{
+A \otimes (B \otimes C) \ar[r]^-\alpha \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \gamma} & (A \otimes B) \otimes C \ar[r]^\gamma & C \otimes (A \otimes B) \ar[d]^\alpha \\ A \otimes (C \otimes B) \ar[r]^\alpha & (A \otimes C) \otimes B \ar[r]^{\gamma \otimes \mathrm{Id}_{\mathcal C}} & (C \otimes A) \otimes B
+}
+\end{gather*}
+commute.
+\end{defin}
+
+\begin{defin}
+A monoidal category $(\mathcal C, \otimes, I)$ is said to be \emph{closed} if for every $X \in \Ob(\mathcal C)$ the functor
+\[
+- \otimes X \colon \mathcal C \to \mathcal C
+\]
+has a \emph{specified} right adjoint.
+\end{defin}
+
+\begin{defin}
+Let $(\mathcal C, \otimes, I)$ be a monoidal category. An internal monoid in $\mathcal C$ is a triple $(M, \mu, \eta)$ where $\mu \colon M \otimes M \to M$ and $\eta \colon I \to M$ are morphisms in $\mathcal C$ making the following diagrams to commute:
+\begin{gather*}
+\xymatrix{
+(M \otimes M) \otimes M \ar[r]^{\alpha} \ar[d]^-{\mu \otimes 1} & M \otimes (M \otimes M) \ar[r]^{1 \otimes \mu} & M \otimes M \ar[d]^{\mu} \\ M \otimes M \ar[rr]^\mu & & M
+} \\
+\xymatrix{
+M \otimes I \ar[drr]_{\lambda_M} \ar[rr]^-{\mathrm{id}_M \otimes \eta} & & M \otimes M \ar[d]_\mu & & I \otimes M \ar[ll]_-{\eta \otimes \mathrm{id}_M} \ar[dll]_{\rho_M} \\
+& & M
+}
+\end{gather*}
+\end{defin}
+
+\subsection{Monoids and modules}
+
+\begin{defin}
+Let $(\mathcal C, \otimes, I)$ be a monoidal category. Let $(M_1, \mu_1, \eta_1)$ and $(M_2, \mu_2, \eta_2)$ be two internal monoids in $\mathcal C$. A morphism of monoid from $M_1$ to $M_2$ is an arrow $f \colon M_1 \to M_2$ in $\mathcal C$ making commutative the following diagrams
+\[
+\xymatrix{
+M_1 \otimes M_1 \ar[r]^{\mu_1} \ar[d]^{f \otimes f} & M_1 \ar[d]^f \\ M_2 \otimes M_2 \ar[r]^{\mu_2} & M_2
+} \qquad
+\xymatrix{
+I \ar[r]^{\eta_1} \ar[dr]_{\eta_2} & M_1 \ar[d]^f \\ & M_2
+}
+\]
+\end{defin}
+
+\begin{defin}
+Let $(\mathcal C, \otimes, I)$ be a symmetric monoidal category and fix an internal monoid $(R, \mu, \eta)$. An internal left $R$-module is a pair $(M, \varphi)$, where $M \in \Ob(\mathcal C)$ and
+\[
+\varphi \colon R \times M \to M
+\]
+is a morphism in $\mathcal C$ making the following diagrams commutative:
+\begin{gather*}
+\xymatrix{
+(R \otimes R) \otimes M \ar[r]^{\alpha} \ar[d]^-{\mu \otimes \mathrm{id}_M} & R \otimes (R \otimes M) \ar[r]^{\mathrm{id}_R \otimes \varphi} & R \otimes M \ar[d]^{\varphi} \\
+R \otimes M \ar[rr]^{\varphi} & & M
+} \\
+\xymatrix{
+I \otimes M \ar[r]^{\eta \otimes \mathrm{id}_M} \ar[dr]_{\rho_M} & R \otimes M \ar[d]^\varphi \\ & M
+}
+\end{gather*}
+\end{defin}
+
+\begin{defin}
+A map of internal modules is ....
+\end{defin}
+
+A common feature of all these constructions is a certain well-behavior with respect to limits and colimits. We briefly recall the main results:
+
+\begin{thm} \label{thm adjunction for monoids}
+If the monoidal category $(\mathcal C, \otimes, I)$ has (countable) coproducts and the functors $- \otimes A$, $A \otimes -$ preserve such coproducts for every $A \in \Ob(\mathcal C)$, the forgetful functor $\mathbf{Mon}_{\mathcal C} \to \mathcal C$ has a left adjoint. If moreover the category is symmetric monoidal and has coequalizers, the forgetful functor $\mathbf{CMon}_{\mathcal C} \to \mathcal C$ from commutative monoids has a left adjoint.
+\end{thm}
+
+\begin{proof}
+For the first part we refer to \cite[Thm. VII.3.2]{cwm}. The second part is similar to the first, in an obvious way.
+\end{proof}
+
+We give a more detailed proof of the following:
+
+\begin{thm} \label{thm forgetful creates}
+Let $(\mathbf C, \otimes, 1)$ be a closed symmetric monoidal category. Let $(R, \mu, \eta)$ be a monoid in $\mathbf C$ and consider the category $\mathbf{Mod}_R$ of $R$-modules. The forgetful functor $\mathcal U \colon \mathbf{Mod}_R \to \mathbf C$ creates limits and colimits.
+\end{thm}
+
+\begin{proof}
+Let $\mathbf I$ a small category and let $\mathcal F \colon \mathbf I \to \mathbf{Mod}_R$ be a diagram of type $\mathbf I$ in $\mathbf{Mod}_R$. Write $(M_i, \rho_i) := \mathcal F(i)$ for any $i \in \mathbf I$ and if $u \colon i \to j$ is an arrow in $\mathbf I$, then let $\varphi_u := \mathcal F(u) \colon M_i \to M_j$. Let $\mathcal U \colon \mathbf{Mod}_R \to \mathbf C$ be the obvious forgetful functor and assume that $\mathcal U \circ \mathcal F$ has colimit in $\mathbf C$. Let $(M, \psi_i)$ be the universal co-cone in $\mathbf C$. Since $R \otimes - \cong - \otimes R \dashv [R,-]$ (the internal hom), it follows that $R \otimes -$ preserves colimits and so we can consider the following diagram:
+
+\begin{equation*}
+\xymatrix{ & R \otimes M_i \ar[dl]_{1 \otimes \varphi_u} \ar[dr]^{1 \otimes \psi_i} \ar[dd]^(.6){\rho_i} \\
+R \otimes M_j \ar[rr]^(.4){1 \otimes \psi_j} \ar[dd]^{\rho_j} & & R \otimes M \ar@{.>}[dd]^{\rho} \\ & M_i \ar[dl]^{\varphi_u} \ar[dr]^{\psi_i} \\ M_j \ar[rr]_{\psi_j} & & M }
+\end{equation*}
+Now the maps $\psi_i \circ \rho_i \colon R \otimes M_i \to M$ produces a co-cone over $M$ and so universal property of $(R \otimes M, 1 \otimes \psi_i)$ give a unique map $\rho \colon R \otimes M \to M$. We claim that this map induce an $R$-module structure over $M$. In fact, we have the following diagram:
+\begin{equation*}
+\xymatrix{ R \otimes (R \otimes M_i) \ar[rr]^\alpha \ar[ddd]^{1 \otimes \rho_i} \ar[dr]^{1 \otimes (1 \otimes \psi_i)} & & (R \otimes R) \otimes M_i \ar[d]^{(1 \otimes 1) \otimes \psi_i} \ar[rr]^-{\mu \otimes 1} & & R \otimes M_i \ar[dl]^{1 \otimes \psi_i} \ar[ddd]^{\rho_i} \\ & R \otimes (R \otimes M) \ar[r]^\alpha \ar[d]^{1 \otimes \rho} & (R \otimes R) \otimes A \ar[r]^-{\mu \otimes 1} & R \otimes A \ar[d]^\rho \\ & R \otimes M \ar[rr]^\rho & & M \\ R \otimes M_i \ar[ur]^{1 \otimes \psi_i} \ar[rrrr]^{\rho_i} & & & & M_i \ar[ul]^{\psi_i} }
+\end{equation*}
+We know that every square commutes but the central one. Thus a simple chase reveals that
+\begin{align*}
+\rho \circ (\mu \otimes 1) \circ \alpha \circ (1 \otimes ( 1 \otimes \psi_i)) & = \psi_i \circ \rho_i \circ (\mu \otimes 1) \circ \alpha \\ & = \psi_i \circ \rho_i \circ (1 \otimes \rho_i) \\ & = \rho \circ (1 \otimes \rho) \circ (1 \otimes (1 \otimes \psi_i))
+\end{align*}
+Since $R \otimes -$ is left adjoint, $R \otimes (R \otimes M)$ is the colimit of $R \otimes (R \otimes M_i)$ and so universal property of this object shows now that
+\begin{equation*}
+\rho \circ (\mu \otimes 1) \circ \alpha = \rho \circ (1 \otimes \rho)
+\end{equation*}
+Similarly we have
+\begin{equation*}
+\xymatrix { & R \otimes M_i \ar[dr]^{1 \otimes \psi_i} \ar[dd]_(.4){1 \otimes \psi_i} \\ 1 \otimes M_i \ar[ur]^{\eta \otimes 1} \ar[dd]_{1 \otimes \psi_i} \ar[rr]^(.6){\lambda} & & M_i \ar[dd]^{\psi_i} \\ & R \otimes M \ar[dr]^{\rho} \\ 1 \otimes M \ar[ur]^{\eta \otimes 1} \ar[rr]^{\lambda} & & M }
+\end{equation*}
+Now $1 \otimes M$ is the colimit of $1 \otimes M_i$ and so
+\begin{align*}
+\lambda \circ (1 \otimes \psi_i) & = \psi_i \circ (1 \otimes \psi_i) \circ (\eta \circ 1) \\ & = \rho \circ (\eta \otimes 1) \circ (1 \otimes \psi_i)
+\end{align*}
+implies, via universal property, that
+\begin{equation*}
+\rho \circ (\eta \times 1) = \lambda
+\end{equation*}
+The other identity is proven in the same way. Therefore we showed that $(M, \rho)$ is an $R$-module and that the maps $\psi_i$ are morphisms of $R$-modules. We check that $(M,\rho)$ together with the maps $\psi_i$ form a universal co-cone in $\mathbf{Mod}_R$. Let $N$ be any other $R$-module and let $\vartheta_i \colon M_i \to N$ be a co-cone over $N$ in $\mathbf{Mod}_R$. Let $\vartheta \colon M \to N$ be the unique map in $\mathbf C$ such that $\vartheta \circ \psi_i = \vartheta_i$ for all $i \in \mathbf I$. Consider the following diagram:
+\begin{equation*}
+\xymatrix { R \otimes M_i \ar[rr]^{1 \otimes \psi_i} \ar[dr]^{1 \otimes \vartheta_i} \ar[dd]_{\rho_i} & & R \otimes M \ar[dd]^\rho \ar[dl]_{1 \otimes \vartheta} \ar@{.>}^{\exists ! \beta}[dddl] \\ & R \otimes N \ar[dd]^(.4){\rho_N} \\ M_i \ar[rr]_(.4){\psi_i} \ar[dr]_{\vartheta_i} & & M \ar[dl]^{\vartheta} \\ & N }
+\end{equation*}
+Now $R \otimes M$ is the colimit of $R \otimes M_i$ and moreover we have that the maps
+\begin{equation*}
+\rho_N \circ (1 \otimes \vartheta_i) = \vartheta_i \circ \rho_i
+\end{equation*}
+form a co-cone over $N$, so that universal property of colimits shows that there is a unique $\beta \colon R \otimes M \to N$ such that $\beta \circ (1 \otimes \psi_i) = \vartheta_i \circ \rho_i$. Since
+\begin{align*}
+\rho_N \circ (1 \otimes \vartheta) \circ (1 \otimes \psi_i) & = \vartheta \circ \rho \circ (1 \otimes \psi_i) \\
+& = \vartheta \circ \psi_i \circ \rho_i \\
+& = \vartheta_i \circ \rho_i
+\end{align*}
+and
+\begin{align*}
+\vartheta \circ \rho \circ (1 \otimes \psi_i) & = \vartheta \circ \psi_i \circ \rho_i \\
+& = \vartheta_i \circ \rho_i
+\end{align*}
+uniqueness of $\beta$ implies
+\begin{equation*}
+\vartheta \circ \rho = \beta = \rho_N \circ 1 \otimes \vartheta
+\end{equation*}
+Therefore $\vartheta$ is a map of $R$-modules and so $(M,\psi_i)$ is the universal co-cone of $\mathcal F$. As consequence, if $\mathbf C$ is co-complete, also $\mathbf{Mod}_R$ is co-complete.
+
+Next, we show that the same thing holds for limits instead of colimits. Therefore, with the same notations as before, assume that $\mathcal U \circ \mathcal F$ has limit in $\mathbf C$ and let $(M, \tau_i)$ be the universal cone in $\mathbf C$. Consider the following diagram:
+\begin{equation*}
+\xymatrix { & & R \otimes M_j \ar[rr]^{\rho_j} & & M_j \\ &  R \otimes M_i \ar[rr]|(.6){\rho_i} \ar[ur]|-{1 \otimes \varphi_u} & & M_i \ar[ur]^{\varphi_u} \\ R \otimes M \ar[ur]|-{1 \otimes \tau_i} \ar@/^2pc/[uurr]|-{1 \otimes \tau_j} \ar@{.>}[rr]^-{\exists ! l} & & \varprojlim R \otimes M_i \ar[ul]^{\sigma_i} \ar[uu]|(.35){\sigma_j} \ar@{.>}[rr]^{\exists ! \sigma} & & M \ar[ul]^{\tau_i} \ar[uu]^{\tau_j} }
+\end{equation*}
+We applied the obvious universal properties to get the maps $\sigma$ and $l$. Set $\rho := \sigma \circ l$. We claim that $\rho \colon R \otimes M \to M$ determines a structure of $R$-module over $M$. Let $P := \varprojlim R \otimes M_i$ and consider the following diagram:
+\begin{equation*}
+\xymatrix { R \otimes (R \otimes M_i) \ar[rr]^\alpha \ar[dddd]^{1 \otimes \rho_i} & & (R \otimes R) \otimes M_i \ar[rr]^{\mu \otimes 1} & & R \otimes M_i \ar[dddd]^{\rho_i} \\ & R \otimes (R \otimes M) \ar[ul]^{1 \otimes (1 \otimes \tau_i)} \ar[dd]^{1 \otimes \rho} \ar[r]^\alpha & (R \otimes R) \otimes M \ar[u]^{(1 \otimes 1) \otimes \tau_i} \ar[r]^-{\mu \otimes 1} & R \otimes M  \ar[ur]^{1 \otimes \tau_i} \ar[d]^l \\ & & & P \ar[d]^{\sigma} \ar[uur]_{\sigma_i} \\ & R \otimes M \ar[dl]_{1 \otimes \tau_i} \ar[r]^l & P \ar[dll]^{\sigma_i} \ar[r]^{\sigma} & M \ar[dr]^{\tau_i} \\ R \otimes M_i \ar[rrrr]^{\rho_i} & & & & M_i }
+\end{equation*}
+By universal property of $M$, in order to check that
+\begin{equation*}
+\rho \circ (\mu \otimes 1) \circ \alpha = \rho \circ (1 \otimes \rho)
+\end{equation*}
+we only need to check that
+\begin{equation*}
+\tau_i \circ \rho \circ(\mu \otimes 1) \circ \alpha = \tau_i \circ \rho \circ (1 \otimes \rho)
+\end{equation*}
+for all $i \in \mathbf I$. However
+\begin{align*}
+\tau_i \circ \rho & = \tau_i \circ \sigma \circ l = \rho_i \circ \sigma_i \circ l \\
+& = \rho_i \circ (1 \otimes \tau_i)
+\end{align*}
+and so
+\begin{align*}
+\tau_i \circ \rho \circ(\mu \otimes 1) \circ \alpha & = \rho_i \circ (1 \otimes \tau_i) \circ (\mu \otimes 1) \circ \alpha \\
+& = \rho_i \circ (1 \otimes \rho_i) \circ (1 \otimes (1 \otimes \tau_i)) \\
+& = \rho_i \circ (1 \otimes \tau_i) \circ (1 \otimes \rho) \\
+& = \rho_i \circ \sigma_i \circ l \circ (1 \otimes \rho) \\
+& = \tau_i \circ \sigma \circ l \circ (1 \otimes \rho) \\
+& = \tau_i \circ \rho \circ (1 \otimes \rho)
+\end{align*}
+showing that associativity holds. To check the unit axioms, one proceeds exactly in the same way, but we omit the details (we already used this technique twice, even though in the limit situation it requires one more step).
+
+Therefore this shows that $(M,\rho)$ is an $R$-module and that the maps $\tau_i \colon M \to M_i$ are morphisms of $R$-modules. We only need to show that $(M,\tau_i)$ is a universal cone in $\mathbf{Mod}_R$. Let $(N,\gamma_i)$ a cone in $\mathbf{Mod}_R$ and let $\gamma \colon N \to M$ be the unique map in $\mathbf C$ such that $\tau_i \circ \gamma = \gamma_i$. We want to show that $\gamma$ is a map of $R$-modules. Consider the following diagram:
+\begin{equation*}
+\xymatrix { & R \otimes N \ar[dl]_{1 \otimes \gamma} \ar[dr]^{1 \otimes \gamma_i} \ar[dd]|(.6){\rho_N} \\ R \otimes M \ar[d]^l \ar[rr]^(.4){1 \otimes \tau_i} & & R \otimes M_i \ar[dd]^{\rho_i} \\ P \ar[d]^\sigma \ar[urr]|(.4){\sigma_i} & N \ar[dl]_\gamma \ar[dr]^{\gamma_i} \\ M \ar[rr]^{\tau_i} & & M_i }
+\end{equation*}
+Now we have $\rho_i \circ (1 \otimes \gamma_i) = \gamma_i \circ \rho_N$ and clearly
+\begin{equation*}
+\varphi_u \circ \rho_i \circ (1 \otimes \gamma_i) = \rho_j \circ (1 \otimes \varphi_u) \circ (1 \otimes \gamma_i) = \rho_j \circ (1 \otimes \gamma_j) \end{equation*}
+so that we obtain a cone on $R \otimes N$; universal property of $M$ produces a unique map $\beta \colon R \otimes N \to M$ such that $\tau_i \circ \beta = \gamma_i \circ \rho_N$. However
+\begin{align*}
+\tau_i \circ \rho \circ (1 \otimes \gamma) & = \rho_i \circ \sigma_i \circ l \circ (1 \otimes \gamma) \\
+& = \rho_i \circ (1 \otimes \tau_i) \circ (1 \otimes \gamma) \\
+& = \gamma_i \circ \rho_N
+\end{align*}
+and similarly
+\begin{align*}
+\tau_i \circ \gamma \circ \rho_N & = \rho_i \circ \sigma_i \circ l \circ (1 \otimes \gamma) \\
+& = \rho_i \circ (1 \otimes \tau_i) \circ (1 \otimes \gamma) \\
+& = \rho_i \circ (1 \otimes \gamma_i) = \gamma_i \circ \rho_N
+\end{align*}
+and so uniqueness of $\beta$ yields
+\begin{equation*}
+\rho \circ (1 \otimes \gamma) = \beta = \gamma \circ (1 \otimes \tau_i)
+\end{equation*}
+concluding this part of proof. As consequence, we see that if $\mathbf C$ is complete, then $\mathbf{Mod}_R$ is complete. We can state what
+\end{proof}
+
+\subsection{Lifting of model structures (II)}
+
+Until this point we emphasized that taking internal monoids, modules or algebras is usually a well-behaved operation with respect to limits and colimits. We turn now to a more homotopical problem: namely, we will assume to work in a monoidal model category (the definition is recalled); then we ask whether it is possible to lift the model structure to the category of monoids, or to the category of modules over a given monoid. The main reference here is the article \cite{schwede}, and we will simply recall the main results.
+
+\begin{defin}
+Let $(\mathcal M, \otimes, I)$ be a monoidal model category (cfr. Definition \ref{def monoidal model category}; denote by $S := \cofib \cap W$ the set of trivial cofibrations and let
+\[
+S' := \{f \otimes \mathrm{id}_Z \colon A \otimes Z \to B \otimes Z \mid f \in S', \: Z \in \Ob(\mathcal M)\}
+\]
+$\mathcal M$ is said to satisfy the \emph{monoid axiom} if every arrow in $S'\mathrm{-cof}_{\mathrm{reg}}$ is a weak equivalence.
+\end{defin}
+
+\begin{lemma}
+Let $(\mathcal M, \otimes, I)$ be a monoidal model category. If every object of $\mathcal M$ is cofibrant, the monoid axiom is satisfied.
+\end{lemma}
+
+\begin{proof}
+Since acyclic cofibrations are closed under transfinite composition and pushout, it will be sufficient to show that $f \otimes \mathrm{id}_Z$ is an acyclic cofibration if $f$ is so. However, $\emptyset \otimes A \simeq \emptyset$ because $- \otimes A$ preserves colimits, and so the pushout product axiom implies immediately the thesis.
+\end{proof}
+
+\begin{thm} \label{thm lifting II}
+Let $(\mathcal M, \otimes, I)$ be a cofibrantly generated monoidal model category. Assume that every object in $\mathcal M$ is small relative to the whole category and that $\mathcal M$ satisfies the monoid axiom. Let $R$ be a commutative monoid in $\mathcal M$, let $\Mod_R$ be the category of internal $R$-modules and let $U \colon \Mod_R \to \mathcal M$ be the natural forgetful functor. Then the followings hold:
+\begin{enumerate}
+\item the category of $R$-modules is a cofibrantly generated monoidal model category satisfying the monoid axiom, where a map $f$ is a weak equivalence (resp. a fibration) if and only if $U(f)$ is a weak equivalence (resp. a fibration), and a map is a cofibration if and only if it has the LLP with respect to all the acyclic fibrations.
+
+\item The category of $R$-algebras is a cofibrantly generated model category where a map $f$ is a weak equivalence (resp. a fibration) if and only if $U(f)$ is a weak equivalence (resp. a fibration), and a map is a cofibration if and only if it has the LLP with respect to all the acyclic fibrations.
+\end{enumerate}
+\end{thm}
+
+\printbibliography[heading = local]
+
+\end{refsection}

@@ -1,0 +1,647 @@
+\chapter{Affine derived schemes}
+
+\chapterprecistoc{\textup{by} Mauro Porta and Yohann Segalat}
+
+\begin{refsection}
+
+In this expos\'e we will work in the framework that has been built in the previous ones, in order to define the notion of affine derived scheme. We will try to introduce the main ideas and definitions, and to compare them (when possible) with their classical counterparts.
+
+\begin{flushright}
+Mauro Porta \\
+Yohann Segalat
+\end{flushright}
+
+\section{Lifting criteria}
+
+
+\section{Affine derived schemes}
+
+\subsection{Simplicial objects}
+
+In this preliminar section we review the general theory of simplicial objects. We will follow closely Quillen \cite[II.1, II.4]{quillen}. Recall first of all the following definition:
+
+\begin{defin}
+Let $\mathcal C$ be any category. A simplicial object in $\mathcal C$ is a functor $\SDelta^{\mathrm{op}} \to \mathcal C$. The (functorial) category of simplicial objects in $\mathcal C$ is denoted $\mathrm s \mathcal C$.
+\end{defin}
+
+The first main result is that the category $\mathrm s \mathcal C$ is always enriched over $\sset$:
+
+\begin{thm} \label{thm quillen 1}
+Let $\mathcal C$ be any category. Then $\mathrm s \mathcal C$ is enriched over $\sset$. If moreover $\mathcal C$ has coproducts, $\mathrm s \mathcal C$ is enriched with tensor over $\sset$ and if $\mathcal C$ has limits, $\mathrm s \mathcal C$ is enriched with cotensor over $\sset$.
+\end{thm}
+
+\begin{proof}[Sketch of the proof.]
+We won't give the full proof, but we will simply give the construction of the tensor product $X \otimes K$ when $\mathcal C$ has coproducts. The reference for a complete proof is \cite[Prop. II.1.2]{quillen} (and the discussion preceding this proof).
+
+Given a simplicial set $K$ and a simplicial object $X \in \mathrm s \mathcal C$, define
+\[
+(X \otimes K)_n := \coprod_{\sigma \in K_n} X_n
+\]
+If $\varphi \colon \mathbf n \to \mathbf m$ is an arrow in $\SDelta$, define
+\[
+\varphi_{X \otimes K}^* \colon (X \otimes K)_m \to (X \otimes K)_n
+\]
+as the map
+\[
+\coprod_{\sigma \in K_m} \mathrm{in}_{\varphi_K^*(\sigma)} \varphi_X^*
+\]
+This defines a new simplicial object in $\mathrm s \mathcal C$. W
+\end{proof}
+
+The second main result concerns, instead, the model structure of $\mathrm s \mathcal C$. First of all recall the following definitions:
+
+\begin{defin}
+Let $\mathcal C$ be a category. A morphism $f \colon X \to Y$ is said to be an effective epimorphism if it has kernel pair and it is the quotient of its kernel pair, that is if the diagram
+\[
+\xymatrix{ X \times_Y X \ar@<.3ex>[r]^{p_1} \ar@<-.3ex>[r]_{p_2} & X \ar[r]^f & Y }
+\]
+is a coequalizer.
+\end{defin}
+
+\begin{defin} \label{def projective}
+Let $\mathcal C$ be a category. An object $P \in \Ob(\mathcal C)$ is said to be projective if $f_* \colon \Hom_{\mathcal C}(P,X) \to \Hom_{\mathcal C}(P,Y)$ is surjective for every effective epimorphism $f \colon X \to Y$.
+\end{defin}
+
+\begin{defin}
+A category $\mathcal C$ has enough projectives if for each object $X$ there is a projective object $P$ and an effective epimorphism $P \to X$.
+\end{defin}
+
+\begin{lemma}
+Let $\mathcal C$ be any category with pullbacks and let $(T,\mu,\eta)$ be a monad over $\mathcal C$. For any $T$-algebra $(A,h)$ the map $h \colon T(A) \to A$ is an effective epimorphism.
+\end{lemma}
+
+\begin{proof}
+Let $(A, h)$ be an algebra for the monad $T$. We claim that $T(A)$ is projective in $\mathcal C^T$ and that $h \colon T(A) \to A$ is an effective epimorphism. First of all observe that Lemma \ref{lemma T-algebras} implies that $\mathcal C^T$ has pullbacks. Therefore an arrow is an effective epimorphism if and only if it is a regular epimorphism, and as trivial consequence we see that every split epimorphism is effective. However, the unit axiom says that
+\[
+h \circ T \eta_A = \mathrm{id}_A
+\]
+i.e. $h$ is a split epimorphism.
+\end{proof}
+
+\begin{thm} \label{thm quillen 4}
+Let $\mathcal C$ be a category with finite limits and enough projectives. Define a map $f$ in $\mathrm s \mathcal C$ to be a fibration (resp. a weak equivalence) if $Hom_{\mathrm s \mathcal C}(P,f;\sset)$ is a fibration (resp. a weak equivalence) for each projective object $P$. If moreover every object of $\mathrm s \mathcal C$ is fibrant, this defines a simplicial model structure on $\mathrm s \mathcal C$.
+\end{thm}
+
+\begin{proof}
+See \cite[Thm. II.4.4]{quillen}.
+\end{proof}
+
+\subsection{Simplicial abelian groups}
+
+\begin{defin}
+A simplicial abelian group is a simplicial object in $\Ab$, the category of abelian groups. The category of simplicial abelian groups will be denoted by $\mathbf s \Ab$.
+\end{defin}
+
+Recall the following standard categorical fact:
+
+\begin{lemma} \label{lemma functor adjunction}
+Let $F \colon \mathcal C \rightleftarrows \mathcal D \colon G$ be an adjunction between categories and let $\mathcal B$ be any other category. Then we have an adjunction
+\[
+F_* \colon \mathbf{Funct}(\mathcal B, \mathcal C) \rightleftarrows \mathbf{Funct}(\mathcal B, \mathcal D) \colon G_*
+\]
+\end{lemma}
+
+\begin{proof}
+Let, in general, $\varphi \colon f \to g$ be a natural transformation between functors from $\mathcal C$ to $\mathcal D$. Then we can define a new natural transformation $\varphi_* \colon f_* \to g_*$ in the obvious way: if $h \colon \mathcal B \to \mathcal C$ is any functor, define
+\[
+(\varphi_*)_h := \varphi_h \colon f \circ h \to g \circ h
+\]
+It's clear that the construction of $\varphi_*$ preserves both vertical composition and identities, so that $\mathbf{Funct}(\mathcal B,-)$ can be really regarded as a functor. This implies trivially that the adjunction $F \dashv G$ lifts to $F_* \dashv G_*$, since the triangular identities are preserved by $\mathbf{Funct}(\mathcal B,-)$.
+\end{proof}
+
+Going back to our setting, observe that we have an obvious forgetful functor $U \colon \mathbf s \Ab \to \sset$. Denote by $\Z(-) \colon \Set \to \Ab$ the free abelian group functor. Define the functor
+\[
+\mathrm s \Z(-) := (\Z(-))_* \colon \sset \to \mathbf s \Ab
+\]
+Previous Lemma implies immediately:
+
+\begin{cor} \label{cor beck's monadicity}
+There is an adjunction $\mathrm s \Z(-) \dashv U$. Moreover, the algebras for the corresponding monad on $\sset$ are exactly the simplicial abelian groups.
+\end{cor}
+
+\begin{proof}
+Denote by $V \colon \Ab \to \Set$ the obvious forgetful functor. Then it's clear that $U = V_*$ (i.e. the group structure is forgotten levelwise), so that the first statement descends directly from Lemma \ref{lemma functor adjunction}. For the second statement, observe that $V$ is monadic (see \cite[Thm. VI.8.1]{cwm}), hence it creates coequalizers for those arrows $f,g$ such that $V(f), V(g)$ have absolute coequalizer. Since coequalizers in $\mathbf s \Ab$ are computed objectwise, it follows that the same property is shared by $U$, so that Beck's monadicity theorem (\cite[Thm. VI.7.1]{cwm}) implies the thesis.
+\end{proof}
+
+Observe that the following easy categorical fact holds:
+
+\begin{lemma}
+Let $(\mathcal C, \otimes, I)$ be a monoidal category. For any other category $\mathcal D$, the functorial category $\mathbf{Funct}(\mathcal D, \mathcal C)$ has a monoidal structure where the tensor product is defined objectwise.
+\end{lemma}
+
+\begin{proof}
+Composing $- \otimes -$ with $F \times G \colon \mathcal D \to \mathcal C \times \mathcal C$ we obtain a functor $\mathbf{Funct}(\mathcal D, \mathcal C \times \mathcal C) \to \mathbf{Funct}(\mathcal D, \mathcal C)$. Then simply observe that
+\[
+\mathbf{Funct}(\mathcal D, \mathcal C \times \mathcal C) \simeq \mathbf{Funct}(\mathcal D, \mathcal C) \times \mathbf{Funct}(\mathcal D, \mathcal C)
+\]
+The commutativity of diagrams is therefore checked objectwise, and this allows to conclude immediately that $\mathbf{Funct}(\mathcal D, \mathcal C)$ has a monoidal structure.
+\end{proof}
+
+Previous Theorem \ref{thm quillen 1} shows immediately that $\mathbf s \Ab$ is a simplicial structure.
+
+\begin{rmk}
+It follows from the direct construction given by Quillen [loc.cit.] that if $G \in \mathbf s \Ab$ and $K \in \sset$, then
+\[
+G \otimes K = G \otimes \mathrm s \Z(K)
+\]
+where on the left hand side the tensor product is derived from the enrichment over $\sset$, while on the right hand side the tensor product is derived from the monoidal structure. Similarly, one can show that Quillen's construction yields:
+\[
+G^K = \mathbf{hom}(K,U(G))
+\]
+where $\mathbf{hom}$ denotes the internal hom of $\sset$ ($\mathbf{hom}(K,U(G))$ is an abelian simplicial group, because every object in $\mathbf s \Ab$ can be seen as an internal abelian group object in $(\sset, \times, \Delta^0)$, and moreover $\mathbf{hom}(K,-)$ commutes with products, being a right adjoint).
+\end{rmk}
+
+%At this point we can show that $(\mathbf s \Ab, \otimes, \Z)$ is a closed symmetric monoidal category. Given $A \in \mathbf s \Ab$, define
+%\[
+%[A,-] := \Hom_{\mathbf s \Ab}(A, -; \sset)
+%\]
+%observing that for each $B \in \mathbf s \Ab$ the simplicial set
+%\[
+%\Hom_{\mathbf s \Ab}(A,B;\sset)
+%\]
+%is a simplicial abelian group. Finally, it
+
+Finally, we have to deal with the model structure on $\mathbf s \Ab$.
+
+\begin{lemma} \label{lemma projective in sAb}
+Each module $\mathrm s \Z(K)$ is projective in the sense of Definition \ref{def projective}.
+\end{lemma}
+
+\begin{proof}
+First of all observe that every morphism in $\mathbf s \Ab$ has a cokernel, which is computed objectwise. This implies immediately that every epimorphism is surjective. Now that thesis is a trivial consequence of Corollary \ref{cor beck's monadicity}, the fact that the forgetful functor $U$ preserves surjectivity and the fact that in $\sset$ every epimorphism is split.
+\end{proof}
+
+\begin{lemma}
+Let $f \colon A \to B$ be a morphism in $\mathbf s \Ab$. Then
+\[
+f_* \colon \Hom_{\mathbf s \Ab}(P,A;\sset) \to \Hom_{\mathbf s \Ab}(P,B;\sset)
+\]
+is a fibration (resp. a weak equivalence) for all projective object $P$ if and only if $U(f) \colon U(A) \to U(B)$ is a fibration (resp. a weak equivalence).
+\end{lemma}
+
+\begin{proof}
+Assume that $U(f)$ is a fibration (resp. a weak equivalence). If $P = \mathrm s \Z(K)$ for some simplicial set $K \in \sset$, then
+\[
+\Hom_{\mathbf{s \Ab}}(\mathrm s \Z(K),A;\sset) = \mathbf{hom}(K, U(A))
+\]
+(this follows directly from the construction of the enriched hom). Then we know that $\mathbf{hom}(K,U(f))$ is a fibration (resp. a weak equivalence). The general case follows from the fact that every projective module is a direct summand of a free module.
+
+Conversely, if $f_*$ is a fibration (resp. a weak equivalence) for all projective object $P$, then using the same relation of above we see that $\mathbf{hom}(K,U(f))$ is a fibration (resp. a weak equivalence) for every simplicial set $K$. This implies that $U(f)$ is a fibration (resp. a weak equivalence.
+\end{proof}
+
+\begin{thm} \label{thm simplicial groups}
+$\mathbf s \Ab$ has a simplicial monoidal model structure where
+\begin{itemize}
+\item a map $f$ is a weak equivalence if and only if $U(f)$ is a weak equivalence;
+\item a map $f$ is a fibration if and only if $U(f)$ is a fibration;
+\item a map is a cofibration if and only if it has the LLP with respect to trivial fibrations.
+\end{itemize}
+Moreover, this category is proper, cofibrantly generated and cellular.
+\end{thm}
+
+\begin{proof}
+It can be shown that an object in $\mathbf s \Ab$ is projective if and only if it is a direct summand of a free simplicial module (of the form $\mathrm s \Z(K)$). It follows that 
+\end{proof}
+
+\subsection{Simplicial commutative algebras}
+
+\begin{defin}
+A simplicial commutative algebra is a commutative monoid in $(\mathbf s \Ab, \otimes, \Z)$. We will denote the category of simplicial commutative algebras as $\mathbf s \mathbf{Comm}$.
+\end{defin}
+
+\begin{defin}
+Let $A$ be a simplicial commutative algebra. A (simplicial) $A$-module an internal $A$-module in $(\mathbf s \Ab, \otimes, \Z)$. We will denote the category of (simplicial) $A$-modules by $\mathbf s \Mod_A$.
+\end{defin}
+
+\begin{cor}
+The category $\mathbf s \Mod_A$ has a monoidal model structure where
+\begin{itemize}
+\item an arrow $f$ is a weak equivalence if and only if it is a weak equivalence in $\mathbf s \Ab$;
+\item an arrow $f$ is a fibration if and only if it is a fibration in $\mathbf s \Ab$;
+\item an arrow is a cofibration if and only if it has the LLP with respect to all trivial fibrations.
+\end{itemize}
+\end{cor}
+
+\begin{proof}
+It can be shown that this is a consequence of Theorem \ref{thm lifting II}.
+\end{proof}
+
+It is more complicated to deal with $\mathbf{sComm}$. The idea is to use again Theorem \ref{thm quillen 4}. First of all, observe that an epimorphism in $\mathbf{sComm}$ is necessarily surjective. Now consider the following lemma:
+
+\begin{lemma} \label{lemma free simplicial algebra}
+There is an adjunction
+\[
+\mathrm s \Z[-] \colon \sset \rightleftarrows \mathbf{sComm} \colon U
+\]
+where $U$ is the natural forgetful functor and $\mathrm s \Z[-] = (\Z[-])_*$, $\Z[-] \colon \Set \to \mathbf{Comm}$ denoting the free polynomial algebra functor.
+\end{lemma}
+
+\begin{proof}
+This is again a trivial consequence of Lemma \ref{lemma functor adjunction}.
+\end{proof}
+
+As consequence we see that every algebra of the form $\mathrm s \Z[K]$ is a projective object in $\mathbf{sComm}$, in the sense of Definition \ref{def projective}. With a little more effort one can show the following:
+
+\begin{thm}
+$\mathbf{sComm}$ has a simplicial model structure where
+\begin{itemize}
+\item a map $f$ is a weak equivalence if and only if $U(f)$ is a weak equivalence;
+\item a map $f$ is a fibration if and only if $U(f)$ is a fibration;
+\item a map is a cofibration if and only if it has the LLP with respect to all acyclic fibrations.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+It can be shown that this is a consequence of Theorem \ref{thm quillen 4}.
+\end{proof}
+
+\begin{rmk}
+The fact that $\mathbf{sComm}$ has this model structure is a highly non-trivial result. In fact, the second part of Theorem \ref{thm lifting II} applies only to \emph{algebras} over a commutative monoid, and not to \emph{commutative algebras}. This is a reason that leads to the introduction of $E_\infty$-algebras.
+\end{rmk}
+
+Let $A$ and $B$ be simplicial commutative algebras and let $f \colon A \to B$ be a morphism between them.
+
+\begin{lemma}
+There exists a Quillen adjunction
+\[
+- \otimes_A B \colon \mathbf s \Mod_A \rightleftarrows \mathbf s \Mod_B \colon f^*
+\]
+where $f^*$ is the forgetful functor along $f$. This is moreover a Quillen equivalence if $f$ is a weak equivalence.
+\end{lemma}
+
+\begin{proof}
+The details of the adjunction relation are straightforward and we omit them. It is a Quillen adjunction because $f^*$ preserves both fibrations and trivial fibrations.
+\end{proof}
+
+\subsubsection{Homotopy groups}
+
+Let $A$ be a simplicial commutative algebra. For each $n \in \N$ we define its $n$-th homotopy group as
+\[
+\pi_n(A) := \pi_n(U(A),0)
+\]
+where $U \colon \mathbf{sComm} \to \sset$ is the natural forgetful functor and $0$ denotes the $0$-simplex corresponding to the zero element of $A$.
+
+\begin{rmk}
+$A$ being a simplicial group, it is straightforward to check that $\pi_n(U(A),v)$ does not depend on the choice of the $0$-simplex $v$ (cfr. for example \cite[Ex. 8.3.1]{weibel}).
+\end{rmk}
+
+\begin{rmk}
+In $\sset_*$ let $S^1$ denote the simplicial set defined as the coequalizer of $d^0,d^1 \colon \Delta^0 \to \Delta^1$. Moreover, define inductively
+\[
+S^{n+1} := S^1 \wedge S^n
+\]
+It can be shown that for any pointed simplicial set $(K,v)$ the relation
+\[
+\pi_n(K,v) = \Hom_{\Ho(\sset_*)}(S^{n+1},K)
+\]
+holds.
+\end{rmk}
+
+\begin{lemma}
+With the notations of Lemma \ref{lemma free simplicial algebra} and for each simplicial commutative algebra $A$, the relation
+\[
+\Hom_{\Ho(\mathbf{sComm})}(\mathrm s Z[S^n], A) = \pi_n(A)
+\]
+holds.
+\end{lemma}
+
+\begin{proof}
+This is a trivial consequence of the adjunction of Lemma \ref{lemma free simplicial algebra} and of previous remark.
+\end{proof}
+
+\begin{lemma}
+For each simplicial commutative algebra $A$, $\pi_n(A)$ has a natural structure of abelian group.
+\end{lemma}
+
+\begin{proof}[Sketch of the proof.]
+The structure on $\pi_0(A)$ is easily derived from the sum in $A$. If $n \ge 1$, the natural group structure on $\pi_n(A)$ is abelian thanks to a (standard) Eckmann-Hilton argument.
+\end{proof}
+
+Let $A$ be a simplicial commutative algebra. Define the graded abelian group
+\[
+\pi_*(A) := \bigoplus_{n \in \N} \pi_n(A)
+\]
+It's easy to see that $\pi_*(A)$ has a natural structure of graded commutative algebra. In fact, if $[a] \in \pi_n(A)$ and $[b] \in \pi_m(A)$ are two elements in $\pi_*(A)$ they can be represented by arrows in $\sset_*$:
+\[
+a \colon S^n \to A, \qquad b \colon S^m \to A
+\]
+Those maps induce
+\[
+a \otimes b \colon S^n \times S^m \to A \times A \to A \otimes A
+\]
+and composing with the multiplication $A \otimes A \to A$ we obtain a morphism
+\[
+a \odot b \colon S^n \times S^m \to A
+\]
+which in fact factorizes through $S^n \wedge S^m \simeq S^{n+m}$. This new map is by definition the multiplication of $a$ and $b$. It can be shown that this gives a well defined multiplication which is associative, unital and graded commutative.
+
+In a similar way, if $M$ is a simplicial $A$-module then the graded abelian group
+\[
+\pi_*(M) := \bigoplus_{n \in \N} \pi_n(M)
+\]
+has a natural structure of $\pi_*(A)$-module.
+
+\begin{cor} \label{cor pi_0}
+Let $A$ be a simplicial commutative algebra. Then $\pi_0(A)$ has a natural structure of commutative algebra. That is, $\pi_0$ defines a functor
+\[
+\pi_0 \colon \mathbf{sComm} \to \mathbf{Comm}
+\]
+\end{cor}
+
+\begin{proof}
+This is a consequence of the previous constructions.
+\end{proof}
+
+\subsubsection{Comparison with $\mathbf{Comm}$}
+
+We have a natural functor
+\[
+\widetilde{F} \colon \mathbf{Comm} \to \mathbf{sComm}
+\]
+sending a commutative algebra $A$ to a simplicial commutative algebra $A$ concentrated in degree $0$.
+
+\begin{lemma}
+The induced functor $F \colon \mathbf{Comm} \to \Ho(\mathbf{sComm})$ has as left adjoint the functor of Corollary \ref{cor pi_0}
+\[
+\pi_0 \colon \Ho(\mathbf{sComm}) \to \mathbf{Comm}
+\]
+Moreover, $F$ is fully faithful.
+\end{lemma}
+
+\begin{proof}
+We omit (for the moment) the details of this adjunction. However, we observe that the counit is an isomorphism. This implies immediately that $F$ is fully faithful.
+\end{proof}
+
+\subsection{Derived schemes}
+
+\begin{defin}
+We define the category of derived affine schemes to be $\mathbf{dAff} := \mathbf{sComm}^{\mathrm{op}}$, endowed with the dual model structure of $\mathbf{sComm}$.
+\end{defin}
+
+\begin{notation}
+Given $A \in \Ob(\mathbf{dAff}) = \Ob(\mathbf{sComm})$, we will emphasize that we are thinking it as an element to $\mathbf{dAff}$ by writing it as $\spec A$.
+\end{notation}
+
+To justify better the terminology, we end this chapter by introducing also derived schemes. First of all, we look at the category $\mathrm{sPSh}(\mathbf{dAff})$ and we endow it with the global \emph{projective} model structure (cfr. Theorem \ref{thm global model structure}). As it is explained in more details in Expos\'e 6, we construct a first localization of $\mathrm{sPSh}(\mathbf{dAff})$: we consider the left Bousfield localization with respect to the maps
+\[
+f_* \colon \mathrm s h_X \to \mathrm s h_Y
+\]
+induced by weak equivalences $f \colon X \to Y$ in $\mathbf{dAff}$ (here, as in Expos\'e 5, $\mathrm sh_X$ denotes the Yoneda functor associated to $X$ reviewed inside the category of simplicial presheaves). We will denote by $\mathbf{dAff}^{\wedge}$ this new model category.
+
+It is possible to characterize the local objects for this left Bousfield localization: a simplicial presheaf
+\[
+F \colon \mathbf{dAff}^{\mathrm{op}} \to \sset
+\]
+is fibrant in $\mathbf{dAff}^\wedge$ if an only if the following conditions hold:
+\begin{enumerate}
+\item $F(X)$ is fibrant for all $X \in \mathbf{dAff}$ (that is, $F$ is fibrant for the global model structure on $\mathrm{sPSh}(\mathbf{dAff})$);
+\item for any equivalence $X \to Y$ in $\mathbf{dAff}$, the induced morphism $F(Y) \to F(X)$ is an equivalence of simplicial sets.
+\end{enumerate}
+
+General results about left Bousfield localization show that $\Ho(\mathbf{dAff}^\wedge)$ is equivalent to the full subcategory of
+\[
+\Ho(\mathrm{sPSh}(\mathbf{dAff}))
+\]
+consisting of those objects satisfying the two conditions above. The fibrant replacement functor realizes then a left adjoint to the inclusion
+\[
+\Ho(\mathbf{dAff}^\wedge) \to \Ho(\mathrm{sPSh}(\mathbf{dAff}))
+\]
+
+Finally, we make $\mathbf{dAff}$ into a model site, introducing a topology on $\Ho(\mathbf{dAff})$ in the sense of \cite{hagI}.
+
+\begin{defin}
+A family of morphisms $\{A \to A_i\}_{i \in I}$ in $\Ho(\mathbf{sComm}\}_{i \in I}$ is an \'etale covering if each $A \to A_i$ is \'etale in the sense previously defined, and there exists a finite subset $J \subset I$ such that the family of functors
+\[
+\{- \otimes_A^{\mathbb L} A_i \colon \Ho(\mathbf s \Mod_A) \to \Ho(\mathbf s \Mod_{A_i} \}_{i \in J}
+\]
+is conservative, i.e. a morphism $f$ in $\Ho(\mathbf s \Mod_A$ is an isomorphism if and only if $f \otimes_A^{\mathbb L} A_i$ is an isomorphism for every $i \in J$.
+\end{defin}
+
+In \cite{hagI} it is proved that $\mathrm{sPSh}(\mathbf{dAff})$ can be endowed with a local model structure taking into account the \'etale topology on $\Ho(\mathbf{dAff})$ in the sense explained in Expos\'e 5 and Expos\'e 6. This new model structure will be denoted $\mathbf{dAff}^{\sim}$. As before, we have a characterization of fibrant objects in $\mathbf{dAff}^{\sim}$: a simplicial presheaf $F \colon \mathbf{dAff}^{\mathrm{op}} \to \sset$ is fibrant if and only if it is fibrant in $\mathbf{dAff}^\wedge$ and furthermore it satisfies
+\begin{enumerate}
+\item[3.] for any $X \in \Ob(\mathbf{dAff})$ and any \'etale hypercovering $H \to X$ the natural morphism
+\[
+F(X) \to \mathrm{holim}_{\mathbf n \in \SDelta} F(H_n)
+\]
+is an equivalence of simplicial sets.
+\end{enumerate}
+
+\begin{defin}
+We say that a simplicial presheaf $F \in \mathrm{sPSh}(\mathbf{dAff})$ is a derived stack if it satisfies to conditions 2. and 3. above.
+\end{defin}
+
+\begin{thm}
+Let $\spec A \in \mathbf{dAff}$ be a derived affine scheme. Then the simplicial presheaf $\mathrm s h_{\spec A} = \mathrm s h_A$ is a derived stack.
+\end{thm}
+
+\begin{proof}
+This is proved in \cite{hagII}.
+\end{proof}
+
+Consider generally the Yoneda embedding
+\[
+\mathrm s h \colon \mathbf{dAff} \to \Ho(\mathbf{dAff}^\wedge)
+\]
+This induces by construction a functor
+\[
+\Ho(\mathrm s h) \colon \Ho(\mathbf{dAff}) \to \Ho(\mathbf{dAff}^\wedge)
+\]
+We will denote $\Ho(\mathrm sh)(X)$ by $\R \underline{\spec} A$. Previous theorem can be restated by saying that $\R \underline{\spec} A$ is a derived stack.
+
+\begin{defin}
+A derived stack $F$ is said to be a \emph{derived scheme} if there exists a family of derived affine schemes $\{\R \underline{\spec} A_i\}_{i \in I}$ and Zariski open immersions $\R \underline{\spec} A_i \to F$ such that the induced morphism of sheaves
+\[
+\coprod_{i \in I} \R \underline{\spec} A_i \to F
+\]
+is an epimorphism. Such a family $\{\R \underline{\spec} A_i \to F\}_{i \in I}$ is called a \emph{Zariski atlas} for $F$.
+\end{defin}
+
+%\section{Morphisms and their properties}
+%
+%In this section we finally introduce several kinds of morphisms between affine derived schemes. In fact, we will formulate the derived version of many of the classical morphisms between schemes; in any case, we will use the following pattern:
+%
+%\begin{enumerate}
+%\item a brief recall of the classical version;
+%\item the definition of the derived version with a comparison;
+%\item a possible reformulation of the derived version in a more operational form.
+%\end{enumerate}
+%
+%\subsection{The cotangent complex}
+%
+%The cotangent complex is the derived version of the sheaf (module) of relative K\"ahler differentials. Since it is crucial in formulating many properties related to smoothness, we discuss it in first place.
+%
+%\subsubsection{Review of K\"ahler differentials}
+%
+%The module of K\"ahler differentials is tightly related to the notion of derivation.
+%
+%\begin{defin} \label{def derivation}
+%Let $A \in \mathrm{Comm}$ be a commutative ring with unit. Let $B$ be an $A$-algebra and $M$ be a $B$-module. An $A$-derivation of $B$ in $M$ is a morphism of $A$-modules $d \colon B \to M$ such that
+%\[
+%d(bc) = c \cdot d(b) + b \cdot d(c)
+%\]
+%The set of $A$-derivations of $B$ in $M$ is denoted $\mathrm{Der}_A(B,M)$.
+%\end{defin}
+%
+%Recall the following easy result:
+%
+%\begin{lemma} \label{lemma extension 1}
+%Let $0 \to I \to A \xrightarrow{\varphi} B \to 0$ be a square-zero extension of commutative rings (that is, $I^2 = 0$). Then for every $m \in I$ and $b \in B$ choose $a \in A$ such that $\varphi(a) = b$; setting
+%\[
+%b \cdot m := a m
+%\]
+%gives a well defined map $B \times I \to I$ endowing $I$ with the structure of $B$-module.
+%\end{lemma}
+%
+%\begin{proof}
+%Straightforward.
+%\end{proof}
+%
+%\begin{lemma} \label{lemma extension 2}
+%Let $A$ be a commutative ring, let $B$ be an $A$-algebra and consider a square-zero extension of $A$-algebras
+%\[
+%0 \to I \to C' \xrightarrow{\varphi} C \to 0
+%\]
+%For any morphism of $A$-algebras $f \colon B \to C$, consider $I$ as $C$-module via Lemma \ref{lemma extension 1} and then as $B$-module forgetting along $f$. Then if there is at least a map $g \colon B \to C'$ lifting $f$, the set of such liftings is in bijection with $\mathrm{Der}_A(B,I)$.
+%\end{lemma}
+%
+%\begin{proof}
+%Straightforward.
+%\end{proof}
+%
+%\begin{rmk}
+%The existence of at least a section is necessary. In fact, we can consider $0 \to 2 \Z / 4 \Z \to \Z / 4 \Z \to \Z / 2 \Z \to 0$ as $\Z$-algebras. We don't have sections $\Z / 2 \Z \to \Z / 4 \Z$, but the zero derivation always exists.
+%\end{rmk}
+%
+%Lemma \ref{lemma extension 2} applies in particular in the case of trivial extensions, yielding a canonical description of $\mathrm{Der}_A(B,M)$.
+%
+%\begin{defin}
+%Let $A \in \Ob(\mathrm{Comm})$ be a commutative ring, let $B$ be an $A$-algebra and let $M$ be a $B$-module. The trivial square zero extension of $B$ by $M$ is the $A$-algebra $B \oplus M$ endowed with multiplication given by
+%\[
+%(b,m) \cdot (c,n) := (bc, bn + cm)
+%\]
+%\end{defin}
+%
+%\begin{prop} \label{prop sections and derivations}
+%There is a natural isomorphism between $\mathrm{Der}_A(B,-) \colon \Mod_B \to \Set$ and the sections of the natural projection $B \oplus M \to B$.
+%\end{prop}
+%
+%Finally we have the following:
+%
+%\begin{thm} \label{thm kahler differentials}
+%The functor $\mathrm{Der}_A(B,-) \colon \Mod_B \to \Mod_B$ is corepresentable.
+%\end{thm}
+%
+%\begin{defin}
+%The unique object corepresenting $\mathrm{Der}_A(B,-)$ is called the module of (relative) K\"ahler differentials of $B$ over $A$ and it is denoted $\Omega^1_{B/A}$.
+%\end{defin}
+%
+%\subsubsection{Following To\"en and Vezzosi}
+%
+%We turn now to the construction of an analogue of the module of relative K\"ahler differentials in the setting of simplicial algebras. Namely, we are looking for good analogues of Definition \ref{def derivation}, Proposition \ref{prop sections and derivations} and Theorem \ref{thm kahler differentials}.
+%
+%Let $A \in \mathrm{sComm}$ be a simplicial commutative ring and consider an $A$-algebra $B$...
+%
+%\subsection{Homotopically of finite presentation}
+%
+%\subsubsection{Finite presentation: small objects}
+%
+%
+%
+%\subsubsection{In the derived setting}
+%
+%\subsection{Flatness}
+%
+%\begin{defin}
+%Let $A$ be a commutative ring. An $A$-module $M$ is said to be flat if the functor $- \otimes_A M \colon \Mod_A \to \Mod_A$ is exact.
+%\end{defin}
+%
+%\subsection{Zariski Open Immersions}
+%
+%\subsection{(Formally) \'Etale morphisms}
+%
+%\subsubsection{Review of classical \'etale morphisms}
+%
+%\begin{defin}
+%Let $R$ be a commutative ring and let $R \to B$ be an $R$-algebra. We say that $B$ is formally \'etale if for every exact sequence
+%\[
+%0 \to I \to A \xrightarrow{\varphi} A' \to 0
+%\]
+%where $A$ and $A'$ are local artinian $R$-algebras, the map
+%\[
+%\varphi_* \colon \Hom_R(B,A) \to \Hom_R(B,A')
+%\]
+%is bijective.
+%\end{defin}
+%
+%\begin{lemma}
+%Let $f \colon A \to B$ be a local morphism of noetherian local rings and assume that $B$ is formally \'etale over $A$. Then $f$ is unramified, that is
+%\[
+%\mathfrak m_A B = \mathfrak m_B
+%\]
+%\end{lemma}
+%
+%\begin{proof}
+%Since $f$ is a local morphism, $f^{-1}(\mathfrak m_B) = \mathfrak m_A$, so that $\mathfrak m_A B \subseteq \mathfrak m_B$ and we have a short exact sequence
+%\[
+%0 \to \mathfrak m_B / \mathfrak m_A B \to B / \mathfrak m_A B \to \kappa(\mathfrak m_B) \to 0
+%\]
+%Moreover $(\mathfrak m_B)^n \subset \mathfrak m_A B$.
+%\end{proof}
+%
+%\begin{proof}
+%Since $f$ is a local morphism we have a natural inclusion $\kappa(\mathfrak m_A) \subset \kappa(\mathfrak m_B)$. 
+%\end{proof}
+%
+%\begin{thm}
+%Let $f \colon R \to B$ be a local homomorphism of noetherian local rings containing a field $k$ isomorphic to their residue fields. Then the following conditions are equivalent:
+%\begin{enumerate}
+%\item $f$ is formally \'etale;
+%\item the homomorphism $\hat{f} \colon \hat{R} \to \hat{B}$ induced by $f$ is an isomorphism.
+%\end{enumerate}
+%\end{thm}
+%
+%\begin{proof}
+%Assume that $f$ is formally \'etale. We will construct a morphism $g \colon \hat{B} \to \hat{R}$ which is an inverse to $\hat{f}$. We will construct $g_n \colon \hat{B} \to R / \mathfrak m_R^n$ for all $n \in \N$, inductively. If $n = 1$, we can consider
+%\[
+%g_1 \colon \hat{B} \to \hat{B} / \mathfrak m_B \hat{B} = k \simeq R / \mathfrak m_R
+%\]
+%Assume now that $g_n$ has already been built, and consider the following diagram
+%\[
+%\xymatrix{
+%& & B \ar@{.>}[d]_{\widetilde{g_n}} \ar[r] & \hat{B} \ar[d]^{g_n} \ar@{.>}[dl]_{g_{n+1}} \\
+%0 \ar[r] & \mathfrak m_R^n / \mathfrak m_R^{n+1} \ar[r] & R / \mathfrak m_R^{n+1} \ar[r] & R / \mathfrak m_R^n \ar[r] & 0
+%}
+%\]
+%The first lifting $\widetilde{g_n}$ exists unique because $B$ is formally \'etale. The second lifting $g_{n+1}$ exists unique because $R / \mathfrak m_R^{n+1}$ is local artinian, hence complete. Therefore we obtain a compatible system of maps from $\hat{B}$ over
+%\[
+%\cdots \to R / \mathfrak m_R^{n+1} \to R / \mathfrak m_R^n \to \ldots \to R / \mathfrak m_R \to 0
+%\]
+%and so we also get a map
+%\[
+%g \colon \hat{B} \to \hat{R}
+%\]
+%by universal property of projective limit. It is now checked using the uniqueness statement in the definition of formally \'etale that $g$ is the inverse for $f$.
+%
+%Conversely, if $\hat{f} \colon \hat{R} \to \hat{B}$ is an isomorphism, it's completely clear that $f$ has to be formally étale.
+%\end{proof}
+%
+%\begin{cor}
+%Let $B$ be an $R$-algebra. Then $B$ is formally \'etale if and only if $\Omega^1_{B/R} = 0$.
+%\end{cor}
+%
+%\begin{itemize}
+%\item definition via K\"ahler differentials;
+%\item invertibility over formal neighbourhoods.
+%\end{itemize}
+%
+%\subsubsection{Derived \'etale morphisms}
+%
+%\subsection{(Formal) Smoothness}
+%
+%\subsubsection{In the classical setting}
+%
+%\subsubsection{Derived smoothness}
+
+\printbibliography[heading = local]
+
+\end{refsection}
