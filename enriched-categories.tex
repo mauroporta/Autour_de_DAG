@@ -5,71 +5,12 @@
 
 This appendix is not meant to prove anything in detail. We will collect here the definitions commonly used in Enriched Category Theory in order to recall them in an easier way. However, we will give appropriate references to every statement.
 
-\section{Monoidal categories}
-
-The reader is referred for example to \cite[Ch. VII]{cwm} for a detailed exposition of the theory of monoidal categories.
-
-\begin{defin}
-A \emph{monoidal category} is a 6-tuple $(\mathcal C, \otimes, I, \alpha, \lambda, \rho)$, where $\mathcal C$ is a category,
-\[
-\otimes \colon \mathcal C \times \mathcal C \to \mathcal C
-\]
-is a bifunctor, $I \in \Ob(\mathcal C)$ is an object of $\mathcal C$ and $\alpha, \lambda, \rho$ are natural isomorphisms:
-\begin{gather*}
-\alpha \colon - \otimes (- \otimes -) \simeq (- \otimes -) \otimes - \\
-\lambda \colon I \otimes - \simeq \mathrm{Id}_{\mathcal C} \\
-\rho \colon - \otimes I \simeq \mathrm{Id}_{\mathcal C}
-\end{gather*}
-making commutative the coherence diagrams
-\[
-\xymatrix{
-A \otimes (B \otimes (C \otimes D)) \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \alpha} \ar[r]^-\alpha & (A \otimes B) \otimes (C \otimes D) \ar[r]^\alpha & ((A \otimes B) \otimes C) \otimes D \\ A \otimes ((B \otimes C) \otimes D) \ar[rr]^\alpha & & (A \otimes (B \otimes C)) \otimes D \ar[u]^{\alpha \otimes \mathrm{Id}_{\mathcal C}}
-}
-\]
-and
-\[
-\xymatrix{
-A \otimes (I \otimes C) \ar[rr]^-\alpha  \ar[dr]_{\mathrm{Id}_{\mathcal C} \otimes \lambda} & & (A \otimes I) \otimes C \ar[dl]^{\rho \otimes \mathrm{Id}_{\mathcal C}} \\ & A \otimes C
-}
-\]
-Finally we require that $\lambda_I = \rho_I \colon I \otimes I \to I$.
-\end{defin}
-
-These conditions imply that a very large class of diagrams will commute in every monoidal category. These diagrams are those that can be obtained by specializing commutative diagrams in the free monoidal category on one generator. For more details, see \cite[Ch. VII.2]{cwm}.
-
-\begin{rmk}
-We will systematically abuse notations and refer to a monoidal category simply as a triple $(\mathcal C, \otimes, I)$, omitting the natural isomorphisms.
-\end{rmk}
-
-\begin{defin}
-A monoidal category $(\mathcal C, \otimes, I)$ is said to by symmetric if it is equipped with natural isomorphisms
-\[
-\gamma_{A,B} \colon A \otimes B \to B \otimes A
-\]
-such that the diagrams
-\begin{gather*}
-\gamma_{A,B} \circ \gamma_{B,A} = \mathrm{Id}_{\mathcal C}, \qquad \rho_B = \lambda_B \gamma_{B,I} \\
-\xymatrix{
-A \otimes (B \otimes C) \ar[r]^-\alpha \ar[d]^{\mathrm{Id}_{\mathcal C} \otimes \gamma} & (A \otimes B) \otimes C \ar[r]^\gamma & C \otimes (A \otimes B) \ar[d]^\alpha \\ A \otimes (C \otimes B) \ar[r]^\alpha & (A \otimes C) \otimes B \ar[r]^{\gamma \otimes \mathrm{Id}_{\mathcal C}} & (C \otimes A) \otimes B
-}
-\end{gather*}
-commute.
-\end{defin}
-
-\begin{defin}
-A monoidal category $(\mathcal C, \otimes, I)$ is said to be \emph{closed} if for every $X \in \Ob(\mathcal C)$ the functor
-\[
-- \otimes X \colon \mathcal C \to \mathcal C
-\]
-has a \emph{specified} right adjoint.
-\end{defin}
-
 \section{Enriched categories}
 
 We will follow the exposition given in \cite{kelly}.
 
 \begin{defin} \label{def enriched category}
-Let $\mathbb V = (\mathcal V, \otimes, I)$ be a monoidal category. A $\mathbb V$-category consists of the following data:
+Let $\mathbb V = (\mathcal V, \otimes, I)$ be a monoidal category (see Definition \ref{def monoidal category}). A $\mathbb V$-category consists of the following data:
 \begin{enumerate}
 \item a class of \emph{objects} $\mathcal A$;
 \item for each pair of objects $A,B \in \mathcal A$, the given of a \emph{hom-object} $\mathcal A(A,B;\mathbb V) \in \mathcal V$;
