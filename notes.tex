@@ -18,7 +18,7 @@
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
-\makeevenhead{headings}{\thepage}{}{Expos\'e \thechapter: \leftmark}
+\makeevenhead{headings}{\thepage}{}{\thechapter: \leftmark}
 %\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
 %\fancyhead[RE]{\bfseries\footnotesize\nouppercase{\leftmark}}
 %\fancyhead[LO]{\bfseries\footnotesize\nouppercase{\rightmark}}
@@ -31,9 +31,7 @@
 
 %Mathematical Fonts
 \usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage{mathcomp}
-\usepackage{mathrsfs}
 \usepackage[centertags]{amsmath}
 \usepackage{mathtools}
 \usepackage{calligra}
@@ -56,6 +54,7 @@
 
 %Bibliography settings
 %%%Packages
+\usepackage{csquotes}
 \usepackage[style = alphabetic, backend = biber, abbreviate = true, dateabbrev = long, alldates = long]{biblatex}
 %%%Settings
 \renewcommand*{\newunitpunct}{\addcomma\space} %Substitutes dots (.) with commas (,)
@@ -81,8 +80,11 @@
 \renewcommand\cftchaptername{Expos\'e }
 \chapterstyle{madsen}
 
+\setlength\headheight{12.6pt}
+
 \makeatletter
 \renewcommand\@chapapp{Expos\'e}
+\renewcommand{\@pnumwidth}{3em}
 \makeatother
 
 
@@ -211,7 +213,7 @@ Organised by: \\[.2em] \hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speaker
 }
 
 \begin{document}
-
+\pagenumbering{Alph}
 \begin{titlingpage}
   \vfill
   \hbox{
