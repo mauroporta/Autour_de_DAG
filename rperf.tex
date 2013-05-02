@@ -1,0 +1,84 @@
+\chapter{Derived moduli stacks}
+\chapterprecistoc{\textup{by} Pieter Belmans}
+\begin{flushright}
+  Pieter Belmans
+\end{flushright}
+
+\begin{refsection}
+
+\section{Introduction}
+
+\section{Preliminaries}
+Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-$\dash stacks from \cite{hagII}.
+
+\section{Properties of \texorpdfstring{$\RPerf$}{RPerf}}
+\begin{definition}
+  Let~$A_*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ be a~$\nerve(A_*)^\bullet$\dash dg~module\checkthis{cohomological indexing?}. We say it is of \emph{Tor amplitude contained in~$[a,b]$} if for every~$\pi_0(A_*)$\dash module~$M\in\Ob(\pi_0(A_*)\mhyphen\Mod)$ we have
+  \begin{equation}
+    \HH^i\left( P^\bullet\otimes_{\nerve(A_*)^\bullet}^\LLL M \right)=0
+  \end{equation}
+  if~$i\notin[a,b]$.
+\end{definition}
+
+\begin{definition}
+  If we take~$\mathcal{C}=k$ in definition \ref{definition:derived-stack-of-pseudoperfect-objects} we obtain the \emph{derived moduli stack of perfect modules}. It will be denoted~$\RPerf$.
+\end{definition}
+
+In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$.
+
+This derived stack serves as a ``base point'' for all other constructions. One first proves the properties for~$\RPerf$ (see theorem \ref{theorem:main-theorem-RPerf}), then one can try to lift these to derived moduli stacks for arbitraty dg~categories, under some appropriate finiteness conditions (see theorem \ref{theorem:main-theorem}).
+
+\begin{theorem}
+  \label{theorem:main-theorem-RPerf}
+  The derived moduli stack~$\RPerf$ is locally geometric and locally of finite presentation.
+
+  \begin{proof}[Sketch of a proof]
+    For the complete proof, see \cite[proposition 3.7]{toen-vaquie}.
+    \begin{enumerate}
+      \item Let~$a\leq b$ be integers. We will introduce a full derived substack~$\RPerf^{[a,b]}$ of~$\RPerf$.
+        
+        For~$A_*\in\Ob(\scAlg{k})$ we see that~$\pi_0(\RPerf(A_*))$ consists of the quasi-isomorphism classes of perfect~$\nerve(A_*)^\bullet$\dash dg~modules. Hence we can define~$\RPerf^{[a,b]}(A_*)$ to be the full subsimplicial set of~$\RPerf(A_*)$ of connected components that correspond to perfect~$\nerve(A_*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. We can then write
+        \begin{equation}
+          \RPerf=\bigcup_{a\leq b}\RPerf^{[a,b]}
+        \end{equation}
+        and we have reduced the proof to showing that~$\RPerf^{[a,b]}$ is locally geometric and locally of finite presentation. We can moreover prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric, where~$n=b-a+1$.
+
+      \item 
+    \end{enumerate}
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem:main-theorem}
+  Let~$\mathcal{C}$ be a dg~category of finite type. Then the derived moduli stack~$\mathcal{M}_{\mathcal{C}}$ is locally geometric and locally of finite presentation.
+\end{theorem}
+
+\section{Example: derived moduli stack of perfect complexes on a scheme}
+Consider a smooth and proper scheme~$X$ over a field~$k$. By~$\Qcoh_X$ we denote its category of quasicoherent sheaves. In general there is no obvious model category structure on~$\Ch(\Qcoh(X))$. But in this case~$X$ is quasicompact and separated, so by \cite{hovey-sheaves} there exists a model category structure on~$\Ch(\Qcoh_X)$ where the cofibrations are the monomorphisms and weak equivalences are quasi-isomorphisms. There is moreover an obvious~$\Ch(k\mhyphen\Mod)$\dash enrichment, so~$\Ch(\Qcoh_X)$ is a~$\Ch(k\mhyphen\Mod)$\dash model category. Using the internal dg~category as seen in definition~\ref{definition:internal-dg-category} we can define
+\begin{equation}
+  \LLL_\qcoh(X)\coloneqq\Int\left( \Ch(\Qcoh_X) \right).
+\end{equation}
+By proposition \ref{proposition:internal-category-is-dg-enrichtment} this category serves as a dg~enrichment of the ``standard'' unbounded derived category of quasicoherent sheaves, in the sense that
+\begin{equation}
+  \mathbf{D}_\qcoh(X)\cong\Ho\left( \LLL_\qcoh(X) \right).
+\end{equation}
+If we restrict ourselves to the perfect objects in\fixthis{introduce~$\LLL_\perf$} we obtain the equivalence
+\begin{equation}
+  \mathbf{D}_\perf(X)\cong\Ho\left( \LLL_\perf(X) \right),
+\end{equation}
+where now the smoothness comes into play.
+
+In order to apply the theory of derived moduli stacks certain finiteness conditions on the categories must be satisfied. Crucial in this is the result from \cite{bondal-vandenbergh}. One could paraphrase the main result as
+\begin{quote}
+  Quasicompact and quasiseparated\footnote{The intersection of two affine opens is again affine. This is always the case for separated schemes.} schemes are \emph{derived affine}.
+\end{quote}
+\begin{flushright}
+  \cite[corollary 3.1.8]{bondal-vandenbergh}
+\end{flushright}
+This means that~$\mathbf{D}_\qcoh(X)$ is equivalent to~$\mathbf{D}(A^\bullet)$, where~$A^\bullet$ is a dg~algebra with bounded cohomology. This algebra is moreover obtained by looking at~$\Ext^\bullet(E,E)$ where~$E$ is a compact generator for~$\mathbf{D}_\qcoh(X)$.
+
+\section{Example: derived moduli stack of pseudoperfect complexes of quiver representations}
+
+\printbibliography[heading = local]
+
+\end{refsection}

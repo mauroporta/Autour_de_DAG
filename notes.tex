@@ -153,6 +153,7 @@
 \newcommand\simp{\ensuremath{\mathbf{s}}}
 \DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{gr-Mod}}}
 \newcommand\Qcoh{\mathbf{Qcoh}}
+\DeclareDocumentCommand\scAlg{g}{\ensuremath{k\mhyphen\mathbf{sc\,Alg}}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
@@ -182,7 +183,6 @@
 \DeclareMathOperator{\map}{\mathrm{map}}
 \DeclareMathOperator{\Map}{\mathrm{Map}}
 \newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
-
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
 \DeclareMathOperator\HH{H}
@@ -206,6 +206,12 @@
 \newcommand\cont{\ensuremath{\mathrm{cont}}}
 \newcommand\Mor{\mathrm{Mor}}
 \DeclareMathOperator\RRR{\mathbf{R}}
+\newcommand\RPerf{\mathbf{R}\mathrm{Perf}}
+\newcommand\LLL{\mathbf{L}}
+\newcommand\qcoh{\mathrm{qcoh}}
+\newcommand\perf{\mathrm{perf}}
+
+\includeonly{rperf}
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
@@ -292,19 +298,20 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 
 \mainmatter
 
-\input{model-categories}
-\input{simplicial-localization}
-\input{quasicategories}
-\input{segal}
-\input{simplicial-presheaves}
-\input{higher-stacks}
-\input{dg}
-\input{affine-derived-schemes}
+\include{model-categories}
+\include{simplicial-localization}
+\include{quasicategories}
+\include{segal}
+\include{simplicial-presheaves}
+\include{higher-stacks}
+\include{dg}
+\include{affine-derived-schemes}
+\include{rperf}
 
 \appendix
 
-\input{simplicial-sets}
-\input{algebras-and-modules}
-\input{enriched-categories}
+\include{simplicial-sets}
+\include{algebras-and-modules}
+\include{enriched-categories}
 
 \end{document}
