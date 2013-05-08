@@ -168,29 +168,52 @@ Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\
   if~$i\notin[a,b]$.
 \end{definition}
 
+We first prove that the base derived stack~$\RPerf$ is locally geometric and locally of finite presentation \cite[proposition 3.7]{toen-vaquie}, then we lift this in theorem \ref{theorem:main-theorem} to dg~categories satisfying a certain finiteness condition \cite[theorem 3.6]{toen-vaquie}. The full proof of these statements is about 10 pages long, so we have to restrict ourselves to a mere sketch.
 \begin{theorem}
   \label{theorem:main-theorem-RPerf}
   The derived moduli stack~$\RPerf$ is locally geometric and locally of finite presentation.
 
   \begin{proof}[Sketch of a proof]
-    For the complete proof, see \cite[proposition 3.7]{toen-vaquie}.
-    \begin{enumerate}
-      \item Let~$a\leq b$ be integers. We will introduce a full derived substack~$\RPerf^{[a,b]}$ of~$\RPerf$.
-        
-        For~$A^*\in\Ob(\scAlg{k})$ we see that~$\pi_0(\RPerf(A^*))$ consists of the quasi-isomorphism classes of perfect~$\nerve(A^*)^\bullet$\dash dg~modules. Hence we can define~$\RPerf^{[a,b]}(A^*)$ to be the full subsimplicial set of~$\RPerf(A^*)$ of connected components that correspond to perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. We can then write
-        \begin{equation}
-          \RPerf=\bigcup_{a\leq b}\RPerf^{[a,b]}
-        \end{equation}
-        and we have reduced the proof to showing that~$\RPerf^{[a,b]}$ is locally geometric and locally of finite presentation. We can moreover prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric, where~$n=b-a+1$.
+    We first make the following reduction: let~$a\leq b$ be integers, then there exists a full derived substack~$\RPerf^{[a,b]}$ of~$\RPerf$.
+    
+    For~$A^*\in\Ob(\scAlg{k})$ we see that~$\pi_0(\RPerf(A^*))$ consists of the quasi-isomorphism classes of perfect~$\nerve(A^*)^\bullet$\dash dg~modules. Hence we can define~$\RPerf^{[a,b]}(A^*)$ to be the full subsimplicial set of~$\RPerf(A^*)$ of connected components that correspond to perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. We can then write
+    \begin{equation}
+      \RPerf=\bigcup_{a\leq b}\RPerf^{[a,b]}
+    \end{equation}
+    and we have reduced the proof to showing that~$\RPerf^{[a,b]}$ is locally geometric and locally of finite presentation. We can moreover prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric, where~$n=b-a+1$.
 
-      \item 
-    \end{enumerate}
+    To prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric we use \cite[lemma 2.18]{toen-vaquie}, to reduce this to a statement on the diagonal. Hence, let~$X=\mathbf{R}\Spec A^*$ be a representable (or affine) derived stack and let~$f,g\colon X\to\RPerf^{[a,b]}$ be two morphisms. Consider the homotopy fiber product
+    \begin{equation}
+      \begin{tikzcd}
+        X\times_{\RPerf^{[a,b]}}^{\mathrm{h}}X \arrow{r} \arrow{d} & X \arrow{d}{g} \\
+        X \arrow[swap]{r}{f} & \RPerf^{[a,b]}.
+      \end{tikzcd}
+    \end{equation}
+    We then have to prove that this homotopy fiber product is~$n-1$\dash geometric. This is done by induction on~$n-1=b-a$. If~$a=b$, we have that~$\RPerf^{[a,a]}$ is the derived stack of vector bundles \cite[corollary 1.3.7.4]{hagII}, which finishes this case.
+
+    Now let~$a<b$. As~$X$ is affine we have a simplicial commutative~$k$\dash algebra~$A^*$ representing it, and~$f$ and~$g$ are two~$A^*$\dash rational points of~$\RPerf^{[a,b]}$, hence they correspond to two perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$.
+
+    \expandthis{finish proof}
   \end{proof}
 \end{theorem}
 
 \begin{theorem}
   \label{theorem:main-theorem}
   Let~$\mathcal{C}$ be a dg~category of finite type. Then the derived moduli stack~$\mathcal{M}_{\mathcal{C}}$ is locally geometric and locally of finite presentation.
+
+  \begin{proof}[Sketch of a proof]
+    We can again make the decomposition
+    \begin{equation}
+      \mathcal{M}_{\mathcal{C}}=\bigcup_{a\leq b}\mathcal{M}_{\mathcal{C}}^{[a,b]}
+    \end{equation}
+    hence it suffices to prove that~$\mathcal{M}_{\mathcal{C}}^{[a,b]}$ is locally geometric and locally of finite presentation. We can actually proof that it is~$n$\dash geometric for some value of~$n$, which cannot be expressed in terms of~$a$ and~$b$ alone, but also depends on the number of generators used in the homotopically finite presentation of the dg~algebra~$B^\bullet$ that represents~$\mathcal{C}$ (as it is assumed to be of finite type) by \cite[corollary 2.12]{toen-vaquie}.
+
+    Hence to lift the result on~$\RPerf$ we have to prove that the morphism
+    \begin{equation}
+      \pi\colon\mathcal{M}_{\mathcal{C}}^{[a,b]}\to\RPerf^{[a,b]}
+    \end{equation}
+    is~$n$ representable (for some~$n$) and strongly of finite presentation\addreference{this then implies the result?}.
+  \end{proof}
 \end{theorem}
 
 \section{Example: derived moduli stack of perfect complexes on a scheme}
