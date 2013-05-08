@@ -7,9 +7,49 @@
 \begin{refsection}
 
 \section{Introduction}
+Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Some examples of well-known moduli problems are
+\begin{itemize}
+  \item the Hilbert scheme: parametrising closed subschemes of a given scheme;
+  \item the moduli of curves of genus~$g$;
+  \item the moduli of vector bundles of rank~$n$ on an algebraic variety.
+\end{itemize}
+The goal is to find a scheme, algebraic space or stack which represents the moduli problem. This was (and still is) one of the motivating reasons for the development of algebraic geometry, and whenever a moduli problem is representable it yields an example of a (often highly non-trivial) space. A striking example of this is the moduli~$\mathcal{M}_g$ of curves of genus~$g$ which for various~$g$ yields objects of greatly varying complexity.
+
+But there can be certain problems with this approach:
+\begin{enumerate}
+  \item the moduli problem at hand is not suited for the language of ``classical'' algebraic geometry\footnote{Often classical means Italian, but in this case it means the geometry from the sixties using commutative rings as building blocks.}: more difficult objects are involved, we only consider objects up to quasi-isomorphism, \dots;
+  \item the result of the moduli problem is not as nice as one would hope for: the \emph{hidden (quasi)smoothness principle} formulated by Be\u\i linson--Deligne--Drinfel'd--Kontsevich says singular moduli spaces are the ``shadow'' of smooth moduli spaces in a more general context.
+\end{enumerate}
+We will now give examples of these problems. We first state the classical case, and then we remark how derived algebraic geometry will address the problems that exist with these examples.
+\begin{example}[Moduli of objects in a $k$\dash linear category]
+  Let~$\mathcal{C}$ be a~$k$\dash linear category. As in chapter \ref{chapter:dg} we take~$k$ a commutative ring, not necessarily a field. We then define the moduli problem
+  \begin{equation}
+    \mathcal{M}_{\mathcal{C}}\colon k\mhyphen\mathbf{c\,Alg}\to\mathbf{Grpd}:A\mapsto\Fun_k(\mathcal{C}^\opp,k\mhyphen\Mod^{\mathrm{ft,proj}})
+  \end{equation}
+  by considering the groupoid of~$k$\dash linear functors from~$\mathcal{C}$ to the category of projective~$A$\dash modules of finite type. If we take~$\mathcal{C}=k$ (the category with a single object and~$k$ as its endomorphism ring) this is the category of vector bundles on~$\Spec A$, and the proof uses this fact. The tensor product
+  \begin{equation}
+    B\otimes_A-\colon A\mhyphen\Mod^{\mathrm{ft,proj}}\to B\mhyphen\Mod^{\mathrm{ft,proj}}
+  \end{equation}
+  yields morphism a~$\mathcal{M}_{\mathcal{C}}(A)\to\mathcal{M}_{\mathcal{C}}(B)$, and this gives a stack of the big \'etale site of affine~$k$\dash schemes.
+
+  If~$\mathcal{C}$ is of finite type as a~$k$\dash linear category, i.e.\ the category~$\mathcal{C}^\opp\mhyphen\Mod$ is equivalent to~$B\mhyphen\Mod$ where~$B$ is a finitely presented associative~$k$\dash algebra\footnote{We enter the realm of not necessarily commutative objects.}, then~$\mathcal{M}_{\mathcal{C}}$ is an Artin stack, locally of finite presentation.
+
+  This gives the mere existence of an Artin stack, but we need more conditions on~$\mathcal{C}$ to have a good relationship between the~$k$\dash rational points~$\mathcal{M}_{\mathcal{C}}(k)$ and~$\mathcal{C}$ itself \cite[remark 1.2]{toen-vaquie}.
+\end{example}
+
+\begin{remark}
+  We can ask the same thing for dg~categories, which are~$k$\dash linear categories with some extra structure. But whereas we are interested in isomorphisms in the classical case (and where the presence of automorphisms yields the necessity of stacks) we care about quasi-isomorphisms in case of dg~categories. Unfortunately the formalism of triangulated categories doesn't glue \cite{lnm2008}.
+  
+  Remark that the conditions for a good relationship between the~$k$\dash rational points and the category are more easily satisfied in this case, as will be explained in section~\ref{section:example}.
+\end{remark}
+
+\begin{example}[Vector bundles of rank $n$]
+  
+\end{example}
 
 \section{Preliminaries}
-Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-$\dash stacks from \cite{hagII}.
+\label{section:preliminaries}
+Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-$\dash stacks from \cite{hagII}. The notation~$\mathbf{D}^-$ is reminiscent of the objects involved: cochain complexes concentrated in non-positive degrees, related to the use of simplicial commutative rings and the Dold-Kan correspondence.
 
 \begin{definition}
   Let~$\mathcal{C}$ be a dg~category. The \emph{derived moduli stack of pseudoperfect~$\mathcal{C}^\opp$\dash dg~modules}~$\mathcal{M}_{\mathcal{C}}$ is given by the simplicial presheaf
@@ -45,7 +85,7 @@ This derived stack serves as a ``base point'' for all other constructions. One f
   The simplicial presheaf~$\mathcal{M}_{\mathcal{C}}$ is a derived stack.
 
   \begin{proof}[Sketch of a proof]
-    By \cite{hagII}\fixthis{how?} the proof is reduced to showing the following three properties:
+    As discussed in \cite[\S 2.1.1]{hagII} the proof is reduced to showing the following three properties:
     \begin{enumerate}
       \item for every weak equivalence~$A^*\weq B^*$ in~$\scAlg{k}$ is the natural morphism
         \begin{equation}
@@ -59,7 +99,7 @@ This derived stack serves as a ``base point'' for all other constructions. One f
         a quasi-equivalence;
       \item for every \'etale hypercovering~$X_*\to Y$ in~$\mathbf{D}^-\Aff$, or equivalently a co-augmented cosimplicial object~$A^*\to B_*^*$ in~$\scAlg{k}$ is
         \begin{equation}
-          \Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\weq\holim_{[n]\in\Ob(\Delta)}\Int_\perf\left( \dgMod{B_n}_k \right)
+          \Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\weq\holim_{[n]\in\Ob(\Delta)}\Int_\perf\left( \dgMod{B^n}_k \right)
         \end{equation}
         a quasi-equivalence.
     \end{enumerate}
@@ -84,6 +124,7 @@ This derived stack serves as a ``base point'' for all other constructions. One f
 
 
 \section{Properties of derived moduli stacks}
+\label{section:properties}
 Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\mathcal{C}}$ we introduce some ideas that are necessary for its proof. A reference for this is \cite[expos\'es I--III]{sga6}.
 \begin{definition}
   Let~$A^*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ be a~$\nerve(A^*)^\bullet$\dash dg~module. We say it is of \emph{Tor amplitude contained in~$[a,b]$} if for every~$\pi_0(A^*)$\dash module~$M\in\Ob(\pi_0(A^*)\mhyphen\Mod)$ we have
@@ -119,6 +160,7 @@ Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\
 \end{theorem}
 
 \section{Example: derived moduli stack of perfect complexes on a scheme}
+\label{section:example}
 Consider a smooth and proper scheme~$X$ over a field~$k$. By~$\Qcoh_X$ we denote its category of quasicoherent sheaves. In general there is no obvious model category structure on~$\Ch(\Qcoh(X))$. But in this case~$X$ is quasicompact and separated, so by \cite{hovey-sheaves} there exists a model category structure on~$\Ch(\Qcoh_X)$ where the cofibrations are the monomorphisms and weak equivalences are quasi-isomorphisms. There is moreover an obvious~$\Ch(k\mhyphen\Mod)$\dash enrichment, so~$\Ch(\Qcoh_X)$ is a~$\Ch(k\mhyphen\Mod)$\dash model category. Using the internal dg~category as seen in definition~\ref{definition:internal-dg-category} we can define
 \begin{equation}
   \LLL_\qcoh(X)\coloneqq\Int\left( \Ch(\Qcoh_X) \right).
@@ -162,7 +204,9 @@ We can then define the desired derived moduli stack.
   If one moreover restricts himself to the substack of~$1$\dash rigid objects\footnote{These are objects satisfying the vanishing of all higher homotopy groups for all base changes.} we obtain the classical result of the existence of an Artin stack~$\Coh_X$\checkthis{or $\Vect_X$ as in the introduction?!} that serves as a moduli space for coherent sheaves on~$X$ \cite[th\'eor\`eme 4.6.2.1]{laumon-moret-bailly} \cite[tag 08CW]{stacks}.
 \end{remark}
 
+
 \section{Example: derived moduli stack of pseudoperfect complexes of quiver representations}
+\label{section:example-2}
 
 \printbibliography[heading = local]
 
