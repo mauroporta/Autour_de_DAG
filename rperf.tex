@@ -45,9 +45,16 @@ We will now give examples of these issues. We first state the classical case, an
   Recall that the conditions for a good relationship between the~$k$\dash rational points and the category are more easily satisfied in this case, as will be explained in section~\ref{section:example}.
 \end{remark}
 
+The next example is an important motivation for the development of derived algebraic geometry, in the sense that it shows a problem that is already present in the classical case, and is not a different moduli problem.
 \begin{example}[Vector bundles of rank $n$]
-  
+  Let~$C$ be a smooth projective curve of genus~$g$ over a field~$k$. Then we have the moduli problem~$\Vect_n(C)$ parametrising vector bundles of rank~$n$ on~$C$. We can prove that it is an \emph{algebraic stack}. In a point~$\mathcal{E}\in\Vect_n(C)(k)$ we can compute the stacky tangent space~$\mathrm{T}_{\mathcal{E}}\Vect_n(C)$, and this will be a cochain complex concentrated in degrees~$[-1,0]$. By relating it to the Zariski cohomology of~$\smash{\EEnd(\mathcal{E})=\mathcal{E}\otimes_{\mathcal{O}_C}\mathcal{E}^\vee}$ we conclude that the dimension of the tangent space is equal to~$n^2(g-1)$, and therefore that~$\Vect_n(C)$ is both smooth and of constant dimension~$n^2(g-1)$.
+
+  Now let~$S$ be a smooth projective surface over a field. We can again consider the moduli problem~$\Vect_n(S)$ parametrising vector bundles of rank~$n$ on~$S$. Again it will be an \emph{algebraic stack}. But if we compute the stacky tangent space we no longer get a nice result, because now there is the higher cohomology group~$\HH^2(S,\EEnd(\mathcal{E})$ which is not present in the stacky tangent space. As the Euler characteristic is locally constant, and involves the dimension of this vectorspace, we see that if this dimension changes, we can no longer have a smooth stack.
 \end{example}
+
+\begin{remark}
+  The problem seems to be that the stacky tangent space is concentrated in~$[-1,1]$, but we have forgotten the object in degree~$1$. If we can find a \emph{derived moduli stack of vector bundles of rank~$n$} which we'll denote~$\RVect_n(S)$ that incorporates this information we could find an object that we expect to be \emph{smooth}, of dimension~$-\chi(S,\EEnd(\mathcal{E}))$.
+\end{remark}
 
 \section{Preliminaries}
 \label{section:preliminaries}
