@@ -201,22 +201,16 @@ Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\
 \end{definition}
 The following properties give some idea on how this notion behaves \cite[proposition 2.22]{toen-vaquie}
 \begin{proposition}
+  \label{proposition:Tor-amplitude}
   Let~$A^*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ and~$Q^\bullet$ be two perfect~$\nerve(A^*)^\bullet$\dash dg~modules.
   \begin{enumerate}
-      % Tor amplitude is additive for the derived tensor product
-    \item Let the Tor amplitude of~$P^\bullet$ (resp.\ $Q^\bullet$) be contained in~$[a,b]$ (resp.\ $[c,d]$), then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^\bullet$ is a perfect~$\nerve(A^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a+c,b+d]$.
-      % homotopy fiber turns [a,b] into [a,b+1]
-    \item Let the Tor amplitude of~$P^\bullet$ and~$Q^\bullet$ be contained in~$[a,b]$, then the homotopy fiber of~$f\colon P^\bullet\to Q^\bullet$ has Tor amplitude contained in~$[a,b+1]$.
-      % Tor amplitude can be checked for M=\pi_0(A^*)
-    \item The Tor amplitude of a~$\nerve(A^*)^\bullet$\dash dg~module~$P^\bullet$ is contained in~$[a,b]$ if and only if~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\pi_0(A^*)$ is a perfect complex of~$\pi_0(A^*)$\dash modules with Tor amplitude contained in~$[a,b]$.
-      % Tor amplitude is preserved under base change
-    \item Let~$A^*\to B^*$ be a morphism in~$\scAlg{k}$. Let the Tor amplitude of~$P^\bullet$ be contained in~$[a,b]$. Then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet$ is a perfect~$\nerve(B^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a,b]$.
-      % perfect dg modules have a Tor amplitude
-    \item We can find~$a\leq b$ such that the Tor amplitude of~$P^\bullet$ is contained in~$[a,b]$.
-      % Tor amplitude [a,a] implies shift of a projective module of finite type
-    \item Let the Tor amplitude of~$P^\bullet$ be~$[a,a]$. Then~$P^\bullet$ is isomorphic in~$\Ho(\dgMod{\nerve(A^*)^\bullet}_k)$ to the shift with~$a$ positions of a projective~$\nerve(A^*)^\bullet$\dash module of finite type.
-      % induction using shift of a projective dg module of finite type
-    \item Let the Tor amplitude of~$P^\bullet$ be~$[a,b]$. We can find a projective~$\nerve(A^*)^\bullet$\dash dg~module of finite type~$E$ and a morphism~$E[-b]\to P^\bullet$ such that the homotopy cofiber has Tor amplitude contained in~$[a,b-1]$.
+    \item\label{enumerate:Tor-amplitude-1} Let the Tor amplitude of~$P^\bullet$ (resp.\ $Q^\bullet$) be contained in~$[a,b]$ (resp.\ $[c,d]$), then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^\bullet$ is a perfect~$\nerve(A^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a+c,b+d]$.
+    \item\label{enumerate:Tor-amplitude-2} Let the Tor amplitude of~$P^\bullet$ and~$Q^\bullet$ be contained in~$[a,b]$, then the homotopy fiber of~$f\colon P^\bullet\to Q^\bullet$ has Tor amplitude contained in~$[a,b+1]$.
+    \item\label{enumerate:Tor-amplitude-3} The Tor amplitude of a~$\nerve(A^*)^\bullet$\dash dg~module~$P^\bullet$ is contained in~$[a,b]$ if and only if~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\pi_0(A^*)$ is a perfect complex of~$\pi_0(A^*)$\dash modules with Tor amplitude contained in~$[a,b]$.
+    \item\label{enumerate:Tor-amplitude-4} Let~$A^*\to B^*$ be a morphism in~$\scAlg{k}$. Let the Tor amplitude of~$P^\bullet$ be contained in~$[a,b]$. Then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet$ is a perfect~$\nerve(B^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a,b]$.
+    \item\label{enumerate:Tor-amplitude-5} We can find~$a\leq b$ such that the Tor amplitude of~$P^\bullet$ is contained in~$[a,b]$.
+    \item\label{enumerate:Tor-amplitude-6} Let the Tor amplitude of~$P^\bullet$ be~$[a,a]$. Then~$P^\bullet$ is isomorphic in~$\Ho(\dgMod{\nerve(A^*)^\bullet}_k)$ to the shift with~$a$ positions of a projective~$\nerve(A^*)^\bullet$\dash module of finite type.
+    \item\label{enumerate:Tor-amplitude-7} Let the Tor amplitude of~$P^\bullet$ be~$[a,b]$. We can find a projective~$\nerve(A^*)^\bullet$\dash dg~module of finite type~$E$ and a morphism~$E[-b]\to P^\bullet$ such that the homotopy cofiber has Tor amplitude contained in~$[a,b-1]$.
   \end{enumerate}
 \end{proposition}
 
@@ -259,6 +253,26 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     Now let~$a<b$. As~$X$ is affine we have a simplicial commutative~$k$\dash algebra~$A^*$ representing it, and~$f$ and~$g$ are two~$A^*$\dash rational points of~$\RPerf^{[a,b]}$, hence they correspond to two perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$.
 
     \expandthis{finish proof}
+
+    The last thing to prove is that~$\RPerf^{[a,b]}$ has an~$n$\dash atlas~$U\to\RPerf^{[a,b]}$, where~$n=b-a+1$ and~$U$ is locally of finite presentation\addreference. This is again done by induction on the amplitude. If~$a=b$ we get the derived stack of vector bundles, i.e.\
+    \begin{equation}
+      \RPerf^{[a,a]}=\bigcup_{n\geq 0}\RVect_n
+    \end{equation}
+    and by \cite[corollary 1.3.7.4]{hagII} we obtain that it is a~$1$\dash geometric derived stack, locally of finite presentation\fixthis{introduce these notions}.
+
+    Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~$\dgMod{\nerve(A^*)^\bullet}_k$ with its projective model category, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ Tor amplitude~$[b-1,b-1]$\checkthis. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
+    \begin{equation}
+      p\colon U\to\RPerf^{[a,b-1]}\times^{\mathrm{h}}\RVect:(u\colon Q^\bullet\to R^\bullet)\mapsto(Q^\bullet,R^\bullet[b-1]).
+    \end{equation}
+    Given the derived stack~$U$ we construct a morphism
+    \begin{equation}
+      \pi\colon U\to\RPerf^{[a,b]}
+    \end{equation}
+    by setting
+    \begin{equation}
+      \pi_{A^*}\colon U(A^*)\to\RPerf(A^*):(u\colon Q^\bullet\to R^\bullet)\mapsto\hofib(u)
+    \end{equation}
+    for~$A^*$ a simplicial commutative~$k$\dash algebra. One then proves that~$\pi$ is a~$(n-1)$\dash representable smooth covering. To check that it is a covering we use proposition \ref{proposition:Tor-amplitude}\ref{enumerate:Tor-amplitude-7}. To check that it is smooth one reduces things to the cotangent complex \cite[corollary 2.2.5.3]{hagII}.
   \end{proof}
 \end{theorem}
 
