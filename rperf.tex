@@ -7,7 +7,7 @@
 \begin{refsection}
 
 \section{Introduction}
-Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Some examples of well-known moduli problems are
+Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Given a good description one can then prove properties of the family or single objects. Some examples of well-known moduli problems are
 \begin{itemize}
   \item the Hilbert scheme: parametrising closed subschemes of a given scheme;
   \item the moduli of curves of genus~$g$;
@@ -20,13 +20,13 @@ But there can be certain problems with this approach:
   \item the moduli problem at hand is not suited for the language of ``classical'' algebraic geometry\footnote{Often classical means Italian, but in this case it means the geometry from the sixties using commutative rings as building blocks.}: more difficult objects are involved, we only consider objects up to quasi-isomorphism, \dots;
   \item the result of the moduli problem is not as nice as one would hope for: the \emph{hidden (quasi)smoothness principle} formulated by Be\u\i linson--Deligne--Drinfel'd--Kontsevich says singular moduli spaces are the ``shadow'' of smooth moduli spaces in a more general context.
 \end{enumerate}
-We will now give examples of these problems. We first state the classical case, and then we remark how derived algebraic geometry will address the problems that exist with these examples.
+We will now give examples of these issues. We first state the classical case, and then we remark how derived algebraic geometry will address the problems that exist with these examples.
 \begin{example}[Moduli of objects in a $k$\dash linear category]
   Let~$\mathcal{C}$ be a~$k$\dash linear category. As in chapter \ref{chapter:dg} we take~$k$ a commutative ring, not necessarily a field. We then define the moduli problem
   \begin{equation}
-    \mathcal{M}_{\mathcal{C}}\colon k\mhyphen\mathbf{c\,Alg}\to\mathbf{Grpd}:A\mapsto\Fun_k(\mathcal{C}^\opp,k\mhyphen\Mod^{\mathrm{ft,proj}})
+    \mathcal{M}_{\mathcal{C}}\colon k\mhyphen\mathbf{c\,Alg}\to\mathbf{Grpd}:A\mapsto\Fun_k(\mathcal{C}^\opp,A\mhyphen\Mod^{\mathrm{ft,proj}})
   \end{equation}
-  by considering the groupoid of~$k$\dash linear functors from~$\mathcal{C}$ to the category of projective~$A$\dash modules of finite type. If we take~$\mathcal{C}=k$ (the category with a single object and~$k$ as its endomorphism ring) this is the category of vector bundles on~$\Spec A$, and the proof uses this fact. The tensor product
+  by considering the groupoid of~$k$\dash linear functors from~$\mathcal{C}$ to the category of projective~$A$\dash modules of finite type. If we take~$\mathcal{C}=k$ (the category with a single object and~$k$ as its endomorphism ring) this is the category of vector bundles on~$\Spec A$, and a possible proof of the geometric properties of~$\mathcal{M}_{\mathcal{C}}$ uses this fact. The tensor product
   \begin{equation}
     B\otimes_A-\colon A\mhyphen\Mod^{\mathrm{ft,proj}}\to B\mhyphen\Mod^{\mathrm{ft,proj}}
   \end{equation}
@@ -34,13 +34,15 @@ We will now give examples of these problems. We first state the classical case, 
 
   If~$\mathcal{C}$ is of finite type as a~$k$\dash linear category, i.e.\ the category~$\mathcal{C}^\opp\mhyphen\Mod$ is equivalent to~$B\mhyphen\Mod$ where~$B$ is a finitely presented associative~$k$\dash algebra\footnote{We enter the realm of not necessarily commutative objects.}, then~$\mathcal{M}_{\mathcal{C}}$ is an Artin stack, locally of finite presentation.
 
-  This gives the mere existence of an Artin stack, but we need more conditions on~$\mathcal{C}$ to have a good relationship between the~$k$\dash rational points~$\mathcal{M}_{\mathcal{C}}(k)$ and~$\mathcal{C}$ itself \cite[remark 1.2]{toen-vaquie}.
+  This gives the mere \emph{existence} of an Artin stack, but we need more conditions on~$\mathcal{C}$ to have a good relationship between the~$k$\dash rational points~$\mathcal{M}_{\mathcal{C}}(k)$ and~$\mathcal{C}$ itself \cite[remark 1.2]{toen-vaquie}. These conditions are rather strong, and are not satisfied in general for the category~$\Qcoh_X$ on a scheme~$X$. We will have to use derived categories to find an analogue of the required property, which is more easily satisfied.
 \end{example}
 
 \begin{remark}
   We can ask the same thing for dg~categories, which are~$k$\dash linear categories with some extra structure. But whereas we are interested in isomorphisms in the classical case (and where the presence of automorphisms yields the necessity of stacks) we care about quasi-isomorphisms in case of dg~categories. Unfortunately the formalism of triangulated categories doesn't glue \cite{lnm2008}.
+
+  Using derived algebraic geometry on the other hand the quasi-isomorphisms become tractable, and by developing good analogues of the conditions in the~$k$\dash linear case we can try to develop a \emph{derived moduli stack of objects in a dg~category}. This instance of a derived moduli stack is the main result of \cite{toen-vaquie} and is also the example we will discuss in this expos\'e.
   
-  Remark that the conditions for a good relationship between the~$k$\dash rational points and the category are more easily satisfied in this case, as will be explained in section~\ref{section:example}.
+  Recall that the conditions for a good relationship between the~$k$\dash rational points and the category are more easily satisfied in this case, as will be explained in section~\ref{section:example}.
 \end{remark}
 
 \begin{example}[Vector bundles of rank $n$]
