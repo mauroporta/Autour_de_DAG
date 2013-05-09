@@ -61,6 +61,7 @@ The next example is an important motivation for the development of derived algeb
 Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-$\dash stacks from \cite{hagII}. The notation~$\mathbf{D}^-$ is reminiscent of the objects involved: cochain complexes concentrated in non-positive degrees, related to the use of simplicial commutative rings and the Dold-Kan correspondence.
 
 \begin{definition}
+  \label{definition:derived-stack-of-pseudoperfect-objects}
   Let~$\mathcal{C}$ be a dg~category. The \emph{derived moduli stack of pseudoperfect~$\mathcal{C}^\opp$\dash dg~modules}~$\mathcal{M}_{\mathcal{C}}$ is given by the simplicial presheaf
   \begin{equation}
     \mathcal{M}_{\mathcal{C}}:\scAlg{k}\to\sSet:A^*\mapsto\Map_{\dgCat_K}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right).
@@ -85,11 +86,9 @@ We remark that
   If we take~$\mathcal{C}=k$ in definition \ref{definition:derived-stack-of-pseudoperfect-objects} we obtain the \emph{derived moduli stack of perfect modules}. It will be denoted~$\RPerf$.
 \end{definition}
 
-In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$.
+In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$. To stress the actual nature of this object the notation~$\RPerf$ is more appropriate, as we will have some specific choices for the category~$\mathcal{C}$: these will yield the derived moduli stacks~$\RPerf_X$ and~$\RPerf_Q$ \cite[section 3.5]{toen-vaquie}.
 
-This derived stack serves as a ``base point'' for all other constructions. One first proves the properties for~$\RPerf$ (see theorem \ref{theorem:main-theorem-RPerf}), then one can try to lift these to derived moduli stacks for arbitraty dg~categories, under some appropriate finiteness conditions (see theorem \ref{theorem:main-theorem}). But first we have to show that it is indeed a derived stack! Recall again that ``derived stack'' should be interpreted in terms of \cite[definition 1.3.2.1]{hagII}.
-
-First of all, we have to prove that this base stack is in fact a stack \cite[lemma 3.1]{toen-vaquie}.
+The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other constructions. One first proves the properties for~$\RPerf$ (see theorem \ref{theorem:main-theorem-RPerf}), then one can try to lift these to derived moduli stacks for arbitrary dg~categories, under some appropriate finiteness conditions (see theorem \ref{theorem:main-theorem}). But first we have to show that it is indeed a derived stack \cite[lemma 3.1]{toen-vaquie}! Recall again that ``derived stack'' should be interpreted in terms of \cite[definition 1.3.2.1]{hagII}.
 
 \begin{theorem}
   \label{theorem:derived-moduli-stack-is-stack}
@@ -116,24 +115,22 @@ First of all, we have to prove that this base stack is in fact a stack \cite[lem
         \end{equation}
         a quasi-equivalence.
     \end{enumerate}
-    Or in a more sloganesque way\fixthis{this should be used in the actual lecture}
-    \begin{enumerate}
-      \item $\mathcal{M}_{\mathcal{C}}$ preserves weak equivalences;
-      \item $\mathcal{M}_{\mathcal{C}}$ is compatible with finite products;
-      \item $\mathcal{M}_{\mathcal{C}}$ is compatible with \'etale hypercovers.
-    \end{enumerate}
+    %Or in a more sloganesque way
+    %\begin{enumerate}
+    %  \item $\mathcal{M}_{\mathcal{C}}$ preserves weak equivalences;
+    %  \item $\mathcal{M}_{\mathcal{C}}$ is compatible with finite products;
+    %  \item $\mathcal{M}_{\mathcal{C}}$ is compatible with \'etale hypercovers.
+    %\end{enumerate}
 
-    \expandthis{write complete proof?}
-    
-    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence \addreference, so we obtain a quasi-equivalence~$\Int(\dgMod{\nerve(A^*)^\bullet}_k)\to\Int(\dgMod{\nerve(B^*)^\bullet}_k)$ \addreference. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
+    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence \addreference, so we obtain a quasi-equivalence~$\Int(\dgMod{\nerve(A^*)^\bullet}_k)\to\Int(\dgMod{\nerve(B^*)^\bullet}_k)$ \cite[proposition 3.2]{toen}. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
 
     By \cite[corollary 1.3.7.4]{hagII} we have that perfectness is \'etale local, hence we can drop the perfectness condition when proving properties~2 and~3. We then observe that
     \begin{equation}
       \Int\left( \dgMod{\nerve\left( A^*\times B^*)^\bullet}_k \right) \right)\to\Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\times\Int\left( \dgMod{\nerve(B^*)^\bullet}_k \right)
     \end{equation}
-    is a quasi-equivalence because\expandthis, which proves property~2.
+    is a quasi-equivalence because the nerve construction respects products, just like the internal dg~category, which proves property~2.
 
-    The last property is slightly more involved, and requires the results from \cite{toen} discussed in section \addreference. First of all, we have reduced \eqref{equation:condition-3} to
+    The last property is slightly more involved, and requires the results from \cite{toen} discussed in section~\ref{section:mapping-spaces}. First of all, we have reduced \eqref{equation:condition-3} to
     \begin{equation}
       \Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\to\holim_{[n]\in\Ob(\Delta)}\Int\left( \dgMod{B^n}_k \right)
     \end{equation}
@@ -153,7 +150,7 @@ First of all, we have to prove that this base stack is in fact a stack \cite[lem
     \begin{equation}
       \nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(A^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)\to\holim_{[n]\in\Ob(\Delta)}\nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(B_n^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)
     \end{equation}
-    is a weak equivalence. But this follows from \addreference.
+    is a weak equivalence. But this follows from \cite[corollary B.0.8]{hagII}.
   \end{proof}
 \end{theorem}
 
@@ -162,7 +159,7 @@ First of all, we have to prove that this base stack is in fact a stack \cite[lem
   \begin{equation}
     \Map_{\dgCat_k}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod_k \right) \right)
   \end{equation}
-  and by \cite{toen} this simplicial set is weakly equivalent to the category of weak equivalences of~$\mathcal{C}^\opp$\dash dg~modules~$M$ such that~$M(C)^\bullet$ is a perfect complex of~$k$\dash modules for every~$C\in\Ob(\mathcal{C})$.\fixthis{full reference to result}
+  and by \cite{toen} this simplicial set is weakly equivalent to the category of weak equivalences of~$\mathcal{C}^\opp$\dash dg~modules~$M$ such that~$M(C)^\bullet$ is a perfect complex of~$k$\dash modules for every~$C\in\Ob(\mathcal{C})$ \cite[corollary 7.6]{toen}.
 \end{example}
 
 
