@@ -20,7 +20,7 @@ But there can be certain problems with this approach:
   \item the moduli problem at hand is not suited for the language of ``classical'' algebraic geometry\footnote{Often classical means Italian, but in this case it means the geometry from the sixties using commutative rings as building blocks.}: more difficult objects are involved, we only consider objects up to quasi-isomorphism, \dots;
   \item the result of the moduli problem is not as nice as one would hope for: the \emph{hidden (quasi)smoothness principle} formulated by Be\u\i linson--Deligne--Drinfel'd--Kontsevich says singular moduli spaces are the ``shadow'' of smooth moduli spaces in a more general context.
 \end{enumerate}
-We will now give examples of these issues. We first state the classical case, and then we remark how derived algebraic geometry will address the problems that exist with these examples.
+We will now give examples of these issues. We first state the classical case, and then we remark how derived algebraic geometry will address the problems that exist with these examples. The first example is a generalised moduli problem for which classical algebraic geometry is not suited \cite[section 1]{toen-vaquie}.
 \begin{example}[Moduli of objects in a $k$\dash linear category]
   Let~$\mathcal{C}$ be a~$k$\dash linear category. As in chapter \ref{chapter:dg} we take~$k$ a commutative ring, not necessarily a field. We then define the moduli problem
   \begin{equation}
@@ -38,18 +38,18 @@ We will now give examples of these issues. We first state the classical case, an
 \end{example}
 
 \begin{remark}
-  We can ask the same thing for dg~categories, which are~$k$\dash linear categories with some extra structure. But whereas we are interested in isomorphisms in the classical case (and where the presence of automorphisms yields the necessity of stacks) we care about quasi-isomorphisms in case of dg~categories. Unfortunately the formalism of triangulated categories doesn't glue \cite{lnm2008}.
+  We can ask the same thing for dg~categories, which are~$k$\dash linear categories with some extra structure. But whereas we are interested in isomorphisms in the classical case (and where the presence of automorphisms yields the necessity of stacks) we care about quasi-isomorphisms in case of dg~categories. Unfortunately the formalism of triangulated categories doesn't glue \cite[example 4 in section 2.2]{lnm2008-toen}.
 
   Using derived algebraic geometry on the other hand the quasi-isomorphisms become tractable, and by developing good analogues of the conditions in the~$k$\dash linear case we can try to develop a \emph{derived moduli stack of objects in a dg~category}. This instance of a derived moduli stack is the main result of \cite{toen-vaquie} and is also the example we will discuss in this expos\'e.
   
   Recall that the conditions for a good relationship between the~$k$\dash rational points and the category are more easily satisfied in this case, as will be explained in section~\ref{section:example}.
 \end{remark}
 
-The next example is an important motivation for the development of derived algebraic geometry, in the sense that it shows a problem that is already present in the classical case, and is not a different moduli problem.
+The next example is an important motivation for the development of derived algebraic geometry, in the sense that it shows a problem that is already present in the classical case, and is not a different moduli problem \cite[section 1.2]{hag2dag}.
 \begin{example}[Vector bundles of rank $n$]
   Let~$C$ be a smooth projective curve of genus~$g$ over a field~$k$. Then we have the moduli problem~$\Vect_n(C)$ parametrising vector bundles of rank~$n$ on~$C$. We can prove that it is an \emph{algebraic stack}. In a point~$\mathcal{E}\in\Vect_n(C)(k)$ we can compute the stacky tangent space~$\mathrm{T}_{\mathcal{E}}\Vect_n(C)$, and this will be a cochain complex concentrated in degrees~$[-1,0]$. By relating it to the Zariski cohomology of~$\smash{\EEnd(\mathcal{E})=\mathcal{E}\otimes_{\mathcal{O}_C}\mathcal{E}^\vee}$ we conclude that the dimension of the tangent space is equal to~$n^2(g-1)$, and therefore that~$\Vect_n(C)$ is both smooth and of constant dimension~$n^2(g-1)$.
 
-  Now let~$S$ be a smooth projective surface over a field. We can again consider the moduli problem~$\Vect_n(S)$ parametrising vector bundles of rank~$n$ on~$S$. Again it will be an \emph{algebraic stack}. But if we compute the stacky tangent space we no longer get a nice result, because now there is the higher cohomology group~$\HH^2(S,\EEnd(\mathcal{E})$ which is not present in the stacky tangent space. As the Euler characteristic is locally constant, and involves the dimension of this vectorspace, we see that if this dimension changes, we can no longer have a smooth stack.
+  Now let~$S$ be a smooth projective surface over a field. We can again consider the moduli problem~$\Vect_n(S)$ parametrising vector bundles of rank~$n$ on~$S$. Again it will be an \emph{algebraic stack}. But if we compute the stacky tangent space we no longer get a nice result, because now there is the higher cohomology group~$\HH^2(S,\EEnd(\mathcal{E}))$ which is not present in the stacky tangent space. As the Euler characteristic is locally constant, and involves the dimension of this vectorspace, we see that if this dimension changes, we can no longer have a smooth stack.
 \end{example}
 
 \begin{remark}
