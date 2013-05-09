@@ -7,7 +7,7 @@
 \begin{refsection}
 
 \section{Introduction}
-Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Given a good description one can then prove properties of the family as a whole, or of single objects as one can try to reduce statements object general objects to more tractable ones. Some examples of well-known moduli problems are
+Moduli problems are situations in which you try to describe a ``family of geometric objects'' using anoter geometric object. Given a sufficiently nice resulting geometric object one can then prove properties of the family as a whole, or of single objects as one can try to reduce statements object general objects to more tractable ones. Some examples of well-known moduli problems are
 \begin{itemize}
   \item the Hilbert scheme: parametrising closed subschemes of a given scheme;
   \item the moduli of curves of genus~$g$;
@@ -148,7 +148,7 @@ The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other const
     %  \item $\mathcal{M}_{\mathcal{C}}$ is compatible with \'etale hypercovers.
     %\end{enumerate}
 
-    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence \addreference, so we obtain a quasi-equivalence~$\Int(\dgMod{\nerve(A^*)^\bullet}_k)\to\Int(\dgMod{\nerve(B^*)^\bullet}_k)$ \cite[proposition 3.2]{toen}. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
+    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence by lemma \ref{lemma:quillen-adjunction-equivalence-simplicial-tensor-product}, so we obtain a quasi-equivalence~$\Int(\dgMod{\nerve(A^*)^\bullet}_k)\to\Int(\dgMod{\nerve(B^*)^\bullet}_k)$ \cite[proposition 3.2]{toen}. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
 
     By \cite[corollary 1.3.7.4]{hagII} we have that perfectness is \'etale local, hence we can drop the perfectness condition when proving properties~2 and~3. We then observe that
     \begin{equation}
