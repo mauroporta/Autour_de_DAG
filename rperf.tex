@@ -65,6 +65,14 @@ Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-
 In order to get a nice result we need to impose a certain finiteness condition on the codomain category in the generalisation of \eqref{equation:moduli-linear-category} to dg~categories. In the~$k$\dash linear case we considered projective modules of finite type, which corresponds to the notion of perfectness in derived categories. Hence the generalisation to dg~categories is motivated by this observation.
 
 \begin{definition}
+  Let~$\mathcal{C}$ be a dg~category. Let~$M$ be a~$\mathcal{C}^\opp$\dash dg~module. We say~$M$ is \emph{perfect} (or \emph{compact}) if it is homotopically finitely presented in~$\dgMod{\mathcal{C}^\opp}_k$, i.e.\ for every filtered system of~$\mathcal{C}^\opp$\dash dg~modules~$(N_i)_{i\in I}$ is the morphism
+  \begin{equation}
+    \colim_{i\in I}\Map_{\dgMod{\mathcal{C}^\opp}_k}(M,N_i)\to\Map_{\dgMod{\mathcal{C}^\opp}_k}\left( M,\hocolim_{i\in I}N_i \right) 
+  \end{equation}
+  an isomorphism in~$\Ho(\sSet)$. The full dg~subcategory of perfect objects in~$\Int(\dgMod{\mathcal{C}^\opp}_k)$ is denoted~$\Int_\perf(\dgMod{\mathcal{C}^\opp}_k)$.
+\end{definition}
+The following definition is a notion of perfectness for bimodules.
+\begin{definition}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. Let~$M$ be an object of~$\Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)$. Let~$C$ be an object of~$\mathcal{C}$. We can define a morphism of dg~categories~$\ev_M$ which acts as a partial evaluation in the first parameter, by setting
   \begin{equation}
     \ev_M(C)\colon\mathcal{D}^\opp\to\Ch_\dg(k\mhyphen\Mod):D\mapsto M(C,D)^\bullet.
@@ -83,9 +91,35 @@ In order to get a nice result we need to impose a certain finiteness condition o
       & \Int_\perf(\dgMod{\mathcal{D}^\opp}_k) \arrow[hook]{u}.
     \end{tikzcd}
   \end{equation}
-  \checkthis{we won't need the full dg subcategory, right?}
 \end{definition}
 If we take~$\mathcal{D}=k$ we get the absolute version of this definition, and we say that $M$ is a \emph{pseudoperfect~$\mathcal{C}^\opp$\dash dg~module}.
+
+We now give several finiteness properties a dg~category can satisfy.
+\begin{definition}
+  Let~$\mathcal{C}$ be a dg~category. We say that it
+  \begin{enumerate}
+    \item is \emph{locally perfect} or \emph{locally proper} if for every~$C$ and~$D\in\Ob(\mathcal{C})$ the morphism cochain complex~$\Hom_{\mathcal{C}}(C,D)^\bullet$ is a perfect complex of~$k$\dash modules;
+    \item has \emph{a compact generator} is the triangulated category~$\HH^0(\Int(\dgMod{\mathcal{C}^\opp}_k))$ has a compact generator;
+    \item is \emph{proper} if it is locally proper and it has a compact generator;
+    \item is \emph{smooth} if it is a perfect object in~$\Int\left( \dgMod{(\mathcal{C}^\opp\otimes^{\mathbf{L}}\mathcal{C})^\opp}_k \right)$, using the interpretation
+      \begin{equation}
+        \mathcal{C}\colon\mathcal{C}^\opp\otimes^{\mathbf{L}}\mathcal{C}:(C,D)\mapsto\Hom_{\mathcal{C}}(C,D)^\bullet;
+      \end{equation}
+    \item is \emph{pretriangualted} if~$\mathcal{C}\to\Int_\perf(\dgMod{\mathcal{C}^\opp}_k)$ is a quasi-equivalence;
+    \item is \emph{saturated} if it is proper, smooth and pretriangulated;
+    \item is \emph{of finite type} if there exists a dg~algebra~$B^\bullet$ which is homotopically finitely presented in~$\dgAlg$ such that~$\Int(\dgMod{\mathcal{C}^\opp}_k)$ is quasi-equivalent to~$\Int(\dgMod{B^\bullet}_k)$.
+  \end{enumerate}
+\end{definition}
+Before we define the main object of study we list some of the properties that can be deduced from these finiteness conditions.
+\begin{proposition}
+  \label{proposition:dg-properties}
+  Let~$\mathcal{C}$ be a dg~category.
+  \begin{enumerate}
+    \item If~$\mathcal{C}$ is saturated than an object in~$\Ho(\Int(\dgMod{\mathcal{C}^\opp}_k))$ is pseudoperfect if and only if it is quasirepresentable \cite[corollary 2.9(2)]{toen-vaquie}.
+    \item If~$\mathcal{C}$ is smooth and proper then it is of finite type \cite[corollary 2.13]{toen-vaquie}.
+    \item If~$\mathcal{C}$ is of finite type then it is smooth \cite[corollary 2.14]{toen-vaquie}.
+  \end{enumerate}
+\end{proposition}
 
 \begin{definition}
   \label{definition:derived-stack-of-pseudoperfect-objects}
@@ -114,6 +148,10 @@ We remark that
 \end{definition}
 
 In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$. To stress the actual nature of this object the notation~$\RPerf$ is more appropriate, as we will have some specific choices for the category~$\mathcal{C}$: these will yield the derived moduli stacks~$\RPerf_X$ and~$\RPerf_Q$ \cite[section 3.5]{toen-vaquie}.
+\begin{remark}
+  \label{remark:saturated}
+  In case the dg~category is saturated, we see that by proposition \ref{proposition:dg-properties} every quasirepresentable object is pseudoperfect (and vice versa). Hence in this case~$\mathcal{M}_{\mathcal{C}}$ is truly a moduli space of objects in~$\mathcal{C}$!
+\end{remark}
 
 The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other constructions. One first proves the properties for~$\RPerf$ (see theorem \ref{theorem:main-theorem-RPerf}), then one can try to lift these to derived moduli stacks for arbitrary dg~categories, under some appropriate finiteness conditions (see theorem \ref{theorem:main-theorem}). But first we have to show that it is indeed a derived stack \cite[lemma 3.1]{toen-vaquie}! Recall again that ``derived stack'' should be interpreted in terms of \cite[definition 1.3.2.1]{hagII}.
 
@@ -186,7 +224,7 @@ The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other const
   \begin{equation}
     \Map_{\dgCat_k}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod_k \right) \right)
   \end{equation}
-  and by \cite{toen} this simplicial set is weakly equivalent to the category of weak equivalences of~$\mathcal{C}^\opp$\dash dg~modules~$M$ such that~$M(C)^\bullet$ is a perfect complex of~$k$\dash modules for every~$C\in\Ob(\mathcal{C})$ \cite[corollary 7.6]{toen}.
+  and this simplicial set is weakly equivalent to the category of weak equivalences of~$\mathcal{C}^\opp$\dash dg~modules~$M$ such that~$M(C)^\bullet$ is a perfect complex of~$k$\dash modules for every~$C\in\Ob(\mathcal{C})$ \cite[corollary 7.6]{toen}.
 \end{example}
 
 
@@ -200,10 +238,10 @@ Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\
   \end{equation}
   if~$i\notin[a,b]$.
 \end{definition}
-The following properties give some idea on how this notion behaves \cite[proposition 2.22]{toen-vaquie}
+The following properties give some idea on how this notion behaves \cite[proposition 2.22]{toen-vaquie}. See also \cite[\href{http://stacks.math.columbia.edu/tag/0651}{tag 0651}]{stacks} for this notion in a more classical context.
 \begin{proposition}
   \label{proposition:Tor-amplitude}
-  Let~$A^*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ and~$Q^\bullet$ be two perfect~$\nerve(A^*)^\bullet$\dash dg~modules.
+  Let~$A^*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ and~$Q^\bullet$ be two perfect~$\nerve(A^*)^\bullet$\dash dg modules.
   \begin{enumerate}
     \item\label{enumerate:Tor-amplitude-1} Let the Tor amplitude of~$P^\bullet$ (resp.\ $Q^\bullet$) be contained in~$[a,b]$ (resp.\ $[c,d]$), then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^\bullet$ is a perfect~$\nerve(A^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a+c,b+d]$.
     \item\label{enumerate:Tor-amplitude-2} Let the Tor amplitude of~$P^\bullet$ and~$Q^\bullet$ be contained in~$[a,b]$, then the homotopy fiber of~$f\colon P^\bullet\to Q^\bullet$ has Tor amplitude contained in~$[a,b+1]$.
@@ -227,6 +265,43 @@ The following properties give some idea on how this notion behaves \cite[proposi
 %    \item induction on Tor amplitude is done using homotopy cofibers and shifts of perfect modules.
 %  \end{enumerate}
 %\end{remark}
+
+Now we list the higher and derived properties a derived stack can satisfy, before proving that~$\RPerf$ and~$\mathcal{M}_{\mathcal{C}}$ satisfy these. The ideas of higher~$n$\dash stacks are used \cite{simpson}, and these definitions are based on an induction on~$n$. As these definitions depend on eachother for the induction step it is impossible to give them in a logically independent order.
+\begin{definition}
+  Let~$F$ be a derived stack, i.e.\ $F\in\Ob(\mathbf{D}^\mathbf{St}_k)$. It is an~\emph{$n$\dash geometric} derived stack if
+  \begin{enumerate}
+    \item the morphism~$F\to F\times^{\mathrm{h}}F$ is~$(n-1)$\dash representable;
+    \item there exists a family of affine derived stacks~$(X_i)_{i\in I}$ (or \emph{$n$\dash atlas}) such that~$\bigsqcup_{i\in I}X_i\to F$ is a covering and for every~$i\in I$ the map~$X_i\to F$ is smooth.
+  \end{enumerate}
+  An affine derived stack is~$(-1)$\dash geometric.
+\end{definition}
+\begin{definition}
+  Let~$f\colon F\to G$ be a morphism between derived stacks. It is \emph{$n$\dash representable} if for every affine derived stack~$X$ and every morphism~$X\to G$ the derived stack~$F\times_G^{\mathrm{h}}X$ is~$n$\dash geometric
+\end{definition}
+\begin{definition}
+  Let~$f\colon F\to G$ be a morphism between derived stacks. It is \emph{smooth} if for every affine derived stack~$X$ and every morphism~$X\to G$ there exists an~$n$\dash atlas~$(Y_i)_{i\in I}$ of~$F\times_G^{\mathrm{h}}X$ such that~$Y_i\to X$ is a smooth morphism of affine derived stacks as in definition \ref{definition:flat-smooth-etale-zariski-immersion-derived}.
+\end{definition}
+The next two definitions are a finiteness condition on a derived stack.
+\begin{definition}
+  Let~$X=\mathbf{R}\Spec A^*$ be an affine derived stack. It is \emph{finitely presented} if the morphism
+  \begin{equation}
+    \colim_{i\in I}\Map_{\scAlg{k}}(A^*,B_i^*)\to\Map_{\scAlg{k}}\left( A^*,\colim_{i\in I}B_i^* \right)
+  \end{equation}
+  is an isomorphism in~$\Ho(\sSet)$ for every filtered system~$(B_i^*)_{i\in I}$ in~$\scAlg{k}$.
+\end{definition}
+\begin{definition}
+  Let~$F$ be an~$n$\dash geometric derived stack. It is \emph{locally of finite presentation} if there exists an~$n$\dash atlas~$(X_i)_{i\in I}$ such that each~$X_i$ is finitely presented.
+\end{definition}
+The last property we define for derived stacks is its geometricity.
+\begin{definition}
+  Let~$F$ be a derived stack. We say it is \emph{locally geometric} if it can be written as a filtered homotopy colimit, i.e.\ $F\cong\hocolim_{i\in I}F_i$
+  such that
+  \begin{enumerate}
+    \item each derived stack~$F_i$ is~$n_i$\dash geometric;
+    \item each morphism~$F_i\to F$ is a monomorphism.
+  \end{enumerate}
+  If moreover every~$F_i$ can be chosen to be locally of finite presentation, then we say~$F$ is \emph{locally of finite presentation}.
+\end{definition}
 
 We first prove that the base derived stack~$\RPerf$ is locally geometric and locally of finite presentation \cite[proposition 3.7]{toen-vaquie}, then we lift this in theorem \ref{theorem:main-theorem} to dg~categories satisfying a certain finiteness condition \cite[theorem 3.6]{toen-vaquie}. The full proof of these statements is about 10 pages long, so we have to restrict ourselves to a mere sketch.
 \begin{theorem}
@@ -273,7 +348,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \begin{equation}
       \RPerf^{[a,a]}=\bigcup_{n\geq 0}\RVect_n
     \end{equation}
-    and by \cite[corollary 1.3.7.4]{hagII} we obtain that it is a~$1$\dash geometric derived stack, locally of finite presentation\fixthis{introduce these notions}.
+    and by \cite[corollary 1.3.7.4]{hagII} we obtain that it is a~$1$\dash geometric derived stack, locally of finite presentation.
 
     Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~$\dgMod{\nerve(A^*)^\bullet}_k$ with its projective model category, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ has Tor amplitude~$[b-1,b-1]$. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
     \begin{equation}
@@ -306,9 +381,30 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \begin{equation}
       \pi\colon\mathcal{M}_{\mathcal{C}}^{[a,b]}\to\RPerf^{[a,b]}
     \end{equation}
-    is~$n$ representable (for some~$n$) and strongly of finite presentation\addreference{this then implies the result?}.
+    is~$n$\dash representable (for some~$n$) and strongly of finite presentation \cite[lemma 2.20]{toen-vaquie}. This then suffices (after some reductions) to prove the result by \cite[lemma 2.15]{toen-vaquie}.
   \end{proof}
 \end{theorem}
+
+
+\section{The tangent complex of a derived moduli stack}
+Moduli problems and deformation theory are closely related: a solution to a moduli problem is a \emph{global} thing, while deformation theory parametrises \emph{local} information. The ideas of derived algebraic geometry lead to a natural notion of a (co)tangent complex and associated obstruction theory \cite[section 2.2]{hagII}. One can moreover argue that the cotangent complex with its origins in the 1960s is already a manifestation of derived algebraic geometry.
+
+We can prove the following theorem, which interprets this general phenomenon in case of derived moduli stacks.
+\begin{theorem}
+  Let~$\mathcal{C}$ be a pretriangulated dg~category of finite type. Let~$E$ be an object of~$\HH^0(\mathcal{C})$, or equivalently a morphism
+  \begin{equation}
+    E\colon\Spec k\to\mathcal{M}_{\mathcal{C}}.
+  \end{equation}
+  Then we can describe the tangent complex of~$\mathcal{M}_{\mathcal{C}}$ at~$E$ by
+  \begin{equation}
+    \mathbf{T}_{\mathcal{M}_{\mathcal{C}},E}\cong\Hom_{\mathcal{C}}(E,E)^\bullet[1].
+  \end{equation}
+\end{theorem}
+
+\begin{remark}
+  This result indicates how we can derive a moduli problem: a priori there are different possible extensions of a moduli space to the context of derived algebraic geometry. The easiest being the trivial extension, one just embeds the classical scheme, algebraic space or stack in the category of derived stacks. But this is not always the ``correct'' derived moduli stack. The description of the tangent complex might give a clue as to which of the possible extensions is the most natural one.
+\end{remark}
+
 
 \section{Example: derived moduli stack of perfect complexes on a scheme}
 \label{section:example}
@@ -316,11 +412,11 @@ Consider a smooth and proper scheme~$X$ over a field~$k$. By~$\Qcoh_X$ we denote
 \begin{equation}
   \LLL_\qcoh(X)\coloneqq\Int\left( \Ch(\Qcoh_X) \right).
 \end{equation}
-By proposition \ref{proposition:internal-category-is-dg-enrichtment} this category serves as a dg~enrichment of the ``standard'' unbounded derived category of quasicoherent sheaves, in the sense that
+By proposition \ref{proposition:internal-category-is-dg-enrichment} this category serves as a dg~enrichment of the ``standard'' unbounded derived category of quasicoherent sheaves, in the sense that
 \begin{equation}
   \mathbf{D}_\qcoh(X)\cong\Ho\left( \LLL_\qcoh(X) \right).
 \end{equation}
-If we restrict ourselves to the perfect objects in\fixthis{introduce~$\LLL_\perf$} we obtain the equivalence
+If we restrict ourselves to the perfect objects in~$\LLL_\qcoh(X)$ we obtain the equivalence
 \begin{equation}
   \mathbf{D}_\perf(X)\cong\Ho\left( \LLL_\perf(X) \right),
 \end{equation}
@@ -344,7 +440,7 @@ We can then define the desired derived moduli stack.
 \end{definition}
 
 \begin{remark}
-  We can prove that the dg~category~$\LLL_\perf(X)$ is saturated, so by remark \fixthis{write this remark} we get that~$\RPerf_X$ really classifies objects in~$\LLL_\perf(X)$.
+  We can prove that the dg~category~$\LLL_\perf(X)$ is saturated, so by remark \ref{remark:saturated} we get that~$\RPerf_X$ really classifies objects in~$\LLL_\perf(X)$.
 \end{remark}
 
 \begin{remark}
@@ -356,8 +452,8 @@ We can then define the desired derived moduli stack.
 \end{remark}
 
 
-\section{Example: derived moduli stack of pseudoperfect complexes of quiver representations}
-\label{section:example-2}
+%\section{Example: derived moduli stack of pseudoperfect complexes of quiver representations}
+%\label{section:example-2}
 
 \printbibliography[heading = local]
 

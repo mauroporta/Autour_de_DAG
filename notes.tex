@@ -66,7 +66,7 @@
 
 %%Todo notes
 %%%%Packages
-\usepackage[colorinlistoftodos, textsize = small]{todonotes}
+\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
 %%%%Settings
 \newcounter{todocounter}
 \DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
@@ -80,7 +80,7 @@
 \renewcommand\cftchaptername{Expos\'e }
 \chapterstyle{madsen}
 
-\setlength\headheight{12.6pt}
+\setlength\headheight{24pt}
 
 \makeatletter
 \renewcommand\@chapapp{Expos\'e}
@@ -99,7 +99,7 @@
 %\DeclareCursiveOperator{\BIL}{Bil}
 
 %Environments
-\theoremstyle{plain}
+\theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{theorem}[thm]{Theorem}
 \newtheorem*{thm*}{Theorem}
@@ -154,6 +154,7 @@
 \DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{gr-Mod}}}
 \newcommand\Qcoh{\mathbf{Qcoh}}
 \DeclareDocumentCommand\scAlg{g}{\ensuremath{k\mhyphen\mathbf{sc\,Alg}}}
+\DeclareDocumentCommand\dgAlg{g}{\ensuremath{k\mhyphen\mathbf{dg\,Alg}}}
 \newcommand\St{\mathbf{St}}
 \newcommand\Coh{\mathrm{Coh}} % this is the stack, not the category
 \newcommand\Aff{\mathbf{Aff}}
@@ -219,6 +220,7 @@
 \newcommand\truncation{\mathrm{t}}
 \newcommand\weq{\ensuremath{\mathop{\overset{\sim}{\vphantom{\rule{0pt}{2pt}}\smash{\to}}}}}
 \DeclareMathOperator*\holim{holim}
+\DeclareMathOperator*\hocolim{hocolim}
 \DeclareMathOperator\EEnd{\mathcal{E}nd}
 \newcommand\RVect{\mathbf{R}\mathrm{Vect}}
 \DeclareMathOperator\ev{ev}
