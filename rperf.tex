@@ -7,7 +7,7 @@
 \begin{refsection}
 
 \section{Introduction}
-Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Given a good description one can then prove properties of the family or single objects. Some examples of well-known moduli problems are
+Moduli problems are situations in which you try to describe a ``family of objects'' using geometry. Given a good description one can then prove properties of the family as a whole, or of single objects as one can try to reduce statements object general objects to more tractable ones. Some examples of well-known moduli problems are
 \begin{itemize}
   \item the Hilbert scheme: parametrising closed subschemes of a given scheme;
   \item the moduli of curves of genus~$g$;
@@ -24,17 +24,17 @@ We will now give examples of these issues. We first state the classical case, an
 \begin{example}[Moduli of objects in a $k$\dash linear category]
   Let~$\mathcal{C}$ be a~$k$\dash linear category. As in chapter \ref{chapter:dg} we take~$k$ a commutative ring, not necessarily a field. We then define the moduli problem
   \begin{equation}
-    \mathcal{M}_{\mathcal{C}}\colon k\mhyphen\mathbf{c\,Alg}\to\mathbf{Grpd}:A\mapsto\Fun_k(\mathcal{C}^\opp,A\mhyphen\Mod^{\mathrm{ft,proj}})
+    \mathcal{M}_{\mathcal{C}}\colon k\mhyphen\mathbf{c\,Alg}\to\mathbf{Grpd}:A\mapsto\Fun_k\left( \mathcal{C}^\opp,A\mhyphen\Mod^{\mathrm{ft,proj}} \right)
   \end{equation}
   by considering the groupoid of~$k$\dash linear functors from~$\mathcal{C}$ to the category of projective~$A$\dash modules of finite type. If we take~$\mathcal{C}=k$ (the category with a single object and~$k$ as its endomorphism ring) this is the category of vector bundles on~$\Spec A$, and a possible proof of the geometric properties of~$\mathcal{M}_{\mathcal{C}}$ uses this fact. The tensor product
   \begin{equation}
     B\otimes_A-\colon A\mhyphen\Mod^{\mathrm{ft,proj}}\to B\mhyphen\Mod^{\mathrm{ft,proj}}
   \end{equation}
-  yields morphism a~$\mathcal{M}_{\mathcal{C}}(A)\to\mathcal{M}_{\mathcal{C}}(B)$, and this gives a stack of the big \'etale site of affine~$k$\dash schemes.
+  yields a morphism~$\mathcal{M}_{\mathcal{C}}(A)\to\mathcal{M}_{\mathcal{C}}(B)$, and this gives a stack of the big \'etale site of affine~$k$\dash schemes. The question now becomes to find (the necessary conditions for) nice properties of this stack.
 
   If~$\mathcal{C}$ is of finite type as a~$k$\dash linear category, i.e.\ the category~$\mathcal{C}^\opp\mhyphen\Mod$ is equivalent to~$B\mhyphen\Mod$ where~$B$ is a finitely presented associative~$k$\dash algebra\footnote{We enter the realm of not necessarily commutative objects.}, then~$\mathcal{M}_{\mathcal{C}}$ is an Artin stack, locally of finite presentation.
 
-  This gives the mere \emph{existence} of an Artin stack, but we need more conditions on~$\mathcal{C}$ to have a good relationship between the~$k$\dash rational points~$\mathcal{M}_{\mathcal{C}}(k)$ and~$\mathcal{C}$ itself \cite[remark 1.2]{toen-vaquie}. These conditions are rather strong, and are not satisfied in general for the category~$\Qcoh_X$ on a scheme~$X$. We will have to use derived categories to find an analogue of the required property, which is more easily satisfied.
+  This gives the mere \emph{existence} of an Artin stack, but we need more conditions on~$\mathcal{C}$ to have a good relationship between the~$k$\dash rational points~$\mathcal{M}_{\mathcal{C}}(k)$ and~$\mathcal{C}$ itself \cite[remark 1.2]{toen-vaquie}. These conditions are rather strong, and are for example not satisfied in general for the category~$\Qcoh_X$ on a scheme~$X$. We will have to use derived categories to find an analogue of the required property, which is more easily satisfied.
 \end{example}
 
 \begin{remark}
