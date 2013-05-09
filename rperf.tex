@@ -56,9 +56,35 @@ The next example is an important motivation for the development of derived algeb
   The problem seems to be that the stacky tangent space is concentrated in~$[-1,1]$, but we have forgotten the object in degree~$1$. If we can find a \emph{derived moduli stack of vector bundles of rank~$n$} which we'll denote~$\RVect_n(S)$ that incorporates this information we could find an object that we expect to be \emph{smooth}, of dimension~$-\chi(S,\EEnd(\mathcal{E}))$.
 \end{remark}
 
+
 \section{Preliminaries}
 \label{section:preliminaries}
 Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-$\dash stacks from \cite{hagII}. The notation~$\mathbf{D}^-$ is reminiscent of the objects involved: cochain complexes concentrated in non-positive degrees, related to the use of simplicial commutative rings and the Dold-Kan correspondence.
+
+In order to get a nice result we need to impose a certain finiteness condition on the codomain category in the generalisation of \eqref{equation:moduli-linear-category} to dg~categories. In the~$k$\dash linear case we considered projective modules of finite type, which corresponds to the notion of perfectness in derived categories. Hence the generalisation to dg~categories is motivated by this observation.
+
+\begin{definition}
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. Let~$M$ be an object of~$\Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)$. Let~$C$ be an object of~$\mathcal{C}$. We can define a morphism of dg~categories~$\ev_M$ which acts as a partial evaluation in the first parameter, by setting
+  \begin{equation}
+    \ev_M(C)\colon\mathcal{D}^\opp\to\Ch_\dg(k\mhyphen\Mod):D\mapsto M(C,D)^\bullet.
+  \end{equation}
+  We consider this morphism in~$\Ho(\dgCat_k)$. Using \cite[theorem 6.1]{toen} (as in the proof of \cite[corollary 7.6]{toen}) we obtain a natural isomorphism
+  \begin{equation}
+    \begin{aligned}
+      \Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)&\cong\RRRHHom\left( (\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp,\Int(\dgMod_k) \right) \\
+      &\cong\RRRHHom\left( \mathcal{C}^\opp,\Int(\dgMod{\mathcal{D}^\opp}_k) \right)
+    \end{aligned}
+  \end{equation}
+  in~$\Ho(\dgCat_k)$ hence we see that the object~$M$ corresponds to~$\ev_M$. We then say that~$M$ is \emph{pseudoperfect relative to~$\mathcal{D}$} if we can factorise~$\ev_M$ in~$\Ho(\dgCat_k)$ as
+  \begin{equation}
+    \begin{tikzcd}
+      \mathcal{C}^\opp \arrow{r}{\ev_M} \arrow{rd} & \Int(\dgMod{\mathcal{D}^\opp}_k) \\
+      & \Int_\perf(\dgMod{\mathcal{D}^\opp}_k) \arrow[hook]{u}.
+    \end{tikzcd}
+  \end{equation}
+  \checkthis{we won't need the full dg subcategory, right?}
+\end{definition}
+If we take~$\mathcal{D}=k$ we get the absolute version of this definition, and we say that $M$ is a \emph{pseudoperfect~$\mathcal{C}^\opp$\dash dg~module}.
 
 \begin{definition}
   \label{definition:derived-stack-of-pseudoperfect-objects}
