@@ -199,6 +199,39 @@ Before we describe the properties of~$\RPerf$ and more generally~$\mathcal{M}_{\
   \end{equation}
   if~$i\notin[a,b]$.
 \end{definition}
+The following properties give some idea on how this notion behaves \cite[proposition 2.22]{toen-vaquie}
+\begin{proposition}
+  Let~$A^*$ be a simplicial commutative~$k$\dash algebra. Let~$P^\bullet$ and~$Q^\bullet$ be two perfect~$\nerve(A^*)^\bullet$\dash dg~modules.
+  \begin{enumerate}
+      % Tor amplitude is additive for the derived tensor product
+    \item Let the Tor amplitude of~$P^\bullet$ (resp.\ $Q^\bullet$) be contained in~$[a,b]$ (resp.\ $[c,d]$), then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^\bullet$ is a perfect~$\nerve(A^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a+c,b+d]$.
+      % homotopy fiber turns [a,b] into [a,b+1]
+    \item Let the Tor amplitude of~$P^\bullet$ and~$Q^\bullet$ be contained in~$[a,b]$, then the homotopy fiber of~$f\colon P^\bullet\to Q^\bullet$ has Tor amplitude contained in~$[a,b+1]$.
+      % Tor amplitude can be checked for M=\pi_0(A^*)
+    \item The Tor amplitude of a~$\nerve(A^*)^\bullet$\dash dg~module~$P^\bullet$ is contained in~$[a,b]$ if and only if~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\pi_0(A^*)$ is a perfect complex of~$\pi_0(A^*)$\dash modules with Tor amplitude contained in~$[a,b]$.
+      % Tor amplitude is preserved under base change
+    \item Let~$A^*\to B^*$ be a morphism in~$\scAlg{k}$. Let the Tor amplitude of~$P^\bullet$ be contained in~$[a,b]$. Then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet$ is a perfect~$\nerve(B^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a,b]$.
+      % perfect dg modules have a Tor amplitude
+    \item We can find~$a\leq b$ such that the Tor amplitude of~$P^\bullet$ is contained in~$[a,b]$.
+      % Tor amplitude [a,a] implies shift of a projective module of finite type
+    \item Let the Tor amplitude of~$P^\bullet$ be~$[a,a]$. Then~$P^\bullet$ is isomorphic in~$\Ho(\dgMod{\nerve(A^*)^\bullet}_k)$ to the shift with~$a$ positions of a projective~$\nerve(A^*)^\bullet$\dash module of finite type.
+      % induction using shift of a projective dg module of finite type
+    \item Let the Tor amplitude of~$P^\bullet$ be~$[a,b]$. We can find a projective~$\nerve(A^*)^\bullet$\dash dg~module of finite type~$E$ and a morphism~$E[-b]\to P^\bullet$ such that the homotopy cofiber has Tor amplitude contained in~$[a,b-1]$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{remark}
+  To put it in a more sloganesque way we obtain:
+  \begin{enumerate}
+    \item Tor amplitude is additive for the derived tensor product;
+    \item homotopy fibers turn~$[a,b]$ into~$[a,b+1]$;
+    \item Tor amplitude can be checked on~$M=\pi_0(A^*)$;
+    \item Tor amplitude is preserved under base change;
+    \item perfect dg~modules have a Tor amplitude;
+    \item Tor amplitude~$[a,a]$ is equivalent to shift of a projective module of finite type;
+    \item induction on Tor amplitude is done using homotopy cofibers and shifts of perfect modules.
+  \end{enumerate}
+\end{remark}
 
 We first prove that the base derived stack~$\RPerf$ is locally geometric and locally of finite presentation \cite[proposition 3.7]{toen-vaquie}, then we lift this in theorem \ref{theorem:main-theorem} to dg~categories satisfying a certain finiteness condition \cite[theorem 3.6]{toen-vaquie}. The full proof of these statements is about 10 pages long, so we have to restrict ourselves to a mere sketch.
 \begin{theorem}
