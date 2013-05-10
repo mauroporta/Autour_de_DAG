@@ -8,7 +8,6 @@
 
 %Page layout
 %%%Packages
-\usepackage{vmargin}
 \usepackage{hyphenat}
 \usepackage{multirow}
 %\usepackage{fancyhdr}
@@ -25,6 +24,9 @@
 %\setpapersize{A4}
 %\setmarginsrb{35mm}{10mm}{35mm}{10mm}%
 %             {12pt}{10mm}{5mm}{10mm}
+\setlrmarginsandblock{3cm}{3.5cm}{*}
+\setlength\marginparwidth{2.5cm}
+\checkandfixthelayout
 
 %Crossreferences
 %%%Packages
@@ -226,7 +228,7 @@
 \DeclareMathOperator\ev{ev}
 \DeclareMathOperator\hofib{hofib}
 
-\includeonly{rperf}
+%\includeonly{rperf}
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
@@ -322,6 +324,9 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \include{dg}
 \include{affine-derived-schemes}
 \include{rperf}
+\include{derived-loop}
+\include{deformation}
+\include{nc-motives}
 
 \appendix
 
