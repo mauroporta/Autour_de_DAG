@@ -7,7 +7,7 @@
 \begin{refsection}
 
 \section{Introduction}
-Moduli problems are situations in which you try to describe a family of geometric objects using anoter geometric object. Given a sufficiently nice resulting geometric object one can then prove properties of the family as a whole, or of single objects as one can try to reduce statements object general objects to more tractable ones. Some examples of well-known moduli problems are
+Moduli problems are situations in which you try to describe a family of geometric objects using another geometric object. Given a sufficiently nice resulting geometric object one can then prove properties of the family as a whole, or of single objects as one can try to reduce statements object general objects to more tractable ones. Some examples of well-known moduli problems are
 \begin{itemize}
   \item the Hilbert scheme: parametrising closed subschemes of a given scheme;
   \item the moduli of curves of genus~$g$;
@@ -137,7 +137,7 @@ Before we define the main object of study we list some of the properties that ca
   \label{definition:derived-stack-of-pseudoperfect-objects}
   Let~$\mathcal{C}$ be a dg~category. The \emph{derived moduli stack of pseudoperfect~$\mathcal{C}^\opp$\dash dg~modules}~$\mathcal{M}_{\mathcal{C}}$ is given by the simplicial presheaf
   \begin{equation}
-    \mathcal{M}_{\mathcal{C}}:\scAlg{k}\to\sSet:A^*\mapsto\Map_{\dgCat_K}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right).
+    \mathcal{M}_{\mathcal{C}}:\scAlg{k}\to\sSet:A^*\mapsto\Map_{\dgCat_K}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right)^*.
   \end{equation}
 \end{definition}
 
@@ -149,7 +149,7 @@ We remark that
     \end{equation}
   \item the simplicial structure of~$\dgCat_k$ is given by
     \begin{equation}
-      \Map_{\dgCat_k}(\mathcal{C},\mathcal{D})\coloneqq\Hom_{\dgCat_k}(\Gamma^*(\mathcal{C}),\mathcal{D})
+      \Map_{\dgCat_k}(\mathcal{C},\mathcal{D})^*\coloneqq\Hom_{\dgCat_k}(\Gamma^*(\mathcal{C}),\mathcal{D})
     \end{equation}
     where~$\Gamma^*$ is the cosimplicial resolution functor;
   \item the subcategory of perfect objects is stable under base change.
@@ -159,7 +159,7 @@ We remark that
   If we take~$\mathcal{C}=k$ in definition \ref{definition:derived-stack-of-pseudoperfect-objects} we obtain the \emph{derived moduli stack of perfect modules}. It will be denoted~$\RPerf$.
 \end{definition}
 
-In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$. To stress the actual nature of this object the notation~$\RPerf$ is more appropriate, as we will have some specific choices for the category~$\mathcal{C}$: these will yield the derived moduli stacks~$\RPerf_X$ and~$\RPerf_Q$ \cite[section 3.5]{toen-vaquie}. The derived moduli stack~$\RPerf$ is moreover discussed in section~\ref{section:example}.
+In the notation of \cite{toen-vaquie} we have~$k=\mathbf{1}$ and~$\RPerf$ is denoted by~$\mathcal{M}_{\mathbf{1}}$. To stress the actual nature of this object the notation~$\RPerf$ is more appropriate, as we will have some specific choices for the category~$\mathcal{C}$: these will yield the derived moduli stacks~$\RPerf_X$ and~$\RPerf_Q$ \cite[section 3.5]{toen-vaquie}. The derived moduli stack~$\RPerf_X$ is moreover discussed in section~\ref{section:example}.
 \begin{remark}
   \label{remark:saturated}
   In case the dg~category is saturated, we see that by proposition \ref{proposition:dg-properties} every quasirepresentable object is pseudoperfect (and vice versa). Hence in this case~$\mathcal{M}_{\mathcal{C}}$ is truly a moduli space of objects in~$\mathcal{C}$!
@@ -280,9 +280,9 @@ The following properties give some idea on how this notion behaves \cite[proposi
 %\end{remark}
 
 \subsection{Properties of higher and derived stacks}
-Now we list the higher and derived properties a derived stack can satisfy, before proving that~$\RPerf$ and~$\mathcal{M}_{\mathcal{C}}$ satisfy these. The ideas of higher~$n$\dash stacks are used \cite{simpson}, and these definitions are based on an induction on~$n$. As these definitions depend on eachother for the induction step it is impossible to give them in a logically independent order.
+Now we list the higher and derived properties a derived stack can satisfy, before proving that~$\RPerf$ and~$\mathcal{M}_{\mathcal{C}}$ satisfy them. The ideas of higher~$n$\dash stacks are used \cite{simpson}, and these definitions are based on an induction on~$n$. As these definitions depend on eachother for the induction step it is impossible to give them in a logically independent order.
 \begin{definition}
-  Let~$F$ be a derived stack, i.e.\ $F\in\Ob(\mathbf{D}^\mathbf{St}_k)$. It is an~\emph{$n$\dash geometric} derived stack if
+  Let~$F$ be a derived stack, i.e.\ $F\in\Ob(\mathbf{D}^-\mathbf{St}_k)$. It is an~\emph{$n$\dash geometric} derived stack if
   \begin{enumerate}
     \item the morphism~$F\to F\times^{\mathrm{h}}F$ is~$(n-1)$\dash representable;
     \item there exists a family of affine derived stacks~$(X_i)_{i\in I}$ (or \emph{$n$\dash atlas}) such that~$\bigsqcup_{i\in I}X_i\to F$ is a covering and for every~$i\in I$ the map~$X_i\to F$ is smooth.
@@ -297,7 +297,7 @@ Now we list the higher and derived properties a derived stack can satisfy, befor
 \end{definition}
 The next two definitions are a finiteness condition on a derived stack.
 \begin{definition}
-  Let~$X=\mathbf{R}\Spec A^*$ be an affine derived stack. It is \emph{finitely presented} if the morphism
+  Let~$X=\RSpec A^*$ be an affine derived stack. It is \emph{finitely presented} if the morphism
   \begin{equation}
     \colim_{i\in I}\Map_{\scAlg{k}}(A^*,B_i^*)^*\to\Map_{\scAlg{k}}\left( A^*,\colim_{i\in I}B_i^* \right)^*
   \end{equation}
@@ -331,7 +331,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     and we have reduced the proof to showing that~$\RPerf^{[a,b]}$ is locally geometric and locally of finite presentation. We can moreover prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric, where~$n=b-a+1$.
 
-    To prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric we use \cite[lemma 2.18]{toen-vaquie}, to reduce this to a statement on the diagonal. Hence, let~$X=\mathbf{R}\Spec A^*$ be a representable (or affine) derived stack and let~$f,g\colon X\to\RPerf^{[a,b]}$ be two morphisms. Consider the homotopy fiber product
+    To prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric we use \cite[lemma 2.18]{toen-vaquie}, to reduce this to a statement on the diagonal. Hence, let~$X=\RSpec A^*$ be a representable (or affine) derived stack and let~$f,g\colon X\to\RPerf^{[a,b]}$ be two morphisms. Consider the homotopy fiber product
     \begin{equation}
       \begin{tikzcd}
         X\times_{\RPerf^{[a,b]}}^{\mathrm{h}}X \arrow{r} \arrow{d} & X \arrow{d}{g} \\
@@ -340,7 +340,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     We then have to prove that this homotopy fiber product is~$n-1$\dash geometric. This is done by induction on~$n-1=b-a$. If~$a=b$, we have that~$\RPerf^{[a,a]}$ is the derived stack of vector bundles~$\RVect=\bigcup_{n\geq 0}\RVect_n$ \cite[corollary 1.3.7.4]{hagII}, which finishes this case.
 
-    Now let~$a<b$. As~$X$ is affine we have a simplicial commutative~$k$\dash algebra~$A^*$ representing it, and~$f$ and~$g$ are two~$A^*$\dash rational points of~$\RPerf^{[a,b]}$, hence they correspond to two perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. \expandthis{how does strictification yield this result?} 
+    Now let~$a<b$. As~$X$ is affine we have a simplicial commutative~$k$\dash algebra~$A^*$ representing it, and~$f$ and~$g$ are two~$A^*$\dash rational points of~$\RPerf^{[a,b]}$, hence they correspond to two perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. By the strictification theorem \cite[appendix B]{hagII} we can rewrite~$\RSpec A^*\times_{\RPerf^{[a,b]}}\RSpec A^*$ as
     \begin{equation}
       \scAlg{k}_{/A^*}\to\sSet:B^*\mapsto\Map_{\dgMod{\nerve(A^*)^\bullet}_k}^{\mathrm{weq}}\left( P^\bullet,Q^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet \right)
     \end{equation}
@@ -422,7 +422,7 @@ We can prove the following theorem, which interprets this general phenomenon \ci
 
 \section{Example: derived moduli stack of perfect complexes on a scheme}
 \label{section:example}
-Consider a smooth and proper scheme~$X$ over a field~$k$. By~$\Qcoh_X$ we denote its category of quasicoherent sheaves. In general there is no obvious model category structure on~$\Ch(\Qcoh_X)$. But in this case~$X$ is quasicompact and separated, so by \cite{hovey-sheaves} there exists a model category structure on~$\Ch(\Qcoh_X)$ where the cofibrations are the monomorphisms and weak equivalences are quasi-isomorphisms. There is moreover an obvious~$\Ch(k\mhyphen\Mod)$\dash enrichment, so~$\Ch(\Qcoh_X)$ is a~$\Ch(k\mhyphen\Mod)$\dash model category. Using the internal dg~category as seen in definition~\ref{definition:internal-dg-category} we can define
+Consider a smooth and proper scheme~$X$ over a field~$k$. By~$\Qcoh_X$ we denote its category of quasicoherent sheaves. There exists a model category structure on~$\Ch(\Qcoh_X)$ where the cofibrations are the monomorphisms and weak equivalences are quasi-isomorphisms. There is moreover an obvious~$\Ch(k\mhyphen\Mod)$\dash enrichment, so~$\Ch(\Qcoh_X)$ is a~$\Ch(k\mhyphen\Mod)$\dash model category. Using the internal dg~category as seen in definition~\ref{definition:internal-dg-category} we can define
 \begin{equation}
   \LLL_\qcoh(X)\coloneqq\Int\left( \Ch(\Qcoh_X) \right).
 \end{equation}
@@ -458,11 +458,11 @@ We can then define the desired derived moduli stack.
 \end{remark}
 
 \begin{remark}
-  Given this derived stack we can also consider its truncation, or underived part. We will denote this higher stack by
+  Given this derived stack we can also consider its truncation, or underived part. We will denote this stack by
   \begin{equation}
     \Perf_X\coloneqq\truncation_0(\RPerf_X).
   \end{equation}
-  If one moreover restricts himself to the substack of~$1$\dash rigid objects\footnote{These are objects satisfying the vanishing of all higher homotopy groups for all base changes.} we obtain the classical result of the existence of an Artin stack~$\Coh_X$\checkthis{or $\Vect_X$ as in the introduction?!} that serves as a moduli space for coherent sheaves on~$X$ \cite[th\'eor\`eme 4.6.2.1]{laumon-moret-bailly} \cite[tag 08CW]{stacks}.
+  If one moreover restricts himself to the substack of~$1$\dash rigid objects\footnote{These are objects satisfying the vanishing of all higher homotopy groups for all base changes.} we can obtain the classical result of the existence of an Artin stack~$\Coh_X$ that serves as a moduli space for coherent sheaves on~$X$ \cite[th\'eor\`eme 4.6.2.1]{laumon-moret-bailly} \cite[tag 08KA]{stacks}. The proof goes by constructing a morphism~$\Coh_X\to\Perf_X$, and uses in an essential way higher stacks, while avoiding Artin's representability theorem!
 \end{remark}
 
 
