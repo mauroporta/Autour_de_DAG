@@ -128,7 +128,6 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\proj}{\mathbb{P}}
@@ -189,7 +188,7 @@
 \DeclareMathOperator{\im}{\mathrm{Im} \,}
 \DeclareMathOperator{\map}{\mathrm{map}}
 \DeclareMathOperator{\Map}{\mathrm{Map}}
-\newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
+\newcommand{\dalg}{\mathbf{dgAlg}_{\leq 0}}
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
 \DeclareMathOperator\HH{H}
@@ -228,8 +227,22 @@
 \DeclareMathOperator\ev{ev}
 \DeclareMathOperator\hofib{hofib}
 \newcommand\RSpec{\operatorname{\mathbf{R}\mathrm{Spec}}}
+\newcommand{\Sym}{\text{Sym}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\col}{\text{col}}
+\newcommand{\Der}{\text{Der}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\cerchio}{k[\epsilon]/(\epsilon^2)}
+\newcommand{\e}{\epsilon}
+\newcommand{\G}{\mathbb{G}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
 
-%\includeonly{rperf}
+%\includeonly{derived-loop}
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
@@ -339,5 +352,6 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \include{simplicial-sets}
 \include{algebras-and-modules}
 \include{enriched-categories}
+\include{higher-algebraic}
 
 \end{document}
