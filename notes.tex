@@ -8,7 +8,6 @@
 
 %Page layout
 %%%Packages
-\usepackage{vmargin}
 \usepackage{hyphenat}
 \usepackage{multirow}
 %\usepackage{fancyhdr}
@@ -25,6 +24,9 @@
 %\setpapersize{A4}
 %\setmarginsrb{35mm}{10mm}{35mm}{10mm}%
 %             {12pt}{10mm}{5mm}{10mm}
+\setlrmarginsandblock{3cm}{3.5cm}{*}
+\setlength\marginparwidth{2.5cm}
+\checkandfixthelayout
 
 %Crossreferences
 %%%Packages
@@ -66,7 +68,7 @@
 
 %%Todo notes
 %%%%Packages
-\usepackage[colorinlistoftodos, textsize = small]{todonotes}
+\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
 %%%%Settings
 \newcounter{todocounter}
 \DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
@@ -80,7 +82,7 @@
 \renewcommand\cftchaptername{Expos\'e }
 \chapterstyle{madsen}
 
-\setlength\headheight{12.6pt}
+\setlength\headheight{24pt}
 
 \makeatletter
 \renewcommand\@chapapp{Expos\'e}
@@ -99,7 +101,7 @@
 %\DeclareCursiveOperator{\BIL}{Bil}
 
 %Environments
-\theoremstyle{plain}
+\theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{theorem}[thm]{Theorem}
 \newtheorem*{thm*}{Theorem}
@@ -153,12 +155,18 @@
 \newcommand\simp{\ensuremath{\mathbf{s}}}
 \DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{gr-Mod}}}
 \newcommand\Qcoh{\mathbf{Qcoh}}
+\DeclareDocumentCommand\scAlg{g}{\ensuremath{k\mhyphen\mathbf{sc\,Alg}}}
+\DeclareDocumentCommand\dgAlg{g}{\ensuremath{k\mhyphen\mathbf{dg\,Alg}}}
+\newcommand\St{\mathbf{St}}
+\newcommand\Coh{\mathrm{Coh}} % this is the stack, not the category
+\newcommand\Aff{\mathbf{Aff}}
+\newcommand\Fun{\mathbf{Fun}}
 
 %Miscellanea
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ext}{\mathrm{Ext}}
 \newcommand{\Tor}{\mathrm{Tor}}
-\newcommand{\colim}{\mathrm{colim} \,}
+\DeclareMathOperator*\colim{colim}
 \newcommand{\Max}{\mathrm{Max}}
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Char}{\mathrm{char}}
@@ -182,7 +190,6 @@
 \DeclareMathOperator{\map}{\mathrm{map}}
 \DeclareMathOperator{\Map}{\mathrm{Map}}
 \newcommand{\dalg}{\mathrm{DG}^{\le 0}\mathrm{Alg}_k}
-
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
 \DeclareMathOperator\HH{H}
@@ -206,10 +213,32 @@
 \newcommand\cont{\ensuremath{\mathrm{cont}}}
 \newcommand\Mor{\mathrm{Mor}}
 \DeclareMathOperator\RRR{\mathbf{R}}
+\newcommand\RPerf{\mathbf{R}\mathrm{Perf}}
+\newcommand\Perf{\mathrm{Perf}}
+\newcommand\Vect{\mathrm{Vect}}
+\newcommand\LLL{\mathbf{L}}
+\newcommand\qcoh{\mathrm{qcoh}}
+\newcommand\perf{\mathrm{perf}}
+\newcommand\truncation{\mathrm{t}}
+\newcommand\weq{\ensuremath{\mathop{\overset{\sim}{\vphantom{\rule{0pt}{2pt}}\smash{\to}}}}}
+\DeclareMathOperator*\holim{holim}
+\DeclareMathOperator*\hocolim{hocolim}
+\DeclareMathOperator\EEnd{\mathcal{E}nd}
+\newcommand\RVect{\mathbf{R}\mathrm{Vect}}
+\DeclareMathOperator\ev{ev}
+\DeclareMathOperator\hofib{hofib}
+\newcommand\RSpec{\operatorname{\mathbf{R}\mathrm{Spec}}}
+
+%\includeonly{rperf}
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
-Organised by: \\[.2em] \hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speakers: \\[.2em] \hspace*{.5cm} Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\\hspace*{.5cm} Valerio~\textsc{Melani}, Mauro~\textsc{Porta} \\\hspace*{.5cm} Pietro~\textsc{Vertechi}, Yan~\textsc{Zhao}
+Organised by: \\[.2em]
+\hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speakers: \\[.2em]
+\hspace*{.5cm} Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\
+\hspace*{.5cm} Valerio~\textsc{Melani}, Mauro~\textsc{Porta},\\
+\hspace*{.5cm} Marco~\textsc{Robalo}, Pietro~\textsc{Vertechi},\\
+\hspace*{.5cm} Yan~\textsc{Zhao}
 }
 
 \begin{document}
@@ -292,19 +321,23 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 
 \mainmatter
 
-\input{model-categories}
-\input{simplicial-localization}
-\input{quasicategories}
-\input{segal}
-\input{simplicial-presheaves}
-\input{higher-stacks}
-\input{dg}
-\input{affine-derived-schemes}
+\include{model-categories}
+\include{simplicial-localization}
+\include{quasicategories}
+\include{segal}
+\include{simplicial-presheaves}
+\include{higher-stacks}
+\include{dg}
+\include{affine-derived-schemes}
+\include{rperf}
+\include{derived-loop}
+\include{deformation}
+\include{nc-motives}
 
 \appendix
 
-\input{simplicial-sets}
-\input{algebras-and-modules}
-\input{enriched-categories}
+\include{simplicial-sets}
+\include{algebras-and-modules}
+\include{enriched-categories}
 
 \end{document}
