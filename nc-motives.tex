@@ -6,6 +6,7 @@
 
 \begin{refsection}
 
+
 In these notes we explain a new approach to the theory of noncommutative motives suggested by B. To\"en, M. Vaqui\'e and G. Vezzosi, which I have been studying in my ongoing doctoral thesis with B. To\"en (see \cite{nc1, nc2}). The idea of a motivic theory for noncommutative spaces was originally proposed by M. Kontsevich \cite{kontsevich1, kontsevich2} and in the later years G.Tabuada and D-C. Cisinski \cite{tabuada-higherktheory, tabuada-cisinski, MR2822869, MR2986869} developped a formal setting that makes this idea precise. The new approach we want to explain in this talk is independent of the approach by Cisinski-Tabuada (as all the proofs) and the motivation for it is simple: to have a natural theory of noncommutative motives that is naturally comparable to the motivic stable $\mathbb{A}^1$-homotopy theory of Morel-Voevodsky. At the end of this talk we dedicate a special section to explain how our theory relates to methods of Cisinski-Tabuada.\\
 
  We assume the reader to be familiar with the theory of $(\infty,1)$-categories as developed by J. Lurie in \cite{htt, ha}. \\
@@ -14,12 +15,14 @@ Throughout these notes we fix $k$ a commutative base ring.
 
 \section{Noncommutative Algebraic Geometry}
 
-The original guiding principle of noncommutative geometry is that we can replace the study of a given space $X$ by the study of its ring of functions. This principle appears in the very foundations of algebraic geometry. Grothendieck took it to a new level by understanding that the abelian category $\Qcoh(X)$ of quasi-coherent sheaves of an algebraic varitiety $X$ contains most of the information encoded by $X$.  For instance, everything that at that time was considered as a ``cohomology theory''  can be obtained by means of the two steps \footnote{ In fact, the replacement $X\to \Qcoh(X)$ is so strong that in some cases it allow us to reconstruct the whole scheme (see the thesis of P. Gabriel for the notion of spectrum of an abelian category \cite{gabrielthesis}).} 
+
+
+The original guiding principle of noncommutative geometry is that we can replace the study of a given space $X$ by the study of its ring of functions. This principle appears in the very foundations of algebraic geometry. Grothendieck took it to a new level by understanding that the abelian category $Qcoh(X)$ of quasi-coherent sheaves of an algebraic varitiety $X$ contains most of the information encoded by $X$.  For instance, everything that at that time was considered as a ``cohomology theory''  can be obtained by means of the two steps \footnote{ In fact, the replacement $X\to Qcoh(X)$ is so strong that in some cases it allow us to reconstruct the whole scheme (see the thesis of P. Gabriel for the notion of spectrum of an abelian category \cite{gabrielthesis}).} 
 
 
 $$
 \xymatrix{
-\mathrm{Schemes} \ar[rr]^(0.4){\Qcoh(-)}&& \text{Abelian Categories}\ar[rr]^{\text{cohomology}}&& \text{Abelian Groups} 
+Schemes \ar[rr]^(0.4){Qcoh(-)}&& \text{Abelian Categories}\ar[rr]^{\text{cohomology}}&& \text{Abelian Groups} 
 }
 $$
 
@@ -28,92 +31,94 @@ Grothendieck was also the first one to realize that the second factorization (ak
 $$
 \xymatrix{
 \text{Abelian Categories}\ar@{-->}[d]\ar[r]^{\text{cohomology}}& \text{Abelian Groups} \\
-\text{(k-linear) homotopy theories}\ar@{-->}[ru]|-{\text{homotopy groups}}&
+\text{(k-linear) homotopy theories}\ar@{-->}[ru]_{\text{homotopy groups}}&
 }
 $$
 
 \noindent where the vertical arrow sends a $k$-abelian category $A$ to the $k$-linear homotopy theory of complexes of objects in $A$ studied up quasi-isomorphisms. 
-The problem was that at that time homotopy theories were studied by means of the strict formal (categorical) inversion of those morphisms we wish to consider as isomorphism. The resulting object (the classical derived category) is very poorly behaved and many of the expected information of the homotopy theory is lost in the process. In the 90's, dg-categories\footnote{See Expos\'e 7 for a treatment.} appeared as a technological enhancement of this classical derived category (see \cite{bondal-kapranov3,bondal-kapranov2,bondal-kapranov} and \cite{ondgcategories, sedano} for an introduction) and Kontsevich envisioned them as the perfect objects for noncommutative geometry (the reason will become clear below). Nowadays, Kontsevich vision adds to the understanding that:\\
+The problem was that at that time homotopy theories were studied by means of the strict formal (categorical) inversion of those morphisms we wish to consider as isomorphism. The resulting object (the classical derived category) is very poorly behaved and many of the expected information of the homotopy theory is lost in the process. In the 90's, dg-categories\footnote{Don't worry! We will not repeat here the definition of a dg-category.} appeared as a technological enhancement of this classical derived category (see \cite{bondal-kapranov3,bondal-kapranov2,bondal-kapranov} and \cite{ondgcategories, sedano} for an introduction) and Kontsevich envisioned them as the perfect objects for noncommutative geometry (the reason will become clear below). Nowadays, Kontsevich vision adds to the understanding that:\\
 
 \begin{center}
 ``homotopy theories'' $=$ $(\infty,1)$-categories\\
 \end{center}
 
 \begin{center}
-``$k$-linear homotopy theories'' $=$ $k$-linear $(\infty,1)$-categories $=$\footnote{This equality is known to be true when $k$ is the sphere spectrum (in this case a $k$-dg-category is just a spectral category by definition - see \cite{tabuada-gepner}). When $k$ is a classical commutative ring this equality is still just a philosophical principle. People are working to prove this.} $k$-dg-categories\\
+``$k$-linear homotopy theories'' $=$ $k$-linear $(\infty,1)$-categories $=$\footnote{More precisely there is an equivalence of $(\infty,1)$-categories between the $(\infty,1)$-category underlying the Morita model structure on small $k$-dg-categries and the $(\infty,1)$-category of stable presentable compactly generated $(\infty,1)$-categories endowed with an action of the $\infty$-derived category of $k$.  This was recently proved in \cite{dgklinear} when $k$ is a field of characteristic zero.} $k$-dg-categories\\
 \end{center}
 
 
-Under this vision, the assignement $X\mapsto L_{\mathrm{qcoh}}(X)$ realizes the dotted map first forseen by Grothendieck. Here $L_{\mathrm{qcoh}}(X)$ is the big $k$-dg-category obtained from the dg-enhanced category of complexes of sheaves with quasi-coherent cohomology by inverting the quasi-isomorphisms, this time not in the world of categories but within dg-categories. This big dg-category is generated by its full sub dg-category $L_\mathrm{pe}(X)$ spanned by the (homotopy) compact objects - so-called perfect complexes. We will return to this below. \\
+Under this vision, the assignement $X\mapsto L_{qcoh}(X)$ realizes the dotted map first forseen by Grothendieck. Here $L_{qcoh}(X)$ is the big $k$-dg-category obtained from the dg-enhanced category of complexes of sheaves with quasi-coherent cohomology by inverting the quasi-isomorphisms, this time not in the world of categories but within dg-categories. This big dg-category is generated by its full sub dg-category $L_{pe}(X)$ spanned by the (homotopy) compact objects - so-called perfect complexes. We will return to this below. \\
 
 We should also emphasize that dg-categories are important not only for algebraic geometry. They appear out of many different mathematical contexts
 
-\[
+$$
 \xymatrix{
-\text{Algebraic Geometry}\ar[dr]|-{L_{\mathrm{qcoh}}} && \text{Symplectic Geometry} \ar[dl]|-{\text{Fukaya cat.}} \\
-& \mathrm{dg - categories} & \\
-\text{complex geometry}\ar[ur]|-{DQ\textrm{-modules}}&& \text{Matrix Factorizations}\ar[ul]\\
-& \mathrm{dg - algebras} \ar[uu]
+\text{Algebraic Geometry}\ar[dr]^{L_{qcoh}}&&\text{Symplectic Geometry}\ar[dl]^(0.5){\text{Fukaya cat.}}\\
+&dg-categories&\\
+\text{complex geometry}\ar[ur]^(0.5){DQ-modules}&& \text{Matrix Factorizations}\ar[ul]\\
+&dg-algebras\ar[uu]&\\
 }
-\]
+$$
 
-\noindent and can be used as a unifying language. The map from dg-algebras to dg-categories is particularly important. It sends a dg-algebra $A$ to the dg-category with one object and $A$ as a complex of endomorphisms with the composition given by the associative product on $A$. The theory of modules makes sense for any dg-category. If $T$ is a small dg-category, we define its big dg-category of dg-modules as the dg-category of  dg-enriched functors from $T$ to the category of complexes of k-modules with its natural dg-enrichement. This carries a natural $k$-linear homotopy theory and we will write $\widehat{T}$ for the dg-category that codifies it.  If $T$ the dg-category associated to a dg-algebra $A$, $\widehat{T}$ is a dg-enhancement of the classical derived category of $A$. The fact that $L_\mathrm{pe}(X)$ generates the whole $L_{\mathrm{qcoh}}(X)$ can now be made precise by means of an equivalence  $\widehat{L_\mathrm{pe}(X)}\simeq  L_{\mathrm{qcoh}}(X)$. \\
+\noindent and can be used as a unifying language. The map from dg-algebras to dg-categories is particularly important. It sends a dg-algebra $A$ to the dg-category with one object and $A$ as a complex of endomorphisms with the composition given by the associative product on $A$. The theory of modules makes sense for any dg-category. If $T$ is a small dg-category, we define its big dg-category of dg-modules as the dg-category of  dg-enriched functors from $T$ to the category of complexes of k-modules with its natural dg-enrichement. This carries a natural $k$-linear homotopy theory and we will write $\widehat{T}$ for the dg-category that codifies it.  If $T$ the dg-category associated to a dg-algebra $A$, $\widehat{T}$ is a dg-enhancement of the classical derived category of $A$. The fact that $L_{pe}(X)$ generates the whole $L_{qcoh}(X)$ can now be made precise by means of an equivalence  $\widehat{L_{pe}(X)}\simeq  L_{qcoh}(X)$. \\
 
 
 Let us now review some standard invariants that we can extract from a small dg-category:
 
 \begin{itemize}
-\item The Hoschschild Homology of a dg-category $T$, $\mathrm{HH}(T)$ (see \cite{Anthony-thesis} for a precise construction of this invariant with values in spectra). The cyclic homology and the periodic cyclic homology of a dg-category are defined by an appropriate base-change of $\mathrm{HH}(T)$. By the Hochschild-Konstant-Rosenberg theorem, the periodic cyclic homology of the small dg-category  $L_\mathrm{pe}(X)$ is isomorphic to the de Rham cohomology of $X$.
+\item The Hoschschild Homology of a dg-category $T$, $HH(T)$ (see \cite{Anthony-thesis} for a precise construction of this invariant with values in spectra). The cyclic homology and the periodic cyclic homology of a dg-category are defined by an appropriate base-change of $HH(T)$. By the Hochschild-Konstant-Rosenberg theorem, the periodic cyclic homology of the small dg-category  $L_{pe}(X)$ is isomorphic to the de Rham cohomology of $X$.
 
 \item More recentely, Kaledin introduced a noncommutative version of the cristalline cohomology.
 
-\item Connective K-theory, Non-connective K-theory and $\mathbb{A}^1$-invariant K-theory. We will come back to this later in the talk (Section 4). At this point we merely want to emphazise that all these K-theory flavours can be defined directly at the level of dg-categories and that their values at $L_\mathrm{pe}(X)$ recover the values associated to $X$;
+\item Connective $K$-theory, Non-connective $K$-theory and $\mathbb{A}^1$-invariant K-theory. We will come back to this later in the talk (Section 4). At this point we merely want to emphazise that all these $K$-theory flavours can be defined directly at the level of dg-categories and that their values at $L_{pe}(X)$ recover the values associated to $X$;
 
-\item More recently, A. Blanc in his thesis \cite{Anthony-thesis}, introduce a noncommutative version of topological K-theory. If $X$ is a scheme defined over $\mathbb{C}$, $\mathrm{K}^{\mathrm{top}}(L_\mathrm{pe}(X))$ recovers the topological K-theory of the underlying space of complex points in $X$;
+\item More recently, A. Blanc in his thesis \cite{Anthony-thesis}, introduce a noncommutative version of topological K-theory. If $X$ is a scheme defined over $\mathbb{C}$, $K^{top}(L_{pe}(X))$ recovers the topological $K$-theory of the underlying space of complex points in $X$;
 \end{itemize}
 
 Comparison results like the ones above enhance the understanding of dg-categories as good bodies for noncommutative spaces.\\
 
-An important feature of all these theories is the invariance along morphisms $T\to T'$ such that the map induced between the big dg-categories of modules $\widehat{T}\to \widehat{T'}$ is an equivalence. Such morphims are called Morita equivalences. The study of dg-categories up to Morita equivalence admits a (combinatorial) model structure (see \cite{tabuada-quillen}) and throughout this notes we will let $\mathcal{D}g(k)^\mathrm{idem}$ denote its underlying $(\infty,1)$-category. It admits a natural monoidal structure given by the derived tensor product of dg-categories and by the results of \cite{toen} it admits an internal-hom (which can be explicitely described).
+An important feature of all these theories is the invariance along morphisms $T\to T'$ such that the map induced between the big dg-categories of modules $\widehat{T}\to \widehat{T'}$ is an equivalence. Such morphims are called Morita equivalences. The study of dg-categories up to Morita equivalence admits a (combinatorial) model structure (see \cite{tabuada-quillen}) and throughout this notes we will let $\dg^{idem}$ denote its underlying $(\infty,1)$-category. It admits a natural monoidal structure given by the derived tensor product of dg-categories and by the results of \cite{Toen-homotopytheorydgcatsandderivedmoritaequivalences} it admits an internal-hom (which can be explicitely described).
 
 
-We now introduce a bit of notation. Let $A$ be a dg-algebra and $\widehat{A}$ its dg-category of modules. We let $\widehat{A}_{\mathrm{pe}}$ denote the full sub dg-category of $\widehat{A}$ spanned by the (homotopy) compact objects. Of course, we have $\widehat{\widehat{A}_{\mathrm{pe}}} \simeq \widehat{A}$.  The following is a crucial result in noncommutative algebraic geometry:
+We now introduce a bit of notation. Let $A$ be a dg-algebra and $\widehat{A}$ its dg-category of modules. We let $\widehat{A}_{pe}$ denote the full sub dg-category of $\widehat{A}$ spanned by the (homotopy) compact objects. Of course, we have $\widehat{\widehat{A}_{pe}}\simeq \widehat{A}$.  The following is a crucial result in noncommutative algebraic geometry:
 
 \begin{thm}(Bondal-Van den Bergh \cite{bondal-vandenbergh})
-Let X be a scheme over $k$. Then, if $X$ is quasi-compact and quasi-separated there is a dg-algebra $A_X$ such that $L_\mathrm{pe}(X)$ is Morita equivalent to the small dg-category $\widehat{A_X}_\mathrm{pe}$.
+Let X be a scheme over $k$. Then, if $X$ is quasi-compact and quasi-separated there is a dg-algebra $A_X$ such that $L_{pe}(X)$ is Morita equivalent to the small dg-category $\widehat{A_X}_{pe}$.
 \end{thm}
 
 In other words, every quasi-compact and quasi-separated schemes becomes affine in the noncommutative world.
 
-\begin{defin}(Toen-Vaquie \cite{toen-vaquie})
-A dg-category $T\in \mathcal{D}g(k)^\mathrm{idem}$ is said to be of finite type if it is a compact object in the $(\infty,1)$-category $\mathcal{D}g(k)^\mathrm{idem}$.  We say that $T$ is smooth and proper if it is a dualizable object. In particular, smooth and proper dg-categories are of finite type. 
-\end{defin}
+\begin{defn}(Toen-Vaquie \cite{toen-vaquie})
+A dg-category $T\in \dg^{idem}$ is said to be of finite type if it is a compact object in the $(\infty,1)$-category $\dg^{idem}$.  We say that $T$ is smooth and proper if it is a dualizable object. In particular, smooth and proper dg-categories are of finite type. 
+\end{defn}
 
-We will denote $\mathcal{D}g(k)^\mathrm{ft}$ the full subcategory of $\mathcal{D}g(k)^\mathrm{idem}$ spanned by the dg-categories of finite type. We can easily see that it is closed under the derived tensor product of dg-categories. Moreover, we can prove that a small dg-category $T$ is of finite type if and only if it is Morita equivalent to a small dg-category of the form $\widehat{A}_\mathrm{pe}$ for a dg-algebra A which is (homotopy) compact in the homotopy theory of dg-algebras (see \cite{toen-vaquie}). This description, together with the result of Bondal- Van den Bergh motivates the following definition:
+We will denote $\dg^{ft}$ the full subcategory of $\dg^{idem}$ spanned by the dg-categories of finite type. We can easily see that it is closed under the derived tensor product of dg-categories. Moreover, we can prove that a small dg-category $T$ is of finite type if and only if it is Morita equivalent to a small dg-category of the form $\widehat{A}_{pe}$ for a dg-algebra A which is (homotopy) compact in the homotopy theory of dg-algebras (see \cite{toen-vaquie}). This description, together with the result of Bondal- Van den Bergh motivates the following definition:
 
-\begin{defin}
-The $(\infty,1)$-category of smooth non-commutative spaces $\nck$ is the opposite of $\mathcal{D}g(k)^\mathrm{ft}$
-\end{defin}
+\begin{defn}
+The $(\infty,1)$-category of smooth non-commutative spaces $\nck$ is the opposite of $\dg^{ft}$
+\end{defn}
 
 \noindent and we have
 
 \begin{prop}(Toen-Vaquie \cite[3.27]{toen-vaquie})
-Let $X$ be a smooth and proper variety over $k$. Then $L_\mathrm{pe}(X)$ is a smooth and proper dg-category. In particular, it is of finite type.
+Let $X$ be a smooth and proper variety over $k$. Then $L_{pe}(X)$ is a smooth and proper dg-category. In particular, it is of finite type.
 \end{prop}
 
-The assignement $X\to L_{\mathrm{pe}}(X)$ is known not to be fully faithful (see \cite{MR2067481} for an explicit example and \cite{MR2296422} for a more complete discussion about the behavior of this assignement). In his program \cite{kontsevich1, kontsevich2} Kontsevich envisioned also that similarly to schemes, noncommutative spaces should also admit a motivic theory and one of the interesting questions is how better $L_\mathrm{pe}$ behaves at the motivic level. Our goal in this talk is to explain a possible approach to this idea. Motives are generated by affine objects so that any comparison between the commutative and noncommutative motivic theories will require a proper definition of $L_\mathrm{pe}$ as a functor at the affine level. This is the content of the following result:
+The assignement $X\to L_{pe}(X)$ is known not to be fully faithful (see \cite{MR2067481} for an explicit example and \cite{MR2296422} for a more complete discussion about the behavior of this assignement). In his program \cite{kontsevich1, kontsevich2} Kontsevich envisioned also that similarly to schemes, noncommutative spaces should also admit a motivic theory and one of the interesting questions is how better $L_{pe}$ behaves at the motivic level. Our goal in this talk is to explain a possible approach to this idea. Motives are generated by affine objects so that any comparison between the commutative and noncommutative motivic theories will require a proper definition of $L_{pe}$ as a functor at the affine level. This is the content of the following result:
 
 \begin{prop}(see \cite[6.38]{nc1})
-The assignement $X\mapsto L_\mathrm{pe}(X)$ defines a monoidal $\infty$-functor 
+The assignement $X\mapsto L_{pe}(X)$ defines a monoidal $\infty$-functor 
 $$\aff^{\times}\to \nck^{\otimes}$$
 \noindent where $\aff^{\times}$ denotes the category of smooth affine schemes of finite type over $k$, equipped with the cartesian product.
 \end{prop}
+
+
 
 \section{Motives}
 
 Before introducing noncommutative motives we should say some words about motives. In the original program envisioned by Grothendieck, the motif of a geometric object $X$ (eg. $X$ a projective smooth variety) was something like ``the arithmetical content of $X$'' \footnote{like $L$-functions or $Z$-functions}. More precisely, in the sixties, Grothendieck and his collaborators started a quest to construct examples of the so-called Weil cohomology theories, designed to capture different arithmetic information about $X$. In the presence of many such theories he envisioned the existence of a universal one, which would gather all the arithmetic information. Such a theory is not yet known to exist. It relies on the standard conjectures. See the books \cite{MR2115000, motivesSeattle} and the course notes by B. Kahn \cite{kahnzetamotives} for a introduction to this arithmetic program.
 
-In the late 90's, Morel and Voevodsky \cite{voevodsky-morel} developped a more general theory of motives. In their theory, the motif of $X$ can be the described as the cohomological skeleton of $X$, not only in the eyes of a Weil cohomology theory, but for all the generalized cohomology theories for schemes (like K-theory, algebraic cobordism and motivic cohomology) at once. The inspiration comes from the stable homotopy theory of spaces where all generalized cohomology theories (of spaces) become representable. Their construction can be summarized as follows:
+In the late 90's, Morel and Voevodsky \cite{voevodsky-morel} developped a more general theory of motives. In their theory, the motif of $X$ can be the described as the cohomological skeleton of $X$, not only in the eyes of a Weil cohomology theory, but for all the generalized cohomology theories for schemes (like $K$-theory, algebraic cobordism and motivic cohomology) at once. The inspiration comes from the stable homotopy theory of spaces where all generalized cohomology theories (of spaces) become representable. Their construction can be summarized as follows:
 
 \begin{enumerate}
 \item Start from the category of smooth schemes $\sch$ (over a base scheme $S$) and freely complete it with homotopy colimits;
@@ -126,45 +131,45 @@ In the late 90's, Morel and Voevodsky \cite{voevodsky-morel} developped a more g
 
 Notice that after the first four steps the product of the (pointed) topological circle with the (pointed) algebraic circle becomes equivalent to the projective space $\mathbb{P}^1$ pointed at $\infty$ (any choice of base point here is $\mathbb{A}^1$-homotopic). In particular the last two steps can be performed all at once by stabilizing with respect to  $\mathbb{P}^1$ pointed at $\infty$.\\ 
 
-Their original construction was achieved using the theory of model categories. Nowadays we know that model categories are strict presentations of more fundamental objects, namely, $(\infty,1)$-categories. For a model category $\M$ with weak-equivalences $W$, we will write $\infty(\M)$ to denote its underlying $(\infty,1)$-category \footnote{To be more precise, if we use simplicial categories as models for $(\infty,1)$-categories, $\infty(\M)$ is the Dwyer-Kan localization of $\M$ along the class of weak-equivalences. If we use quasi-categories, $\infty(\M)$ can be identified with a fibrant replacement for the marked simplicial set $(N(\M), W)$ in the Lurie's upgraded Joyal model structure for marked simplicial sets, where $N(\M)$ is the nerve of $\M$.}.  The results of J. Lurie in \cite{htt} allow us to give characterize the underlying $(\infty,1)$-categories associated to the first three steps of Morel-Voevodsky: the first step corresponds to take presheaves of homotopy types \cite[4.2.4.4]{htt} and the second and third step correspond to accessible reflexive localizations (recall that an $(\infty,1)$-category $\C$ is presentable if and only if it is the underlying $(\infty,1)$-category of a combinatorial model category $\M$ and that accessible reflexive localizations of $\C$ correspond bijectively to Bousfield localizations of $\M$ \cite[A.3.7.4, A.3.7.6, A.3.7.8]{htt}). The following result is part of my thesis work and provides a way to understand the two stabilization steps at the underlying $\infty$-categorical level:
+Their original construction was achieved using the theory of model categories. Nowadays we know that model categories are strict presentations of more fundamental objects, namely, $(\infty,1)$-categories. For a model category $\M$ with weak-equivalences $W$, we will write $\infty(\M)$ to denote its underlying $(\infty,1)$-category \footnote{To be more precise, if we use simplicial categories as models for $(\infty,1)$-categories, $\infty(\M)$ is the Dwyer-Kan localization of $\M$ along the class of weak-equivalences. If we use quasi-categories, $\infty(\M)$ can be identified with a fibrant replacement for the marked simplicial set $(N(\M), W)$ in the Lurie's upgraded Joyal model structure for marked simplicial sets, where $N(\M)$ is the nerve of $\M$.}.  The results of J. Lurie in \cite{lurie-htt} allow us to give characterize the underlying $(\infty,1)$-categories associated to the first three steps of Morel-Voevodsky: the first step corresponds to take presheaves of homotopy types \cite[4.2.4.4]{lurie-htt} and the second and third step correspond to accessible reflexive localizations (recall that an $(\infty,1)$-category $\C$ is presentable if and only if it is the underlying $(\infty,1)$-category of a combinatorial model category $\M$ and that accessible reflexive localizations of $\C$ correspond bijectively to Bousfield localizations of $\M$ \cite[A.3.7.4, A.3.7.6, A.3.7.8]{lurie-htt}). The following result is part of my thesis work and provides a way to understand the two stabilization steps at the underlying $\infty$-categorical level:
 
 
 \begin{thm}(\cite[4.29]{nc1})
-Let $\M$ be a combinatorial symmetric monoidal model category and let $X$ be a cofibrant object in $\M$. Let $\Sp^{\Sigma}(\M, X)$ be the combinatorial symmetric monoidal monoidal category of (symmetric) spectrum objects in $\M$ with respect to $X$ introduced by Hovey in \cite{hovey-spectraandsymmetricspectra} corresponding to the stabilization of $\M$ with respect to $X$. This comes naturally equipped with a left Quillen monoidal map $\M\to \Sp^{\Sigma}(\M, X)$ sending $X$ to a tensor-invertible object. Assume that $X$ satisfies the following condition:\\
+Let $\M$ be a combinatorial symmetric monoidal model category and let $X$ be a cofibrant object in $\M$. Let $Sp^{\Sigma}(\M, X)$ be the combinatorial symmetric monoidal monoidal category of (symmetric) spectrum objects in $\M$ with respect to $X$ introduced by Hovey in \cite{hovey-spectraandsymmetricspectra} corresponding to the stabilization of $\M$ with respect to $X$. This comes naturally equipped with a left Quillen monoidal map $\M\to Sp^{\Sigma}(\M, X)$ sending $X$ to a tensor-invertible object. Assume that $X$ satisfies the following condition:\\
 
 $(*)$ The ciclic permutation of factors $X\otimes X\otimes X\to X\otimes X\otimes X$ is the identity map in the homotopy category of $\M$.\\
 
-Then, the presentable symmetric monoidal $(\infty,1)$-category $\infty(\Sp^{\Sigma}(\M, X))^{\otimes}$ underlying the model category $\Sp^{\Sigma}(\M, X)$ has the following universal property: for any presentable symmetric monoidal $(\infty,1)$-category $\mathcal{D}^{\otimes}$ the composition along the monoidal functor $\infty(\M)^{\otimes}\to\infty(\Sp^{\Sigma}(\M, X))^{\otimes}$ 
+Then, the presentable symmetric monoidal $(\infty,1)$-category $\infty(Sp^{\Sigma}(\M, X))^{\otimes}$ underlying the model category $Sp^{\Sigma}(\M, X)$ has the following universal property: for any presentable symmetric monoidal $(\infty,1)$-category $\Dmonoidal$ the composition along the monoidal functor $\infty(\M)^{\otimes}\to\infty(Sp^{\Sigma}(\M, X))^{\otimes}$ 
 
-$$\mathrm{Fun}^{\otimes, L}(\infty(\Sp^{\Sigma}(\M, X))^{\otimes} , \mathcal{D}^{\otimes})\to \mathrm{Fun}^{\otimes, L}(\infty(\M)^{\otimes}, \mathcal{D}^{\otimes})$$
+$$Fun^{\otimes, L}(\infty(Sp^{\Sigma}(\M, X))^{\otimes} , \Dmonoidal)\to Fun^{\otimes, L}(\infty(\M)^{\otimes}, \Dmonoidal)$$
 
-\noindent is fully-faithful and its image is the full subcategory spanned by those monoidal functors $\infty(\M)^{\otimes}\to \mathcal{D}^{\otimes}$ sending $X$ to a tensor-invertible object \footnote{Both on the left and right we have the $(\infty,1)$-categories of colimit preserving monoidal functors}.
+\noindent is fully-faithful and its image is the full subcategory spanned by those monoidal functors $\infty(\M)^{\otimes}\to \Dmonoidal$ sending $X$ to a tensor-invertible object \footnote{Both on the left and right we have the $(\infty,1)$-categories of colimit preserving monoidal functors}.
 \end{thm}
 
-More generally, we can prove that given a presentable symmetric monoidal $(\infty,1)$-category $\mathcal{C}^{\otimes}$ together with an object $X\in \C$ we can fabricate a new presentable symmetric monoidal $(\infty,1)$-category together with a monoidal map from $\C$ sending $X$ to a tensor-invertible object and universal in this sense amongst presentable symmetric monoidal $(\infty,1)$-categories (see \cite[4.10]{nc1}). With this in mind we can rephrase our result above as saying that whenever $X$ satisfies the cyclic condition, the model category $\Sp^{\Sigma}(\M, X)$ with its convolution product is a strict model for the universal tensor-inversion of $X$.\\
+More generally, we can prove that given a presentable symmetric monoidal $(\infty,1)$-category $\Cmonoidal$ together with an object $X\in \C$ we can fabricate a new presentable symmetric monoidal $(\infty,1)$-category together with a monoidal map from $\C$ sending $X$ to a tensor-invertible object and universal in this sense amongts presentable symmetric monoidal $(\infty,1)$-categories (see \cite[4.10]{nc1}). With this in mind we can rephrase our result above as saying that whenever $X$ satisfies the ciclic condition, the model category $Sp^{\Sigma}(\M, X)$ with its convolution product is a strict model for the universal tensor-inversion of $X$.\\
 
 
 \begin{example}
-If $\mathcal{C}^{\otimes}$ is a pointed presentable symmetric monoidal $(\infty,1)$-category category then it is a commutative algebra  (in the $(\infty,1)$-category of presentable $(\infty,1)$-categories) over the $(\infty,1)$-category of pointed spaces with the smash product. We can check that $\C$ is stable if and only if the image of the topological circle $S^1$ under the canonical morphism $\Spaces_{\ast}\to \C$ is tensor-invertible in $\mathcal{C}^{\otimes}$. For the complete details see \cite[4.28]{nc1}
+If $\Cmonoidal$ is a pointed presentable symmetric monoidal $(\infty,1)$-category category then it is a commutative algebra  (in the $(\infty,1)$-category of presentable $(\infty,1)$-categories) over the $(\infty,1)$-category of pointed spaces with the smash product. We can check that $\C$ is stable if and only if the image of the topological circle $S^1$ under the canonical morphism $\Spaces_{\ast}\to \C$ is tensor-invertible in $\Cmonoidal$. For the complete details see \cite[4.28]{nc1}
 \end{example}
 
 As an application we get the following characterization for the theory of Morel-Voevodsky
 
 \begin{cor}(\cite[5.11]{nc1})
-Let $S$ be a base scheme and let $\sch^{\times}$ denote the category of smooth schemes over $S$ considered as a trivial $(\infty,1)$-category, together with the cartesian product of schemes. Let $\stmonoidal$ denote the presentable stable symmetric monoidal $(\infty,1)$-category underlying the motivic stable model category of Morel-Voevodsky. Since all the steps in the list above are monoidal, we end up with a natural monoidal map $\sch^{\times}\to \stmonoidal$. This map has the following universal property: for any pointed presentable symmetric monoidal $(\infty,1)$-category $\mathcal{D}^{\otimes}$, the composition map
+Let $S$ be a base scheme and let $\sch^{\times}$ denote the category of smooth schemes over $S$ considered as a trivial $(\infty,1)$-category, together with the cartesian product of schemes. Let $\stmonoidal$ denote the presentable stable symmetric monoidal $(\infty,1)$-category underlying the motivic stable model category of Morel-Voevodsky. Since all the steps in the list above are monoidal, we end up with a natural monoidal map $\sch^{\times}\to \stmonoidal$. This map has the following universal property: for any pointed presentable symmetric monoidal $(\infty,1)$-category $\Dmonoidal$, the composition map
 
 
-$$\mathrm{Fun}^{\otimes, L}(\stmonoidal , \mathcal{D}^{\otimes})\to \mathrm{Fun}^{\otimes}(\sch^{\times}, \mathcal{D}^{\otimes})$$
+$$Fun^{\otimes, L}(\stmonoidal , \Dmonoidal)\to Fun^{\otimes}(\sch^{\times}, \Dmonoidal)$$
 
 \noindent is fully-faithful and its image consists of those monoidal functors $F$ such that:
 
 \begin{itemize}
 \item $F$ satisfies Nisnevich descent;
 \item for any smooth scheme $X$ over $S$ we have $F(X\times \mathbb{A}^1_S)\simeq F(X)$;
-\item the cofiber of the map $F(S)\to F(\mathbb{P}^1_S)$ induced by the inclusion of the point at infinity, is a tensor-invertible object in $\mathcal{D}^{\otimes}$.
+\item the cofiber of the map $F(S)\to F(\mathbb{P}^1_S)$ induced by the inclusion of the point at infinity, is a tensor-invertible object in $\Dmonoidal$.
 \end{itemize}
 
-In particular, since $(\mathbb{P}^1_S, \infty)$ is equivalent to $S^1\wedge G_m$ in $\st$, we find that any pointed symmetric monoidal $(\infty,1)$-category $\mathcal{D}^{\otimes}$ admitting a monoidal map from $\sch^{\times}$ satisfying these conditions is necessarily stable because $S^1$ becomes tensor-invertible (see the example above).
+In particular, since $(\mathbb{P}^1_S, \infty)$ is equivalent to $S^1\wedge G_m$ in $\st$, we find that any pointed symmetric monoidal $(\infty,1)$-category $\Dmonoidal$ admitting a monoidal map from $\sch^{\times}$ satisfying these conditions is necessarily stable because $S^1$ becomes tensor-invertible (see the example above).
 \end{cor}
 
 \begin{remark}
@@ -176,11 +181,11 @@ This corollary is also helpful in the construction of motivic realizations (see 
 
 We should also remark that this theorem would be impossible to prove only with the techniques of model category theory due to its bad functoriality properties.\\
 
-To conclude this section we recall that this theory of Morel-Voevodsky allows us to recover the so-called theory of Voevodsky Motives (which is an attempt to formalize the initial vision of Grothendieck). More precisely, in $\stk$ we have homotopy commutative ring objects $M\mathbb{Q}$ and $M\mathbb{Z}$ representing, respectively,  motivic cohomology with rational coefficients and with integer coefficients. For the last, it is known that $\mathrm{Mod}_{M\mathbb{Q}}(\stk)$ is equivalent to the stable $(\infty,1)$-category $\mathrm{DM}(k)_{\mathbb{Q}}$ encoding Voevodsky Motives (see \cite{motiviccohomology-lectures, rodingsostaer})so that, in particular, its homotopy category contains $\mathrm{Chow}$ motives as full subcategory.
+To conclude this section we recall that this theory of Morel-Voevodsky allows us to recover the so-called theory of Voevodsky Motives (which is an attempt to formalize the initial vision of Grothendieck). More precisely, in $\stk$ we have homotopy commutative ring objects $M\mathbb{Q}$ and $M\mathbb{Z}$ representing, respectively,  motivic cohomology with rational coefficients and with integer coefficients. For the last, it is known that $Mod_{M\mathbb{Q}}(\stk)$ is equivalent to the stable $(\infty,1)$-category $DM(k)_{\mathbb{Q}}$ encoding Voevodsky Motives (see \cite{motiviccohomology-lectures, rodingsostaer})so that, in particular, its homotopy category contains $Chow$ motives as full subcategory.
 
 \section{Noncommutative Motives}
 
-Our goal now is to explain our new approach to the theory of noncommutative motives. The basic idea is to mimic the construction of Morel-Voevodsky in the most direct way, by introducing a noncommutative version of the Nisnevich topology for our noncommutative spaces. To give an explicit description of this new notion,  we investigate the image of the Nisnevich topology for schemes under the functor $L_\mathrm{pe}: \aff\to \mathcal{D}g(k)^\mathrm{ft}$. The first main observation is that the Nisnevich topology is a cd-topology in the sense that to verify that something has Nisnevich descent it is enough to test the descent property with respect to the certain Nisnevich coverings given by squares, in this case of the form
+Our goal now is to explain our new approach to the theory of noncommutative motives. The basic idea is to mimic the construction of Morel-Voevodsky in the most direct way, by introducing a noncommutative version of the Nisnevich topology for our noncommutative spaces. To give an explicit description of this new notion,  we investigate the image of the Nisnevich topology for schemes under the functor $L_{pe}: \aff\to \dg^{ft}$. The first main observation is that the Nisnevich topology is a cd-topology in the sense that to verify that something has Nisnevich descent it is enough to test the descent property with respect to the certain Nisnevich coverings given by squares, in this case of the form
 
 $$
 \xymatrix{
@@ -189,39 +194,39 @@ U\ar[r]^i& X
 }
 $$ 
 
-\noindent where $i$ is an open immersion and $p$ is an etale map such that the canonical map $p^{-1}(Z)\to Z$ with $Z:=X \setminus U$ equipped with the reduced structure, is an isomorphism. We now describe the image of these basic squares under $L_\mathrm{pe}$:
+\noindent where $i$ is an open immersion and $p$ is an etale map such that the canonical map $p^{-1}(Z)\to Z$ with $Z:=X\U$ equipped with the reduced structure, is an isomorphism. We now describe the image of these basic squares under $L_{pe}$:
 
 \begin{itemize}
-\item The image of an elementary Nisnevich square under $L_\mathrm{pe}$ is a pullback square of dg-categories of finite type in the morita theory of dg-categories. This follows from a crucial result of A. Hirschowitz  and C. Simpson in \cite{simpson-descente}, namely that $L_\mathrm{pe}$ satisfies Nisnevich descent;
-\item If $U\hookrightarrow X$ is an open immersion of schemes with closed complementary $Z$, then the sequences of dg-categories $L_\mathrm{pe}(X)_{Z}\to L_\mathrm{pe}(X)\to L_\mathrm{pe}(U)$ is an exact sequence of dg-categories (meaning, a cofiber sequence in the Morita theory of dg-categories where the first map is fully faithful). Here $L_\mathrm{pe}(X)_{Z}$ denotes the full sub dg-category of $L_\mathrm{pe}(X)$ spanned by those perfect complexes on $X$ with support on $Z$. This result was originally proven by Verdier \cite{Verdier} in the context of triangulated categories and then upgraded by Thomason \cite{thomasonalgebraic} to the theory of perfect complexes and more recently by B. Keller in the setting of dg-categories \cite{keller-exact}.
-\item The dg-categories $L_\mathrm{pe}(X)_{Z}$ and $L_\mathrm{pe}(V)_{V-p^{-1}(U)}$ do not have to be of finite type (The kernel of things of finite type does not have to be of finite type). However, by the results of Neeman \cite{neeman} and Bondal-Van den Bergh \cite{bondal-vandenbergh}, they admit compact generators. Moreover, the condition that the map $p^{-1}(Z)\to Z$ is an isomorphism forces the induced map $L_\mathrm{pe}(V)_{V-p^{-1}(U)}\to  L_\mathrm{pe}(X)_{Z}$ to be an equivalence;
+\item The image of an elementary Nisnevich square under $L_{pe}$ is a pullback square of dg-categories of finite type in the morita theory of dg-categories. This follows from a crucial result of A. Hirschowitz  and C. Simpson in \cite{simpson-descente}, namely that $L_{pe}$ satisfies Nisnevich descent;
+\item If $U\hookrightarrow X$ is an open immersion of schemes with closed complementary $Z$, then the sequences of dg-categories $L_{pe}(X)_{Z}\to L_{pe}(X)\to L_{pe}(U)$ is an exact sequence of dg-categories (meaning, a cofiber sequence in the Morita theory of dg-categories where the first map is fully faithful). Here $L_{pe}(X)_{Z}$ denotes the full sub dg-category of $L_{pe}(X)$ spanned by those perfect complexes on $X$ with support on $Z$. This result was originally proven by Verdier \cite{Verdier} in the context of triangulated categories and then upgraded by Thomason \cite{thomasonalgebraic} to the theory of perfect complexes and more recently by B. Keller in the setting of dg-categories \cite{keller-exact}.
+\item The dg-categories $L_{pe}(X)_{Z}$ and $L_{pe}(V)_{V-p^{-1}(U)}$ do not have to be of finite type (The kernel of things of finite type does not have to be of finite type). However, by the results of Neeman \cite{neeman} and Bondal-Van den Bergh \cite{bondal-vandenbergh}, they admit compact generators. Moreover, the condition that the map $p^{-1}(Z)\to Z$ is an isomorphism forces the induced map $L_{pe}(V)_{V-p^{-1}(U)}\to  L_{pe}(X)_{Z}$ to be an equivalence;
 \end{itemize}
 
-With these observations in mind we can give the following definition, whose originality we should attribute to B. To\"en, M.Vaqui\'e and G. Vezzosi.
+With these observations in mind we can give the following definition, whose originality we should attribute to B. Toen, M.Vaquie and G. Vezzosi.
 
-\begin{defin}(see \cite[6.44]{nc1})
+\begin{defn}(see \cite[6.44]{nc1})
 An elementary Nisnevich square of noncommutative spaces is a commutative square in $\nck$ corresponding to a commutative square of dg-categories of finite type
 
 $$
 \xymatrix{
-T_{\mathcal X}\ar[r] \ar[d] & T_{\mathcal U}\ar[d]\\
-T_{\mathcal V}\ar[r]& T_{W}
+T_{\X}\ar[r] \ar[d] & T_{\UU}\ar[d]\\
+T_{\V}\ar[r]& T_{W}
 }
 $$
 
 \noindent such that:
 \begin{itemize}
 \item The square is a pullback in the Morita theory of dg-categories (and therefore corresponds to a pushout between the associated noncommutative spaces).
-\item Both rows fit in exact sequences of dg-categories (as defined above) $K_{\mathcal X-\mathcal U}\hookrightarrow T_{\mathcal X}\to T_{\mathcal U}$ and  $K_{\mathcal V-\mathcal W}\hookrightarrow T_{\mathcal V}\to T_{W}$ where both $K_{\mathcal X-\mathcal U}$ and $K_{\mathcal V-\mathcal W}$ are dg-categories with a compact generator and such that the induced map $K_{\mathcal X-\mathcal U}\to K_{\mathcal V-\mathcal W}$ is an equivalence in $\mathcal{D}g(k)^\mathrm{idem}$.
+\item Both rows fit in exact sequences of dg-categories (as defined above) $K_{\X-\UU}\hookrightarrow T_{\X}\to T_{\UU}$ and  $K_{\V-\W}\hookrightarrow T_{\V}\to T_{W}$ where both $K_{\X-\UU}$ and $K_{\V-\W}$ are dg-categories with a compact generator and such that the induced map $K_{\X-\UU}\to K_{\V-\W}$ is an equivalence in $\dg^{idem}$.
 \end{itemize}
-\end{defin}
+\end{defn}
 
 Let us give some examples:
 
 \begin{example}
 \hfill
 \begin{itemize}
-\item By definition, and because of the preliminary observations above, every Nisnevich square of smooth affine schemes provides a Nisnevich square of noncommutative spaces under the functor $L_\mathrm{pe}$;
+\item By definition, and because of the preliminary observations above, every Nisnevich square of smooth affine schemes provides a Nisnevich square of noncommutative spaces under the functor $L_{pe}$;
 \item If $A\to B \to C$ is an exact sequence of dg-categories (as defined above) with $A$ a dg-category of finite type then the square
 
 $$
@@ -232,22 +237,22 @@ B\ar[r]& C
 $$
 
 \noindent provides a Nisnevich square of dg-categories (see \cite[6.47]{nc1}).
-\item Recall that a semi-orthogonal decomposition of a dg-category $B$ is an exact sequence $A\to B\to C$ that splits \footnote{meaning that the first map admits a left inverse and the second map admits a right-inverse.}. If both $B$, $A$, and $C$ are of finite type, by the previous example we have a Nisnevich square. If we have a split exact sequence in a non-stable context, then it is not necessarily true that the middle term is the direct sum of the extreme terms. However, by mapping such a sequence to a stable context this becomes true. This is exactly what happens when we use the canonical map $\nck\to \stnck$. An important example is $B= L_\mathrm{pe}(\mathbb{P}^1)$ and the fact it admits an exceptional collection with two generators, meaning,a semi-orthogonal decomposition where both factors $A$ and $C$ are equivalent to $L_\mathrm{pe}(k)$
+\item Recall that a semi-orthogonal decomposition of a dg-category $B$ is an exact sequence $A\to B\to C$ that splits \footnote{meaning that the first map admits a left inverse and the second map admits a right-inverse.}. If both $B$, $A$, and $C$ are of finite type, by the previous example we have a Nisnevich square. If we have a split exact sequence in a non-stable context, then it is not necessarily true that the middle term is the direct sum of the extreme terms. However, by mapping such a sequence to a stable context this becomes true. This is exactly what happens when we use the canonical map $\nck\to \stnck$. An important example is $B= L_{pe}(\mathbb{P}^1)$ and the fact it admits an exceptional collection with two generators, meaning,a semi-orthogonal decomposition where both factors $A$ and $C$ are equivalent to $L_{pe}(k)$
 \end{itemize}
 \end{example}
 
-With this notion, we can now construct a direct analogue for the Morel-Voevodsky theory in the noncommutative world (over a commutative ring $k$). Namely, we perform exactly the same steps replacing the category of affine smooth schemes over $k$ by the $(\infty,1)$-category $\nck$, the elementary Nisnevich squares of schemes by the elementary Nisnevich squares of noncommutative spaces over $k$ and the affine line and the projective space by their noncommutative incarnations, respectively given by the dg-categories $L_\mathrm{pe}(\mathbb{A}^1_k)$ and $L_\mathrm{pe}(\mathbb{P}^1_k)$. The result is a new stable presentable symmetric monoidal $(\infty,1)$-category $\stncmonoidalk$ together with a universal monoidal map 
+With this notion, we can now construct a direct analogue for the Morel-Voevodsky theory in the noncommutative world (over a commutative ring $k$). Namely, we perform exactly the same steps replacing the category of affine smooth schemes over $k$ by the $(\infty,1)$-category $\nck$, the elementary Nisnevich squares of schemes by the elementary Nisnevich squares of noncommutative spaces over $k$ and the affine line and the projective space by their noncommutative incarnations, respectively given by the dg-categories $L_{pe}(\mathbb{A}^1_k)$ and $L_{pe}(\mathbb{P}^1_k)$. The result is a new stable presentable symmetric monoidal $(\infty,1)$-category $\stncmonoidalk$ together with a universal monoidal map 
 
 $$\nck^{\otimes}\to \stncmonoidalk$$
 
-\noindent analogue to the universal map characterizing the theory of Morel-Voevodsky. An important feature of the noncommutative world is that we don't need to invert the noncommutative image of $(\mathbb{P}^1,\infty)$ because it is already invertible  (see \cite[6.55]{nc1}). This follows from the existence of an exceptional collection on $L_\mathrm{pe}(\mathbb{P}^1)$ with two generators and the fact that exceptional collections provide (noncommutative) Nisnevich coverings.
+\noindent analogue to the universal map characterizing the theory of Morel-Voevodsky. An important feature of the noncommutative world is that we don't need to invert the noncommutative image of $(\mathbb{P}^1,\infty)$ because it is already invertible  (see \cite[6.55]{nc1}). This follows from the existence of an exceptional collection on $L_{pe}(\mathbb{P}^1)$ with two generators and the fact that exceptional collections provide (noncommutative) Nisnevich coverings.
 
 It follows from definition that Nisnevich squares of schemes are sent to Nisnevich squares of noncommutative spaces and that images of the affine line and the projective space satisfy the necessary conditions for our universal description of $\stmonoidalk$ to ensure the existence of a unique monoidal colimit preserving map rendering the diagram commutative
 
 \begin{equation}
 \label{comparison}
 \xymatrix{
-\aff^{\times}\ar[r]^{L_\mathrm{pe}^{\otimes}}\ar[r]\ar[d]& \nck^{\otimes}\ar[d]\\
+\aff^{\times}\ar[r]^{L_{pe}^{\otimes}}\ar[r]\ar[d]& \nck^{\otimes}\ar[d]\\
 \stmonoidalk\ar@{-->}[r]^{\mathcal{L}^{\otimes}}&\stncmonoidalk
 }
 \end{equation}
@@ -255,16 +260,16 @@ It follows from definition that Nisnevich squares of schemes are sent to Nisnevi
 
 \section{$K$-Theory and Noncommutative Motives}
 
-In the previous section we introduced a new theory of noncommutative motives. In this section we will explore this new theory and how it allow us to explain some constructions in algebraic K-theory. Before giving our main result in this section let us remark that the construction of both $\stmonoidalk$ and $\stncmonoidalk$ can be achieved by taking directly presheaves of spectra instead of presheaves of spaces. Essentially this corresponds to performing the first stabilization immediately after the first step in the list. The fact that the two procedures give the same final result follows from the final universal properties obtained. With this in mind, the construction of the comparison map in the diagram (\ref{comparison}) can be explained in a sequence of steps
+In the previous section we introduced a new theory of noncommutative motives. In this section we will explore this new theory and how it allow us to explain some constructions in algebraic $K$-theory. Before giving our main result in this section let us remark that the construction of both $\stmonoidalk$ and $\stncmonoidalk$ can be achieved by taking directly presheaves of spectra instead of presheaves of spaces. Essentially this corresponds to performing the first stabilization immediately after the first step in the list. The fact that the two procedures give the same final result follows from the final universal properties obtained. With this in mind, the construction of the comparison map in the diagram (\ref{comparison}) can be explained in a sequence of steps
 
 
 \begin{equation}
 \label{diagramaleft}
 \xymatrix{
-\aff^{\times}\ar@{^{(}->}[d]^{(\Sigma^{\infty}_{+}\circ j)^{\otimes}}\ar[r]^{L_\mathrm{pe}^{\otimes}}& \nck^{\otimes}\ar@{^{(}->}[d]^{(\Sigma^{\infty}_{+}\circ j_{\mathrm{nc}})^{\otimes}}\\
-\mathrm{Fun}(\aff^\mathrm{op}, \Sp)^{\otimes}\ar[d]^{l_\mathrm{Nis}^{\otimes}}\ar@{-->}[r]& \mathrm{Fun}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes}\ar@<1ex>[d]_{l_\mathrm{Nis}^{nc, \otimes}}\\
-\mathrm{Fun}_\mathrm{Nis}(\aff^\mathrm{op}, \Sp)^{\otimes}  \ar[d]^{l_{\mathbb{A}^1}^{\otimes}}\ar@{-->}[r]& \mathrm{Fun}_\mathrm{Nis}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes}\ar[d]_{l_{\mathbb{A}^1}^{nc,\otimes}} \\
-\mathrm{Fun}_{\mathrm{Nis}, \mathbb{A}^1}(\aff^\mathrm{op}, \Sp)^{\otimes}  \ar[d]^{\Sigma_{\mathbb{G}_m}^{\otimes}}\ar@{-->}[r]& \mathrm{Fun}_{\mathrm{Nis}, L_\mathrm{pe}(\mathbb{A}^1)}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes}\ar[d]^{\sim} \\
+\aff^{\times}\ar@{^{(}->}[d]^{(\Sigma^{\infty}_{+}\circ j)^{\otimes}}\ar[r]^{L_{pe}^{\otimes}}& \nck^{\otimes}\ar@{^{(}->}[d]^{(\Sigma^{\infty}_{+}\circ j_{nc})^{\otimes}}\\
+Fun(\aff^{op}, \Sp)^{\otimes}\ar[d]^{l_{Nis}^{\otimes}}\ar@{-->}[r]& Fun(\dg^{ft}, \Sp)^{\otimes}\ar@<1ex>[d]_{l_{Nis}^{nc, \otimes}}\\
+Fun_{Nis}(\aff^{op}, \Sp)^{\otimes}  \ar[d]^{l_{\mathbb{A}^1}^{\otimes}}\ar@{-->}[r]& Fun_{Nis}(\dg^{ft}, \Sp)^{\otimes}\ar[d]_{l_{\mathbb{A}^1}^{nc,\otimes}} \\
+Fun_{Nis, \mathbb{A}^1}(\aff^{op}, \Sp)^{\otimes}  \ar[d]^{\Sigma_{\mathbb{G}_m}^{\otimes}}\ar@{-->}[r]& Fun_{Nis, L_{pe}(\mathbb{A}^1)}(\dg^{ft}, \Sp)^{\otimes}\ar[d]^{\sim} \\
 \stmonoidalk\ar@{-->}[r]^{\mathcal{L}^{\otimes}}&\stncmonoidalk
 }
 \end{equation}
@@ -275,27 +280,27 @@ In the previous section we introduced a new theory of noncommutative motives. In
 \begin{equation}
 \label{diagramaright}
 \xymatrix{
-\mathrm{Fun}(\aff^\mathrm{op}, \Sp)^{\otimes}& \ar[l]_{\M_1^{\otimes}} \mathrm{Fun}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes}\\
-\ar@{^{(}->}[u]  \mathrm{Fun}_\mathrm{Nis}(\aff^\mathrm{op}, \Sp)^{\otimes}  & \ar@{^{(}->}[u] \ar[l]_{\M_2^{\otimes}} \mathrm{Fun}_\mathrm{Nis}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes}\\
-\ar@{^{(}->}[u]  \mathrm{Fun}_{\mathrm{Nis}, \mathbb{A}^1}(\aff^\mathrm{op}, \Sp)^{\otimes} & \ar@{^{(}->}[u] \ar[l]_{\M_3^{\otimes}} \mathrm{Fun}_{\mathrm{Nis}, L_\mathrm{pe}(\mathbb{A}^1)}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)^{\otimes} \\
+Fun(\aff^{op}, \Sp)^{\otimes}& \ar[l]_{\M_1^{\otimes}} Fun(\dg^{ft}, \Sp)^{\otimes}\\
+\ar@{^{(}->}[u]  Fun_{Nis}(\aff^{op}, \Sp)^{\otimes}  & \ar@{^{(}->}[u] \ar[l]_{\M_2^{\otimes}} Fun_{Nis}(\dg^{ft}, \Sp)^{\otimes}\\
+\ar@{^{(}->}[u]  Fun_{Nis, \mathbb{A}^1}(\aff^{op}, \Sp)^{\otimes} & \ar@{^{(}->}[u] \ar[l]_{\M_3^{\otimes}} Fun_{Nis, L_{pe}(\mathbb{A}^1)}(\dg^{ft}, \Sp)^{\otimes} \\
 \stmonoidalk \ar[u]^{\Omega^{\infty,\otimes}_{\mathbb{G}_m}}& \ar[l]_{\M^{\otimes}}\stncmonoidalk \ar[u]^{\sim}
 }
 \end{equation}
 
-Let me now describe the second main result in my thesis work. For that I need to recall some facts about algebraic K-theory. \\
+Let me now describe the second main result in my thesis work. For that I need to recall some facts about algebraic $K$-theory. \\
 
-K-theory was already discovered as an invariant of categorical nature. Quillen promoted this vision by explaining how to a given exact category we can associate a space whose homotopy groups encode the information of K-theory \cite{MR0338129}. This space cames naturally equipped with a homotopy commutative group-law so that, by the equivalence of Segal \cite{MR0353298}, it is the same as a connective spectra. Later on, Waldhausen \cite{waldhausen-ktheoryofspaces} enlarged the domain of K-theory from exact categories to categorical structures which today we know as a Waldhausen categories. More recentely, it became clear that the natural domain of K-theory is in fact the world of $(\infty,1)$-categories \cite{toenvezzosi-remarkonKtheory,1204.3607}. In particular, any dg-category $T\in \mathcal{D}g(k)^\mathrm{idem}$ has an associated K-theory (connective) spectrum which we will denote as $K^c(T)$.
-
-
+$K$-theory was already discovered as an invariant of categorical nature. Quillen promoted this vision by explaining how to a given exact category we can associate a space whose homotopy groups encode the information of K-theory \cite{MR0338129}. This space cames naturally equipped with a homotopy commutative group-law so that, by the equivalence of Segal \cite{MR0353298}, it is the same as a connective spectra. Later on, Waldhausen \cite{waldhausen-ktheoryofspaces} enlarged the domain of $K$-theory from exact categories to categorical structures which today we know as a Waldhausen categories. More recentely, it became clear that the natural domain of $K$-theory is in fact the world of $(\infty,1)$-categories \cite{toenvezzosi-remarkonKtheory,1204.3607}. In particular, any dg-category $T\in \dg^{idem}$ has an associated $K$-theory (connective) spectrum which we will denote as $K^c(T)$.
 
 
-The story of non-connective algebraic K-theory goes back to Bass \cite{MR0249491} and Karoubi \cite{MR0233871}. If $U\hookrightarrow X$ is an open immersion of schemes with closed complementary $Z$, the associated cofiber sequence of dg-categories produces a fiber sequence of connective spectra
 
-$$K^c(L_\mathrm{pe}(X)_Z)\to K^c(L_\mathrm{pe}(X))\to K^c(L_\mathrm{pe}(U))$$
 
-\noindent but as the inclusion $\Sp_{\geq 0}\subseteq \Sp$ does not preserve limits,  we don't have a cofiber/fiber sequence of spectra and in particular, we don't get a long exact sequence relating the K-theory groups. Non-connective K-theory $K^S$ was designed to solve this problem: its connective part is equivalent to connective K-theory but this time the image of an exact sequence of dg-categories is sent to a cofiber/fiber sequence of spectra so that these new $K$-groups are related by a long exact sequence. This version of K-theory was first introduced for schemes by Bass in \cite{MR0249491} and Thomason in \cite{thomasonalgebraic} and more recently Schlichting \cite{schlichting-negative} gave a general framework that allows us to define it for dg-categories, so that by taking $K^S(L_\mathrm{pe}(X))$ we recover the spectrum of Bass-Thomason. 
+The story of non-connective algebraic $K$-theory goes back to Bass \cite{MR0249491} and Karoubi \cite{MR0233871}. If $U\hookrightarrow X$ is an open immersion of schemes with closed complementary $Z$, the associated cofiber sequence of dg-categories produces a fiber sequence of connective spectra
 
-The important point we want to stress in this discussion is that both $K^c$ and $K^S$ belong naturally to the noncommutative world. More precisely, $K^c$ can be seen as an object in $\mathrm{Fun}(\mathcal{D}g(k)^\mathrm{ft}, \Sp_{\geq 0})\subseteq \mathrm{Fun}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)$ and concerning $K^S$, since it sends exact sequences of dg-categories to cofiber/fiber sequences in spectra, we can prove that it satisfies Nisnevich descent, so that it is an object in $\mathrm{Fun}_\mathrm{Nis}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)$. Moreover, the right-adjoints take $K^c$ to the spectral presheaf encoding connective algebraic K-theory of schemes (this is just because of the Yoneda lemma) and $K^S$ to the spectral presheaf encoding the non-connective K-theory of schemes introduced by Bass and Thomason (this follows from a comparison result by Schlichting in \cite{schlichting-negative}).\\ 
+$$K^c(L_{pe}(X)_Z)\to K^c(L_{pe}(X))\to K^c(L_{pe}(U))$$
+
+\noindent but as the inclusion $\Sp_{\geq 0}\subseteq \Sp$ does not preserve limits,  we don't have a cofiber/fiber sequence of spectra and in particular, we don't get a long exact sequence relating the $K$-theory groups. Non-connective K-theory $K^S$ was designed to solve this problem: its connective part is equivalent to connective K-theory but this time the image of an exact sequence of dg-categories is sent to a cofiber/fiber sequence of spectra so that these new $K$-groups are related by a long exact sequence. This version of $K$-theory was first introduced for schemes by Bass in \cite{MR0249491} and Thomason in \cite{thomasonalgebraic} and more recently Schlichting \cite{schlichting-negative} gave a general framework that allows us to define it for dg-categories, so that by taking $K^S(L_{pe}(X))$ we recover the spectrum of Bass-Thomason. 
+
+The important point we want to stress in this discussion is that both $K^c$ and $K^S$ belong naturally to the noncommutative world. More precisely, $K^c$ can be seen as an object in $Fun(\dg^{ft}, \Sp_{\geq 0})\subseteq Fun(\dg^{ft}, \Sp)$ and concerning $K^S$, since it sends exact sequences of dg-categories to cofiber/fiber sequences in spectra, we can prove that it satisfies Nisnevich descent, so that it is an object in $Fun_{Nis}(\dg^{ft}, \Sp)$. Moreover, the right-adjoints take $K^c$ to the spectral presheaf encoding connective algebraic $K$-theory of schemes (this is just because of the Yoneda lemma) and $K^S$ to the spectral presheaf encoding the non-connective $K$-theory of schemes introduced by Bass and Thomason (this follows from a comparison result by Schlichting in \cite{schlichting-negative}).\\ 
 
 A second main result of my thesis work is the following:
 
@@ -304,18 +309,18 @@ A second main result of my thesis work is the following:
 \hfill 
 \begin{itemize}
 
-\item (\cite[1.9]{nc2}) The canonical morphism $K^c\to K^S$ presents non-connective K-theory as the (noncommutative) Nisnevich sheafification of connective K-theory;
-\item (\cite[1.12]{nc2}) The further (noncommutative) $\mathbb{A}^1$-localization $l_{\mathbb{A}^1}^\mathrm{nc}(K^S)$ is a unit $1_\mathrm{nc}$ for the monoidal structure in $\stncmonoidalk$;
-\item (\cite[1.11]{nc2}) The image of  $l_{\mathbb{A}^1}^\mathrm{nc}(K^S)$ along the right-adjoint $\M$ in the diagram (\ref{diagramaright}) recovers the object $KH$ in $\stk$ representing $\mathbb{A}^1$-invariant algebraic K-theory of Weibel (also known as homotopy invariant K-theory). In particular, since $\M$ is lax monoidal (it is right-adjoint to a monoidal functor) it sends the trivial algebra structure in $1_\mathrm{nc}$ to a commutative algebra structure in $KH$ so that the monoidal map $\mathcal{L}^{\otimes}$ factors as
+\item (\cite[1.9]{nc2}) The canonical morphism $K^c\to K^S$ presents non-connective K-theory as the (noncommutative) Nisnevich sheafification of connective $K$-theory;
+\item (\cite[1.12]{nc2}) The further (noncommutative) $\mathbb{A}^1$-localization $l_{\mathbb{A}^1}^{nc}(K^S)$ is a unit $1_{nc}$ for the monoidal structure in $\stncmonoidalk$;
+\item (\cite[1.11]{nc2}) The image of  $l_{\mathbb{A}^1}^{nc}(K^S)$ along the right-adjoint $\M$ in the diagram (\ref{diagramaright}) recovers the object $KH$ in $\stk$ representing $\mathbb{A}^1$-invariant algebraic $K$-theory of Weibel (also known as homotopy invariant $K$-theory). In particular, since $\M$ is lax monoidal (it is right-adjoint to a monoidal functor) it sends the trivial algebra structure in $1_{nc}$ to a commutative algebra structure in $KH$ so that the monoidal map $\mathcal{L}^{\otimes}$ factors as
 
 $$
-\xymatrix{\stmonoidalk\ar[r]^(0.4){-\otimes KH} & \mathrm{Mod}_{KH}(\stk)^{\otimes}\ar@{-->}[r]& \stncmonoidalk}
+\xymatrix{\stmonoidalk\ar[r]^(0.4){-\otimes KH} &Mod_{KH}(\stk)^{\otimes}\ar@{-->}[r]& \stncmonoidalk}
 $$
 
 \end{itemize}
 \end{thm}
 
-The first part of this theorem is not true if we restrict ourselves to the non-connective of schemes. The phenomenon that makes it possible in the noncommutative world is the fact the new notion of Nisnevich squares of noncommutative spaces combines at the same time coverings of geometrical origin (namely, those coming via $L_\mathrm{pe}$ from classical Nisnevich squares) and coverings of categorical origin, namely, the ones induced by exceptional collections. \\
+The first part of this theorem is not true if we restrict ourselves to the non-connective $K$-theory of schemes. The phenomenon that makes it possible in the noncommutative world is the fact the new notion of Nisnevich squares of noncommutative spaces combines at the same time coverings of geometrical origin (namely, those coming via $L_{pe}$ from classical Nisnevich squares) and coverings of categorical origin, namely, the ones induced by exceptional collections. \\
 
 The first part of this theorem is proved by showing that the Bass-construction $(-)^B$ given in Thomason's paper \cite{thomasonalgebraic} is an explicit model for the Nisnevich localization of presheaves with values in connective spectra and sending Nisnevich squares of noncommutative spaces to pullback squares in connective spectra. Recall that the inclusion of connective spectra in all spectra does not preserve pullbacks. More generally, we prove that the connective truncation functor induces an equivalence of $(\infty,1)$-categories between the $(\infty,1)$-category of Nisnevich local spectral presheaves and the $(\infty,1)$-category of spectral presheaves with values in connective spectra and satisfying connective Nisnevich descent. The $(-)^B$-contruction is an explicit inverse to this truncation.\\
 
@@ -332,13 +337,13 @@ To prove the last part we show that the commutative and noncommutative versions 
 The following corollary provides a new formalization for something understood by Kontsevich \cite{kontsevich1, kontsevich2} long ago and also already satisfied by the formalism of Cisinski-Tabuada.
 
 \begin{cor}
-Let $\mathcal X$ and $\mathcal Y$ be two noncommutative smooth spaces and assume that $\mathcal Y$ is smooth and proper. Then we have an equivalence of spectra
+Let $\X$ and $\Y$ be two noncommutative smooth spaces and assume that $\Y$ is smooth and proper. Then we have an equivalence of spectra
 
 $$
-\mathrm{Map}_{\stnck}(\mathcal X, \mathcal Y)\simeq l_{\mathbb{A}^1}^\mathrm{nc}(K^S)(\mathcal X\otimes \mathcal Y^\mathrm{op})
+Map_{\stnck}(\X, \Y)\simeq l_{\mathbb{A}^1}^{nc}(K^S)(\X\otimes \Y^{op})
 $$
 
-\noindent where $\mathcal Y^\mathrm{op}$ is the dual of $\mathcal Y$ and we have identified $\mathcal X$ and $\mathcal Y$ with their images in $\stnck$.
+\noindent where $\Y^{op}$ is the dual of $\Y$ and we have identified $\X$ and $\Y$ with their images in $\stnck$.
 \end{cor}
 
 
@@ -349,46 +354,46 @@ The next result concludes the main content of these notes. It is a corollary of 
 
 \begin{cor}
 If $k$ is a field admitting resolutions of singularities then the canonical factorization 
-$$\xymatrix{\mathrm{Mod}_{KH}(\stk)^{\otimes}\ar@{-->}[r]& \stncmonoidalk}$$
+$$\xymatrix{Mod_{KH}(\stk)^{\otimes}\ar@{-->}[r]& \stncmonoidalk}$$
 
  \noindent is fully faithful.
 \end{cor}
 
-Let me say that this result as been known by some people after some time already. I think particularly of B. To\"en, M. Vaqui\'e and G.Vezzosi and also D-C. Cisinski and G. Tabuada.
+Let me say that this result as been known by some people after some time already. I think particularly of B. Toen, M. Vaquie and G.Vezzosi and also D-C. Cisinski and G. Tabuada.
 
 \section{Relation with the work of Cisinski-Tabuada}
 
-In this section we explain how the approach of Cisinski-Tabuada relates to ours. For that purpose let us focus again on the diagram  (\ref{diagramaright}). The theory developed by G.Tabuada \cite{tabuada-higherktheory} in his thesis and later in joint work with D-C. Cisinski \cite{tabuada-cisinski, MR2822869} concerns the study of localizing invariants of dg-categories. More precisely, inside the $(\infty,1)$-category $\mathrm{Fun}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)\simeq \mathrm{Fun}_{flt}(\mathcal{D}g(k)^\mathrm{idem}, \Sp)$ we can isolate the full subcategory $\mathrm{Fun}_\mathrm{Loc}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)$ spanned by those functors sending exact sequence of dg-categories to cofiber/fiber sequences in $\Sp$. We can easily check that any functor with this property satisfies also Nisnevich descent in our sense, so that we have a canonical inclusion  $\mathrm{Fun}_\mathrm{Loc}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)\subseteq \mathrm{Fun}_\mathrm{Nis}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)$. The main theorem of Cisinski-Tabuada's approach is the existence of stable presentable $(\infty,1)$-category $\M^\mathrm{Tab}_\mathrm{Loc}$ together with a natural equivalence 
+In this section we explain how the approach of Cisinski-Tabuada relates to ours. For that purpose let us focus again on the diagram  (\ref{diagramaright}). The theory developed by G.Tabuada \cite{tabuada-higherktheory} in his thesis and later in joint work with D-C. Cisinski \cite{tabuada-cisinski, MR2822869} concerns the study of localizing invariants of dg-categories. More precisely, inside the $(\infty,1)$-category $Fun(\dg^{ft}, \Sp)\simeq Fun_{flt}(\dg^{idem}, \Sp)$ we can isolate the full subcategory $Fun_{Loc}(\dg^{ft}, \Sp)$ spanned by those functors sending exact sequence of dg-categories to cofiber/fiber sequences in $\Sp$. We can easily check that any functor with this property satisfies also Nisnevich descent in our sense, so that we have a canonical inclusion  $Fun_{Loc}(\dg^{ft}, \Sp)\subseteq Fun_{Nis}(\dg^{ft}, \Sp)$. The main theorem of Cisinski-Tabuada's approach is the existence of stable presentable $(\infty,1)$-category $\M^{Tab}_{Loc}$ together with a natural equivalence 
 
 \begin{equation}
 \label{final}
-\mathrm{Fun}_\mathrm{Loc}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)\simeq \mathrm{Fun}^L(\M^\mathrm{Tab}_\mathrm{Loc},\Sp)
+Fun_{Loc}(\dg^{ft}, \Sp)\simeq Fun^L(\M^{Tab}_{Loc},\Sp)
 \end{equation}
 
-\noindent such that along this equivalence, $K^S$ is sent to a co-representable functor. The first visible advantage of our approach is that it explains how $K^S$ appears out of $K^c$ by means of the Nisnevich sheafification. In Cisinski-Tabuada's approach $K^S$ is taken as basic input. The second important observation is that the construction  $\M^\mathrm{Tab}_\mathrm{Loc}$ of Tabuada admits analogues adapted to each of  the full subcategories in the diagram
+\noindent such that along this equivalence, $K^S$ is sent to a co-representable functor. The first visible advantage of our approach is that it explains how $K^S$ appears out of $K^c$ by means of the Nisnevich sheafification. In Cisinski-Tabuada's approach $K^S$ is taken as basic input. The second important observation is that the construction  $\M^{Tab}_{Loc}$ of Tabuada admits analogues adapted to each of  the full subcategories in the diagram
 
 
 \begin{equation}
 \xymatrix{
-&\mathrm{Fun}(\mathcal{D}g(k)^\mathrm{idem}, \Sp)&\\
- \mathrm{Fun}_\mathrm{Nis}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)\ar@{^{(}->}[ur]&&\ar@{_{(}->}[ll] \ar@{_{(}->}[ul]\mathrm{Fun}_\mathrm{Loc}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)\simeq \mathrm{Fun}^{L}(\M^\mathrm{Tab}_\mathrm{Loc}, \Sp)\\
- \mathrm{Fun}_{\mathrm{Nis}, \mathbb{A}^1}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)=: \stnck\ar@{^{(}->}[u]&&\ar@{_{(}->}[ll]\ar@{^{(}->}[u]\mathrm{Fun}_{\mathrm{Loc}, \mathbb{A}^1}(\mathcal{D}g(k)^\mathrm{ft}, \Sp)
+&Fun(\dg^{idem}, \Sp)&\\
+ Fun_{Nis}(\dg^{ft}, \Sp)\ar@{^{(}->}[ur]&&\ar@{_{(}->}[ll] \ar@{_{(}->}[ul]Fun_{Loc}(\dg^{ft}, \Sp)\simeq Fun^{L}(\M^{Tab}_{Loc}, \Sp)\\
+ Fun_{Nis, \mathbb{A}^1}(\dg^{ft}, \Sp)=: \stnck\ar@{^{(}->}[u]&&\ar@{_{(}->}[ll]\ar@{^{(}->}[u]\stnck^{Loc}:=Fun_{Loc, \mathbb{A}^1}(\dg^{ft}, \Sp)
 }
 \end{equation}
 
-More precisely  one can easily show the existence of new stable presentable symmetric monoidal  $(\infty,1)$-categories $\M^\mathrm{Tab}_\mathrm{Nis}$, $\M^\mathrm{Tab}_{\mathrm{Nis}, \mathbb{A}^1}$, $\M^\mathrm{Tab}_{\mathrm{Loc}, \mathbb{A}^1}$ providing analogues for the formula in (\ref{final}). In particular we find an equivalence
+More precisely  one can easily show the existence of new stable presentable symmetric monoidal  $(\infty,1)$-categories $\M^{Tab}_{Nis}$, $\M^{Tab}_{Nis, \mathbb{A}^1}$, $\M^{Tab}_{Loc, \mathbb{A}^1}$ providing analogues for the formula in (\ref{final}). In particular we find an equivalence
 
 \begin{equation}
- \stnck\simeq \mathrm{Fun}^{L}(\M^\mathrm{Tab}_{\mathrm{Nis}, \mathbb{A}^1}, \Sp)
+ \stnck\simeq Fun^{L}(\M^{Tab}_{Nis, \mathbb{A}^1}, \Sp)
 \end{equation}
 
-\noindent exhibiting the duality between our approach and the corresponding Nisnevich-$\mathbb{A}^1$-version of Tabuada's construction (recall that the very big $(\infty,1)$-category of big stable presentable $(\infty,1)$-categories has a natural symmetric monoidal structure \cite[6.3.2.10, 6.3.2.18 and 6.3.1.17]{ha} where the big $(\infty,1)$-category of spectra $\Sp$ is a unit and $\mathrm{Fun}^{L}(-,-)$ is the internal-hom).  Because Localizing descent forces Nisnevich descent, the universal properties involved provide a zig-zag of canonical colimit preserving monoidal functor $\M^\mathrm{Tab}_{\mathrm{Nis},\mathbb{A}^1}\rightarrow  \M^\mathrm{Tab}_{\mathrm{Loc}, \mathbb{A}^1}\leftarrow \M^\mathrm{Tab}_\mathrm{Loc}$ relating the dual of our new theory to the localizing theory of Tabuada. As emphazised before, the main advantage (in fact, la \emph{raison-d'\^etre}) of our approach to non-commutative motives is the easy comparison with the motivic stable homotopy theory of schemes. The duality here presented explains why the original approach of Tabuada is not directly comparable.
+\noindent exhibiting the duality between our approach and the corresponding Nisnevich-$\mathbb{A}^1$-version of Tabuada's construction (recall that the very big $(\infty,1)$-category of big stable presentable $(\infty,1)$-categories has a natural symmetric monoidal structure \cite[6.3.2.10, 6.3.2.18 and 6.3.1.17]{lurie-ha} where the big $(\infty,1)$-category of spectra $\Sp$ is a unit and $Fun^{L}(-,-)$ is the internal-hom).  
+
+To conclude this discussion, one can show that all the vertical inclusions in the diagram admit left adjoints and therefore $\stnck^{Loc}$ is endowed with an obvious universal property concerning Localizing descent. As the last forces Nisnevich descent, the universal properties involved provide a monoidal left adjoint to the inclusion $\stnck^{Loc}\subseteq\stnck$, relating our theory to the dual of localizing theory of Tabuada. As emphazised before, the main advantage (in fact, la \emph{raison-d'être}) of our approach to noncommutative motives is the easy comparison with the motivic stable homotopy theory of schemes. The duality here presented explains why the original approach of Cisinski-Tabuada is not directly comparable.
 
 
 \section{Future Works}
 
-In the continuation of my thesis I will study the existence of a formalism of six-operations in this new approach to noncommutative motives $\stncmonoidalk$. This formalism will allow us to extend the fully faithfulness of the map $\mathrm{Mod}_{KH}(\stk)\to \stnck$ to any base.
-
-
+In the continuation of my thesis I will study the existence of a formalism of six-operations in this new approach to noncommutative motives $\stncmonoidalk$. This formalism will allow us to extend the fully faithfulness of the map $Mod_{KH}(\stk)\to \stnck$ to any base.
 
 \end{refsection}
