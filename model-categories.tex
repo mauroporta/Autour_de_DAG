@@ -42,11 +42,11 @@ For example, we can consider singular (co)homology, or homotopy groups. For exam
 \]
 and then defines for every $X \in \mathrm{Ob}(\Top)$:
 \[
-C_n^{\mathrm{sing}}(X) := \Z \Hom_{\Top}(|\Delta^n|,X) \in \Ab
+C_n^{\mathrm{sing}}(X) \coloneqq \Z \Hom_{\Top}(|\Delta^n|,X) \in \Ab
 \]
 Each $C_n^{\mathrm{sing}}$ is, accordingly to our Definition \ref{algebraic invariant}, an algebraic invariant. The cosimplicial structure on $\{|\Delta^n|\}_{n \in \N}$ produces interesting properties of the set of functors $\{C_n^{\mathrm{sing}}\}$; for example, they can be arranged in a complex $\{C_n^{\mathrm{sing}},d_n\}_{n \in \N}$. See \cite[Ch. 8.2]{weibel} (in particular Example 8.2.3) for the details of this construction; one then can use this complex to define the singular homology groups:
 \[
-H_n^{\mathrm{sing}}(X) := H_n(C_\bullet^{\mathrm{sing}},d_n)
+H_n^{\mathrm{sing}}(X)\coloneqq H_n(C_\bullet^{\mathrm{sing}},d_n)
 \]
 Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[Ch. 2.2]{hatcher} for more details on computation tools).
 
@@ -116,7 +116,7 @@ Let $F \colon \mathcal A \to \mathcal B$ be an additive functor between abelian 
 \begin{enumerate}
 \item start with an object $A \in \Ob(\mathcal A)$;
 \item choose an injective resolution $A \to I^\bullet$ in $\ch(\mathcal A)$;
-\item define $R^i F := H^i(F(I^\bullet))$.
+\item define $R^i F\coloneqq H^i(F(I^\bullet))$.
 \end{enumerate}
 One technical difficulty in the proof that this gives back a universal cohomological $\delta$-functor is that our definition might depend on the choice of point 2. In fact, 
 
@@ -392,7 +392,7 @@ Then $f \circ s_A$ and $s_B$ are in $\mathbf W$; the 2-out-of-3 implies that $R(
 \end{proof}
 
 \begin{prop} \label{prop localizing subcategories}
-Let $\mathcal C$ be a category and let $\mathcal C_0, \mathbf W \subset \mathcal C$ be subcategories; write $\mathbf W_0 := \mathcal C_0 \cap \mathbf W$. Let $(R,s)$ be a left (or right) deformation retraction of $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. Let $\mathbb V$ be a Grothendieck universe where the localizations $\mathcal C[\mathbf W^{-1}]$ exist. Then
+Let $\mathcal C$ be a category and let $\mathcal C_0, \mathbf W \subset \mathcal C$ be subcategories; write $\mathbf W_0\coloneqq \mathcal C_0 \cap \mathbf W$. Let $(R,s)$ be a left (or right) deformation retraction of $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. Let $\mathbb V$ be a Grothendieck universe where the localizations $\mathcal C[\mathbf W^{-1}]$ exist. Then
 \begin{enumerate}
 \item the induced inclusion $\mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$ is an equivalence of categories;
 \item $\mathcal C[\mathbf W^{-1}]$ exists if and only if $\mathcal C_0[\mathbf W_0^{-1}]$ does.
@@ -443,11 +443,11 @@ Finally, denote by $\pi_0$ and $\pi_1$ the projection functors
 \]
 Consider the functor
 \[
-Q := \mathbf d_0 \circ \pi_1 \circ G \circ F \colon \mathcal M \to \mathcal M_c
+Q\coloneqq \mathbf d_0 \circ \pi_1 \circ G \circ F \colon \mathcal M \to \mathcal M_c
 \]
 For each object $A \in \Ob(\mathcal M)$ we have an arrow
 \[
-p_A := \pi_1(G(F(A)) \colon Q(A) \to A
+p_A\coloneqq \pi_1(G(F(A)) \colon Q(A) \to A
 \]
 which is a trivial fibration. It's clear that the family $\{p_A\}_{A \in \Ob(\mathcal M)}$ defines a natural transformation $j_c \circ Q \to \mathrm{Id}_{\mathcal M}$ (here $j_c \colon \mathcal M_c \to \mathcal M$ denotes the natural inclusion). This, together with Lemma \ref{lemma localizing subcategories}, implies that $\mathcal M_c$ is a left deformation retract of $\mathcal M$.
 \end{proof}
@@ -623,7 +623,7 @@ B \ar[d]_{\mathrm{in}_0} \ar[r]^{gf'} & C \ar[d]^p \\ B \times I \ar@{.>}[ur]^{H
 \]
 Set
 \[
-q := H' \circ \mathrm{in}_1
+q\coloneqq H' \circ \mathrm{in}_1
 \]
 Then $pq = 1_B$ and $H'$ is a left homotopy from $gf'$ to $q$. If $g'$ is a homotopy inverse for $g$ we get $p \sim pgg' \sim fg'$, i.e.
 \[
@@ -832,7 +832,7 @@ $\Top$ has a model structure where
 \end{itemize}
 \end{thm}
 
-Since $I := [0,1]$ is contractible, it follows that $A \times [0,1]$ retracts onto $A \times 0$; in particular, every map $X \to *$ is a Serre fibration, that is:
+Since $I\coloneqq [0,1]$ is contractible, it follows that $A \times [0,1]$ retracts onto $A \times 0$; in particular, every map $X \to *$ is a Serre fibration, that is:
 
 \begin{cor}
 With the model structure of Theorem \ref{thm model structure top}, in $\Top$ every object is fibrant.
@@ -953,7 +953,7 @@ For each $R$-module $A$, let $(P_\bullet,f_\bullet)$ be a cofibrant replacement 
 \end{eg}
 
 \begin{rmk}
-The tensor product of chain complexes is defined as $A_\bullet \otimes_{\ch(R)} B_\bullet := \tot^\oplus(A_\bullet \otimes_R B_\bullet)$, where $A_\bullet \otimes_R B_\bullet$ is the natural double complex associated to $A_\bullet$ and $B_\bullet$. This tensor product endows $\ch(R)$ with a monoidal structure. See the appendixes for the details.
+The tensor product of chain complexes is defined as $A_\bullet \otimes_{\ch(R)} B_\bullet\coloneqq \tot^\oplus(A_\bullet \otimes_R B_\bullet)$, where $A_\bullet \otimes_R B_\bullet$ is the natural double complex associated to $A_\bullet$ and $B_\bullet$. This tensor product endows $\ch(R)$ with a monoidal structure. See the appendixes for the details.
 \end{rmk}
 
 \begin{eg} \label{eg delta^1 for chain complexes}
@@ -985,7 +985,7 @@ defined in degree $0$ to be
 \[
 g_0 = \begin{pmatrix} \mathrm{id}_R \\ 0 \end{pmatrix}
 \]
-and $g_n = 0$ for $n > 0$. Then setting $f_\bullet := g_\bullet \circ h_\bullet$ we obtain the following map:
+and $g_n = 0$ for $n > 0$. Then setting $f_\bullet\coloneqq g_\bullet \circ h_\bullet$ we obtain the following map:
 \[
 \xymatrix{
 \cdots \ar[r] & R \ar[d]_0 \ar[r]^{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2 \ar[d]^{\scriptstyle \begin{pmatrix} \mathrm{id} & \mathrm{id} \\ 0 & 0 \end{pmatrix}} \ar@{.>}[dl]|-s \\ \cdots \ar[r] & 0 \ar[r]_{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2
@@ -993,9 +993,9 @@ and $g_n = 0$ for $n > 0$. Then setting $f_\bullet := g_\bullet \circ h_\bullet$
 \]
 Using as basis for $R^2$ the vectors
 \[
-u_0 := \begin{pmatrix}
+u_0\coloneqq \begin{pmatrix}
 -1 \\ 1
-\end{pmatrix}, \quad u_1 := \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\end{pmatrix}, \quad u_1\coloneqq \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 \]
 define $s \colon R^2 \to R$ by the conditions
 \[
@@ -1214,7 +1214,7 @@ Let $\mathcal M$ be a model category and let $F \colon \mathcal M \to \mathcal C
 
 \begin{proof}[Sketch of the proof.] (The details can be found in \cite[Theorem 2.2.8]{riehl}) Introduce a deformation retraction $(Q,s)$ of $\mathcal M$ onto $\mathcal M_c$ as in the proof of Proposition \ref{prop reduction step}. Then we can fix a representative for the localization considering
 \[
-\gamma := \gamma_c \circ Q \colon \mathcal M \to \mathcal M_c \to \mathrm{Ho}(\mathcal M_c)
+\gamma\coloneqq \gamma_c \circ Q \colon \mathcal M \to \mathcal M_c \to \mathrm{Ho}(\mathcal M_c)
 \]
 where $\gamma_c \colon \mathcal M_c \to \mathrm{Ho}(\mathcal M_c)$ is the localization functor for $\mathcal M_c$.
 
@@ -1290,7 +1290,7 @@ Consider the geometric realization functor $|\cdot| \colon \sset \to \cghaus$; w
 To conclude this section, I would like to deal with a specific example of great relevance to homotopy theory: homotopy pushout and homotopy pullback (later on we will deal with more general kind of homotopy limits and colimits). Introduce the ``pushout category''
 \[
 \xymatrix{
-\mathcal C := \{ \bullet & \bullet \ar[l] \ar[r] & \bullet \}
+\mathcal C\coloneqq \{ \bullet & \bullet \ar[l] \ar[r] & \bullet \}
 }
 \]
 If $\mathcal M$ is a model category, we can consider $\mathcal M^{\mathcal C}$; in standard category theory we have a functor
@@ -1376,7 +1376,7 @@ and these three homotopies $h_1,h_2,h_3$ must be compatible in the sense that $h
 \]
 relatives to
 \[
-Y := (S^1 \times \{0\}) \sqcup (X \times \{1\})
+Y\coloneqq (S^1 \times \{0\}) \sqcup (X \times \{1\})
 \]
 (at each fixed time, we must have a homotopy between the two maps of $S^1$ into $S^2$). However, such $h_1,h_2,h_3$ (and the required higher homotopy) cannot exist: $h_2^{-1} \circ h_1 \circ h_3$ defines an element in $\pi_2(S^2) = \Z$, and inspection shows that this element is a generator; if $h_1 \circ h_3$ was homotopic relative to $Y$ to $h_2$, we would have that, up-to-homotopy, $h_2^{-1} \circ h_1 \circ h_3$ is trivial, which is not the case.
 
@@ -1434,7 +1434,7 @@ The degree function is not assigned with the structure of Reedy category.
 \end{rmk}
 
 \begin{eg}
-The category $\mathbf \Delta$ is an example of Reedy categories, where $\overrightarrow{\mathbf \Delta}$ is the subcategory whose morphisms are the injective functions, $\overleftarrow{\mathbf \Delta}$ is the subcategory whose morphisms are the surjective functions. The factorization exists (see Theorem \ref{thm factorization epi-mono for Delta}), and it is obvious to define a degree function meeting the requirements.
+The category $\boldsymbol\Delta$ is an example of Reedy categories, where $\overrightarrow{\boldsymbol\Delta}$ is the subcategory whose morphisms are the injective functions, $\overleftarrow{\boldsymbol\Delta}$ is the subcategory whose morphisms are the surjective functions. The factorization exists (see Theorem \ref{thm factorization epi-mono for Delta}), and it is obvious to define a degree function meeting the requirements.
 \end{eg}
 
 \begin{defin}
@@ -1454,19 +1454,19 @@ the natural forgetful functor.
 \end{defin}
 
 \begin{eg} \label{eg computing latching categories}
-We compute the latching categories of $\mathbf \Delta$ at $\mathbf n$:
+We compute the latching categories of $\boldsymbol\Delta$ at $\mathbf n$:
 \begin{enumerate}
-\item $n = 0$. In this case $( \overrightarrow{\mathbf \Delta} \downarrow \mathbf 0 ) = \emptyset$, the empty category; therefore $\partial (\overrightarrow{\mathbf \Delta} \downarrow \mathbf 0) = \emptyset$.
+\item $n = 0$. In this case $( \overrightarrow{\boldsymbol\Delta} \downarrow \mathbf 0 ) = \emptyset$, the empty category; therefore $\partial (\overrightarrow{\boldsymbol\Delta} \downarrow \mathbf 0) = \emptyset$.
 \item $n = 1$. In this case
 \[
-(\overrightarrow{\mathbf \Delta} \downarrow \mathbf 1) = \{\bullet \rightarrow \bullet \leftarrow \bullet \}
+(\overrightarrow{\boldsymbol\Delta} \downarrow \mathbf 1) = \{\bullet \rightarrow \bullet \leftarrow \bullet \}
 \]
 the pullback category. It follows that
 \[
-\partial ( \overrightarrow{ \mathbf \Delta} \downarrow \mathbf 1 ) = \{\bullet, \: \bullet \}
+\partial ( \overrightarrow{ \boldsymbol\Delta} \downarrow \mathbf 1 ) = \{\bullet, \: \bullet \}
 \]
 which is the coproduct category.
-\item If $n \ge 2$, we claim that the full subcategory of $\mathcal C := \partial ( \overrightarrow{\mathbf \Delta} \downarrow \mathbf n )$ whose objects are the arrows $\mathbf{n-1} \to \mathbf n$ and $\mathbf{n-2} \to \mathbf n$ is final in the latching category. In fact, if we are given an arrow $f \colon \mathbf m \to \mathbf n$, different from the identity of $\mathbf n$ and in $\overrightarrow{\mathbf \Delta}$, then necessarily $m < n$. If $m = n - 1$ or $m = n - 2$, the identity of $\mathbf m$ is an initial object for $(f \downarrow \mathcal C)$; if $m < n-2$, Theorem \ref{thm factorization epi-mono for Delta} allows to write
+\item If $n \ge 2$, we claim that the full subcategory of $\mathcal C\coloneqq \partial ( \overrightarrow{\boldsymbol\Delta} \downarrow \mathbf n )$ whose objects are the arrows $\mathbf{n-1} \to \mathbf n$ and $\mathbf{n-2} \to \mathbf n$ is final in the latching category. In fact, if we are given an arrow $f \colon \mathbf m \to \mathbf n$, different from the identity of $\mathbf n$ and in $\overrightarrow{\boldsymbol\Delta}$, then necessarily $m < n$. If $m = n - 1$ or $m = n - 2$, the identity of $\mathbf m$ is an initial object for $(f \downarrow \mathcal C)$; if $m < n-2$, Theorem \ref{thm factorization epi-mono for Delta} allows to write
 \[
 f = d^{i_1} \circ \ldots \circ d^{i_s}, \quad s = n - m + 1
 \]
@@ -1483,11 +1483,11 @@ Let $\mathcal C$ be a Reedy category and let $\mathcal M$ be a model category. L
 \begin{enumerate}
 \item For each $\alpha \in \Ob(\mathcal C)$ the latching object of $\mathbf X$ at $\alpha$ is
 \[
-\mathrm L_\alpha \mathbf X := \colim_{\partial ( \overrightarrow{\mathcal C} \downarrow \alpha )} \mathbf X \circ \pi_\alpha^l
+\mathrm L_\alpha \mathbf X\coloneqq \colim_{\partial ( \overrightarrow{\mathcal C} \downarrow \alpha )} \mathbf X \circ \pi_\alpha^l
 \]
 \item For each $\alpha \in \Ob(\mathcal C)$ the matching object of $\mathbf X$ at $\alpha$ is
 \[
-\mathrm M_\alpha \mathbf X := \mathrm{lim}_{\partial ( \alpha \downarrow \overleftarrow{\mathcal C} )} \mathbf X \circ \pi_\alpha^m
+\mathrm M_\alpha \mathbf X\coloneqq \mathrm{lim}_{\partial ( \alpha \downarrow \overleftarrow{\mathcal C} )} \mathbf X \circ \pi_\alpha^m
 \]
 \end{enumerate}
 \end{defin}
@@ -1587,7 +1587,7 @@ Let $\mathcal C$ be a Reedy category with fibrant constants. For every model cat
 This is an immediate consequence of Theorem \ref{thm quillen adjuntion} and Corollary \ref{cor reedy fibrant constants}.
 \end{proof}
 
-Previous Proposition holds in particular when $\mathcal C = \mathbf{\Delta}$ and $\mathcal C = \mathbf{\Delta}^{\mathrm{op}}$, i.e. for simplicial and cosimplicial diagrams. As in the case of homotopy pushouts, the problem becomes to find a representative for $\mathbf L \colim$ behaving well with respect to weak equivalences. This is absolutely not trivial: for the general case, we will need more theory (in particular, the tool of simplicial and cosimplicial resolutions). However, when the model category $\mathcal M$ is simplicial, there are well-known formulas due to Bousfield and Kan mimicking the constructions for topological spaces.
+Previous Proposition holds in particular when $\mathcal C = \boldsymbol\Delta$ and $\mathcal C = \boldsymbol\Delta^{\mathrm{op}}$, i.e. for simplicial and cosimplicial diagrams. As in the case of homotopy pushouts, the problem becomes to find a representative for $\mathbf L \colim$ behaving well with respect to weak equivalences. This is absolutely not trivial: for the general case, we will need more theory (in particular, the tool of simplicial and cosimplicial resolutions). However, when the model category $\mathcal M$ is simplicial, there are well-known formulas due to Bousfield and Kan mimicking the constructions for topological spaces.
 
 \begin{rmk}
 To conclude this too short introduction to homotopy limits and colimits, we have at least to say something about the $(\infty,1)$-categorical context. Lurie proposes in \cite{htt} a definition for homotopy limits and colimits for quasicategories. This definition (due to Joyal, see \cite{joyal}) has the advantage of being extremely compact and it doesn't require much machinery to be formulated. Moreover, it specializes to our construction when it makes sense (i.e. when the quasicategory is presented by a model category). We refer to successive chapters for a more detailed exposition.
@@ -1605,7 +1605,7 @@ If one has some familiarity with the language of $(\infty,1)$-categories in the 
 \]
 which is a topological space or a simplicial set. However, in the language of quasicategories, the existence of such object is not obvious at all. Lurie propose at least three different models for this space; we will choose one of them for sake of clarity (and leave the details of these constructions to successive seminars): if $S$ is a quasicategory and $x,y$ are vertices, define
 \begin{equation} \label{eq lurie mapping space}
-\Hom_{\sset}(\Delta^n, \mathrm{Map}_S(x,y)) := \Hom_{\sset}^{x,y}(\Delta^n \times \Delta^1, S)
+\Hom_{\sset}(\Delta^n, \mathrm{Map}_S(x,y))\coloneqq \Hom_{\sset}^{x,y}(\Delta^n \times \Delta^1, S)
 \end{equation}
 where the apex means that we are considering only the maps $f$ such that
 \[
@@ -1613,7 +1613,7 @@ f |_{\Delta^n \times 0} = x, \qquad f |_{\Delta^n \times 1} = y
 \]
 It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sset$ is defined
 \[
-\mathbf{Hom}(K,S)_n := \Hom_{\sset}(K \times \Delta^n, S)
+\mathbf{Hom}(K,S)_n\coloneqq \Hom_{\sset}(K \times \Delta^n, S)
 \]
 Thus \eqref{eq lurie mapping space} is nothing but the subcomplex of
 \[
@@ -1631,7 +1631,7 @@ it should become clear the fact that to understand the homotopical informations 
 
 We wish to abstract these observations to the context of any model category $\mathcal M$. This is what we will do with (co)simplicial resolutions: in order to explain the transition, let us observe that for each (compactly generated Hausdorff) space $X$, the family
 \[
-\mathbf X_* := \{X \times |\Delta^n|\}_{n \in \N}
+\mathbf X_*\coloneqq \{X \times |\Delta^n|\}_{n \in \N}
 \]
 is a cosimplicial object in $\cghaus$; moreover, we have an isomorphism
 \[
@@ -1645,12 +1645,12 @@ which is a weak equivalence (the standard $n$-simplex $|\Delta^n|$ is contractib
 \[
 \mathbf X_* \to \mathrm{cc}_*X
 \]
-which is an objectwise weak equivalence. Since $\mathbf \Delta$ is a Reedy category, we can consider the Reedy model structure on $\cghaus^{\mathbf \Delta}$; in this way, we can reformulate our previous observation by saying that $\mathbf X_* \to \mathrm{cc}_*X$ is a (Reedy) weak equivalence.
+which is an objectwise weak equivalence. Since $\boldsymbol\Delta$ is a Reedy category, we can consider the Reedy model structure on $\cghaus^{\boldsymbol\Delta}$; in this way, we can reformulate our previous observation by saying that $\mathbf X_* \to \mathrm{cc}_*X$ is a (Reedy) weak equivalence.
 
 This readily allows to generalize our constructions to a generic model category, in order to attain our goal:
 
 \begin{defin}
-Let $\mathcal M$ be a model category and let $A \in \Ob(\mathcal M)$ be an object. A cosimplicial resolution of $A$ is a cofibrant approximation $\widetilde{\mathbf A} \to \mathrm{cc}_* A$ in the Reedy model category $\mathcal M^{\mathbf \Delta}$. Dually a simplicial resolution of $A$ is a fibrant approximation $\mathrm{cs}_* A \to \widehat{\mathbf A}$ in the Reedy model category $\mathcal M^{\mathbf \Delta^{\mathrm{op}}}$.
+Let $\mathcal M$ be a model category and let $A \in \Ob(\mathcal M)$ be an object. A cosimplicial resolution of $A$ is a cofibrant approximation $\widetilde{\mathbf A} \to \mathrm{cc}_* A$ in the Reedy model category $\mathcal M^{\boldsymbol\Delta}$. Dually a simplicial resolution of $A$ is a fibrant approximation $\mathrm{cs}_* A \to \widehat{\mathbf A}$ in the Reedy model category $\mathcal M^{\boldsymbol\Delta^{\mathrm{op}}}$.
 \end{defin}
 
 The following proposition shows a first hint of the rightness of this definition: cosimplicial resolutions effectively encode homotopical informations about the objects of $\mathcal M$.
@@ -1687,11 +1687,11 @@ We can now use the machinery of (co)simplicial resolutions to define function co
 
 Fix a model category $\mathcal M$. Let $\mathbf{X}$ be a cosimplicial object in $\mathcal M$, let $Y \in \Ob(\mathcal M)$. Since $\mathcal M(-,Y)$ is a contravariant functor, we obtain a simplicial set $\mathcal M(\mathbf X,Y)$. Similarly, if $\mathbf Y$ is a simplicial object in $\mathcal M$ and $X \in \Ob(\mathcal M)$, then $\mathcal M(X,\mathbf Y)$ is a simplicial set. Finally, if $\mathbf X$ is a cosimplicial object in $\mathcal M$ and $\mathbf Y$ is a simplicial object in $\mathcal M$, then we obtain a bifunctor
 \[
-\mathcal M(\mathbf X,\mathbf Y) \colon \mathbf \Delta \times \mathbf \Delta \to \Set
+\mathcal M(\mathbf X,\mathbf Y) \colon \boldsymbol\Delta \times \boldsymbol\Delta \to \Set
 \]
 which is a bisimplicial set. We can extract a simplicial set taking the diagonal:
 \[
-(\diag \mathcal M(\mathbf X,\mathbf Y))_n := \mathcal M(\mathbf X^n,\mathbf Y_n)
+(\diag \mathcal M(\mathbf X,\mathbf Y))_n\coloneqq \mathcal M(\mathbf X^n,\mathbf Y_n)
 \]
 
 \begin{rmk}
@@ -2411,7 +2411,7 @@ The following proposition shows that the situation described in the discussion a
 \begin{prop} \label{prop simplicial resolutions simplicial category}
 Let $\mathcal M$ be a simplicial model category. If $X$ is an object in $\mathcal M$ and $W \to X$ is a cofibrant approximation, then the cosimplicial object $\widetilde{\mathbf W}$ defined by
 \[
-\widetilde{\mathbf W}^n := W \otimes \Delta^n
+\widetilde{\mathbf W}^n\coloneqq W \otimes \Delta^n
 \]
 defines a cosimplicial resolution of $\mathbf X$.
 \end{prop}

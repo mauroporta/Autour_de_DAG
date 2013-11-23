@@ -24,9 +24,9 @@ The category of affine stacks is the opposite of the category of dg algebras, wi
 There is an evident map $\spec: Aff \to St $ given by the Yoneda functor: $\spec(R)(A):=\Hom_{cdga}(R,A)$
 \end{remark}
 
-As in the classical case, this functor has a left adjoint $\O: St \to Aff$ which is the only functor sending each derived affine scheme to the corresponding coconnective
+As in the classical case, this functor has a left adjoint $\mathcal{O}: St \to Aff$ which is the only functor sending each derived affine scheme to the corresponding coconnective
 dg algebra and preserving colimits.
-The monad $\Aff:= \spec\circ\O$ is called the affinisation functor. Each stack X comes equipped with a universal arrow $X\to\Aff(X)$ through which every arrow
+The monad $\Aff:= \spec\circ\mathcal{O}$ is called the affinisation functor. Each stack X comes equipped with a universal arrow $X\to\Aff(X)$ through which every arrow
 from X to an affine stack factorises.\\
 
 Now we will try to understand what the affinisation functor does on CW complexes. In order to do that, we need to be able to understand how to interprete
@@ -59,7 +59,7 @@ in k, that is to say $G=\G_a$ is the additive group. What does $B^n\G_a$ look li
 $B^n\G_a\simeq \spec(\Sym k[-n])$
 \end{proposition}
 \begin{proof}
-Let us consider the functor $\O$ as a contravariant functor from $St$ to $dgMod$. It sends pushout squares to pullback squares (which are also pushout squares
+Let us consider the functor $\mathcal{O}$ as a contravariant functor from $St$ to $dgMod$. It sends pushout squares to pullback squares (which are also pushout squares
 as the category $dgMod$ is stable).\\
 If we consider the pushout diagram:
 
@@ -74,13 +74,13 @@ It maps to the pushout/pullback diagram:
 
 \begin{displaymath}
 \xymatrix{
-\O(S^{d}) \ar[r] \ar[d] &  k \ar[d]\\
- k \ar[r] & \O(S^{d-1})\\
+\mathcal{O}(S^{d}) \ar[r] \ar[d] &  k \ar[d]\\
+ k \ar[r] & \mathcal{O}(S^{d-1})\\
 }
 \end{displaymath}
 
-which allows us to calculate $\O(S^d)$ (as a dg module) recursively: $\O(S^d)=k\oplus k[-d]$. Therefore, for any $A \in\dalg$
-$$\Hom(S^d\times \spec(A),\spec \Sym k[-n])\simeq \Hom_{dgAlg}(\Sym k[-n],\O(S^d)\otimes A])\simeq \Hom_{dgMod}(k[-n],A\oplus A[-d])$$
+which allows us to calculate $\mathcal{O}(S^d)$ (as a dg module) recursively: $\mathcal{O}(S^d)=k\oplus k[-d]$. Therefore, for any $A \in\dalg$
+$$\Hom(S^d\times \spec(A),\spec \Sym k[-n])\simeq \Hom_{dgAlg}(\Sym k[-n],\mathcal{O}(S^d)\otimes A])\simeq \Hom_{dgMod}(k[-n],A\oplus A[-d])$$
 So it is clear that, if one points $\spec\Sym k[-n]$ with the zero map $\Sym k[-n]\to k$, one has:
 $\Omega^d \spec \Sym k[-n]\simeq \spec\Sym k[-n+d]$ so $\pi_d(\spec \Sym k[-n])$ is trivial for $d<n$ and $\Omega^n(\spec \Sym k[-n])\simeq \G_a$.
 As the first n-1 homotopy groups are trivial $\spec \Sym k[-n]\simeq B^n\Omega ^n\Sym k[-n]\simeq B^n\G_a$
@@ -96,11 +96,11 @@ As the first n-1 homotopy groups are trivial $\spec \Sym k[-n]\simeq B^n\Omega ^
 
 
 \begin{theorem}
-For X a CW complex, $\O(X)\simeq C^*(X)$ where the right member of the equality is the cochain complex.
+For X a CW complex, $\mathcal{O}(X)\simeq C^*(X)$ where the right member of the equality is the cochain complex.
 \end{theorem}
 
 \begin{proof}
-$H^n(X)=\Map(X,B^n\G_a)=\Hom_{dgAlg}(\Sym k[-n],\O(X))=H^n(\O(X))$. The natural map $C^*(X)\simeq C^*(\col\spec(k))\to \lim C^*(\spec(k))\simeq \lim k\simeq \O(X)$,
+$H^n(X)=\Map(X,B^n\G_a)=\Hom_{dgAlg}(\Sym k[-n],\mathcal{O}(X))=H^n(\mathcal{O}(X))$. The natural map $C^*(X)\simeq C^*(\col\spec(k))\to \lim C^*(\spec(k))\simeq \lim k\simeq \mathcal{O}(X)$,
 induces those isomorphisms on cohomology.\\
 \end{proof}
 
@@ -146,31 +146,31 @@ We shall now consider the case of finite CW-complexes which are monoids, show th
 of G-modules and Aff(G)-modules are canonically equivalent.
 
 \begin{lemma}
-Let G be a finite CW complexes and X a stack, then $\O(G\times X)\simeq \O(G)\otimes \O(X)$
+Let G be a finite CW complexes and X a stack, then $\mathcal{O}(G\times X)\simeq \mathcal{O}(G)\otimes \mathcal{O}(X)$
 \end{lemma}
 
 \begin{proof}
-Let us consider the two functors: $\O(-\times X)$ and $\O(-)\otimes \O(X)$. The first sends colimits to limits, so in particular pushout
-squares to pullback squares. If we apply $\O(-)$ to a pushout square we get a pullback square which is also pushout as $Mod$ is stable. If then we 
-apply $-\otimes \O(X)$ we get a pushout square which is also pullback.\\
+Let us consider the two functors: $\mathcal{O}(-\times X)$ and $\mathcal{O}(-)\otimes \mathcal{O}(X)$. The first sends colimits to limits, so in particular pushout
+squares to pullback squares. If we apply $\mathcal{O}(-)$ to a pushout square we get a pullback square which is also pushout as $Mod$ is stable. If then we 
+apply $-\otimes \mathcal{O}(X)$ we get a pushout square which is also pullback.\\
 The two functors are equal on $\spec(k)$ and, since finite CW complexes can be obtained starting from $\spec(k)$ with iterated pushouts, the two 
 functors agree on finite CW complexes.
 \end{proof}
 
 \begin{corollary}
-A monoid structure over a CW complex G induces canonically a comonoid structure on $\O(G)$ and a monoid structure over $\Aff(G)$. Furthermore
-whenever we are given a G action on a stack X, we get a $\O(G)$ coaction on $\O(X)$ and an $\Aff(G)$ actions on $\Aff(X)$.\\
-In particual, $G$ actions on affine derived schemes are the same as $\O(G)$ coaction on derived algebras or $\Aff(G)$ actions on affine derived schemes.
+A monoid structure over a CW complex G induces canonically a comonoid structure on $\mathcal{O}(G)$ and a monoid structure over $\Aff(G)$. Furthermore
+whenever we are given a G action on a stack X, we get a $\mathcal{O}(G)$ coaction on $\mathcal{O}(X)$ and an $\Aff(G)$ actions on $\Aff(X)$.\\
+In particual, $G$ actions on affine derived schemes are the same as $\mathcal{O}(G)$ coaction on derived algebras or $\Aff(G)$ actions on affine derived schemes.
 \end{corollary}
 
 \begin{example}
 \label{formality}
 $G=S^1=B\mathbb{Z}$. There is an obvious group morphism $\mathbb{Z}\to \G_a$ sending $1\in\mathbb{Z}$ to the multiplicative unit of k. Such a morphism induces
-a monoid morphism $S^1\simeq B\mathbb{Z}\to B\G_a\simeq \spec(\cerchio)$. By adjunction, we obtain a map $\O(S^1)\to \cerchio$
+a monoid morphism $S^1\simeq B\mathbb{Z}\to B\G_a\simeq \spec(\cerchio)$. By adjunction, we obtain a map $\mathcal{O}(S^1)\to \cerchio$
 It is easy to verify that such map is a quasi-isomorphism. Moreover, as the adjunction (restricted to finite CW complexes) is monoidal and such map comes from a monoid
 morphism, it is also a comonoid morphism. Concretely, this means that:
 \begin{itemize}
- \item The dg Hopf algebra $\cerchio$ is a strict model for the comonoid $\O(S^1)$
+ \item The dg Hopf algebra $\cerchio$ is a strict model for the comonoid $\mathcal{O}(S^1)$
 \item $\Aff(S^1)$ is isomorphic to $B\G_a$ as monoid stacks.
 \end{itemize}
 
@@ -201,9 +201,9 @@ prove the HKR isomorphism: $$A\otimes_{A\otimes A}A\simeq \Omega_A^{-\bullet}$$ 
 differential forms.\\
 
 To understand this isomorphism, it's important to consider the equivalence of categories $$S^1-Aff^{op}\simeq \cerchio-\dalg$$ 
-given by the $\spec$, $\O$ adjunction (and by the formality of cochains of $S^1$, see example \ref{formality}).
+given by the $\spec$, $\mathcal{O}$ adjunction (and by the formality of cochains of $S^1$, see example \ref{formality}).
 
-There are the obvious functors: $\O :S^1-Aff^{op}\to \dalg$ and $forget: \O(S^1)-\dalg\to\dalg$, which commute with the $\spec$, $\O$ adjunction.
+There are the obvious functors: $\mathcal{O} :S^1-Aff^{op}\to \dalg$ and $forget: \mathcal{O}(S^1)-\dalg\to\dalg$, which commute with the $\spec$, $\mathcal{O}$ adjunction.
 Moreover both functors have a left adjoint, giving the following commutative diagram:
 \begin{displaymath}
 \xymatrix{
@@ -212,9 +212,9 @@ S^1-Aff^{op} \ar@<2pt>[dr]  \ar@<2pt>[rr]^-\simeq&  & \cerchio-\dalg\ar@<2pt>[dl
 }
 \end{displaymath}
 
-It is almost tautological that the first left adjoint is the loop space functor $A\mapsto \L\spec A\simeq \spec(A\otimes_{A\otimes A}A)$.
-Indeed, given a map $A\to O(X)$ one gets a map $X\to \spec(A)$ and, by consequence, a map $\L X\to \L\spec(A)$ and, if we precompose it by the action map $X\to \L X$
-we get the desired morphism $X\to \L\spec(A)$. If instead we are given a map $X\to \L\spec(A)$ we must simply compose with map $\L\spec(A)\to \spec(A)$ sending a loop
+It is almost tautological that the first left adjoint is the loop space functor $A\mapsto \mathcal{L}\spec A\simeq \spec(A\otimes_{A\otimes A}A)$.
+Indeed, given a map $A\to O(X)$ one gets a map $X\to \spec(A)$ and, by consequence, a map $\mathcal{L} X\to \mathcal{L}\spec(A)$ and, if we precompose it by the action map $X\to \mathcal{L} X$
+we get the desired morphism $X\to \mathcal{L}\spec(A)$. If instead we are given a map $X\to \mathcal{L}\spec(A)$ we must simply compose with map $\mathcal{L}\spec(A)\to \spec(A)$ sending a loop
 to its value in the identity to get a map $X\to \spec(A)$ and so $A\to O(X)$.\\
 
 The adjoint of the second forget functor is more interesting: it sends a derived algebra A to its algebra of differential forms. To see why it is so, we need the following:
@@ -227,11 +227,11 @@ What the lemma is saying is that derived algebras with a square-zero derivation 
 strict $\cerchio$ coaction, so in particular $\Omega_A^{-\bullet}$ is a $\cerchio$-comodule in a natural way.
 
 \begin{proposition}
-$\L\spec A \simeq \spec\Omega_A^{-\bullet}$. $\spec\Omega_A^{-\bullet}$ is also called the odd tangent complex of A and denoted $\mathbb{T}_A[-1]$.
+$\mathcal{L}\spec A \simeq \spec\Omega_A^{-\bullet}$. $\spec\Omega_A^{-\bullet}$ is also called the odd tangent complex of A and denoted $\mathbb{T}_A[-1]$.
 \end{proposition}
 
 \begin{proof} $\Omega_A^{-\bullet}$ is a $\cerchio$-comodule, so $\spec\Omega_A^{-\bullet}$ is a $S^1$-module, so by the universal property we have a map of $S^1$-stacks
-$\spec\Omega_A^{-\bullet}\to \L\spec A$. We want to check that it is an equivalence.\\
+$\spec\Omega_A^{-\bullet}\to \mathcal{L}\spec A$. We want to check that it is an equivalence.\\
 
 Let's consider any S point of $\spec A$: $x:\spec S\to \spec A$ and write the universal property of the cotangent complex:
 
@@ -252,13 +252,13 @@ Let's apply this universal property to the case $M=S[-1]$:
 }
 \end{displaymath}
 
-The key point is that $\L \spec(A)(S)=\Map(B\G_a,\spec A)(S)=\Hom(\spec(\cerchio\otimes S),\spec A)=\Hom(A,S\oplus S[-1] )$.\\
+The key point is that $\mathcal{L} \spec(A)(S)=\Map(B\G_a,\spec A)(S)=\Hom(\spec(\cerchio\otimes S),\spec A)=\Hom(A,S\oplus S[-1] )$.\\
 Furthermore $\Hom_S(x^*\Omega_A, S[-1])\simeq \Hom_S(x^*\Omega_A[1], S)\simeq \Hom_{S-alg}(x^*\Omega_A^{-\bullet}, S)=x^*\mathbb{T}_X[-1](S)$\\
 So the diagram we have found is actually:
 
 \begin{displaymath}
 \xymatrix{
-x^*\mathbb{T}_A[-1](S) \ar[r] \ar[d] &  \L\spec(A)(S) \ar[d]\\
+x^*\mathbb{T}_A[-1](S) \ar[r] \ar[d] &  \mathcal{L}\spec(A)(S) \ar[d]\\
  pt \ar[r] & \spec(A)(S)\\
 }
 \end{displaymath}
@@ -282,32 +282,32 @@ So, to summarise our results:
  \item $A\otimes_{A\otimes A}A\simeq \Omega_A^{-\bullet}$ as derived algebras.
  \item The map $Id\oplus d:\Omega_A^{-\bullet}\to\Omega_A^{-\bullet}\oplus \Omega_A^{-\bullet}[-1]$ is a
  $\cerchio$-coaction.
-\item Applying the $\spec$ functor to everything we get the map $$S^1\times \L\spec(A)\to B\G_a\times \L \spec(A)\to\L\spec(A)$$ which is isomorphic to
-the rotation action of $S^1$ on $\L \spec(A)$.
+\item Applying the $\spec$ functor to everything we get the map $$S^1\times \mathcal{L}\spec(A)\to B\G_a\times \mathcal{L} \spec(A)\to\mathcal{L}\spec(A)$$ which is isomorphic to
+the rotation action of $S^1$ on $\mathcal{L} \spec(A)$.
 \end{itemize}
 \end{theorem}
 
 Actually, what we've done can be generalised, with very little effort, to derived schemes, thanks to the following:
 
 \begin{proposition} \cite{Be-Na}
-For X a derived scheme and $U\to X$ a Zariski open, the induced map $\L U\to \L X$
+For X a derived scheme and $U\to X$ a Zariski open, the induced map $\mathcal{L} U\to \mathcal{L} X$
 is also Zariski open. Furthermore the square:
 \begin{displaymath}
 \xymatrix{
-\L U \ar[r] \ar[d] &  \L X \ar[d]\\
+\mathcal{L} U \ar[r] \ar[d] &  \mathcal{L} X \ar[d]\\
  U \ar[r] & X\\
 }
 \end{displaymath}
 is a pullback
 \end{proposition}
 
-Therefore the isomorphism $\L X\simeq \mathbb{T}_X[-1]$ holds, more generally, for derived schemes.
+Therefore the isomorphism $\mathcal{L} X\simeq \mathbb{T}_X[-1]$ holds, more generally, for derived schemes.
 
 \begin{remark}
 It is important to notice that in the HKR isomorphism, we do not consider the de Rham differential as a differential: the differential on $\Omega_A^{-\bullet}$ is the one
-given by the differential of the cotangent complex. Fortunately the information of the differential is not lost: it is encoded in the $S^1$ action on $\L X$, so to
-find for example negative cyclic homology (see \cite{connes} or \cite{shiftedsymplectic}) one simply takes $S^1$ homotopy invariants functions on $\L X$ that is to say
-$\O_{\L X}^{S^1}$
+given by the differential of the cotangent complex. Fortunately the information of the differential is not lost: it is encoded in the $S^1$ action on $\mathcal{L} X$, so to
+find for example negative cyclic homology (see \cite{connes} or \cite{shiftedsymplectic}) one simply takes $S^1$ homotopy invariants functions on $\mathcal{L} X$ that is to say
+$\mathcal{O}_{\mathcal{L} X}^{S^1}$
 \end{remark}
 
 \nocite{to3, ToVedeRham}
