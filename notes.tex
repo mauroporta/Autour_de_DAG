@@ -66,15 +66,15 @@
 %Misc Packages
 \usepackage{xparse}
 
-%%Todo notes
-%%%%Packages
-\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
-%%%%Settings
-\newcounter{todocounter}
-\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
-\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+%%%Todo notes
+%%%%%Packages
+%\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
+%%%%%Settings
+%\newcounter{todocounter}
+%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
 
 %Index settings
 \setcounter{tocdepth}{1}
@@ -241,6 +241,26 @@
 \newcommand{\G}{\mathbb{G}}
 \renewcommand{\H}{\mathcal{H}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\hnc}{\mathcal{H}_{nc}(S)}
+\newcommand{\hnck}{\mathcal{H}_{nc}(k)}
+\newcommand{\nc}{\mathcal{N}cS}
+\newcommand{\nck}{\mathcal{N}cS(k)}
+\newcommand{\stnck}{\mathcal{S}\mathcal{H}_{nc}(k)}
+\newcommand{\stmonoidalk}{\mathcal{S}\mathcal{H}(k)^{\otimes}}
+\newcommand{\nckmonoidal}{\mathcal{N}cS(k)^{\otimes}}
+\newcommand{\hncschp}{\mathcal{H}_{nc}(S)_*}
+\newcommand{\dgcatkmor}{dg_k^{Mor}}
+\newcommand{\dgcatkmorft}{dg_k^{Mor,ft}}
+\newcommand{\aff}{\mathrm{AffSm}^{\mathrm{ft}}(k)}
+\newcommand{\sch}{\mathrm{Sm}^\mathrm{ft}(S)}
+\newcommand{\Spaces}{\mathcal{S}}
+\newcommand{\Spacesp}{\mathcal{S}_*}
+\newcommand{\stmonoidal}{\mathcal{S}\mathcal{H}(S)^{\otimes}}
+\newcommand{\st}{\mathcal{S}\mathcal{H}(S)}
+\newcommand{\stk}{\mathcal{S}\mathcal{H}(k)}
+\newcommand{\stncmonoidalk}{\mathcal{S}\mathcal{H}_{nc}(k)^{\otimes}}
+\newcommand{\stncmonoidal}{\mathcal{S}\mathcal{H}_{nc}(S)^{\otimes}}
+\newcommand{\Sp}{\mathrm{Sp}}
 
 %\includeonly{derived-loop}
 
@@ -312,7 +332,7 @@ Finally, the Appendices contain material which is somehow more foundational: we 
 
 {\bfseries This is a work in progress}
 
-\listoftodos
+%\listoftodos
 
 \section*{Notations}
 
@@ -342,7 +362,7 @@ with the obvious differentials. $K(-,n)$ is clearly a functor.
 \include{higher-stacks}
 \include{dg}
 \include{affine-derived-schemes}
-\include{rperf}
+%\include{rperf}
 \include{derived-loop}
 \include{deformation}
 \include{nc-motives}
