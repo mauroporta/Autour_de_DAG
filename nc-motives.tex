@@ -40,7 +40,7 @@ The problem was that at that time homotopy theories were studied by means of the
 \end{center}
 
 \begin{center}
-``$k$-linear homotopy theories'' $=$ $k$-linear $(\infty,1)$-categories $=$\footnote{This equality is known to be true when $k$ is the sphere spectrum (in this case a $k$-dg-category is just a spectral category by definition - see \cite{tabuada-gepner}). When $k$ is a classical commutative ring this equality is still just a philosophical principle. People are working to prove this.} $k$-dg-categories\\
+``$k$-linear homotopy theories'' $=$ $k$-linear $(\infty,1)$-categories $=$\footnote{More precisely there is an equivalence of $(\infty,1)$-categories between the $(\infty,1)$-category underlying the Morita model structure on small $k$-dg-categries and the $(\infty,1)$-category of stable presentable compactly generated $(\infty,1)$-categories endowed with an action of the $\infty$-derived category of $k$.  This was recently proved in \cite{dgklinear}.} $k$-dg-categories\\
 \end{center}
 
 
@@ -269,7 +269,7 @@ In the previous section we introduced a new theory of noncommutative motives. In
 }
 \end{equation}
 
-\noindent where each dotted map is induced by the corresponding universal property and the vertical arrows correspond to the localization functors. Notice also that by formal abstract nonsense these functors admit right-adjoints.
+\noindent where each dotted map is induced by the corresponding universal property and the vertical arrows correspond to the localization functors. By \cite[8.3.2.7]{lurie-ha} these functors admit lax monoidal right-adjoints.
 
 
 \begin{equation}
@@ -326,10 +326,9 @@ The second part of this theorem relies on the following fundamental result of A.
 The splitted version of the Waldhausen S-construction (meaning, using only those cofibrations that split) is $\mathbb{A}^1$-homotopic to the full Waldhausen $S$-construction.
 \end{prop}
 
-To prove the last part we show that the commutative and noncommutative versions of the $\mathbb{A}^1$-localizations are compatible with the right-adjoints.\\
+To prove the last item we show that the commutative and noncommutative versions of the $\mathbb{A}^1$-localizations are compatible with the right-adjoints.\\
 
-
-The following corollary provides a new formalization for something understood by Kontsevich \cite{kontsevich1, kontsevich2} long ago and also already satisfied by the formalism of Cisinski-Tabuada.
+The following corollary provides a new formalization of something understood by Kontsevich \cite{kontsevich1, kontsevich2} long ago and also already satisfied by the formalism of Cisinski-Tabuada:
 
 \begin{cor}
 Let $\mathcal X$ and $\mathcal Y$ be two noncommutative smooth spaces and assume that $\mathcal Y$ is smooth and proper. Then we have an equivalence of spectra
@@ -376,14 +375,18 @@ In this section we explain how the approach of Cisinski-Tabuada relates to ours.
 }
 \end{equation}
 
+
+
 More precisely  one can easily show the existence of new stable presentable symmetric monoidal  $(\infty,1)$-categories $\M^\mathrm{Tab}_\mathrm{Nis}$, $\M^\mathrm{Tab}_{\mathrm{Nis}, \mathbb{A}^1}$, $\M^\mathrm{Tab}_{\mathrm{Loc}, \mathbb{A}^1}$ providing analogues for the formula in (\ref{final}). In particular we find an equivalence
 
 \begin{equation}
  \stnck\simeq \mathrm{Fun}^{L}(\M^\mathrm{Tab}_{\mathrm{Nis}, \mathbb{A}^1}, \Sp)
 \end{equation}
 
-\noindent exhibiting the duality between our approach and the corresponding Nisnevich-$\mathbb{A}^1$-version of Tabuada's construction (recall that the very big $(\infty,1)$-category of big stable presentable $(\infty,1)$-categories has a natural symmetric monoidal structure \cite[6.3.2.10, 6.3.2.18 and 6.3.1.17]{ha} where the big $(\infty,1)$-category of spectra $\Sp$ is a unit and $\mathrm{Fun}^{L}(-,-)$ is the internal-hom).  Because Localizing descent forces Nisnevich descent, the universal properties involved provide a zig-zag of canonical colimit preserving monoidal functor $\M^\mathrm{Tab}_{\mathrm{Nis},\mathbb{A}^1}\rightarrow  \M^\mathrm{Tab}_{\mathrm{Loc}, \mathbb{A}^1}\leftarrow \M^\mathrm{Tab}_\mathrm{Loc}$ relating the dual of our new theory to the localizing theory of Tabuada. As emphazised before, the main advantage (in fact, la \emph{raison-d'\^etre}) of our approach to non-commutative motives is the easy comparison with the motivic stable homotopy theory of schemes. The duality here presented explains why the original approach of Tabuada is not directly comparable.
+\noindent exhibiting the duality between our approach and the corresponding Nisnevich-$\mathbb{A}^1$-version of Tabuada's construction (recall that the very big $(\infty,1)$-category of big stable presentable $(\infty,1)$-categories has a natural symmetric monoidal structure \cite[6.3.2.10, 6.3.2.18 and 6.3.1.17]{ha} where the big $(\infty,1)$-category of spectra $\Sp$ is a unit and $\mathrm{Fun}^{L}(-,-)$ is the internal-hom). 
 
+
+One can show that all the vertical inclusions in the diagram admit left adjoints and therefore $\stnck^{Loc}$ is endowed with an obvious universal property concerning Localizing descent. As the last forces Nisnevich descent, the universal properties involved provide a monoidal left adjoint to the inclusion $\stnck^{Loc}\subseteq\stnck$, relating our theory to the dual of localizing theory of Tabuada. As emphazised before, the main advantage (in fact, la \emph{raison-d'{\^e}tre}) of our approach to noncommutative motives is the easy comparison with the motivic stable homotopy theory of schemes. The duality here presented explains why the original approach of Cisinski-Tabuada is not directly comparable.
 
 \section{Future Works}
 
