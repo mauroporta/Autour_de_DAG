@@ -6,4 +6,171 @@
 
 \begin{refsection}
 
+We already discussed several non-trivial aspects of the derived algebraic geometry in the previous expos\'es; in this one, the main subject is derived deformation theory, with a particular attention to the formal one. The classical deformation theory is a really rich and interesting subject and it is tightly related to the obstruction theory (for infinitesimal extensions). Even though everything works fine for schemes, there have been problems in generalizing in a satisfying way obstruction theory to the world of $1$-stacks; in particular, the constructions of B. Fantechi and K. Beherend produce obstruction spaces which are \emph{not} functorial. This is somehow related to the ``hidden smoothness principle'': the lack of functoriality is due to the fact that we are considering only ``shadows'' of more natural objects, for which functoriality holds. We could take this as a foundational principle for the DAG; to put it with the words of B. To\"en:
+
+\begin{quote}
+\emph{Derived algebraic geometry is a generalization of algebraic geometry for which obstruction theory becomes natural.}
+\begin{flushright}
+B. To\"en in \emph{Higher and derived stacks}
+\end{flushright}
+\end{quote}
+
+The first part of this expos\'e will be devoted to the foundations of derived deformation theory in the simplicial setting; in particular, we will sketch how we can interpret the space of obstructions as the space of deformation over non-classical rings. In a second moment, we will turn toward a less foundational result: it has been known for a very long time that a formal deformation problem should be controlled by (higher) Maurer-Cartan equations living in a differential graded Lie algebra which is well-determined (up to quasi-isomorphism) from the problem itself. If we agree that a formal deformation problem is nothing but a deformation functor (in the sense of \cite{manetti}), then a possible way to formalize that idea is the following:
+
+\begin{quote}
+the category of deformation functors has a fully faithful embedding into the category of differential graded Lie algebras, in such a way that first order deformations up to isomorphism corresponds to the solution of the Maurer-Cartan equation.
+\end{quote}
+
+\begin{eg}
+Fix a base field $k$, and consider an associative $k$-algebra $A$. It is well known that the Hochschild cohomology $\mathrm{HH}^1(A,A)$ can be used to parametrize the deformations of the product on $A$ as an associative product. The involved differential graded Lie algebra in this case is the (shifted) Hochschild cochain complex, with the bracket defined by Gerstenhaber.
+\end{eg}
+
+From a derived point of view, the interpretation of this phenomenon becomes easier: in fact, if we work with a formal \emph{derived} moduli problem $F$, then we expect the tangent complex of $F$ at a point $x$ to be a complex which is not concentrated in degree zero (or, if one prefers the approach of J. Lurie, we expect it to be a non-discrete spectrum). If we work with formal moduli problems, then the assignment
+\[
+F \mapsto \mathbb TF
+\]
+defines a functor which preserves finite limits. It follows that
+\[
+\mathbb TF[1] \simeq \Omega \mathbb TF \simeq \mathbb T(\Omega F)
+\]
+and $\Omega F$ carries a natural group structure (up to homotopy). It is therefore reasonable to expect the complex $\mathbb TF[1]$ to carry a Lie algebra structure. Moreover, in characteristic zero, this Lie algebra structure allows to define the higher Maurer-Cartan equations, which completely describe the solutions to the formal moduli problem $F$, and therefore determine also the problem $F$. This heuristic argument can be formalized as follows:
+
+\begin{thm}
+Let $k$ be a field of characteristic $0$. There exists a functor of $\infty$-categories $\Psi \colon \mathrm{Moduli}_k \to \mathrm{Lie}_k$ informally given by $\Psi(F) = \mathbb T F[1]$ which is moreover an equivalence of $\infty$-categories.
+\end{thm}
+
+\section{Formal and derived deformation theory}
+
+\subsection{An overview of classical deformation theory}
+
+We fix throughout this section a field $k$ (not necessarily of characteristic $0$), and a scheme over $\spec(k)$, say $X_0$. A deformation of $X_0$ over a base scheme $S$ is a cartesian diagram
+\[
+\xymatrix{
+X_0 \ar[d] \ar[r] & X \ar[d]^\pi \\ \spec(k) \ar[r]^s & S
+}
+\]
+where the map $\pi \colon X \to S$ is flat. The other fibers of $S$ over $k$-rational points are said to be \emph{deformations} of $X_0$. The basic problem of deformation theory is to understand the deformations of a given scheme $X_0$ over an arbitrary base field $S$; in order to formulate correctly this problem, one should adopt the functor of points philosophy: we are simply considering the contravariant functor
+\[
+\mathrm{Def}_{X_0} \colon \mathbf{Sch}_{k,*} \to \Set
+\]
+associating to a given $k$-pointed scheme $(S,s)$ over $k$ the isomorphism classes of deformations $(X,\pi)$ of $X_0$ over $S$ (such that $X_s \simeq X_0$). The functor $\mathrm{Def}_{X_0}$ collects (almost) all the informations about the deformations of $X_0$; to understand them, one should therefore understand the properties of $\mathrm{Def}_{X_0}$. For example one might ask whether this functor is representable, and in such case he might be interested in studying the geometry of the corresponding moduli space, etc. More generally, one might be interested in considering different deformation problems. Examples include deformations of coherent sheaves over a scheme, or deformation of subscheme in a given ambient scheme.
+
+In order to have a flexible enough theory allowing to deal with general deformation problems, one is essentially led to consider moduli problems satisfying some additional structural property. However, even with the assumption that are usually made, the difficulty of the general problem is often overwhelming. In order to make some progress, it is convenient to reduce the size of the problem; to better explain how this is done in practice, let us assume for a moment that the moduli problem
+\[
+F \colon \mathbf{Sch}_{k,*} \to \Set
+\]
+is representable by a scheme $\mathcal M$. In general, the geometry of $\mathcal M$ can be hard to understand; but if we fix a point $\eta$ in $\mathcal M$, then the task of studying the formal completion of $\mathcal M$ at $\eta$ might be more treatable. Let $(A,\mathfrak m_A)$ be the complete local ring representing such completion; then the rings $A / \mathfrak m_A^n$ are local artinian and $A$ can be recovered as the inverse limit
+\[
+A \simeq \varprojlim A / \mathfrak m_A^n
+\]
+This can be restated by saying that $A$ corresponds to a pro-object in the category of local artinian rings.
+
+The key observation in formal deformation theory is that we can repeat the above constructions even without assuming that the problem $F$ is representable. In fact, if we fix a point $\eta \in F(k)$ we can construct a new moduli problem, $\widetilde{F}$, defined as
+\[
+\widetilde{F}(X) := F(X) \times_{F(k)} \{\eta\}
+\]
+If we further restrict this functor to the category of local artinian rings with residue field isomorphic to $k$, $\mathrm{Art}_k$ we obtain a functor
+\[
+\widehat{F}(\spec(R)) := \widetilde{F}(\spec(R))
+\]
+which is referred to as the ``completion'' of $F$ at the point $\eta$. It becomes then interesting to understand whether $\widehat{F}$ is a pro-object in the category $\mathrm{Art}_k$.
+
+This problem is addressed by Schlessinger's criterion, which gives conditions in term of the tangent space of the moduli problem $F$ guaranteeing the pro-representability of $F$. To understand the definition of tangent space, it will be sufficient for the reader to think to the simpler case where $F$ is representable by a scheme:
+
+\begin{defin}
+Let $F \colon \mathbf{Sch}_{k,*} \to \Set$ be a moduli problem and let $\eta \in F(k)$ be a given point. The tangent space of $F$ at $\eta$ is defined to be $T_F := F(k[\varepsilon]/(\varepsilon^2))$.
+\end{defin}
+
+\begin{thm}[Schlessinger]
+Let $F \colon \mathrm{Art}_k \to \Set$ be a functor of Artin rings such that $F(k)$ is just one element. Given a pullback in $\mathrm{Art}_k$
+\[
+\xymatrix{
+B \times_A C \ar[r] \ar[d] & B \ar[d] \\ C \ar[r] & A
+}
+\]
+let
+\[
+\alpha \colon F(B \times_A C) \to F(B) \times_{F(A)} F(C)
+\]
+be the natural map. Then $F$ is prorepresentable if and only if it satisfies the following conditions:
+\begin{enumerate}
+\item the map $\alpha$ is bijective whenever $B = C$ and $B \to A$ is a square-zero extension;
+\item if $C \to A$ is a square-zero extension, then $\alpha$ is surjective;
+\item if $A = k$ and $C = k[\varepsilon]/(\varepsilon^2)$ the map $\alpha$ is bijective;
+\item $\dim_k (T_F) < \infty$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+See \cite[Theorem 2.3.2]{sernesi}
+\end{proof}
+
+\subsection{Derived deformation theory}
+
+As we saw in the above discussion, there is an easy procedure allowing to extract a formal deformation problem out of a classical one at a point:
+\begin{enumerate}
+\item one first consider a base change in such a way that $F(k)$ consists of a single point;
+\item next one restricts the functor to the category of local artinian $k$-algebras.
+\end{enumerate}
+
+\noindent To extend this procedure to the derived setting, one has first of all to introduce the notion of simplicial Artinian algebra. This is not difficult at all:
+
+\begin{defin}
+A simplicial artinian $k$-algebra is a simplicial $k$-algebra $A$ such that $\pi_0(A)$ is local artinian and the residue field is isomorphic to $k$. We will denote by $\mathbf{sArt}_k$ the category of simplicial artinian $k$-algebras.
+\end{defin}
+
+It is perhaps subtler to define the notion of infinitesimal extension. We will use the one given in \cite{infinitesimalextension}, and we refer there for a more detailed discussion.
+
+\begin{defin}\label{inf}
+Let $A\to B$ be a cofibrant $A$-algebra, $M$ be a simplicial $B$-module and $\overline{d} \in \pi_0 (\mathrm{Map}_{A/\mathbf{sAlg}_k/B} (B, B\oplus M[1]))$ be a derived derivation from $B$ to $M[1]$, represented by a map $d \colon B \to B\oplus M[1]$ in $A / \mathbf{sAlg}_k /B$. If we denote by $\varphi_{d}: \mathbb{L}_{B/A}\to M[1]$ the map of $B$-modules corresponding to $d$, the \emph{infinitesimal extension} $\psi_{d}: B\oplus_{d}M \to B$ \emph{of $B$ by $M$ along $d$} is the map in $\mathrm{Ho}(A/\mathbf{sAlg}_k/B)$ defined by the following homotopy cartesian diagram in $A/\mathbf{sAlg}_k$
+\[
+\xymatrix{B\oplus_{d}M \ar[d]_-{\psi_{d}} \ar[r] & B \ar[d]^-{0} \\B \ar[r]_-{d} & B\oplus M[1] }
+\]
+where $0$ denotes the section corresponding to the trivial derived derivation $0 \colon \mathbb L_{B/A} \to M[1]$.
+\end{defin}
+
+With this definition, we can introduce the notion of formal moduli problem:
+
+\begin{defin}
+A formal moduli problem is a functor $F \colon \mathbf{sArt}_k \to \sset$ such that:
+\begin{enumerate}
+\item $F(k)$ is weakly contractible;
+\item whenever we are given a homotopy pullback square $\eta$:
+\[
+\xymatrix{
+A \ar[r] \ar[d] & B \ar[d] \\ C \ar[r] & D
+}
+\]
+and $B \to D$ is an infinitesimal extension, then $F(\eta)$ is a pullback square.
+\end{enumerate}
+\end{defin}
+
+A key result is that whenever we are given a classical square-zero extension of $k$-algebras
+\begin{equation} \label{eq extension}
+0 \to M \to A \to A' \to 0
+\end{equation}
+it is possible to define a \emph{derived} derivation $d \colon A' \to k \oplus M[1]$ in such a way that
+\[
+\xymatrix{
+A \ar[r] \ar[d] & A' \ar[d]^d \\ k \ar[r]^-{\varphi_0} & k \oplus M[1]
+}
+\]
+where $\varphi_0$ is the trivial derivation (see \cite[Lemma 6.2]{infinitesimalextension} for a proof). Using this, we see that for every formal moduli problem $F$ we obtain a fiber sequence
+\[
+F(A) \to F(A') \to F(k \oplus M[1])
+\]
+giving rise to a long exact sequence
+\[
+\pi_0(F(A)) \to \pi_0(F(A')) \to \pi_0(F(k \oplus M[1]))
+\]
+This allows to identify the set $\pi_0(F(k \oplus M[1]))$ as a parametrization of the space of obstructions of $F$ along the extension \eqref{eq extension}.
+
+\section{Review of cdga and dglie algebras}
+
+Before discussing the main theorem of \cite{dagx} it will be convenient to review the general theory of commutative dg-algebras and dg Lie algebras, as we didn't discuss it so far. The reason to switch from the simplicial formalism to the dg-formalism is that we will need to work with certain constructions (such as the Chevalley-Eilenberg cochain complex and the Koszul duality functor) which are best understood in the dg-setting.
+
+\section{The tangent complex of a formal moduli problem}
+
+\printbibliography[heading = local]
+
 \end{refsection}
