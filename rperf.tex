@@ -66,6 +66,9 @@ The next example is an important motivation for the development of derived algeb
   where no truncation has occurred.
 \end{remark}
 
+\paragraph{Acknowledgements}
+I would like to thank Fran\c{c}ois Petit for his remarks on this text at the Flumserberg Winter school on derived algebraic geometry.
+
 
 \section{Preliminaries}
 \label{section:preliminaries}
@@ -81,7 +84,6 @@ In order to get a nice result we need to impose a certain finiteness condition o
   \end{equation}
   an isomorphism in~$\Ho(\sSet)$. The full dg~subcategory of perfect objects in~$\Int(\dgMod{\mathcal{C}^\opp}_k)$ is denoted~$\Int_\perf(\dgMod{\mathcal{C}^\opp}_k)$.
 \end{definition}
-The following definition is a notion of perfectness for bimodules.
 \begin{definition}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. Let~$M$ be an object of~$\Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)$. Let~$C$ be an object of~$\mathcal{C}$. We can define a morphism of dg~categories~$\ev_M$ which acts as a partial evaluation in the first parameter, by setting
   \begin{equation}
@@ -172,7 +174,7 @@ The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other const
   The simplicial presheaf~$\mathcal{M}_{\mathcal{C}}$ is a derived stack.
 
   \begin{proof}[Proof]
-    As discussed in \cite[\S 2.1.1]{hagII} the proof is reduced to showing the following three properties:
+    As discussed in \cite[corollary 1.3.2.4]{hagII} the proof is reduced to showing the following three properties:
     \begin{enumerate}
       \item for every weak equivalence~$A^*\weq B^*$ in~$\scAlg{k}$ is the natural morphism
         \begin{equation}
@@ -301,7 +303,7 @@ The next two definitions are a finiteness condition on a derived stack.
   \begin{equation}
     \colim_{i\in I}\Map_{\scAlg{k}}(A^*,B_i^*)^*\to\Map_{\scAlg{k}}\left( A^*,\colim_{i\in I}B_i^* \right)^*
   \end{equation}
-  is an isomorphism in~$\Ho(\sSet)$ for every filtered system~$(B_i^*)_{i\in I}$ in~$\scAlg{k}$.
+  is an isomorphism in~$\Ho(\sSet)$ for every filtered\footnote{Remark that it doesn't matter whether we consider colimits or homotopy colimits, they agree in these cases.} system~$(B_i^*)_{i\in I}$ in~$\scAlg{k}$.
 \end{definition}
 \begin{definition}
   Let~$F$ be an~$n$\dash geometric derived stack. It is \emph{locally of finite presentation} if there exists an~$n$\dash atlas~$(X_i)_{i\in I}$ such that each~$X_i$ is finitely presented.
@@ -331,7 +333,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     and we have reduced the proof to showing that~$\RPerf^{[a,b]}$ is locally geometric and locally of finite presentation. We can moreover prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric, where~$n=b-a+1$.
 
-    To prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric we use \cite[lemma 2.18]{toen-vaquie}, to reduce this to a statement on the diagonal. Hence, let~$X=\RSpec A^*$ be a representable (or affine) derived stack and let~$f,g\colon X\to\RPerf^{[a,b]}$ be two morphisms. Consider the homotopy fiber product
+    To prove that~$\RPerf^{[a,b]}$ is~$n$\dash geometric we use \cite[lemma 2.18]{toen-vaquie} to reduce this proof to a statement on the diagonal. Hence, let~$X=\RSpec A^*$ be a representable derived stack and let~$f,g\colon X\to\RPerf^{[a,b]}$ be~$X$\dash valued points. By taking~$f\times g$ one obtains the diagonal case. Then one considers the homotopy fiber product
     \begin{equation}
       \begin{tikzcd}
         X\times_{\RPerf^{[a,b]}}^{\mathrm{h}}X \arrow{r} \arrow{d} & X \arrow{d}{g} \\
@@ -364,7 +366,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     and by \cite[corollary 1.3.7.4]{hagII} we obtain that it is a~$1$\dash geometric derived stack, locally of finite presentation.
 
-    Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~$\dgMod{\nerve(A^*)^\bullet}_k$ with its projective model category, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ has Tor amplitude~$[b-1,b-1]$. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
+    Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~$\dgMod{\nerve(A^*)^\bullet}_k$. This category of morphisms is equipped with its projective model category structure, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ has Tor amplitude~$[b-1,b-1]$. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
     \begin{equation}
       p\colon U\to\RPerf^{[a,b-1]}\times^{\mathrm{h}}\RVect:(u\colon Q^\bullet\to R^\bullet)\mapsto(Q^\bullet,R^\bullet[b-1]).
     \end{equation}
