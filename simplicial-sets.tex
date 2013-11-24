@@ -3,11 +3,15 @@
 
 \begin{refsection}
 
-It is a fact that Topology is absolutely central in Mathematics; this general framework developed in the first decades of the XXth century provides powerful techniques to handle problems in Analysis, Geometry, Algebra. Perhaps even more importantly, Topology gives a unifying point of view and shows how branches of Mathematics apparently unrelated, in reality share a deep connection. During a first approach, we have been taught to think about (point-set) topology as something axiomatizing the notion of ``being close''. This is a static vision of Topology; there is another one, concerning deformations and homotopies. ``Reduce to a simpler case'', this is one of the fundamental \emph{mantras} of Mathematics; in the topological context, where pathological examples abound, one of the most useful techniques is to deform the object of study into a nicer one, obviously preserving the properties we are interested in. More recently, certain mathematicians began to realize that deformations techniques can be successfully employed in several areas, for example in Algebraic Geometry. One of the goals of these notes is to convince the readers that the topological situation is universal with respect to deformation theories, as much as we think sets as universal with respect to (the most of the) Mathematics.
+In this appendix we will quickly overview the homotopy theory of simplicial sets. The exposition given here is by no means complete, and the interested reader is referred to \cite{may} and to \cite[Chapter 1]{gj} for a more comprehensive treatment.
 
-Simplicial sets were born as an attempt to minimize the structure needed in order to develop a homotopy theory, without changing the final result. In a sense, we can look at simplicial sets as a ``homotopical skeleton'' of topological spaces. The resulting theory is quite powerful, and it took the foundational position of topological spaces in all the questions concerning homotopy theory. In Chapter 1, for example, we show that it is always possible to construct \emph{meaningful} functors from any model category to the category of simplicial sets, taking the place of the hom-sets in classical category theory.
+Simplicial sets have been introduced in order to manipulate in a easier way the theory of CW-complexes, in the sense that they provide a combinatorial model for the same homotopy theory. Using the language introduced in the first Expos\'e, we can make precise this statement by saying that there is a Quillen equivalence
+\[
+|\cdot| \colon \sset \rightleftarrows \Top \colon \mathrm{Sing}
+\]
+The functors involved in this equivalence are the geometric realization and the singular complex. We assume that the reader has some experience with $\mathrm{Sing}$ coming from the Algebraic Topology; the first important task of this appendix is, on the other side, to describe the geometric realization and to analyse its most important properties.
 
-If this reduction process is convenient from a foundational and conceptual point of view, however, it surely adds more technicalities. Simple reasoning in topology can be impossible to literally translate in this new world; still, it is a good enough principle to think that every deep result in $\Top$ translates into an analogous statement for $\sset$. As a practical example, consider the definition of homotopy itself: in $\Top$ we have several different ways to define homotopy, and they are all more or less trivially equivalent. In $\sset$ the definitions can be easily translated; however, the proof of the equivalence requires more work. As general tool, the theory of anodyne extensions provides a way to skip many of these tedious details, at the price of a new set of standard arguments and tricks that one has to learn.
+Later, we will describe the homotopy theory of $\sset$ using the internal combinatorics: a particular attention is paid to the formalism of anodyne extensions and to its applications. We will conclude describing the notion of minimal simplicial set and a sketch of the proof that $\sset$ has a model structure.
 
 \section{The category \texorpdfstring{$\SDelta$}{\textbackslash Delta} and (co)simplicial objects}
 
@@ -23,23 +27,17 @@ Let $\SDelta$ be the full subcategory of $\Cat$ spanned by the categories $\math
 $\SDelta$ is thus the category whose objects are finite totally ordered sets and whose arrows are (weakly) increasing functions.
 \end{rmk}
 
-Let $\mathbf n, \mathbf m \in \SDelta$. We want an easy (= combinatorial) way to describe the hom-set
-\[
-\Hom_{\SDelta}(\mathbf n, \mathbf m)
-\]
-The idea is to look for elementary arrows. For example, if $\mathbf m = \mathbf{n+1}$ then we have exactly $n+1$ \emph{strictly} increasing arrows, namely $d^i \colon \mathbf n \to \mathbf{n+1}$ ($i \in \{0,1,\ldots,n+1\}$) defined by
+The combinatorial nature of $\SDelta$ allows to produce a simple factorization system\footnote{Remember that a factorization system in a category $\mathcal C$ is the datum of two subcategories $\mathcal C_0$ and $\mathcal C_1$ such that every arrow $f$ can be written as $f = gh$, where $g$ is in $\mathcal C_0$ and $h$ is in $\mathcal C_1$.} in this category. In order to do so, we introduce two particular classes of arrows: the \emph{coface} maps $d^i \colon \mathbf n \to \mathbf{n+1}$ ($i \in \{0,1,\ldots,n+1\}$) defined by
 \[
 d^i(j) = \begin{cases} j & \text{if } j < i \\ j + 1 & \text{if } j \ge i \end{cases}
 \]
-We will call the maps $d^i$ the coface maps.
+These are the only strictly increasing arrows from $\mathbf n$ to $\mathbf{n+1}$.
 
 Similarly, we can construct $n+1$ arrows $s^i \colon \mathbf{n+1} \to \mathbf n$ by requiring that exactly two successive numbers have the same image:
 \[
 s^i(j) = \begin{cases} j & \text{if } j \le i \\ j - 1 & \text{if } j > i \end{cases}
 \]
 We will call the maps $s^i$ the codegeneracy maps.
-
-The first basic result is that those arrows allows to completely describe all the arrows in $\SDelta$:
 
 \begin{thm} \label{thm factorization epi-mono for Delta}
 Let $f \colon \mathbf n \to \mathbf m$ be any arrow in $\SDelta$. Then there are uniquely determined maps $d,s \in \mathrm{Ar}(\SDelta)$ such that
@@ -76,8 +74,10 @@ f(k) = d(k-h) = d(s(k))
 The factorization is unique because if $f$ miss $i_s,\ldots,i_1$, then $f$ must factor through $d$, hence $f = d s'$, and since $d$ is mono, $s' = s$.
 \end{proof}
 
-Theorem \ref{thm factorization epi-mono for Delta} shows us that the collection of coface maps and codegeneracy maps generates all the arrows in $\SDelta$. We can describe their mutual relations by the so-called co-simplicial identities:
+Theorem \ref{thm factorization epi-mono for Delta} gives a set of generators for the arrows of the category $\SDelta$. The next Theorem gives the relations between them:
 
+\begin{thm} \label{thm presentation for Delta}
+Let $\mathcal D$ be the graph whose objects are natural numbers and such that for each $n \in \N$ there are exactly $n+2$ arrows $\delta^i_n$ ($i \in \{0\,\ldots,n+1\}$) with source $n$ and target $n+1$, and exactly $n+1$ arrows $\sigma^i_n$ ($i \in \{0,\ldots,n\}$) with source $n$ and target $n-1$. Then $\SDelta$ is obtained as the quotient of the free category $F \mathcal D$ via the relations
 \begin{equation} \label{eq cosimplicial identities}
 \begin{gathered}
 d^j d^i = d^i d^{j-1} \quad \text{if } i < j \\
@@ -87,38 +87,18 @@ s^j d^i = \begin{cases} d^i s^{j-1} & \text{if } i < j \\
 d^{i-1} s^j & \text{if } i > j+1 \end{cases}
 \end{gathered}
 \end{equation}
-
-The proof does not give any deeper insight. The easiest way to convince yourself of those identities is to draw these maps of linearly ordered sets. We will skip on the details. The importance of the cosimplicial identities is that they completely describe the internal structure of $\SDelta$. This can be formalized as following:
-
-\begin{thm} \label{thm presentation for Delta}
-Let $\mathcal D$ be the graph whose objects are natural numbers and such that for each $n \in \N$ there are exactly $n+2$ arrows $\delta^i_n$ ($i \in \{0\,\ldots,n+1\}$) with source $n$ and target $n+1$, and exactly $n+1$ arrows $\sigma^i_n$ ($i \in \{0,\ldots,n\}$) with source $n$ and target $n-1$. Then $\SDelta$ is obtained as the quotient of the free category $F \mathcal D$ via the relations \eqref{eq cosimplicial identities}.
 \end{thm}
 
 \begin{proof}
-We have to check the universal property of the quotient. Let $G \colon F \mathcal D \to \mathcal C$ be a functor such that the maps $G(\delta^i_n)$ and $G(\sigma^i_n)$ satisfy the cosimplicial identities. Then define $\overline{G} \colon \SDelta \to \mathcal C$ using the factorization epi-mono provided in Theorem \ref{thm factorization epi-mono for Delta}; the simplicial identities allows to check functoriality of this definition. Uniqueness is clear.
+It is an exercise to check that the coface and codegeneracy maps satisfy these relations. We have now to check the universal property of the quotient. Let $G \colon F \mathcal D \to \mathcal C$ be a functor such that the maps $G(\delta^i_n)$ and $G(\sigma^i_n)$ satisfy the cosimplicial identities. Then define $\overline{G} \colon \SDelta \to \mathcal C$ using the factorization epi-mono provided in Theorem \ref{thm factorization epi-mono for Delta}; the simplicial identities allows to check functoriality of this definition. The uniqueness is, finally, clear.
 \end{proof}
-
-\begin{rmk}
-Previous theorem gives us a presentation for $\SDelta$.
-\end{rmk}
 
 \begin{defin} \label{def (co)simplicial objects}
 Let $\mathcal C$ be any category. A cosimplicial object in $\mathcal C$ is a functor $F \colon \SDelta \to \mathcal C$; a simplicial object is $\mathcal C$ is a functor $F \colon \SDelta^\text{op} \to \mathcal C$.
 \end{defin}
 
-As consequence of Theorem \ref{thm presentation for Delta} we get immediately
-
 \begin{cor}
-Let $\mathcal C$ be any category. To give a cosimplicial object $A$ in $\mathcal C$, it is necessary and sufficient to give a sequence of objects $\{A^n\}_{n \in \N}$ together with coface operators $\partial^i \colon A^{n-1} \to A^n$ and codegeneracy operators $\sigma^i \colon A^{n+1} \to A^n$ ($i = 0,\ldots,n$) satisfying the cosimplicial identities
-\begin{gather*}
-\partial^j \partial^i = \partial^i \partial^{j-1} \quad \text{if } i < j \\
-\sigma^j \sigma^i = \sigma^i \sigma^{j+1} \quad \text{if } i < j \\
-\sigma^j \partial^i = \begin{cases}
-\partial^i \sigma^{j-1} & \text{if } i < j \\
-\mathrm{id} & \text{if } i = j \text{ or } i = j+1 \\
-\partial^{i-1} \sigma^j & \text{if } i > j+1
-\end{cases}
-\end{gather*}
+Let $\mathcal C$ be any category. To give a cosimplicial object $A$ in $\mathcal C$, it is necessary and sufficient to give a sequence of objects $\{A^n\}_{n \in \N}$ together with coface operators $\partial^i \colon A^{n-1} \to A^n$ and codegeneracy operators $\sigma^i \colon A^{n+1} \to A^n$ ($i = 0,\ldots,n$) satisfying the cosimplicial identities \eqref{eq cosimplicial identities}.
 \end{cor}
 
 \begin{cor}
@@ -154,6 +134,10 @@ Let $n \in \N$. The standard $n$-simplex $\Delta^n$ is by definition the represe
 \]
 \end{defin}
 
+\begin{defin} \label{def face}
+Let $n \in \N$. For every $0 \le i \le n$, the $i$-th face of $\Delta^n$ is defined to be the subobject represented by the map $d_i := (d^i)^* \colon \Delta^{n-1} \to \Delta^n$.
+\end{defin}
+
 \begin{prop} \label{prop simplicial morphisms with Yoneda identification}
 Let $K \in \sset$ be a simplicial set. Then
 \[
@@ -165,8 +149,6 @@ Moreover, if $f \colon \mathbf m \to \mathbf n$ is any map in $\mathbf \Delta$ a
 \begin{proof}
 It's simply Yoneda lemma.
 \end{proof}
-
-Our abstract definition shows immediately that $\sset$ is a topos, hence in particular it is complete and cocomplete, it is Barr-exact, and it admits a subobject classifier. 
 
 \begin{defin}
 Let $K \in \sset$ be a simplicial set and let $\omega$ be a simplex in $K$. We say that $\omega$ is degenerate if it can be written as $K(s)(\omega')$ where $s \colon \mathbf m \to \mathbf n$ is a composition of degeneracy maps. We say that $\omega$ is non-degenerate if it is not degenerate.
@@ -212,6 +194,10 @@ The \emph{boundary of the standard $n$-simplex} is by definition the sub-simplic
 \end{defin}
 
 \begin{defin}
+Let $n \in \N$ and let $0 \le i \le n$ be an integer. Define $\Lambda^n_i$ to be the sub-simplicial set of $\Delta^n$ generated by all the ($n-1$)-simplexes of $\Delta^n$ but the $i$-th face (cfr. Definition \ref{def face}).
+\end{defin}
+
+\begin{defin}
 Let $K$ be a simplicial set and let $N \in \N$ be a non-negative integer. We define the $N$-th skeleton of $K$ to be the sub-simplicial set of $K$ generated by the simplexes of $K$ of degree $\le N$. We will denote the $N$-th skeleton of $K$ by $\mathrm{sk}_N(K)$.
 \end{defin}
 
@@ -222,139 +208,79 @@ $\mathrm{sk}_N(K)$ is also the sub-simplicial set generated by $K_N$. In particu
 \]
 \end{rmk}
 
-\subsection{Eilenberg-Zilber's Lemma and consequences}
-
-\begin{lemma}[Eilenberg-Zilber's Lemma] \label{lemma Eilenberg Zilber}
-For any simplicial set $K$ and any simplex $\omega \colon \Delta^n \to K$ there is an epimorphism $s \colon \mathbf n \to \mathbf m$ and a non-degenerate simplex $\omega' \colon \Delta^m \to K$ such that $\omega = K(s)(\omega')$. Moreover, the pair $(s,\omega')$ is uniquely determined by $\omega$.
-\end{lemma}
-
-\begin{proof}
-The existence is easily proved by induction. Assume now that $(s_1,\omega_1)$ and $(s_2,\omega_2)$ are two pairs realizing the decomposition of $\omega$ as degeneracy of a non-degenerate simplex. Let's write
-\[
-s_1 \colon \mathbf n \to \mathbf m_1, \qquad s_2 \colon \mathbf n \to \mathbf m_2
-\]
-and let's choose sections
-\[
-t_1 \colon \mathbf m_1 \to \mathbf n, \qquad t_2 \colon \mathbf m_2 \to \mathbf n
-\]
-of $s_1,s_2$. Then
-\begin{align*}
-\omega_1 & = K(s_1 t_1) (\omega_1) = (K(t_1) \circ K(s_1)) (\omega_1) \\
-& = K(t_1)(\omega) = (K(t_1) \circ K(s_2))(\omega_2) \\
-& = K(s_2 t_1)(\omega_2)
-\end{align*}
-Since $\omega_1$ is non-degenerate, the morphism $s_2 t_1 \colon \mathbf m_1 \to \mathbf m_2$ must be injective because of Theorem \ref{thm factorization epi-mono for Delta}. It follows that $m_1 \le m_2$; symmetrically $m_2 \le m_1$, and so $s_2 t_1$ and $s_1 t_2$ have to coincide with the identity of $m = m_1 = m_2$. In particular
-\[
-\omega_1 = \omega_2
-\]
-Moreover, since this is true for \emph{every} section of $s_1$ and $s_2$, it follows that these two maps have same fibers, hence
-\[
-s_1 = s_2
-\]
-which was the thesis.
-\end{proof}
-
-\begin{defin}
-Let $K$ be a simplicial set. For any simplex $\omega$, the pair $(s,\omega')$ constructed in Lemma \ref{lemma Eilenberg Zilber} is called the \emph{Eilenberg-Zilber decomposition} of $\omega$.
-\end{defin}
-
-\begin{cor}
-Let $f \colon X \to Y$ be a morphism of simplicial sets. If $X = \mathrm{sk}_N(X)$ and $Y = \mathrm{sk}_N(Y)$ then $f$ is an isomorphism if and only if $f_n$ is an isomorphism for every $n \le N$.
-\end{cor}
-
-\begin{proof}
-If $f$ is an isomorphism, the thesis holds trivially. Let's assume that $f_n$ is an isomorphism for every $n \le N$.
-
-First of all, we will show that $f$ is mono. If $x_1,x_2$ are two simplexes such that $f(x_1) = f(x_2)$ apply Eilenberg-Zilber's Lemma \ref{lemma Eilenberg Zilber} to produce decompositions
-\[
-x_i = X(s_i)(y_i), \quad i \in \{ 1,2 \}
-\]
-Applying $f$ we obtain the Eilenberg-Zilber decomposition of $f(x_1) = f(x_2)$:
-\[
-f(x_1) = Y(s_1)(f(y_2)) = f(x_2) = Y(s_2)(f(y_2))
-\]
-It follows from the uniqueness of such a decomposition that $s_1 = s_2$ and $f(y_1) = f(y_2)$. However, since $y_i$ are non-degenerate and $X = \mathrm{sk}_N(X)$, we see that the $y_i$ must be $n$-simplexes for some $n \le N$, so that
-\[
-f_n(y_1) = f_n(y_2)
-\]
-implies $y_1 = y_2$ by hypothesis, and now
-\[
-x_1 = X(s_1)(y_1) = X(s_2)(y_2) = x_2
-\]
-which were the thesis.
-
-Let's show now that $f$ is epi. If $x$ is a simplex in $Y$, let
-\[
-x = Y(s)(y)
-\]
-be an Eilenberg-Zilber decomposition. Since $Y = \mathrm{sk}_N(Y)$, $y$ is an $n$-simplex for some $n \le N$. It follows by hypothesis that
-\[
-y = f(z)
-\]
-for some $n$-simplex $z \colon \Delta^n \to X$. Thus
-\[
-x = Y(s)f(z) = f(X(s)z)
-\]
-showing surjectivity of $f$.
-\end{proof}
-
-\begin{prop}
-Let $K \in \sset$ be a simplicial set. Then $K$ is finitely dimensional (cfr. Definition \ref{def simplicial set of finite dimension}) if and only if $K = \mathrm{sk}_N(K)$ for some non-negative integer $N \in \N$.
-\end{prop}
-
-\begin{proof}
-Assume that $K$ is finitely dimensional. Then there is a non-negative integer $N \in \N$ such that all non-degenerate simplexes of $K$ are in degree $\le N$. Eilenberg-Zilber's Lemma \ref{lemma Eilenberg Zilber} implies that every simplex $\omega$ in $K$ can be written (uniquely) as
-\[
-K(s)(\omega')
-\]
-where $\omega'$ is a non-degenerate simplex; by hypothesis $\omega' \in K_n$ with $n \le N$. It follows from Proposition \ref{prop sub simplicial set} that $\mathrm{sk}_N(K) \subseteq K$, i.e. $K = \mathrm{sk}_N(K)$.
-
-The converse is obviously implies by the explicit description of $\mathrm{sk}_N(K)$ given in Proposition \ref{prop sub simplicial set}.
-\end{proof}
-
-\subsection{Kan fibrations}
-
-\subsection{An adjunction}
-
-Denote by
-\[
-c \colon \Set \to \sset
-\]
-the diagonal functor sending a set $X$ into the constant simplicial set $c(X)$ associated to $X$.
-
-\begin{lemma} \label{lemma set sset adjoints}
-The constant simplicial functor $c \colon \Set \to \sset$ has as right adjoint the projection functor $p \colon \sset \to \Set$ sending every simplicial set $K$ into $K_0 = \Hom_{\sset}(\Delta^0,K)$.
-\end{lemma}
-
-\begin{proof}
-Let $K$ be any simplicial set. Then we have a natural inclusion
-\[
-\varepsilon_K \colon c(K_0) \to K
-\]
-This defines obviously a natural transformation $\varepsilon \colon c \circ p \to \mathrm{Id}_{\sset}$. If $X$ is any set and we are given $f \colon c(X) \to K$ as in the following diagram:
-\[
-\xymatrix{
-K_0 & c(K_0) \ar[r]^{\varepsilon_K} & K \\ X \ar@{.>}[u]^{\exists ! \:g} & c(X) \ar@{.>}[u]^{c(g)} \ar[ur]_f
-}
-\]
-to complete the proof we only have to show that $g$ exists uniquely as indicated. Necessarily, the commutativity of the diagram on the right forces
-\[
-g = f_0
-\]
-and this works because $c(X)$ is concentrated in degree 0.
-\end{proof}
+%\subsection{An adjunction}
+%
+%Denote by
+%\[
+%c \colon \Set \to \sset
+%\]
+%the diagonal functor sending a set $X$ into the constant simplicial set $c(X)$ associated to $X$.
+%
+%\begin{lemma} \label{lemma set sset adjoints}
+%The constant simplicial functor $c \colon \Set \to \sset$ has as right adjoint the projection functor $p \colon \sset \to \Set$ sending every simplicial set $K$ into $K_0 = \Hom_{\sset}(\Delta^0,K)$.
+%\end{lemma}
+%
+%\begin{proof}
+%Let $K$ be any simplicial set. Then we have a natural inclusion
+%\[
+%\varepsilon_K \colon c(K_0) \to K
+%\]
+%This defines obviously a natural transformation $\varepsilon \colon c \circ p \to \mathrm{Id}_{\sset}$. If $X$ is any set and we are given $f \colon c(X) \to K$ as in the following diagram:
+%\[
+%\xymatrix{
+%K_0 & c(K_0) \ar[r]^{\varepsilon_K} & K \\ X \ar@{.>}[u]^{\exists ! \:g} & c(X) \ar@{.>}[u]^{c(g)} \ar[ur]_f
+%}
+%\]
+%to complete the proof we only have to show that $g$ exists uniquely as indicated. Necessarily, the commutativity of the diagram on the right forces
+%\[
+%g = f_0
+%\]
+%and this works because $c(X)$ is concentrated in degree 0.
+%\end{proof}
 
 \section{Geometric realization}
+
+So far we looked at simplicial sets as purely combinatorial objects. In this section, we explain what is the geometric intuition behind them using the geometric realization functor $|\cdot| \colon \sset \to \Top$. The idea is that this functor uses the combinatorial data encoded by a simplicial set $K$ in order to build a CW-complex $|K|$ whose $n$-cells are in bijection with non-degenerates $n$-simplices of $K$; moreover, this functor has several nice properties which can be often used in order to prove statements about simplicial sets avoiding the hard combinatorics involved.
+
+Remember first of all that in our conventions, $\Top$ denotes the cartesian closed category of compactly generated and Hausdorff topological spaces. Observe then that we have a cosimplicial object
+\[
+S \colon \SDelta \to \Top
+\]
+sending $\mathbf n$ to the standard $n$-simplex $\Delta_n$ in $\R^n$. We can define the geometric realization as the left Kan extension
+\[
+\xymatrix{
+\SDelta \ar[r]^{S} \ar[d]_{\mathbf y} & \Top \\
+\sset \ar[ur]_{|\cdot|}
+}
+\]
+Explicitly, this is the unique functor defined by the condition of sending $\mathbf n$ in $\Delta_n$ and commuting with colimits. As usual, in presence of a left Kan extension, we can produce a right adjoint to $|\cdot|$:
+\[
+\mathrm{Sing} \colon \Top \to \sset
+\]
+simply by setting
+\[
+\mathrm{Sing}(X) := \Top(\Delta^{\bullet}, X)
+\]
+
+\begin{lemma}
+The adjunction $|\cdot| \dashv \mathrm{Sing}$ holds.
+\end{lemma}
+
+\begin{proof}
+This is a straightforward exercise.
+\end{proof}
+
+The following theorem summarizes the main properties of the geometric realization functor $|\cdot|$:
 
 \begin{thm} \label{thm exactness of geometric realization}
 The geometric realization functor $| \cdot | \colon \sset \to \mathbf{CGHaus}$ commutes with finite limits and with colimits. Moreover it reflects isomorphisms.
 \end{thm}
 
 \begin{proof}
-\cite[Ch. III.3]{gz}.
+The previous lemma implies readily that $| \cdot |$ commutes with colimits. A formal argument can be used to show that it commutes with finite products as well, so that we are left to check that it commutes with equalizers. We refer to \cite[Ch. III.3]{gz} for the proof of this statement, as well as for the proof of the last one.
 \end{proof}
 
-The last part is useful if combined with the following easy categorical lemma:
+It is particularly useful that $| \cdot |$ \emph{reflects} isomorphism. This can be used to show that certain colimits are pushouts in the category $\sset$, without the need for hard combinatorial arguments. The following lemma explains how to do this:
 
 \begin{lemma} \label{lem colimit reflection}
 Let $\mathcal C$ be a cocomplete category and let $F \colon \mathcal C \to \mathcal D$ be a functor preserving colimits. If in addition $F$ reflects isomorphisms, then $F$ reflects colimits.
@@ -369,165 +295,92 @@ The geometric realization functor $| \cdot | \colon \sset \to \mathbf{CGHaus}$ r
 \end{cor}
 
 \begin{proof}
-It's consequence of Theorem \ref{thm exactness of geometric realization} and Lemma \ref{lem colimit reflection}, since $\sset$ is cocomplete.
+It is a consequence of Theorem \ref{thm exactness of geometric realization} and Lemma \ref{lem colimit reflection}, since $\sset$ is cocomplete.
+\end{proof}
+
+\begin{exercise}
+Show that there exists a coequalizer diagram as the following:
+\[
+\xymatrix{
+\coprod_{i = 0}^{\frac{n(n+1)}{2}} \Delta^{n-2} \ar@<.5ex>[r] \ar@<-.5ex>[r] & \coprod_{i = 0}^{n} \Delta^{n-1} \to \partial \Delta^n
+}
+\]
+\end{exercise}
+
+\begin{cor}
+For every simplicial set $K$, its geometric realization $|K|$ is a CW-complex.
+\end{cor}
+
+\begin{proof}
+See \cite[Proposition I.2.3]{gj}.
+\end{proof}
+
+\section{Kan fibrations}
+
+As it was claimed in the introduction, the category $\sset$ has a homotopical content which is equivalent to the one carried by $\Top$; however, the existence of this equivalence probably wouldn't be so interesting if it weren't possible to describe a huge part of this homotopical information in a combinatorial way.
+
+In this section we describe the first bit of the internal homotopy theory of $\sset$: we introduce the class of maps which will become the fibrations of a model structure.
+
+\begin{defin}
+A map of simplicial sets $f \colon F \to G$ is said to be a \emph{Kan fibration} if it has the right lifting property with respect to every map $\Lambda^n_i \to \Delta^n$, for every $n \in \N$ and every $0 \le i \le n$.
+\end{defin}
+
+This combinatorial definition is often not too hard to check in practice. For example, a basic fact that is used over and over through these notes is the following:
+
+\begin{lemma}
+Let $f \colon G \to H$ be a morphism of simplicial groups. If $f$ is a surjection, then $f$ is a Kan fibration (forgetting the group structure).
+\end{lemma}
+
+\begin{proof}
+See \cite[Lemma 8.2.8]{weibel}.
 \end{proof}
 
 \section{Anodyne extensions}
 
-In this section we develop a technical tool allowing to avoid many combinatorial argument, and in particular the use of $(p,q)$-shuffle. The idea here has been developed for the first time to the best of our knowledge in \cite{gz}; our exposition will follow \cite[Ch. I.4]{gj}, even though some (categorical) optimization is proposed. The reader who desires to get into the combinatorial arguments, can refer to \cite{may}.
+The very definition of simplicial sets makes clear that $\sset$ is a cartesian closed category (because it is a category of presheaves). The internal hom can be described quite explicitly:
+\[
+\mathbf{hom}(X,Y) := \Hom_{\sset}(X \times \Delta^{\bullet}, Y)
+\]
 
-\subsection{Categorical preliminaries}
+\begin{exercise}
+Verify that the adjunction $- \times X \dashv \mathbf{hom}(X,-)$ holds for every $X$. (\emph{Hint}: every simplicial set can be written as colimit of standard simplices).
+\end{exercise}
 
-The first couple of results concern classes of morphisms saturated with respect to certain (colimit) operations. Obviously, we can develop a dual theory of co-saturated classes, but since we won't need it, we leave this to the reader willing to enjoy himself with categorical yoga.
+\begin{notation}
+We will denote $\mathbf{hom}(X,Y)$ with the lighter notation $Y^X$.
+\end{notation}
+
+A key point in proving that $\sset$ has a model structure is to show that $\mathbf{hom}$ behaves well with respect to the class of Kan fibrations. The main result of this section will imply in particular that whenever $K$ is a Kan complex and $L$ is any simplicial set, then $K^L := \mathbf{hom}(L,K)$ is again a Kan complex. This result has been known since the very beginning of the theory of simplicial sets, and proofs can be found in \cite{gz} and in \cite{may}; however, these proofs use sophisticated combinatorial arguments based on a careful analysis of the non-degenerate simplices of $X \times Y$ via $(p,q)$-shuffles. Nowadays, the theory of anodyne extensions makes these arguments to appear unnecessarily complicated.
 
 \begin{defin}
-A category $\mathcal C$ is said to be mono-regular if monomorphisms are stable under pushouts, countable composition and arbitrary disjoint union.
-\end{defin}
-
-\begin{defin} \label{defin saturation}
-Let $\mathcal C$ be a mono-regular category. Let $S$ be a class of monomorphisms in $\mathcal C$. We say that $S$ is saturated if the following requirements are satisfied:
+A class of monomorphisms $S$ in $\sset$ is said to be \emph{saturated} if it satisfies the following requirements:
 \begin{enumerate}
-\item every isomorphism is in $S$;
-\item $S$ is closed under pushout;
+\item $S$ is closed under isomorphisms;
 \item $S$ is closed under retracts;
-\item $S$ is closed under countable composition and arbitrary disjoint union.
+\item $S$ is closed under pushouts;
+\item $S$ is closed under countable compositions and arbitrary disjoint unions.
 \end{enumerate}
 \end{defin}
 
 \begin{lemma} \label{lemma llp saturation}
-Let $\mathcal C$ be any category. Let $f \colon X \to Y$ be any arrow and define $S_f$ to be the class of maps having the LLP with respect to $f$. Then $S_f$ is saturated.
+\begin{enumerate}
+\item Let $f \colon F \to G$ be a map between simplicial sets. The class of monomorphisms with the LLP with respect to $f$ is saturated;
+
+\item the intersection of saturated classes in $\sset$ is again saturated;
+
+\item if $A$ is a saturated class of monomorphisms, $A = \mathrm{LLP}(\mathrm{RLP}(A))$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-The proof is straightforward.
+The first two statement are easy exercises left to the reader. We prove the last one: the inclusion $A \subset \mathrm{LLP}(\mathrm{RLP}(A))$ holds by definition; the other one is a consequence of the small object argument.
 \end{proof}
 
-\begin{lemma} \label{lemma intersection saturated classes}
-The intersection of saturated class of maps is still saturated. In particular, every class of maps is contained in a minimal saturated class of maps.
-\end{lemma}
+In particular, if we are given a class $S$ of monomorphisms we can consider the saturated class generated by $S$ as the intersection of all the saturated classes containing $S$ (the reader will verify that there is always at least one saturated class containing $S$).
 
-\begin{proof}
-Trivial.
-\end{proof}
-
-We will need a more technical tool to produce saturated classes of monomorphisms. First of all, recall the following result:
-
-\begin{lemma} \label{lemma src tgt creates}
-Let $\mathcal C$ be any category. The functor $\mathbf d_0 \times \mathbf d_1 \colon \mathbf{Arr}(\mathcal C) \to \mathcal C \times \mathcal C$ creates both limits and colimits. In particular $\mathbf d_0 \times \mathbf d_1$ preserves and reflects both limits and colimits.
-\end{lemma}
-
-\begin{proof}
-This is a standard exercise in universal properties.
-\end{proof}
-%
-%\begin{lemma} \label{lemma saturation of families}
-%Let $\mathcal C$ and $\mathcal D$ be mono-regular categories having initial objects $\emptyset_{\mathcal C}$ and $\emptyset_{\mathcal D}$ respectively. Let $F \colon \mathbf{Arr}( \mathcal C) \to \mathbf{Arr}(\mathcal D)$ a functor satisfying the following conditions:
-%\begin{enumerate}
-%\item for any object $A \in \Ob(\mathcal C)$
-%\[
-%(\mathbf d_0 \circ F)(\emptyset_{\mathcal C} \to A) = \emptyset_{\mathcal D}
-%\]
-%\item $F$ preserves colimits in $\mathbf{Arr}(\mathcal C)$.
-%\end{enumerate}
-%Then if $S$ is a saturated class of arrows of $\mathcal D$, the class
-%\[
-%S_F := \{f \in \mathrm{Arr}(\mathcal D) \mid f \text{ is monic and } F(f) \in S\} \subset \mathrm{Arr}(\mathcal C)
-%\]
-%is saturated.
-%\end{lemma}
-%
-%\begin{proof}
-%Observe first of all that Lemma \ref{lemma src tgt creates} implies that a diagram $\varphi_\alpha \colon T_\alpha \to T$ is a colimit in $\mathcal C$ if and only if the induced diagram
-%\[
-%\xymatrix{
-%\emptyset \ar[r] \ar[d] & T_\alpha \ar[d]^{\varphi_\alpha} \\ \emptyset \ar[r] & T
-%}
-%\]
-%is a colimit in $\mathbf{Arr}(\mathcal C)$. The hypothesis on $F$ and Lemma \ref{lemma src tgt creates} guarantee that $\mathbf d_1 \circ F$ sends this diagram into a colimit of $\mathcal D$.
-%
-%Now, if $f \in \mathrm{Arr}(\mathcal C)$ is an isomorphism, $F(f)$ is an isomorphism and therefore $F(f) \in S$, i.e. $f \in S_F$. Consider next a pushout diagram
-%\[
-%\xymatrix{
-%A \ar[r]^i \ar[d] & B \ar[d] \\ C \ar[r]_j & D
-%}
-%\]
-%where $i \in S_F$. Applying $\mathbf d_0 \circ F$ to the diagram
-%\[
-%\xymatrix{
-%& \emptyset \ar[rr] \ar[dd]|{\hole} & & B \ar[dd] \\ \emptyset \ar[ur] \ar[dd] \ar[rr] & & A \ar[ur]^i \ar[dd] \\ & \emptyset \ar[rr]|{\hole} & & D \\ \emptyset \ar[ur] \ar[rr] & & C \ar[ur]_j
-%}
-%\]
-%yields a pushout diagram in $\mathcal D$ by hypothesis, and so $F(j) \in S$, i.e. $j \in S_F$. 
-%
-%If $f$ is a retract of $g \in S_F$, then $F(f)$ is a retract of $F(g) \in S$, hence $F(f) \in S$ and $f \in S_F$.
-%
-%Finally, if $\{f_n \colon X_n \to X_{n+1}\}_{n \in \N}$ is a countable family of composable arrows in $S_F$ and
-%\[
-%X_\infty = \varinjlim X_n
-%\]
-%while
-%\[
-%f_\infty \colon X_0 \to X_\infty
-%\]
-%is the natural map of the colimit, then
-%\[
-%F(X_\infty) = \varinjlim F(X_n)
-%\]
-%and the natural map $F(X_0) \to F(X_\infty)$ is exactly $F(f_\infty)$. It follows that $F(f_\infty) \in S$, i.e. $f_\infty \in S_F$. A similar argument shows that $S_F$ is closed under direct sums.
-%\end{proof}
-
-Secondly, we will need the notion of Kan extension. Recall the definition:
-
-\begin{defin}
-Let $K \colon \mathcal M \to \mathcal C$ and $T \colon \mathcal M \to \mathcal A$ be functors. A left Kan extension of $T$ along $K$ is a universal arrow $(R,\eta)$ from $T \in \mathcal A^{\mathcal M}$ to $K^* \colon \mathcal A^{\mathcal C} \to \mathcal A^{\mathcal M}$.
-\end{defin}
-
-\begin{lemma} \label{lemma representable kan extension}
-Let $j \colon \mathcal A \to \mathcal B$ be the inclusion of a \emph{full} subcategory. Let $A \in \Ob(\mathcal A)$ be an object and let $h_A := \Hom_{\mathcal B}(-,A)$, $h_A^{\mathcal A} := h_A \circ j$. Then $(h_A, \mathrm{id}_{h_A^{\mathcal A}})$ is left Kan extension of $h_A^{\mathcal A}$ along $j$.
-\end{lemma}
-
-\begin{proof}
-Let $S \colon \mathcal B \to \Set$ be any functor and let $\tau \colon h_A^{\mathcal A} \to S \circ j$. Since $\mathcal A$ is a full subcategory, then $h_A^{\mathcal A} = \Hom_{\mathcal A}(-,A)$; therefore, Yoneda lemma implies
-\[
-\mathrm{Nat}(h_A^{\mathcal A}, S \circ j) \cong S(A) \cong \mathrm{Nat}(h_A, S)
-\]
-and both the isomorphisms are natural in $A$ and $S$. It follows the thesis.
-\end{proof}
-
-\begin{cor}
-The non-degenerate $(n+m)$-simplexes of the simplicial set $\Delta^n \times \Delta^m$ are in bijection with the $(n,m)$-shuffles of $n+m$.
-\end{cor}
-
-\begin{proof}
-Consider the category $\mathbf{Pos}$ whose objects are partially ordered sets and whose morphisms are weakly increasing functions. We have a natural inclusion
-\[
-j \colon \mathbf \Delta \subset \mathbf{Pos}
-\]
-and $\mathbf \Delta$ is realized as full subcategory of $\mathbf{Pos}$. Moreover,\footnote{Here $\mathbf n \times \mathbf m$ denotes the (categorical) product in $\mathbf{Pos}$. Observe that $\mathbf n \times \mathbf m$ is \emph{not} a totally ordered set.}
-\[
-\Delta^n \times \Delta^m = \Hom_{\mathbf{Pos}}(j(-), \mathbf n) \times \Hom_{\mathbf{Pos}}(j(-),\mathbf m) = \Hom_{\mathbf{Pos}}(j(-),\mathbf n \times \mathbf m)
-\]
-It follows from Lemma \ref{lemma representable kan extension} that
-\[
-\Hom_{\sset}(\Delta^{n+m}, \Delta^n \times \Delta^m) \cong \Hom_{\mathbf{Pos}}(j(\mathbf{n + m}), \mathbf n \times \mathbf m)
-\]
-and this last set is composed by the $(m,n)$-shuffles of $n+m$ (by definition).
-\end{proof}
-
-\subsection{Anodyne maps}
-
-For the moment we will take care simply of the classical anodyne extensions. In Chapter 2, it is necessary to consider a slight modification in order to compare simplicial categories with quasicategories. We will omit the technical details for the moment.
-
-Working in $\sset$, we will consider only classes of monomorphisms. Since in $\sset$ monomorphisms are stable under pushouts, countable composition and disjoint union, it makes sense to give the following definition:
-
-\begin{defin}
-A class of maps $S$ in $\sset$ is mono-saturated if it is saturated and if every object in $S$ is a monomorphism.
-\end{defin}
-
-Given a class of monomorphisms, it always 
-
-The main result of this section consists in proving that three classes of morphisms have the same saturation. More precisely, we will consider the following classes:
-\begin{itemize}
+\begin{thm} \label{thm anodyne}
+The following three classes of monomorphisms have the same saturation:
+\begin{enumerate}
 \item $\mathbf B_1$, the class of all inclusions $\Lambda^n_k \to \Delta^n$ for $n \in \N$, $n > 0$ and $0 \le k \le n$;
 \item $\mathbf B_2$, the class of all inclusions
 \[
@@ -539,294 +392,62 @@ for $e \in \{0,1\}$;
 (Y \times \Delta^1) \cup (X \times \{e\}) \to X \times \Delta^1
 \]
 induced by inclusions $Y \to X$.
-\end{itemize}
-
-We will need a lemma.
-
-\begin{lemma}
-Write $\mathcal C := \mathbf{Arr}(\sset)$; fix moreover an inclusion $\alpha \colon Y \to X$ of simplicial sets. There is a functor $F \colon \mathcal C \to \mathcal C$ sending the arrow $f \colon L \to K$ into
-\[
-(f \times 1) \cup (1 \times \alpha) \colon (L \times X) \cup (K \times Y) \to K \times X
-\]
-Moreover, $F$ sends monomorphisms to monomorphisms and colimit diagrams into colimit diagrams.
-\end{lemma}
-
-\begin{proof}
-The universal properties employed show that $F$ is functorial. It's moreover easy to check directly that $F$ sends monomorphisms to monomorphisms. Finally, if $T \colon \mathcal D \to \sset$ is a small diagram and $\varphi \colon T \to \Delta_L$ is a universal cocone, we observe that both
-\[
-\varphi \times \mathrm{id}_Y \colon T \times Y \to \Delta_{L \times Y} \text{ and } \varphi \times \mathrm{id}_X \colon T \times X \to \Delta_{L \times X}
-\]
-are still universal cocones because $- \times X$ and $- \times Y$ are left adjoint.
-\end{proof}
-
-\begin{thm} \label{thm anodyne extensions}
-The classes $\mathbf B_1$, $\mathbf B_2$ and $\mathbf B_3$ have the same saturation.
+\end{enumerate}
 \end{thm}
 
 \begin{proof}
-Denote by $M_{\mathbf B_1}$, $M_{\mathbf B_2}$ and $M_{\mathbf B_3}$ the saturation of those three classes. We have $\mathbf B_2 \subset \mathbf B_3$, hence $M_{\mathbf B_2} \subset M_{\mathbf B_3}$. Let's show that $\mathbf B_3 \subset M_{\mathbf B_2}$. Let $Y \to X$ be any inclusion. Define
-\begin{gather*}
-Y^{(0)} := Y \\
-Y^{(n)} := Y \cup \mathrm{sk}_{n-1}(X), \quad n > 0
-\end{gather*}
-Then we have natural inclusions $Y^{(n)} \to Y^{(n+1)}$ and obviously
-\[
-Y^{(\infty)} := \varinjlim Y^{(n)} = X
-\]
-while the colimit map $Y = Y^{(0)} \to X$ is simply the inclusion we started with. Therefore, it is sufficient to show that 
+See \cite[Proposition I.4.2]{gj}.
 \end{proof}
 
-\begin{cor}
-A map is a fibration if and only if it has the RLP with respect to all anodyne extensions.
+\begin{cor} \label{cor anodyne 1}
+A map is a fibration if and only if it has the RLP with respect to all anodyne extensions. Similarly, a monomorphism is anodyne if and only if it has the LLP with respect to every fibration.
 \end{cor}
 
 \begin{proof}
-If $f$ has the RLP with respect to all anodyne extensions, it has in particular the RLP with respect to all the horn inclusions $\Lambda^n_k \subset \Delta^n$, $n \in \N$, $n > 0$ and $0 \le k \le n$; hence $f$ is a fibration. Conversely, if $f$ is a fibration, then the class of monomorphisms $S_f$ having the LLP with respect to $f$ is a saturated class thanks to Lemma \ref{lemma llp saturation}; since it contains $\mathbf B_1$, it follows that $S_f$ contains all the anodyne extensions, hence the thesis.
+If $f$ has the RLP with respect to all anodyne extensions, it has in particular the RLP with respect to all the horn inclusions $\Lambda^n_k \subset \Delta^n$, $n \in \N$, $n > 0$ and $0 \le k \le n$; hence $f$ is a fibration. Conversely, if $f$ is a fibration, then the class of monomorphisms $S_f$ having the LLP with respect to $f$ is a saturated class thanks to Lemma \ref{lemma llp saturation}.1; since it contains $\mathbf B_1$, it follows that $S_f$ contains all the anodyne extensions, hence the thesis.
+
+For the second statement, denote by $A$ the class of anodyne extensions. Then we have that $A$ is saturated by definition and moreover if we denote by $F$ the class of Kan fibrations, we have
+\[
+F := \mathrm{RLP}(A)
+\]
+so that
+\[
+A = \mathrm{LLP}(\mathrm{RLP}(A)) = \mathrm{LLP}(F)
+\]
+because of Lemma \ref{lemma llp saturation}.3.
 \end{proof}
 
-\begin{cor}
-If $i \colon K \to L$ is an anodyne extension and $\omega \colon Y \to X$ is an arbitrary inclusion then the induced map
+\begin{cor} \label{cor anodyne 2}
+If $i \colon K \to L$ is an anodyne extension and $j \colon X \to Y$ is an arbitrary inclusion then the induced map
 \[
-(K \times X) \cup (L \times Y) \to L \times X
+i * j \colon (K \times Y) \coprod_{K \times X} (L \times X) \to L \times Y
 \]
 is anodyne.
 \end{cor}
-%
-%\begin{proof}
-%Let $\mathcal C$ be the category $\mathbf{Arr}(\sset)$. Define $F \colon \mathcal C \to \mathcal C$ by sending a morphism $f \colon A \to B$ into
-%\[
-%(A \times X) \cup (B \times Y) \to B \times X
-%\]
-%It's easily checked that $F$ is a functor. Moreover, $F$ sends monomorphisms into monomorphisms, and colimit diagrams into colimit diagrams (because $- \times X$ and $- \times Y$ are left adjoints, being $\sset$ cartesian closed). It follows from Lemma \ref{lemma saturation of families} that the class $S$ of monomorphisms $f$ such that $F(f)$ is anodyne is saturated. But it contains the maps
-%\[
-%(A \times \Delta^1) \cup (B \times \{e\}) \to B \times \Delta^1, \quad e \in \{0,1\}
-%\]
-%for every inclusion $A \subset B$. It follows by Theorem \ref{thm anodyne extensions} that $S$ contains all the anodyne extensions, hence we get the thesis.
-%\end{proof}
-
-\section{Function complexes}
-
-\subsection{Cartesian Closedness}
-
-The very definition we gave of $\sset$ makes clear that this category is a topos. Therefore, the categorical structure of $\sset$ is especially rich; in particular, we know that $\sset$ is cartesian closed. We will now construct explicitly an adjoint for the functor $- \times X \colon \sset \to \sset$. Consider the functor
-\[
-F \colon \mathbf \Delta^{\mathrm{op}} \times \sset^{\mathrm{op}} \times \sset \to \Set
-\]
-defined on objects by the assignment
-\[
-F(\mathbf n, X,Y) := \Hom_{\sset}(X \times \Delta^n, Y)
-\]
-and in the obvious way on arrows (functoriality is for free, since we are dealing with a composition of functors). Using cartesian closedness of $\Cat$ we obtain
-\begin{align*}
-\mathrm{Funct}(\mathbf \Delta^{\mathrm{op}} \times \sset^{\mathrm{op}} \times \sset, \Set) & \cong \mathrm{Funct}(\sset^{\mathrm{op}} \times \sset, \mathbf{Funct}(\mathbf{\Delta}^{\mathrm{op}}, \Set)) \\
-& = \mathrm{Funct}(\sset^{\mathrm{op}} \times \sset, \sset)
-\end{align*}
-We denote by
-\[
-\mathbf{hom} \colon \sset^{\mathrm{op}} \times \sset \to \sset
-\]
-the functor corresponding to $F$. Explicitly we have
-\[
-\Hom_{\sset}(\Delta^n, \mathbf{hom}(X,Y)) = \Hom_{\sset}(\Delta^n \times X, Y)
-\]
-while the degeneracy and face maps are induced in the obvious functorial way (we can build $\mathbf{hom}$ explicitly as composition of functors).
-
-\begin{prop} \label{prop sset cartesian closed}
-For each simplicial set $X$, the functor $\mathbf{hom}(X,-) \colon \sset \to \sset$ is right adjoint to $- \times X$.
-\end{prop}
 
 \begin{proof}
-Given simplicial sets $Y$ and $Z$ denote by
+We fix $j$ and consider the class $T_j$ of monomorphisms $f \colon K' \to L'$ such that $f * j$ is anodyne. We claim that $T_j$ is saturated; indeed, adjoint nonsense shows that a monomorphism $f \colon K' \to L'$ is in $T_j$ if and only if it has the LLP with respect to
 \[
-\int_{\mathbf \Delta^{\mathrm{op}}} Y
+F^L \to F^K \times_{G^K} G^L
 \]
-the category of objects of $Y$. Recall that for each small category $\mathcal C$ we have a functor
-\[
-\Set^{\mathcal C^{\mathrm{op}}} \to \Cat
-\]
-sending a presheaf into the category of elements of that presheaf. Moreover,
-\[
-\colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Delta^n = Y
-\]
-It follows that
-\begin{align*}
-\Hom_{\sset}(Y, \mathbf{hom}(X,Z)) & \cong \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Hom_{\sset}(\Delta^n, \mathbf{hom}(X,Z) & \text{(by Yoneda)} \\
-& \cong \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Hom_{\sset} (\Delta^n \times X, Z) & \text{(by definition)} \\
-& \cong \Hom_{\sset} \left( \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} (\Delta^n \times X), Z \right) & \text{(by Yoneda)} \\
-& \cong \Hom_{\sset} \left( \left( \colim_{\Delta^n \in \int_{\mathbf \Delta^{\mathrm{op}}} Y} \Delta^n \right) \times X, Z \right) & \text{($- \times X$ is left adjoint)} \\
-& \cong \Hom_{\sset} (Y \times X, Z)
-\end{align*}
-All the isomorphisms displayed are natural, hence it follows the adjunction property.
+for every Kan fibration $F \to G$. Lemma \ref{lemma llp saturation}.1 and .2 imply then that $T_j$ is saturated. It can be checked that it contains the class $\mathbf B_2$ (see \cite[Corollary I.4.6]{gj} for this), hence we conclude from Theorem \ref{thm anodyne} that $T_j$ contains all the anodyne extensions.
 \end{proof}
 
-
-\section{Homotopy theory in \texorpdfstring{$\sset$}{the category of simplicial sets}}
-
-In this section, we develop the fundamental tools of the homotopy theory for simplicial sets. First of all, we will be concerned with a bunch of spontaneous definitions for the homotopy of maps; we will state those definitions and prove the equivalence. Later on, we will introduce the (higher) fundamental groups and prove some basic facts about fiber sequences. All the exposition is strongly influenced by the first two chapters of \cite{may} and (in a minor way) the first chapter of \cite{gj}.
-
-\begin{defin}
-Let $f,g \colon K \to X$ be maps of simplicial sets and let $i \colon L \subset K$ be a sub-complex such that $f |_L = g|_L$. We will say that $f$ and $g$ are homotopic relative to $L$ if there exists a map $h \colon X \times \Delta^1 \to Y$ such that the diagrams
+\begin{cor} \label{cor anodyne 3}
+If $i \colon K \to L$ is an inclusion and $p \colon X \to Y$ is a Kan fibration, then the natural map
 \[
-\xymatrix{
-K \times \Delta^0 \ar[d]_{1 \times d^0} \ar@/^1pc/[dr]^f \\ K \times \Delta^1 \ar[r]^-h & X \\ K \times \Delta^0 \ar[u]^{1 \times d^1} \ar@/_1pc/[ur]_g
-} \qquad \xymatrix{K \times \Delta^1 \ar[r]^-h & X \\ L \times \Delta^1 \ar[u]^{i \times 1} \ar[r]^p & L \ar[u]_{f|_L = g|_L}
-}
+i \star p \colon X^L \to X^K \times_{Y^K} Y^L
 \]
-commute.
-\end{defin}
-
-
-
-The following Proposition will become an useful tool to deal with the homotopy theory for simplicial sets:
-
-\begin{prop} \label{prop homotopy theory for sset coequalizer}
-The diagram
-\[
-\xymatrix{
-\Delta^1 \ar@<.5ex>[r]^-{d_1} \ar@<-.5ex>[r]_-{d_1} & \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1
-}
-\]
-where $f$ is defined by
-\[
-\xymatrix{
-\Delta^2 \ar[d] \ar@/^.5pc/[dr]^{s^0 \times s^1} \\ \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1 \\ \Delta^2 \ar[u] \ar@/_.5pc/[ur]_{s^1 \times s^0}
-}
-\]
-is a coequalizer.
-\end{prop}
+is again a Kan fibration.
+\end{cor}
 
 \begin{proof}
-Applying $| \cdot |$ we get a coequalizer in $\mathbf{CGHaus}$.
+Corollary \ref{cor anodyne 1} implies that the map $i \star p$ is a Kan fibration if and only if it has the RLP with respect to every anodyne extension $j \colon A \to B$. Adjoint nonsense shows that this is equivalent to say that $p$ has the RLP with respect to every map
+\[
+i * j \colon (K \times B) \coprod_{K \times A} (L \times A) \to L \times B
+\]
+Since $A \to B$ is anodyne, Corollary \ref{cor anodyne 2} implies that $i * j$ is anodyne, so that Corollary \ref{cor anodyne 1} again shows that $p \in \mathrm{RLP}(i * j)$, completing the proof.
 \end{proof}
-
-\section{Adjunctions with \texorpdfstring{$\Cat$}{Cat}}
-
-Let $X$ be a quasicategory. Let $\mathrm h \: X$ be the graph whose vertices are the $0$-simplexes of $X$ and such that, if $x, y \in X_0$, then arrows from $x$ to $y$ are in bijection with homotopy equivalence ($\text{rel. } \partial \Delta^1$) classes of 1-simplices $\omega \in X_1$ making the diagram
-\[
-\xymatrix{
-\Delta^0 \ar[d]_{d^0} \ar@/^.5pc/[dr]^x \\ \Delta^1 \ar[r]^\omega & X \\ \Delta^0 \ar[u]^{d^1} \ar@/_.5pc/[ur]_y
-}
-\]
-commutative. If $v_2 \colon x \to y$ and $v_0 \colon y \to z$ are two representatives of arrows, we can define a composition using weak Kan condition:
-\[
-d_1 v_2 = v_2 \circ d^1 = y, \qquad d_0 v_0 = v_0 \circ d^0 = y
-\]
-hence there is a 2-simplex $\alpha \colon \Delta^2 \to X$ such that
-\[
-d_2 \alpha = v_2, \qquad d_1 \alpha = v_1
-\]
-We wish then to set
-\begin{equation} \label{eq composition fundamental grupoid}
-[v_0] \circ [v_2] := [d_1 \alpha]
-\end{equation}
-
-\begin{lemma}
-Equation \eqref{eq composition fundamental grupoid} doesn't depend on the choice of representatives for $[v_0]$ and $[v_2]$.
-\end{lemma}
-
-\begin{proof}
-We will show that equation \ref{eq composition fundamental grupoid} doesn't depend on the choice of a representative for $[v_0]$. Let $w_0$ be another representative for $v_0$ and choose an homotopy ($\text{rel. } \partial \Delta^1$)
-\[
-\xymatrix{
-\Delta^1 \ar[d]_{1 \times d^0 s^0} \ar@/^.5pc/[dr]^{v_0} \\ \Delta^1 \times \Delta^1 \ar[r]^-h & X \\ \Delta^1 \ar[u]^{1 \times d^1 s^0} \ar@/_.5pc/[ur]_{w_0}
-} \qquad
-\xymatrix{
-\Delta^1 \times \Delta^1 \ar[r]^-h & X \\ \partial \Delta^1 \times \Delta^1 \ar[u]^i \ar[r] & \partial \Delta^1 \ar[u]_{v_0 |_{\partial \Delta^1} = w_0 |_{\partial \Delta^1}}
-}
-\]
-Choose now $\alpha,\beta \colon \Delta^2 \to X$ satisfying
-\begin{gather*}
-d_0 \alpha = v_0, \quad d_2 \alpha = v_2 \\
-d_0 \beta = w_0, \quad d_2 \beta = v_2
-\end{gather*}
-Recall the pushout diagram of Proposition \ref{prop homotopy theory for sset coequalizer}:
-\[
-\xymatrix{
-\Delta^1 \ar@<.5ex>[r]^-{d_1} \ar@<-.5ex>[r]_-{d_1} & \Delta^2 \sqcup \Delta^2 \ar[r]^f & \Delta^1 \times \Delta^1
-}
-\]
-where
-\[
-f = \langle s^0 \times s^1, s^1 \times s^0 \rangle
-\]
-Consider now the 2-simplexes
-\begin{gather*}
-a_0 = s_1(v_0) \\
-a_1 \colon \Delta^2 \xrightarrow{s^1 \times s^0} \Delta^1 \times \Delta^1 \xrightarrow{h} X \\
-a_2 \colon \Delta^2 \xrightarrow{s^0 \times s^1} \Delta^1 \times \Delta^1 \xrightarrow{h} X
-\end{gather*}
-Then we have (cfr. Proposition \ref{prop simplicial morphisms with Yoneda identification}):
-\begin{align*}
-d_0 a_1 & = h \circ (s^1 \times s^0) \circ d^0 = h \circ (d^0 s^0 \times 1) & d_0 a_0 & = d_0 s_1 (v_0) = s_0(d_0(v_0)) \\
-& = v_0 |_{\partial \Delta^1} \circ d^0 \circ s^0 = z \circ s^0 = s_0(z) & & = s_0(z) \\
-d_0 a_2 & = h \circ (s^0 \times s^1) \circ d^0 & d_1 a_0 & = d_1 s_1(v_0) = v_0 \\
-& = h \circ (1 \times d^0 s^0) = v_0 \\
-d_1 a_2 & = h \circ (s^0 \times s^1) \circ d^1 = h \circ (1 \times 1) & d_1 a_1 & = h \circ (s^1 \times s^0) \circ d^1 = h \circ (1 \times 1)
-\end{align*}
-Since $X$ is fibrant, we can choose $\omega \colon \Delta^3 \to X$ such that
-\[
-d_0 \omega = s_1 v_0, \quad d_2 \omega = a_2, \quad d_1 \omega = a_1
-\]
-Define
-\[
-\omega' := d_3 \omega
-\]
-Observe that
-\[
-d_1 \omega' = w_0, \quad d_2 \omega' = s_0(y)
-\]
-Introduce
-\[
-c_0 = s_0(v_0), \quad c_2 = \beta, c_3 = \alpha
-\]
-We have
-\begin{gather*}
-d_0 c_2 = w_0, \quad d_1 c_0 = w_0 \\
-d_0 c_3 = v_0, \quad d_2 c_0 = v_0 \\
-d_2 c_3 = v_2, \quad d_2 c_2 = v_2
-\end{gather*}
-We can apply again the extension condition to produce $\gamma \colon \Delta^3 \to X$ such that
-\[
-d_3 \gamma = \alpha, \quad d_2 \gamma = \beta, \quad d_0 \gamma = \omega'
-\]
-Moreover, $\delta := d_1 \gamma$ satisfies
-\[
-d_0 \delta = s_0(z), \quad d_1 \delta = d_1 \beta, \quad d_2 \delta = d_1 \alpha
-\]
-Proposition \ref{prop homotopy theory for sset coequalizer} allows to extend this 2-simplex to a homotopy $d_1 \alpha \to d_1 \beta$.
-\end{proof}
-
-\begin{defin}
-Let $X$ be a quasicategory. We define the \emph{homotopy category} of $X$, $\mathrm h \: X$, as the category whose objects are the $0$-simplexes of $X$ and whose arrows are homotopy classes of $1$-simplexes, with the composition defined above.
-\end{defin}
-
-\begin{thm} \label{thm nerve adjunction 1}
-$\mathrm h \colon \qcat \rightleftarrows \Cat \colon N$ is an adjoint pair.
-\end{thm}
-
-\subsection{Adjunctions with $\grpd$}
-
-We saw in last section that $\mathrm h \colon \mathbf{QCat} \to \Cat$ gives an adjunction to the nerve functor $N \colon \Cat \to \mathbf{QCat}$. If we compute $\mathrm h$ over a Kan complex we should get back the analogous notion of ``space'' inside $\Cat$, namely groupoids. In fact, this is what happens:
-
-\begin{lemma}
-If $K$ is a fibrant simplicial set, $\mathrm h \: K$ is a groupoid.
-\end{lemma}
-
-\begin{proof}
-Easy exercise.
-\end{proof}
-
-More generally, we define:
-
-\begin{defin}
-Let $X$ be any simplicial set. The fundamental groupoid of $X$ is defined as the homotopy category of a fibrant replacement of $X$. We will denote it by $\pi_{f}(X)$
-\end{defin}
-
-We can see the following adjunction as strictly related to that of Theorem \ref{thm nerve adjunction 1}:
-
-\begin{thm} \label{thm nerve adjunction 2}
-$\pi_f \colon \sset \rightleftarrows \grpd \colon N$ is an adjoint pair.
-\end{thm}
 
 \printbibliography[heading = local]
 
