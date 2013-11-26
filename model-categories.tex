@@ -6,7 +6,7 @@
 In this chapter we will introduce one of the main tools of this cycle of seminars, namely model categories. After an informal section concerning motivations coming from others areas of Mathematics, we will introduce the basic definitions and we will state the main theorems, sketching some proof. We will try, whenever possible and within our capacities, to explain the intuitions motivating the definitions, why we should expect a certain theorem to be true and so on; moreover, we selected four examples where we can test the result we will obtain:
 \begin{enumerate}
 \item simplicial sets $\sset$: this is the main example in homotopy theory; in a sense, we could say that simplicial sets stands to homotopy theory as sets stand to the whole mathematics (which can be seen as constructions on the topos $\Set$, in a very broad sense);
-\item topological spaces: this is the ``continuous'' version of simplicial sets; for many purpose there is no distinction from the homotopy theory for topological spaces and the one for simplicial sets. This example is interesting because it provides also an useful counterexample to the uniqueness of a model structure;
+\item topological spaces: this is the ``continuous'' version of simplicial sets; for many purpose there is no distinction from the homotopy theory for topological spaces and the one for simplicial sets;
 \item chain complexes: this example relates homotopy theory to homological algebra. It gives the ``correct motivation'' for a bunch of facts; for example, that a homotopy of topological spaces gives rise to a chain homotopy between singular complexes;
 \item groupoids: this will be needed in future chapters; it also provides an interesting example where the model structure is uniquely determined by the weak equivalences.
 \end{enumerate}
@@ -24,7 +24,6 @@ From a historical point of view, the theory of Model Categories was first introd
 \begin{enumerate}
 \item Algebraic Topology;
 \item Homological Algebra;
-\item $K$-theory.
 \end{enumerate}
 I will spend a few words for each of them, in order to explain the main ideas that led to the work of Quillen.
 
@@ -179,19 +178,13 @@ the dotted lifting exists.
 \begin{defin}
 Let $\mathcal C$ be any category. A model structure on $\mathcal C$ is the given of three full subcategories $W$, $\fib$, $\cofib$ of $\mathbf{Arr}(\mathcal C)$ satisfying the following axioms:
 \begin{itemize}[leftmargin = 1.4 cm]
+\item[{\bfseries MC1.}] $\mathcal M$ is (small) complete and (small) cocomplete.
 \item[{\bfseries MC2.}] if $f,g,h$ are arrows satisfying $fg = h$ and two of them are in $W$, then so is the third;
 \item[{\bfseries MC3.}] $W$, $\fib$, $\cofib$ are closed under retracts;
 \item[{\bfseries MC4.}] every arrow in $W \cap \fib$ has the RLP with respect to every arrow in $\cofib$ and every arrow in $\fib$ has the RLP with respect to every arrow in $W \cap \cofib$;
 \item[{\bfseries MC5.}] there are functorial $(W \cap \cofib, \fib)$ and $(\cofib, W \cap \fib)$ factorizations in $\mathcal C$.
 \end{itemize}
 We will denote by $(\mathcal C, W,\fib,\cofib)$ a category with a model structure; we will also say that the arrows in $W$ are the \emph{weak equivalences}, that those in $\fib$ (resp. in $\fib \cap W)$ are the fibrations (resp. trivial fibrations or acyclic fibrations) and that those in $\cofib$ (resp. in $\cofib \cap W)$ are the cofibrations (resp. trivial cofibrations or acyclic cofibrations) with respect to the given model structure.
-\end{defin}
-
-\begin{defin}
-A model category $\mathcal M$ is the given of a category with model structure satisfying
-\begin{itemize}[leftmargin = 1.4 cm]
-\item[{\bfseries MC1.}] $\mathcal M$ is (small) complete and (small) cocomplete.
-\end{itemize}
 \end{defin}
 
 \begin{rmk}
@@ -479,10 +472,6 @@ in a cofibration followed by a weak equivalence.
 in a weak equivalence followed by a fibration.
 \end{enumerate}
 \end{defin}
-
-\begin{rmk}
-The terminology is not completely standard. In \cite{dwsp} a cylinder object is just a factorization for the fold map $\nabla$ into a map followed by a weak equivalence. In their conventions, what we call cylinder object is a \emph{good} cylinder object.
-\end{rmk}
 
 \begin{rmk}
 A functorial cylinder (path) object always exist, thanks to the factorization axiom. Moreover, we can require the map $X \times I \to X$ (resp. $X \to X^I$) to be a trivial fibration (resp. a trivial cofibration). However, it is important to remark that a cylinder (path) object is \emph{any} factorization of the fold (diagonal) map.
