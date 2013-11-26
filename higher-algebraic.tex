@@ -4,30 +4,26 @@
 \begin{refsection}
 
 \label{weak structures}
-\section{$\infty$-operads}
-The main idea behind Moerdijk $\infty$-operads is the following: an $\infty$-operad, whatever that may be, should be characterised by the way in which some
-elementary operads (namely trees) can be mapped into it. The category of $\infty$-operads should therefore be a particular case of presheaves over $\Omega$,
-the category of trees.\\
 
-More precisely:
+\section{Infinity operads}
+
+The main idea behind Moerdijk $\infty$-operads is the following: an $\infty$-operad, whatever that may be, should be characterised by the way in which some elementary operads (namely trees) can be mapped into it. The category of $\infty$-operads should therefore be a particular case of presheaves over $\SOmega$, the category of trees. More precisely:
 
 \begin{definition}
-$\Omega$ is the category whose objects are finite, rooted, non planar trees. Arrows between two trees are morphisms of the corresponding operads. See \cite{Mo-We}
+$\SOmega$ is the category whose objects are finite, rooted, non planar trees. Arrows between two trees are morphisms of the corresponding operads. See \cite{Mo-We}
 for more details.\\
-A dendroidal sets is a functor $\Omega\to Sets$. The category of dendroidal sets will be denoted $dSets$.\\
+A dendroidal sets is a functor $\Omega\to \Set$. The category of dendroidal sets will be denoted $\dset$.\\
 Given a tree T, we denote by $\Omega[T]$ the corresponding representable dendroidal set.
 \end{definition}
 
-\begin{definition} \cite{Mo-We}
-A monomorphism of dendroidal sets $X\to Y$ is normal if for any tree T, any
-non degenerate dendrex $y \in Y (T)$ which does not belong to the image of $X(T )$ has
-a trivial stabilizer $Aut(T )_y \subseteq Aut(T )$. A dendroidal set X is normal if the map
-$\emptyset\to X$ is normal.
+\begin{definition}[\cite{Mo-We}]
+A monomorphism of dendroidal sets $X\to Y$ is normal if for any tree T, any non degenerate dendrex $y \in Y (T)$ which does not belong to the image of $X(T)$ has a trivial stabilizer $\mathrm{Aut}(T)_y \subseteq \mathrm{Aut}(T)$. A dendroidal set X is normal if the map $\emptyset\to X$ is normal.
 \end{definition}
 
-Given an inner edge
-e in a tree T, we get an inclusion
-$$\Lambda^e[T]\to \Omega[T]$$
+Given an inner edge $e$ in a tree $T$, we get an inclusion
+\[
+\Lambda^e[T]\to \Omega[T]
+\]
 Such maps are called inner horn inclusions.
 
 \begin{definition}
@@ -35,35 +31,34 @@ A dendroidal set is an $\infty$-operad if it has the right lifting property with
 \end{definition}
 
 \begin{remark}
-Let O be an operad in the traditional sense (we mean a symmetric multicategory): it can be interpreted as a dendroidal set $N(O):=Hom_{operad}(-,O)$. Such a
-dendroidal set is an $\infty$-operad. The nerve functor $N: operads\to \infty-operads$ admits a left adjoint $\Ho$.
-In analogy with quasi-categories, given an $\infty$-operad $\M$ we call $\Ho(\M)$ its homotopy operad.
-
+Let $O$ be an operad in the traditional sense (we mean a symmetric multicategory): it can be interpreted as a dendroidal set $N(O):= \Hom_{\mathrm{Operads}}(-,O)$. Such a dendroidal set is an $\infty$-operad. The nerve functor $\mathrm{N} \colon \mathrm{Operads} \to \infty \textrm{-} \mathrm{Operads}$ admits a left adjoint $\Ho$. In analogy with quasi-categories, given an $\infty$-operad $\M$ we call $\Ho(\M)$ its homotopy operad.
 \end{remark}
 
-Classically, one may interprete an operad O as an ``algebraic structure``. Given a symmetric monoidal category $\C^{\otimes}$ one can build a corresponding operad $\hat{\C}$in the
-following way: the objects of $\hat{\C}$ are the objects of $\C^{\otimes}$ and $Arr_{\hat{\C}}(A_1,\dots,A_n;B):=Arr_{\C^{\otimes}}(A_1\otimes\dots\otimes A_n;B)$.
+Classically, one may interpret an operad $O$ as an ``algebraic structure''. Given a symmetric monoidal category $\C^{\otimes}$ one can build a corresponding operad $\hat{\C}$in the
+following way: the objects of $\hat{\C}$ are the objects of $\C^{\otimes}$ and
+\[
+\mathrm{Arr}_{\hat{\C}}(A_1,\dots,A_n;B) \coloneqq \mathrm{Arr}_{\C^{\otimes}}(A_1\otimes\dots\otimes A_n;B)
+\]
 Then O-objects in $\C^{\otimes}$ are simply functors from O to $\hat{\C}$. Furthermore one disposes of a tensor product on operads (called the Boardman-Vogt tensor product)
 such that A-objects in B-objects are the same as $A\otimes B$-objects. This is the situation we wish to generalise.
 
-The classical Boardman-Vogt tensor product $\otimes_{BV}$ on operads extend to dendroidal sets in the following way:
+The classical Boardman-Vogt tensor product $\otimes_{BV}$ on operads extends to dendroidal sets in the following way:
 \begin{itemize}
- \item On trees it is the classical one: $\Omega[S]\otimes\Omega[T]:=N(S\otimes_{BV}T)$
-\item It is colimit preserving on each variable.
+\item on trees it is the classical one: $\Omega[S]\otimes\Omega[T] \coloneqq N(S\otimes_{BV}T)$;
+\item it is preserves colimits separately in each variable.
 \end{itemize}
 
-\begin{proposition} \cite{Mo-We}
+\begin{proposition}[\cite{Mo-We}]
 There is a closed monoidal model structure on dendroidal sets such that:
 \begin{itemize}
- \item Cofibrations are normal monomorphisms.
- \item Fibrant objects are $\infty$-operads.
+\item cofibrations are normal monomorphisms;
+\item fibrant objects are $\infty$-operads.
 \end{itemize}
-
 One should think of weak equivalences between fibrant objects as equivalences of $\infty$-operads.
 \end{proposition}
 
 \begin{remark}
-There is a Quillen adjunction $i_!: sSets \leftrightarrows dSets: i^*$ induced by the forgetful functor $i: \Delta \to \Omega$. Given an $\infty$-operad O we will refer
+There is a Quillen adjunction $i_! \colon \sset \leftrightarrows \dset \colon i^*$ induced by the forgetful functor $i \colon \SDelta \to \SOmega$. Given an $\infty$-operad $O$ we will refer
 to $i^*(O)$ as its underlying $\infty$-category.
 \end{remark}
 
@@ -73,89 +68,89 @@ to $i^*(O)$ as its underlying $\infty$-category.
 %\end{definition}
 
 \section{Weak algebraic structures}
+
 \begin{definition}
-A weak algebraic structure is simply an $\infty$-operad.\\
-Let $\M$ be a weak algebraic structure, let $\C^{\otimes}$ be a $\infty$-operad. Then the category of $\M$-objects in $\C^{\otimes}$
-is $i^* Fun(\mathbb{R}\M,\C^{\otimes})$ where $\mathbb{R}$ is a cofibrant replacement of $\M$. It will be denoted $\M-\C^{\otimes}$
+A weak algebraic structure is simply an $\infty$-operad.
+
+Let $\M$ be a weak algebraic structure, let $\C^{\otimes}$ be a $\infty$-operad. Then the category of $\M$-objects in $\C^{\otimes}$ is $i^* \mathrm{Fun}(\mathbb{R}\M,\C^{\otimes})$ where $\mathbb{R}$ is a cofibrant replacement of $\M$. It will be denoted $\M \textrm{-} \C^{\otimes}$
 \end{definition}
 
-The notation $\C^{\otimes}$ is appropriate because the definition is particularly interesting when $\C^{\otimes}$ is the $\infty$-operad associated to a
-"symmetric monoidal $\infty$-category" (the inverted commas are due to the fact that there isn't much theory of 
-symmetric monoidal $\infty$-categories in the literature up to now).\\
+The notation $\C^{\otimes}$ is appropriate because the definition is particularly interesting when $\C^{\otimes}$ is the $\infty$-operad associated to a ``symmetric monoidal $\infty$-category'' (the inverted commas are due to the fact that there isn't much theory of symmetric monoidal $\infty$-categories in the literature up to now).\\
 
-Indeed one could think that the definition of $\M$ object is completely useless as monoidal categories in nature do not appear as dendroidal sets. There are two possible
-solutions to this problem:
+Indeed one could think that the definition of $\M$ object is completely useless as monoidal categories in nature do not appear as dendroidal sets. There are several possible solutions to this problem:
 \begin{itemize}
- \item Given a "symmetric monoidal $\infty$-category" the way they arise in nature, for instance as simplicial monoidal model categories, one could simply construct the
-corresponding simplicial operad and then, using the equivalence between simplicial operads and $\infty$-operads (see \cite{Ci-Mo2}), obtain the 
-corresponding dendroidal set.
-\item Another possibility is simply to translate all the results in another equivalent setting, e.g. simplicial or Segal operads.
-\item One could also try to understand what is a symmetric monoidal quasi-category and how to associate a dendroidal set to it.
-\end{itemize}
+	\item Given a ``symmetric monoidal $\infty$-category'' the way they arise in nature, for instance as simplicial monoidal model categories, one could simply construct the corresponding simplicial operad and then, using the equivalence between simplicial operads and $\infty$-operads (see \cite{Ci-Mo2}), obtain the corresponding dendroidal set.
 
+	\item Another possibility is simply to translate all the results in another equivalent setting, e.g. simplicial or Segal operads.
+	
+	\item One could also try to understand what is a symmetric monoidal quasi-category and how to associate a dendroidal set to it.
+\end{itemize}
 
 \begin{definition}
 \begin{itemize}
- \item $E_1$ is the dendroidal nerve of the 1-operad corresponding to monoids. $E_{\infty}$ is the nerve of the 1-operad corresponding to abelian monoids. It's
-interesting to remark that $E_{\infty}(T)$ is a point for all tree T.
-\item $\infty-Cat^{\times}$ is the $\infty$-operad corresponding to quasi-categories with the direct product.
-\item A monoidal $\infty$-category is a $E_1$-$\infty$-category. A symmetric monoidal $\infty$-category is a $E_{\infty}$-$\infty$-category. 
+	\item $E_1$ is the dendroidal nerve of the 1-operad corresponding to monoids. $E_{\infty}$ is the nerve of the 1-operad corresponding to abelian monoids. It is interesting to remark that $E_{\infty}(T)$ is a point for all tree T.
+
+	\item $\Cat_{\infty}^{\times}$ is the $\infty$-operad corresponding to quasi-categories with the direct product.
+
+	\item A monoidal $\infty$-category is a $E_1$-$\infty$-category. A symmetric monoidal $\infty$-category is a $E_{\infty}$-$\infty$-category. 
 \end{itemize}
 \end{definition}
 
 \begin{proposition}
-Each tree T can be seen as a symmetric monoidal 1-category tens(T) in the following way:
+Each tree T can be seen as a symmetric monoidal 1-category $\mathrm{tens}(T)$ in the following way:
 \begin{itemize}
- \item Objects of tens(T) are the free abelian monoid on edges of T
-\item Arrows are freely generated by operations on T
-\item The tensor produc is simply the composition in the free abelian monoid
+	\item objects of tens(T) are the free abelian monoid on edges of T;
+
+	\item Arrows are freely generated by operations on T;
+
+	\item The tensor produc is simply the composition in the free abelian monoid.
 \end{itemize}
-This functor $tens: \Omega\to \infty-sym-mon-Cat$ induces a functor $tens^*:\infty-sym-mon-Cat\to dSets$.
-It can be checked that its image is contained in $\infty$-operads.\\
-We will often omit the notation $tens^*$ and refer to a symmetric monoidal $\infty$-category or to the corresponding $\infty$-operad in the same way.
+This functor $\mathrm{tens} \colon \SOmega \to \Cat_\infty^{\mathrm{sym. mon.}}$ induces a functor
+\[
+\mathrm{tens}^*: \Cat_{\infty}^{\mathrm{sym. mon.}} \to \dset
+\]
+It can be checked that its image is contained in $\infty$-operads.
+
+We will often omit the notation $\mathrm{tens}^*$ and refer to a symmetric monoidal $\infty$-category or to the corresponding $\infty$-operad in the same way.
 \end{proposition}
 
 \begin{remark}
-As we've promised in the introduction, the notion of weak algebraic structure that we get is manifestly $\infty$-categorical, so if there is an equivalence between
-two objects, than a weak structure on the first induces a weak structure on the second in a compatible way. This will be of great importance in the applications in derived
-algebraic geometry.
+As we promised in the introduction, the notion of weak algebraic structure that we get is manifestly $\infty$-categorical, so if there is an equivalence between two objects, than a weak structure on the first induces a weak structure on the second in a compatible way. This will be of great importance in the applications in derived algebraic geometry.
 \end{remark}
 
 \section{Looping and delooping}
 
-Before studying $E_1$ or $E_{\infty}$ $\infty$-categories, it is already interesting to consider $E_1$ or $E_{\infty}$ spaces. The first interesting thing to remark is that
-$E_1$-spaces are the same as quasi-categories with only one 0-simplex, so that it is particularly easy to construct the looping/delooping adjunction.
+Before studying $E_1$ or $E_{\infty}$ $\infty$-categories, it is already interesting to consider $E_1$ or $E_{\infty}$ spaces. The first interesting thing to remark is that $E_1$-spaces are the same as quasi-categories with only one 0-simplex, so that it is particularly easy to construct the looping/delooping adjunction.
 
 \begin{definition}
-There is a map $i:\Delta\to E_1-sSets$ sending $[n]$ to the discrete free monoid on n elements. It induces a map $E_1-sSets\to sSets$ in the following way:
-$$M\mapsto ([n]\mapsto \Hom(i(n),M)_0 )$$
-We call such functor $E_1-sSets\to sSets$ the delooping functor, denoted B.
+There is a map $i \colon \SDelta\to E_1 \textrm{-} \sset$ sending $[n]$ to the discrete free monoid on $n$ elements. It induces a functor $E_1 \textrm{-} \sset \to \sset$ in the following way:
+\[
+M \mapsto ([n] \mapsto \Hom(i(n),M)_0 )
+\]
+We call such functor the delooping functor, denoted $\mathrm{B}$.
 \end{definition}
 
 \begin{proposition}
-Actually, it can be show that if M is a weak monoid, then BM is an $\infty$-category with one element. We say that a monoid M is grouplike if BM is a Kan complex.
+It can be show that if $M$ is a weak monoid, then $\mathrm{B}M$ is an $\infty$-category with one element. We say that a monoid $M$ is \emph{grouplike} if $\mathrm{B}M$ is a Kan complex.
 \end{proposition}
 
 \begin{remark}
-So far we have a functor $B:E_1-sSets\to \infty-Cats_{\bullet}$. To build $\Omega$, its adjoint, the easiest way is to remark that $\infty-cats_{\bullet}\simeq sCats_{\bullet}$,
- where $sCats_{\bullet}$ is the model category of pointed simplicial categories. We have the obvious functor $\Omega: sCats_{\bullet}\to E_1-sSets$ sending a
+So far we have a functor $\mathrm{B} \colon E_1 \textrm{-} \sset \to \Cat_{\infty,\bullet}$. The easiest way to build its adjoint $\Omega$ is to observe that $\Cat_{\infty, \bullet}$ is equivalent to the model category $\mathbf{sCat}_{\bullet}$ of pointed simplicial categories. We have the obvious functor $\Omega: \mathbf{sCat}_{\bullet} \to E_1\textrm{-} \sset$ sending a
 pointed simplicial category $\C$ to the (strict) monoid $\Hom_{\C}(*,*)$.
 \end{remark}
 
-The looping/delooping adjunction identifies $E_1-sSets$ with $\infty$-categories with one object and furthermore provides a strictification result for weak simplicial
-monoids. It is also clear that $\Omega \circ B\simeq Id$, whereas $B(\Omega X)\simeq X$ only if X is connected..
+The looping/delooping adjunction identifies $E_1 \textrm{-} \sset$ with $\infty$-categories with one object and furthermore provides a strictification result for weak simplicial monoids. It is also clear that $\Omega \circ B \simeq Id$, whereas $\mathrm{B}(\Omega X) \simeq X$ only if X is connected.
 
-\begin{proposition} Let $\M$ be a weak algebraic structure.
-If G is a $E_1\otimes \M$-simplicial set, then $BM$ is an $\M$-simplicial set in a natural way.
+\begin{proposition}
+Let $\M$ be a weak algebraic structure. If $G$ is a $E_1 \otimes \M$-simplicial set, then $\mathrm{B} M$ is an $\M$-simplicial set in a natural way.
 \end{proposition}
 
 \begin{proof}
-By Freyd's adjoint theorem, B has a left adjoint $L:sSets\to E_1-sSets$: it is the only colimits preserving functor that extends $i$.
-Therefore B is a monoidal functor (as both monoidal structures are cartesian) and so sends $\M-E_1-sSets$ to $\M-sSets$
+By Freyd's adjoint theorem, $\mathrm{B}$ has a left adjoint $\mathrm{L} \colon \sset \to E_1 \textrm{-} \sset$: it is the only colimits preserving functor that extends $i$. Therefore $\mathrm{B}$ is a monoidal functor (as both monoidal structures are cartesian) and so sends $\M \textrm{-} E_1 \textrm{-} \sset$ to $\M \textrm{-} \sset$.
 \end{proof}
 
 \begin{corollary}
-Let $E_{\infty}$ be the operad of abelian monoids. As $E_{\infty}\simeq E_{\infty}\otimes E_1$, the functor B induces a functor $E_{\infty}-sSets\to E_{\infty}-sSets$
+Let $E_{\infty}$ be the operad of abelian monoids. As $E_{\infty} \simeq E_{\infty} \otimes E_1$, the functor $\mathrm{B}$ induces a functor $E_{\infty} \textrm{-} \sset \to E_{\infty} \textrm{-} \sset$.
 \end{corollary}
 
 \printbibliography[heading = local]
