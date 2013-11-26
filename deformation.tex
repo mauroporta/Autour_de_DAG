@@ -23,7 +23,7 @@ The first part of this expos\'e will be devoted to the foundations of derived de
 the category of deformation functors has a fully faithful embedding into the category of differential graded Lie algebras, in such a way that first order deformations up to isomorphism corresponds to the solution of the Maurer-Cartan equation.
 \end{quote}
 
-\begin{eg}
+\begin{eg} \label{eg hochschild}
 Fix a base field $k$, and consider an associative $k$-algebra $A$. It is well known that the Hochschild cohomology $\mathrm{HH}^1(A,A)$ can be used to parametrize the deformations of the product on $A$ as an associative product. The involved differential graded Lie algebra in this case is the (shifted) Hochschild cochain complex, with the bracket defined by Gerstenhaber.
 \end{eg}
 
@@ -119,30 +119,30 @@ which carries the same amount of information of $F$ ``near'' the point $\eta$;
 \item next one ``completes'' the new moduli problem $\widetilde{F}$ by restricting it to the category of local artinian algebras with fixed residue field.
 \end{enumerate}
 
-To extend this procedure to the derived setting, one has first of all to introduce the notion of simplicial Artinian algebra. This is not difficult at all:
+To extend this procedure to the derived setting, one has first of all to introduce the analogue of the notion of Artinian algebra. However, one has first to choose an algebraic model for the derived geometry; since we will be working in characteristic $0$, we have at least two possibilities: simplicial algebras and $\mathbf{cdga}_k^{\le 0}$. Although we feel the language of simplicial algebras being more natural, we choose the dg formalism; this is due to the fact that actual computations will be involved from a certain point on, and the best way of dealing with them is to use the machinery of Koszul duality.
 
 \begin{defin}
-A simplicial $k$-algebra $A$ is said to be \emph{artinian} if the following conditions are met:
+A connective differential graded $k$-algebra $A$ is said to be \emph{artinian} if the following conditions are met:
 \begin{enumerate}
 \item $A$ is homotopically of finite presentation;
 
-\item $\pi_0(A)$ is a local artinian algebra whose residue field is isomorphic to $k$.
+\item $\mathrm{H}^0(A)$ is a local artinian algebra whose residue field is isomorphic to $k$.
 \end{enumerate}
-We will denote by $\mathbf{sArt}_k$ the full subcategory of augmented simplicial algebras $\mathbf{sAlg}_{k}^{\mathrm{aug}}$ spanned by artinian algebras.
+We will denote by $\mathbf{dgArt}_k^{\le 0}$ the full subcategory of augmented cdga $\mathbf{cdga}_{k,*}^{\le 0}$ spanned by artinian algebras.
 \end{defin}
 
 In principle, a formal moduli problem could be simply a functor
 \[
-F \colon \mathbf{sArt}_k \to \sset
+F \colon \mathbf{cdga}_{k,*}^{\le 0} \to \sset
 \]
 However, as in similar situations, this definition includes functors which are too wild. Following \cite{dagx}, we will restrict ourselves to the study of a milder subcategory, whose objects will be functors behaving similarly to the way prescribed by the first three conditions in the Theorem \ref{thm schlessinger}. In order to give a precise definition, we first need to generalize the notion of square-zero extension. A possibility is to use \cite[Definition 1.1]{infinitesimalextension} (and we refer there for a more detailed discussion):
 
 \begin{defin}\label{def inf}
-Let $A$ be a simplicial $k$-algebra, $M$ be a simplicial $A$-module and
+Let $A$ be a cdga $k$-algebra, $M$ be a dg $A$-module and
 \[
-\overline{d} \in \pi_0 (\mathrm{Map}_{\mathbf{sAlg}_k/A} (A, A\oplus M[1]))
+\overline{d} \in \pi_0 (\mathrm{Map}_{\mathbf{cdga}_k^{\le 0}/A} (A, A\oplus M[1]))
 \]
-be a derived derivation from $A$ to $M[1]$, represented by a map $d \colon A \to A \oplus M[1]$ in $\mathbf{sAlg}_k / A$. If we denote by $\varphi_{d}: \mathbb{L}_{A/k}\to M[1]$ the map of $A$-modules corresponding to $d$, the \emph{infinitesimal extension} $\psi_{d}: A \oplus_{d} M \to A$ \emph{of $A$ by $M$ along $d$} is the map in $\mathrm{Ho}(\mathbf{sAlg}_k / A)$ defined by the following homotopy cartesian diagram in $\mathbf{sAlg}_k$
+be a derived derivation from $A$ to $M[1]$, represented by a map $d \colon A \to A \oplus M[1]$ in $\mathbf{cdga}_k^{\le 0} / A$. If we denote by $\varphi_{d}: \mathbb{L}_{A/k}\to M[1]$ the map of $A$-modules corresponding to $d$, the \emph{infinitesimal extension} $\psi_{d}: A \oplus_{d} M \to A$ \emph{of $A$ by $M$ along $d$} is the map in $\mathrm{Ho}(\mathbf{cdga}_k^{\le 0} / A)$ defined by the following homotopy cartesian diagram in $\mathbf{cdga}_k^{\le 0}$
 \[
 \xymatrix{A \oplus_{d} M \ar[d]_-{\psi_{d}} \ar[r] & A \ar[d]^-{\varphi_0} \\ A \ar[r]_-{d} & A \oplus M[1] }
 \]
@@ -167,7 +167,7 @@ The proof is by no means straightforward. We refer the reader to \cite[Theorem 3
 Let us now remark that it is possible to introduce a notion of infinitesimal extension in the category of \emph{augmented} simplicial $k$-algebras: one will simply require that all the maps appearing in Definition \ref{def inf} are maps augmented simplicial $k$-algebras. In this case, we can consider also a different class of diagrams:
 
 \begin{lemma}
-A map $B \to A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is an infinitesimal extension of $A$ by an $A$-module $M$ if and only if there exists a map $A \to k \oplus M[1]$ and a homotopy pullback diagram
+A map $B \to A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is an infinitesimal extension of $A$ by an $A$-module $M$ if and only if there exists a map $A \to k \oplus M[1]$ and a homotopy pullback diagram
 \begin{equation} \label{eq reduced homotopy pullback}
 \xymatrix{
 B \ar[r] \ar[d] & k \ar[d]^{f_0} \\ A \ar[r] & k \oplus M[1]
@@ -187,13 +187,13 @@ given by $(a,m) \mapsto (\phi(a),m)$, where $\phi \colon A \to k$ is the augment
 A \ar[d] \ar[r] & k \ar[d] \\ A \oplus M[1] \ar[r] & k \oplus M[1]
 }
 \]
-is a strict pullback. Finally, Lemma \ref{lemma group fibration} implies that
+is a strict pullback. Finally,
 \[
 A \oplus M[1] \to k \oplus M[1]
 \]
-is a fibration (because it is surjective). It follows that the previous square is a homotopy pullback, so that the square \eqref{eq reduced homotopy pullback} is a homotopy pullback as well.
+is clearly a fibration. It follows that the previous square is a homotopy pullback, so that the square \eqref{eq reduced homotopy pullback} is a homotopy pullback as well.
 
-Conversely, if $\delta \colon A \to k \oplus M[1]$ is a map of augmented algebras we can write it as
+Conversely, if $\delta \colon A \to k \oplus M[1]$ is a map of augmented cdga we can write it as
 \[
 a \mapsto (\phi(a), d(a))
 \]
@@ -207,7 +207,7 @@ Since the homotopy pullback of the map $A \oplus M[1] \to k \oplus M[1]$ along $
 Following \cite[Definition 1.1.5]{dagx}, we are led to introduce the following:
 
 \begin{defin}
-A morphism $B \to A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is said to be \emph{elementary} if it is an infinitesimal extension of $A$ by $k[n]$ for some $n \ge 0$. A morphism $B \to A$ is said to be \emph{small} if it can be written as a finite composition of elementary morphisms. Finally, an object $A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is said to be \emph{small} if the morphism $A \to k$ is small.
+A morphism $B \to A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{elementary} if it is an infinitesimal extension of $A$ by $k[n]$ for some $n \ge 0$. A morphism $B \to A$ is said to be \emph{small} if it can be written as a finite composition of elementary morphisms. Finally, an object $A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{small} if the morphism $A \to k$ is small.
 \end{defin}
 
 \begin{eg} \label{eg elementary morphisms}
@@ -217,13 +217,13 @@ Each morphism $k \to k \oplus k[n]$ is elementary, in a trivial way. Slightly mo
 k \oplus k[n] \ar[r] \ar[d] & k \ar[d] \\ k \ar[r] & k \oplus k[n+1]
 }
 \]
-is a homotopy pullback. Observe that this is equivalent to say that $k \oplus k[n] \simeq \Omega( k \oplus k[n+1])$ in the pointed category $\mathbf{sAlg}_k^{\mathrm{aug}}$.
+is a homotopy pullback. Observe that this is equivalent to say that $k \oplus k[n] \simeq \Omega( k \oplus k[n+1])$ in the pointed category $\mathbf{cdga}_{k,*}^{\le 0}$.
 \end{eg}
 
-It follows from the definition that the category of small objects is essentially controlled (via pullbacks) by the objects $k \oplus k[n]$. It is more remarkable that the full subcategory $\mathbf{sAlg}_k^{\mathrm{sm}}$ of $\mathbf{sAlg}_k^{\mathrm{aug}}$ spanned by small objects \emph{coincides with $\mathbf{sArt}_k$}:
+It follows from the definition that the category of small objects is essentially controlled (via pullbacks) by the objects $k \oplus k[n]$. It is more remarkable that the full subcategory $\mathbf{cdga}_{k, \mathrm{sm}}^{\le 0}$ of $\mathbf{cdga}_{k,*}^{\le 0}$ spanned by small objects \emph{coincides with $\mathbf{dgArt}_k$}:
 
 \begin{prop} \label{prop characterizing artinians}
-For an object $A \in \mathbf{sAlg}_k$ the following conditions are equivalent
+For an object $A \in \mathbf{cdga}_k^{\le 0}$ the following conditions are equivalent
 \begin{enumerate}
 \item $A$ is artinian;
 \item there exists a finite sequence of maps
@@ -241,10 +241,10 @@ See \cite[Proposition 1.1.11]{dagx}.
 At this point we can introduce the notion of formal moduli problem:
 
 \begin{defin}
-A \emph{formal moduli problem} is a functor $F \colon \mathbf{sArt}_k^{\mathrm{aug}} \to \sset$ such that:
+A \emph{formal moduli problem} is a functor $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset$ such that:
 \begin{enumerate}
 \item $F(k)$ is weakly contractible;
-\item whenever we are given a homotopy pullback square $\eta$ in $\mathbf{sArt}_k$:
+\item whenever we are given a homotopy pullback square $\eta$ in $\mathbf{dgArt}_k^{\le 0}$:
 \[
 \xymatrix{
 A \ar[r] \ar[d] & B \ar[d]^\phi \\ C \ar[r] & D
@@ -252,11 +252,11 @@ A \ar[r] \ar[d] & B \ar[d]^\phi \\ C \ar[r] & D
 \]
 and $\phi$ is small, then $F(\eta)$ is a pullback square.
 \end{enumerate}
-We will denote by $\mathrm{Moduli}_k$ the full subcategory of $\mathrm{Fun}(\mathbf{sArt}_k^{\mathrm{aug}}, \sset)$ spanned by formal moduli problems.
+We will denote by $\mathrm{Moduli}_k$ the full subcategory of $\mathrm{Fun}(\mathbf{dgArt}_k^{\le 0}, \sset)$ spanned by formal moduli problems.
 \end{defin}
 
 \begin{rmk}
-It can be shown that the category $\mathrm{Moduli}_k$ arises as a left Bousfield localization of $\mathrm{Fun}(\mathbf{sArt}_k^{\mathrm{aug}}, \sset)$. An indirect proof can be obtained by passing to quasicategories and the apply \cite[Propositions 5.5.4.18 and 5.5.4.19]{htt}.
+It can be shown that the category $\mathrm{Moduli}_k$ arises as a left Bousfield localization of $\mathrm{Fun}(\mathbf{dgArt}_k^{\le 0}, \sset)$. An indirect proof can be obtained by passing to quasicategories and then apply \cite[Propositions 5.5.4.18 and 5.5.4.19]{htt}.
 \end{rmk}
 
 \section{The tangent spectrum of a formal moduli problem}
@@ -265,9 +265,9 @@ We already remarked in Example \ref{eg elementary morphisms} that the family of 
 \[
 k \oplus k[n] \simeq \Omega( k \oplus k[n+1] )
 \]
-where the loop is taken in the pointed category $\mathbf{sAlg}_k^{\mathrm{aug}}$. In the language of \cite{ha}, this is a \emph{spectrum} in $\mathbf{sAlg}_k^{\mathrm{aug}}$, and the reader should think of it as the analogue of the sphere spectrum in the category of (augmented) simplicial $k$-algebras.
+where the loop is taken in the pointed category $\mathbf{cdga}_{k,*}^{\le 0}$. In the language of \cite{ha}, this is a \emph{spectrum} in $\mathbf{cdga}_{k,*}^{\le 0}$, and the reader should think of it as the analogue of the sphere spectrum in the category of (augmented) simplicial $k$-algebras.
 
-Let $F \colon \mathbf{sArt}_k^{\mathrm{aug}} \to \sset$ be a formal moduli problem. Since $k$ is an initial object for $\mathbf{sArt}_k^{\mathrm{aug}}$ and $F(k)$ is weakly contractible by definition, we see that $F$ extends naturally to a functor landing in pointed simplicial sets, which we will denote again by $F$. Moreover, given any formal moduli problem $F \colon \mathbf{sArt}_k \to \sset_*$ we have a family of pointed spaces
+Let $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset$ be a formal moduli problem. Since $k$ is an initial object for $\mathbf{dgArt}_k^{\le 0}$ and $F(k)$ is weakly contractible by definition, we see that $F$ extends naturally to a functor landing in pointed simplicial sets, which we will denote again by $F$. Moreover, given any formal moduli problem $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset_*$ we have a family of pointed spaces
 \[
 \{F(k \oplus k[n])\}_{n \ge 0}
 \]
@@ -280,7 +280,7 @@ which are in fact equivalences. Therefore, we can associate to every formal modu
 \begin{defin}
 Let $F$ be a formal moduli problem. The \emph{tangent spectrum} of $F$ is the spectrum:
 \[
-\mathbb T F := \{F(k \oplus k[n]\}_{n \ge 0}
+\mathbb T F := \{F(k \oplus k[n])\}_{n \ge 0}
 \]
 \end{defin}
 
@@ -288,7 +288,7 @@ Let $F$ be a formal moduli problem. The \emph{tangent spectrum} of $F$ is the sp
 In particular the $0$-th space of this spectrum is $F(k[\varepsilon]/(\varepsilon^2))$. Since this is part of a spectrum, it is an infinite loop space. This can be seen as a deep motivation for the structure of $k$-vector space of the tangent space of a (underived) formal moduli space.
 \end{rmk}
 
-Proposition \ref{prop characterizing artinians} implies that every artinian object in $\mathbf{sAlg}_k^{\mathrm{aug}}$ can be obtained via a finite number of base changes along maps
+Proposition \ref{prop characterizing artinians} implies that every artinian object in $\mathbf{cdga}_{k,*}^{\le 0}$ can be obtained via a finite number of base changes along maps
 \[
 k \to k \oplus k[n]
 \]
@@ -322,21 +322,35 @@ where $\mathrm{Sp}$ denotes the category of spectra in the category of spaces. M
 This is essentially trivial, because homotopy limits can be computed objectwise.
 \end{proof}
 
-This implies that $\mathbb T F[1] \simeq \mathbb T(\Omega F)$, and therefore it is at least reasonable to expect that $\mathbb T F[1]$ carries a Lie algebra structure. To give complete proofs, however, it will be convenient to switch from the language of simplicial algebras to that of commutative differential graded algebras (this is possible because we are working in characteristic $0$).
+This implies that $\mathbb T F[1] \simeq \mathbb T(\Omega F)$, and therefore it is at least reasonable to expect that $\mathbb T F[1]$ carries a Lie algebra structure.
+
+\section{The relationship between spectra and complexes}
+
+In characteristic $0$ the two things can be identified... an explanation should be added...
+
+\begin{eg}
+If $F$ is the formal moduli problem associated to a cdga $A$ via $\Map(A,-)$, then its tangent complex corresponds to Andr\'e - Quillen cochains of $A$.
+\end{eg}
 
 \section{Review of cdga and dgla}
 
-... definitions ... Maurer Cartan ...
-
-Let us denote by $\mathbf{CcoAlg}_k$ the category of cocommutative, coassociative and coaugmented coalgebras in the category $\mathbf{dgVect}_k$. It is possible to define a couple of adjoint functors
+We are left to understand why we should expect that every dgla arises as the tangent space of a formal moduli problem. To understand this, we should take a step back to Example \ref{eg hochschild}; in that example we had a concrete deformation problem and we observed that first-order deformation were controlled by the Maurer-Cartan equation. Basically, what one can attempt to do is to build a formal moduli problem out of a differential graded Lie algebra $\mathfrak g_*$ by considering a kind of ``functor of points'' which associates to a pointed cdga $(A,\mathfrak m_A)$ the set of solutions of the (higher) Maurer-Cartan equations in $\mathfrak m_A \otimes_k \mathfrak g_*$. Stated more formally, a natural choice for the moduli problem associated to $\mathfrak g_*$ would be
 \[
-\Omega_\kappa \colon \mathbf{CcoAlg}_k \rightleftarrows \mathbf{dgla}_k \colon \mathrm{B}_\kappa
+(A, \mathfrak m_A) \mapsto \mathrm{MC}(\mathfrak m_A \otimes_k \mathfrak g_*)
 \]
-whose existence is implied, at a deep level, by Koszul duality theory. If we recall that the linear dual of a coaugmented coalgebra is an augmented algebra, we see that we obtain a functor
+However, it is not possible to do this on the nose, because this functor doesn't behave well with homotopies. If $A^\vee = \Hom(A,k)$ were a coalgebra, we would have
 \[
-C^* \colon \mathbf{dgla}_k \to (\mathbf{CAlg}_k^{\mathrm{aug}})^{\mathrm{op}}
+\mathrm{MC}(\mathfrak m_A \otimes_k \mathfrak g_*) = \mathrm{MC}(\Hom(A^\vee, \mathfrak g_*)) = \mathrm{Tw}(A^\vee, \mathfrak g_*)
 \]
-called the cohomological Chevalley-Eilenberg complex. We would like to have a right adjoint for $C^*$, but this is not possible... a way is to use $L_\infty$-algebras... or in a simpler way, to use the adjoint functor theorem...
+and we could apply classical Koszul duality theory in order to rewrite
+\[
+\mathrm{Tw}(A^\vee, \mathfrak g_*) \simeq \Hom(A^\vee, C_*(\mathfrak g_*)) \simeq \Hom(\mathcal L(A^\vee), \mathfrak g_*)
+\]
+where $C_*(\mathfrak g_*)$ is the Chevalley-Eilenberg chain complex associated to $\mathfrak g_*$. Since the dual of a coalgebra is always an algebra, we still have a functor
+\[
+C^* \colon \mathbf{dgla}_k \to (\mathbf{cdga}_k)^{\mathrm{op}}
+\]
+This functor doesn't have an adjoint on the nose, but it does when passing to the $\infty$-categories associated (if one wants to construct a functor the other way around on the level of model categories, he has necessarily to work with dg Lie algebras up-to-homotopy, that is with $L_\infty$ algebras).
 
 \section{The formal moduli problem associated to a dgla}
 
