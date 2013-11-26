@@ -6,7 +6,9 @@
 
 \begin{refsection}
 
-We already discussed several non-trivial aspects of the derived algebraic geometry in the previous expos\'es; in this one, the main subject is derived deformation theory, with a particular attention to the formal one. The classical deformation theory is a really rich and interesting subject and it is tightly related to the obstruction theory (for infinitesimal extensions). Even though everything works fine for schemes, there have been problems in generalizing in a satisfying way obstruction theory to the world of $1$-stacks; in particular, the constructions of B. Fantechi and K. Beherend produce obstruction spaces which are \emph{not} functorial. This is somehow related to the ``hidden smoothness principle'': the lack of functoriality is due to the fact that we are considering only ``shadows'' of more natural objects, for which functoriality holds. We could take this as a foundational principle for the DAG; to put it with the words of B. To\"en:
+\section{Introduction}
+
+We already discussed several non-basic aspects of the derived algebraic geometry in the previous expos\'es; in this one, the main subject is derived deformation theory, with a particular attention to the formal one. The classical deformation theory is a really rich and interesting subject and it is tightly related to the obstruction theory (for infinitesimal extensions). Even though everything works fine for schemes, there have been problems in generalizing in a satisfying way obstruction theory to the world of $1$-stacks; in particular, the constructions of B. Fantechi and K. Beherend produce obstruction spaces which are \emph{not} functorial. This is somehow related to the ``hidden smoothness principle'': the lack of functoriality is due to the fact that we are considering only ``shadows'' of more natural objects, for which functoriality holds. We could take this as a foundational principle for the DAG; to put it with the words of B. To\"en:
 
 \begin{quote}
 \emph{Derived algebraic geometry is a generalization of algebraic geometry for which obstruction theory becomes natural.}
@@ -15,7 +17,7 @@ B. To\"en in \emph{Higher and derived stacks}
 \end{flushright}
 \end{quote}
 
-The first part of this expos\'e will be devoted to the foundations of derived deformation theory in the simplicial setting; in particular, we will sketch how we can interpret the space of obstructions as the space of deformation over non-classical rings. In a second moment, we will turn toward a less foundational result: it has been known for a very long time that a formal deformation problem should be controlled by (higher) Maurer-Cartan equations living in a differential graded Lie algebra which is well-determined (up to quasi-isomorphism) from the problem itself. If we agree that a formal deformation problem is nothing but a deformation functor (in the sense of \cite{manetti}), then a possible way to formalize that idea is the following:
+The first part of this expos\'e will be devoted to the foundations of derived deformation theory in the simplicial setting; in particular, we will sketch how we can interpret the space of obstructions as the space of deformation over non-classical rings. In a second moment, we will turn toward a less foundational result: it has been known for a very long time that a formal deformation problem should be controlled by (higher) Maurer-Cartan equations living in a differential graded Lie algebra which is well-determined (up to quasi-isomorphism) from the problem itself. If we agree that a formal deformation problem is nothing but a deformation functor (in the sense of \cite[Definition V.61]{manetti}), then a possible way to formalize that idea is the following:
 
 \begin{quote}
 the category of deformation functors has a fully faithful embedding into the category of differential graded Lie algebras, in such a way that first order deformations up to isomorphism corresponds to the solution of the Maurer-Cartan equation.
@@ -39,14 +41,12 @@ and $\Omega F$ carries a natural group structure (up to homotopy). It is therefo
 Let $k$ be a field of characteristic $0$. There exists a functor of $\infty$-categories $\Psi \colon \mathrm{Moduli}_k \to \mathrm{Lie}_k$ informally given by $\Psi(F) = \mathbb T F[1]$ which is moreover an equivalence of $\infty$-categories.
 \end{thm}
 
-\section{Formal and derived deformation theory}
-
-\subsection{An overview of classical deformation theory}
+\section{An overview of classical deformation theory}
 
 We fix throughout this section a field $k$ (not necessarily of characteristic $0$), and a scheme over $\spec(k)$, say $X_0$. A deformation of $X_0$ over a base scheme $S$ is a cartesian diagram
 \[
 \xymatrix{
-X_0 \ar[d] \ar[r] & X \ar[d]^\pi \\ \spec(k) \ar[r]^s & S
+X_0 \ar[d] \ar[r] & X \ar[d]^\pi \\ \spec(k) \ar[r]^-{s} & S
 }
 \]
 where the map $\pi \colon X \to S$ is flat. The other fibers of $S$ over $k$-rational points are said to be \emph{deformations} of $X_0$. The basic problem of deformation theory is to understand the deformations of a given scheme $X_0$ over an arbitrary base field $S$; in order to formulate correctly this problem, one should adopt the functor of points philosophy: we are simply considering the contravariant functor
@@ -81,7 +81,7 @@ This problem is addressed by Schlessinger's criterion, which gives conditions in
 Let $F \colon \mathbf{Sch}_{k,*} \to \Set$ be a moduli problem and let $\eta \in F(k)$ be a given point. The tangent space of $F$ at $\eta$ is defined to be $T_F := F(k[\varepsilon]/(\varepsilon^2))$.
 \end{defin}
 
-\begin{thm}[Schlessinger]
+\begin{thm}[Schlessinger] \label{thm schlessinger}
 Let $F \colon \mathrm{Art}_k \to \Set$ be a functor of Artin rings such that $F(k)$ is just one element. Given a pullback in $\mathrm{Art}_k$
 \[
 \xymatrix{
@@ -105,71 +105,249 @@ be the natural map. Then $F$ is prorepresentable if and only if it satisfies the
 See \cite[Theorem 2.3.2]{sernesi}
 \end{proof}
 
-\subsection{Derived deformation theory}
+The first condition in the previous theorem is a mild assumption on the formal moduli problem $F$. Indeed, whenever $F$ arises in a ``sufficiently geometric'' way, it is satisfied (for example, the completion of the functor $\mathrm{Def}_{X_0}$ at every point satisfies this condition).
+
+\section{Derived deformation theory}
 
 As we saw in the above discussion, there is an easy procedure allowing to extract a formal deformation problem out of a classical one at a point:
 \begin{enumerate}
-\item one first consider a base change in such a way that $F(k)$ consists of a single point;
-\item next one restricts the functor to the category of local artinian $k$-algebras.
+\item one first chooses a point $\eta \in F(k)$ and defines the new moduli problem $\widetilde{F}$ defined by
+\[
+\widetilde{F}(X) := F(X) \times_{F(k)} \{\eta\}
+\]
+which carries the same amount of information of $F$ ``near'' the point $\eta$;
+\item next one ``completes'' the new moduli problem $\widetilde{F}$ by restricting it to the category of local artinian algebras with fixed residue field.
 \end{enumerate}
 
-\noindent To extend this procedure to the derived setting, one has first of all to introduce the notion of simplicial Artinian algebra. This is not difficult at all:
+To extend this procedure to the derived setting, one has first of all to introduce the notion of simplicial Artinian algebra. This is not difficult at all:
 
 \begin{defin}
-A simplicial artinian $k$-algebra is a simplicial $k$-algebra $A$ such that $\pi_0(A)$ is local artinian and the residue field is isomorphic to $k$. We will denote by $\mathbf{sArt}_k$ the category of simplicial artinian $k$-algebras.
+A simplicial $k$-algebra $A$ is said to be \emph{artinian} if the following conditions are met:
+\begin{enumerate}
+\item $A$ is homotopically of finite presentation;
+
+\item $\pi_0(A)$ is a local artinian algebra whose residue field is isomorphic to $k$.
+\end{enumerate}
+We will denote by $\mathbf{sArt}_k$ the full subcategory of augmented simplicial algebras $\mathbf{sAlg}_{k}^{\mathrm{aug}}$ spanned by artinian algebras.
 \end{defin}
 
-It is perhaps subtler to define the notion of infinitesimal extension. We will use the one given in \cite{infinitesimalextension}, and we refer there for a more detailed discussion.
-
-\begin{defin}\label{inf}
-Let $A\to B$ be a cofibrant $A$-algebra, $M$ be a simplicial $B$-module and $\overline{d} \in \pi_0 (\mathrm{Map}_{A/\mathbf{sAlg}_k/B} (B, B\oplus M[1]))$ be a derived derivation from $B$ to $M[1]$, represented by a map $d \colon B \to B\oplus M[1]$ in $A / \mathbf{sAlg}_k /B$. If we denote by $\varphi_{d}: \mathbb{L}_{B/A}\to M[1]$ the map of $B$-modules corresponding to $d$, the \emph{infinitesimal extension} $\psi_{d}: B\oplus_{d}M \to B$ \emph{of $B$ by $M$ along $d$} is the map in $\mathrm{Ho}(A/\mathbf{sAlg}_k/B)$ defined by the following homotopy cartesian diagram in $A/\mathbf{sAlg}_k$
+In principle, a formal moduli problem could be simply a functor
 \[
-\xymatrix{B\oplus_{d}M \ar[d]_-{\psi_{d}} \ar[r] & B \ar[d]^-{0} \\B \ar[r]_-{d} & B\oplus M[1] }
+F \colon \mathbf{sArt}_k \to \sset
 \]
-where $0$ denotes the section corresponding to the trivial derived derivation $0 \colon \mathbb L_{B/A} \to M[1]$.
+However, as in similar situations, this definition includes functors which are too wild. Following \cite{dagx}, we will restrict ourselves to the study of a milder subcategory, whose objects will be functors behaving similarly to the way prescribed by the first three conditions in the Theorem \ref{thm schlessinger}. In order to give a precise definition, we first need to generalize the notion of square-zero extension. A possibility is to use \cite[Definition 1.1]{infinitesimalextension} (and we refer there for a more detailed discussion):
+
+\begin{defin}\label{def inf}
+Let $A$ be a simplicial $k$-algebra, $M$ be a simplicial $A$-module and
+\[
+\overline{d} \in \pi_0 (\mathrm{Map}_{\mathbf{sAlg}_k/A} (A, A\oplus M[1]))
+\]
+be a derived derivation from $A$ to $M[1]$, represented by a map $d \colon A \to A \oplus M[1]$ in $\mathbf{sAlg}_k / A$. If we denote by $\varphi_{d}: \mathbb{L}_{A/k}\to M[1]$ the map of $A$-modules corresponding to $d$, the \emph{infinitesimal extension} $\psi_{d}: A \oplus_{d} M \to A$ \emph{of $A$ by $M$ along $d$} is the map in $\mathrm{Ho}(\mathbf{sAlg}_k / A)$ defined by the following homotopy cartesian diagram in $\mathbf{sAlg}_k$
+\[
+\xymatrix{A \oplus_{d} M \ar[d]_-{\psi_{d}} \ar[r] & A \ar[d]^-{\varphi_0} \\ A \ar[r]_-{d} & A \oplus M[1] }
+\]
+where $\varphi_0$ denotes the section corresponding to the trivial derived derivation $0 \colon \mathbb L_{A/k} \to M[1]$.
 \end{defin}
 
-With this definition, we can introduce the notion of formal moduli problem:
+This calls for an explanation, as it is not clear at all that this is a real generalization of the classical notion of square-zero extension. The previous definition is philosophically motivated by the following result:
+
+\begin{prop}
+Let $0 \to I \to B \to A \to 0$ be a square-zero extension of $A$ by $I$ in the category of (discrete) commutative $k$-algebras. Then there exists a (derived) derivation $A \to A \oplus I[1]$ and a homotopy pullback
+\[
+\xymatrix{
+B \ar[r] \ar[d] & A \ar[d] \\ A \ar[r] & A \oplus I[1]
+}
+\]
+\end{prop}
+
+\begin{proof}
+The proof is by no means straightforward. We refer the reader to \cite[Theorem 3.1]{infinitesimalextension} for the details.
+\end{proof}
+
+Let us now remark that it is possible to introduce a notion of infinitesimal extension in the category of \emph{augmented} simplicial $k$-algebras: one will simply require that all the maps appearing in Definition \ref{def inf} are maps augmented simplicial $k$-algebras. In this case, we can consider also a different class of diagrams:
+
+\begin{lemma}
+A map $B \to A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is an infinitesimal extension of $A$ by an $A$-module $M$ if and only if there exists a map $A \to k \oplus M[1]$ and a homotopy pullback diagram
+\begin{equation} \label{eq reduced homotopy pullback}
+\xymatrix{
+B \ar[r] \ar[d] & k \ar[d]^{f_0} \\ A \ar[r] & k \oplus M[1]
+}
+\end{equation}
+where $f_0 \colon k \to k \oplus M[1]$ corresponds to the trivial derivation.
+\end{lemma}
+
+\begin{proof}
+Suppose first that $B \to A$ is an infinitesimal extension. First of all, observe that we have a natural map of simplicial algebras
+\[
+A \oplus M[1] \to k \oplus M[1]
+\]
+given by $(a,m) \mapsto (\phi(a),m)$, where $\phi \colon A \to k$ is the augmentation. It is easy to check then that the following square
+\[
+\xymatrix{
+A \ar[d] \ar[r] & k \ar[d] \\ A \oplus M[1] \ar[r] & k \oplus M[1]
+}
+\]
+is a strict pullback. Finally, Lemma \ref{lemma group fibration} implies that
+\[
+A \oplus M[1] \to k \oplus M[1]
+\]
+is a fibration (because it is surjective). It follows that the previous square is a homotopy pullback, so that the square \eqref{eq reduced homotopy pullback} is a homotopy pullback as well.
+
+Conversely, if $\delta \colon A \to k \oplus M[1]$ is a map of augmented algebras we can write it as
+\[
+a \mapsto (\phi(a), d(a))
+\]
+where $d \colon A \to M[1]$ is easily checked to be a derivation. It follows that we can factor $\delta$ as
+\[
+A \to A \oplus M[1] \to k \oplus M[1]
+\]
+Since the homotopy pullback of the map $A \oplus M[1] \to k \oplus M[1]$ along $f_0 \colon k \to k \oplus M[1]$ is isomorphic to $A$, we completely proved the lemma.
+\end{proof}
+
+Following \cite[Definition 1.1.5]{dagx}, we are led to introduce the following:
 
 \begin{defin}
-A formal moduli problem is a functor $F \colon \mathbf{sArt}_k \to \sset$ such that:
+A morphism $B \to A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is said to be \emph{elementary} if it is an infinitesimal extension of $A$ by $k[n]$ for some $n \ge 0$. A morphism $B \to A$ is said to be \emph{small} if it can be written as a finite composition of elementary morphisms. Finally, an object $A$ in $\mathbf{sAlg}_k^{\mathrm{aug}}$ is said to be \emph{small} if the morphism $A \to k$ is small.
+\end{defin}
+
+\begin{eg} \label{eg elementary morphisms}
+Each morphism $k \to k \oplus k[n]$ is elementary, in a trivial way. Slightly more interesting is the fact that each morphism $k \oplus k[n] \to k$. In fact, it is an useful exercise to check that
+\[
+\xymatrix{
+k \oplus k[n] \ar[r] \ar[d] & k \ar[d] \\ k \ar[r] & k \oplus k[n+1]
+}
+\]
+is a homotopy pullback. Observe that this is equivalent to say that $k \oplus k[n] \simeq \Omega( k \oplus k[n+1])$ in the pointed category $\mathbf{sAlg}_k^{\mathrm{aug}}$.
+\end{eg}
+
+It follows from the definition that the category of small objects is essentially controlled (via pullbacks) by the objects $k \oplus k[n]$. It is more remarkable that the full subcategory $\mathbf{sAlg}_k^{\mathrm{sm}}$ of $\mathbf{sAlg}_k^{\mathrm{aug}}$ spanned by small objects \emph{coincides with $\mathbf{sArt}_k$}:
+
+\begin{prop} \label{prop characterizing artinians}
+For an object $A \in \mathbf{sAlg}_k$ the following conditions are equivalent
+\begin{enumerate}
+\item $A$ is artinian;
+\item there exists a finite sequence of maps
+\[
+A = A_0 \to A_1 \to \cdots \to A_n \simeq k
+\]
+where each map $A_i \to A_{i+1}$ exhibits $A_i$ as a square-zero extension of $A_{i+1}$ by $k[m_i]$ for some $m_i \ge 0$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+See \cite[Proposition 1.1.11]{dagx}.
+\end{proof}
+
+At this point we can introduce the notion of formal moduli problem:
+
+\begin{defin}
+A \emph{formal moduli problem} is a functor $F \colon \mathbf{sArt}_k^{\mathrm{aug}} \to \sset$ such that:
 \begin{enumerate}
 \item $F(k)$ is weakly contractible;
-\item whenever we are given a homotopy pullback square $\eta$:
+\item whenever we are given a homotopy pullback square $\eta$ in $\mathbf{sArt}_k$:
 \[
 \xymatrix{
-A \ar[r] \ar[d] & B \ar[d] \\ C \ar[r] & D
+A \ar[r] \ar[d] & B \ar[d]^\phi \\ C \ar[r] & D
 }
 \]
-and $B \to D$ is an infinitesimal extension, then $F(\eta)$ is a pullback square.
+and $\phi$ is small, then $F(\eta)$ is a pullback square.
 \end{enumerate}
+We will denote by $\mathrm{Moduli}_k$ the full subcategory of $\mathrm{Fun}(\mathbf{sArt}_k^{\mathrm{aug}}, \sset)$ spanned by formal moduli problems.
 \end{defin}
 
-A key result is that whenever we are given a classical square-zero extension of $k$-algebras
-\begin{equation} \label{eq extension}
-0 \to M \to A \to A' \to 0
-\end{equation}
-it is possible to define a \emph{derived} derivation $d \colon A' \to k \oplus M[1]$ in such a way that
-\[
-\xymatrix{
-A \ar[r] \ar[d] & A' \ar[d]^d \\ k \ar[r]^-{\varphi_0} & k \oplus M[1]
-}
-\]
-where $\varphi_0$ is the trivial derivation (see \cite[Lemma 6.2]{infinitesimalextension} for a proof). Using this, we see that for every formal moduli problem $F$ we obtain a fiber sequence
-\[
-F(A) \to F(A') \to F(k \oplus M[1])
-\]
-giving rise to a long exact sequence
-\[
-\pi_0(F(A)) \to \pi_0(F(A')) \to \pi_0(F(k \oplus M[1]))
-\]
-This allows to identify the set $\pi_0(F(k \oplus M[1]))$ as a parametrization of the space of obstructions of $F$ along the extension \eqref{eq extension}.
+\section{The tangent spectrum of a formal moduli problem}
 
-\section{Review of cdga and dglie algebras}
+We already remarked in Example \ref{eg elementary morphisms} that the family of objects $\{k \oplus k[n]\}_{n \ge 0}$ can be endowed with equivalences
+\[
+k \oplus k[n] \simeq \Omega( k \oplus k[n+1] )
+\]
+where the loop is taken in the pointed category $\mathbf{sAlg}_k^{\mathrm{aug}}$. In the language of \cite{ha}, this is a \emph{spectrum} in $\mathbf{sAlg}_k^{\mathrm{aug}}$, and the reader should think of it as the analogue of the sphere spectrum in the category of (augmented) simplicial $k$-algebras.
 
-Before discussing the main theorem of \cite{dagx} it will be convenient to review the general theory of commutative dg-algebras and dg Lie algebras, as we didn't discuss it so far. The reason to switch from the simplicial formalism to the dg-formalism is that we will need to work with certain constructions (such as the Chevalley-Eilenberg cochain complex and the Koszul duality functor) which are best understood in the dg-setting.
+Let $F \colon \mathbf{sArt}_k^{\mathrm{aug}} \to \sset$ be a formal moduli problem. Since $k$ is an initial object for $\mathbf{sArt}_k^{\mathrm{aug}}$ and $F(k)$ is weakly contractible by definition, we see that $F$ extends naturally to a functor landing in pointed simplicial sets, which we will denote again by $F$. Moreover, given any formal moduli problem $F \colon \mathbf{sArt}_k \to \sset_*$ we have a family of pointed spaces
+\[
+\{F(k \oplus k[n])\}_{n \ge 0}
+\]
+endowed with structural morphisms
+\[
+(F(k \oplus k[n])) \to \Omega F(k \oplus k[n+1])
+\]
+which are in fact equivalences. Therefore, we can associate to every formal moduli problem $F$ a spectrum in the category of spaces:
 
-\section{The tangent complex of a formal moduli problem}
+\begin{defin}
+Let $F$ be a formal moduli problem. The \emph{tangent spectrum} of $F$ is the spectrum:
+\[
+\mathbb T F := \{F(k \oplus k[n]\}_{n \ge 0}
+\]
+\end{defin}
+
+\begin{rmk}
+In particular the $0$-th space of this spectrum is $F(k[\varepsilon]/(\varepsilon^2))$. Since this is part of a spectrum, it is an infinite loop space. This can be seen as a deep motivation for the structure of $k$-vector space of the tangent space of a (underived) formal moduli space.
+\end{rmk}
+
+Proposition \ref{prop characterizing artinians} implies that every artinian object in $\mathbf{sAlg}_k^{\mathrm{aug}}$ can be obtained via a finite number of base changes along maps
+\[
+k \to k \oplus k[n]
+\]
+for various $n \ge 0$. Since we know the behaviour of a formal moduli problem over similar pullback squares, we deduce that a formal moduli problem $F$ is completely determined by its tangent spectrum $\mathbb T F$. As consequence, we can use the tangent spectrum to detect equivalences between formal moduli problem; this is a sort of ``linearization process'' and therefore it is quite interesting:
+
+\begin{prop}
+A morphism of formal moduli problem $f \colon F \to G$ is an equivalence if and only if the induced morphism $\mathbb T(f) \colon \mathbb T F \to \mathbb T G$ is an equivalence of spectra.
+\end{prop}
+
+\begin{proof}
+This is an exercise, but the reader can find the details in \cite[Proposition 1.2.10]{dagx}.
+\end{proof}
+
+We already have evidence of the fact that $\mathbb T F$ completely determines the formal moduli problem $F$. To complete our discussion of the main theorem of \cite{dagx}, we are left to explain the following facts:
+\begin{enumerate}
+\item $\mathbb T F[1]$ can be identified with a differential graded Lie algebra;
+\item every differential graded Lie algebra arises in this way.
+\end{enumerate}
+
+Let us make the following easy remark:
+
+\begin{lemma}
+The assignment $F \mapsto \mathbb T F$ defines a functor
+\[
+\mathbb T \colon \mathrm{Moduli}_k \to \mathrm{Sp}
+\]
+where $\mathrm{Sp}$ denotes the category of spectra in the category of spaces. Moreover, the functor $\mathbb T$ commutes with homotopy limits.
+\end{lemma}
+
+\begin{proof}
+This is essentially trivial, because homotopy limits can be computed objectwise.
+\end{proof}
+
+This implies that $\mathbb T F[1] \simeq \mathbb T(\Omega F)$, and therefore it is at least reasonable to expect that $\mathbb T F[1]$ carries a Lie algebra structure. To give complete proofs, however, it will be convenient to switch from the language of simplicial algebras to that of commutative differential graded algebras (this is possible because we are working in characteristic $0$).
+
+\section{Review of cdga and dgla}
+
+... definitions ... Maurer Cartan ...
+
+Let us denote by $\mathbf{CcoAlg}_k$ the category of cocommutative, coassociative and coaugmented coalgebras in the category $\mathbf{dgVect}_k$. It is possible to define a couple of adjoint functors
+\[
+\Omega_\kappa \colon \mathbf{CcoAlg}_k \rightleftarrows \mathbf{dgla}_k \colon \mathrm{B}_\kappa
+\]
+whose existence is implied, at a deep level, by Koszul duality theory. If we recall that the linear dual of a coaugmented coalgebra is an augmented algebra, we see that we obtain a functor
+\[
+C^* \colon \mathbf{dgla}_k \to (\mathbf{CAlg}_k^{\mathrm{aug}})^{\mathrm{op}}
+\]
+called the cohomological Chevalley-Eilenberg complex. We would like to have a right adjoint for $C^*$, but this is not possible... a way is to use $L_\infty$-algebras... or in a simpler way, to use the adjoint functor theorem...
+
+\section{The formal moduli problem associated to a dgla}
+
+Let $\mathfrak g_*$ be a differential graded Lie algebra. We define a formal moduli problem by the formula
+\[
+\Map(\mathfrak D(-), \mathfrak g_*) \colon \mathbf{dgArt}_k^{\mathrm{aug}} \to \sset
+\]
+
+\begin{lemma}
+This is a formal moduli problem.
+\end{lemma}
+
+\begin{thm}
+The two functors $\Map(\mathfrak D(-), \mathfrak g_*)$ and $\mathbb T(-)[1]$ define an equivalence of $\infty$-categories.
+\end{thm}
 
 \printbibliography[heading = local]
 
