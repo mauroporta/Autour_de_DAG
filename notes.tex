@@ -152,6 +152,9 @@
 \newcommand\dgCat{\ensuremath{\mathbf{dg\,Cat}}}
 \DeclareDocumentCommand\dgMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{dg\,Mod}}}
 \newcommand\sSet{\ensuremath{\simplicialCat{\Set}}}
+\newcommand{\sAlg}[1]{\ensuremath{\simplicialCat{\mathbf{Alg}}_{#1}}}
+\newcommand{\sAb}{\ensuremath{\simplicialCat{\mathbf{Ab}}}}
+\newcommand{\sMod}[1]{\ensuremath{\simplicialCat{\mathbf{Mod}}_{#1}}}
 \newcommand\simplicialCat[1]{\ensuremath{\mathbf{s\,\!#1}}}
 \newcommand\simp{\ensuremath{\mathbf{s}}}
 \DeclareDocumentCommand\grMod{g}{\ensuremath{\IfNoValueF{#1}{#1\mhyphen}\mathbf{gr-Mod}}}
@@ -162,18 +165,20 @@
 \newcommand\Coh{\mathrm{Coh}} % this is the stack, not the category
 \newcommand\Aff{\mathbf{Aff}}
 \newcommand\Fun{\mathbf{Fun}}
+\newcommand{\cdga}[1]{\mathbf{cdga}_{#1}} % feel free to modify the appearance of this.
+
+%hom sets, mapping spaces & co.
+\newcommand{\Hom}{\mathrm{Hom}}
+\DeclareMathOperator{\map}{\mathrm{map}}
+\DeclareMathOperator{\Map}{\mathrm{Map}}
+%\DeclareMathOperator{\dghom}[1]{Hom^{dg}_{#1}} % to be used uniquely for the internal hom of chain complexes
 
 %Miscellanea
-\newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Ext}{\mathrm{Ext}}
 \newcommand{\Tor}{\mathrm{Tor}}
 \DeclareMathOperator*\colim{colim}
-\newcommand{\Max}{\mathrm{Max}}
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Char}{\mathrm{char}}
-\newcommand{\dip}{\: \mathfrak D \:}
-\newcommand{\ndip}{\: \not \! \! \mathfrak D \:}
-\newcommand{\trdeg}{\text{trdeg}}
 \newcommand{\underscore}{\underline{\hphantom{\space{5}}}}
 \newcommand{\Os}{\mathscr O}
 \DeclareMathOperator{\coker}{\mathrm{coker}}
@@ -188,8 +193,6 @@
 \DeclareMathOperator{\Ho}{\mathrm{Ho} \,}
 \newcommand{\id}{\mathrm{id}}
 \DeclareMathOperator{\im}{\mathrm{Im} \,}
-\DeclareMathOperator{\map}{\mathrm{map}}
-\DeclareMathOperator{\Map}{\mathrm{Map}}
 \newcommand{\dalg}{\mathbf{dgAlg}_{\leq 0}}
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
@@ -334,24 +337,24 @@ Finally, the Appendices contain material which is somehow more foundational: we 
 
 \mainmatter
 
-\include{model-categories}
-\include{simplicial-localization}
-\include{quasicategories}
-\include{segal}
-\include{simplicial-presheaves}
-\include{higher-stacks}
-\include{dg}
+%\include{model-categories}
+%\include{simplicial-localization}
+%\include{quasicategories}
+%\include{segal}
+%\include{simplicial-presheaves}
+%\include{higher-stacks}
+%\include{dg}
 \include{affine-derived-schemes}
-\include{rperf}
-\include{higher-algebraic}
-\include{derived-loop}
+%%\include{rperf}
+%\include{higher-algebraic}
+%\include{derived-loop}
 \include{deformation}
-\include{nc-motives}
-
-\appendix
-
-\include{simplicial-sets}
-\include{algebras-and-modules}
-\include{enriched-categories}
+%\include{nc-motives}
+%
+%\appendix
+%
+%\include{simplicial-sets}
+%\include{algebras-and-modules}
+%\include{enriched-categories}
 
 \end{document}
