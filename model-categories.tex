@@ -5,7 +5,7 @@
 
 In this chapter we will introduce one of the main tools of this cycle of seminars, namely model categories. After an informal section concerning motivations coming from others areas of Mathematics, we will introduce the basic definitions and we will state the main theorems, sketching some proof. We will try, whenever possible and within our capacities, to explain the intuitions motivating the definitions, why we should expect a certain theorem to be true and so on; moreover, we selected four examples where we can test the result we will obtain:
 \begin{enumerate}
-\item simplicial sets $\sset$: this is the main example in homotopy theory; in a sense, we could say that simplicial sets stands to homotopy theory as sets stand to the whole mathematics (which can be seen as constructions on the topos $\Set$, in a very broad sense);
+\item simplicial sets $\sSet$: this is the main example in homotopy theory; in a sense, we could say that simplicial sets stands to homotopy theory as sets stand to the whole mathematics (which can be seen as constructions on the topos $\Set$, in a very broad sense);
 \item topological spaces: this is the ``continuous'' version of simplicial sets; for many purpose there is no distinction from the homotopy theory for topological spaces and the one for simplicial sets;
 \item chain complexes: this example relates homotopy theory to homological algebra. It gives the ``correct motivation'' for a bunch of facts; for example, that a homotopy of topological spaces gives rise to a chain homotopy between singular complexes;
 \item groupoids: this will be needed in future chapters; it also provides an interesting example where the model structure is uniquely determined by the weak equivalences.
@@ -732,10 +732,10 @@ In this section we collect some of the easiest examples of model categories. Eac
 
 \subsection{Simplicial sets}
 
-The theory of simplicial sets are at the core of homotopy theory. They are the first purely algebraic (combinatorial) model for the homotopy category of topological spaces we discovered. Appendix A contains a brief summary of this theory; more specific references are given there. Here we will simply describe the usual model structure given to $\sset$.
+The theory of simplicial sets are at the core of homotopy theory. They are the first purely algebraic (combinatorial) model for the homotopy category of topological spaces we discovered. Appendix A contains a brief summary of this theory; more specific references are given there. Here we will simply describe the usual model structure given to $\sSet$.
 
 \begin{thm} \label{thm model structure on sset}
-The following classes of maps in $\sset$ define a model structure:
+The following classes of maps in $\sSet$ define a model structure:
 \begin{itemize}
 \item weak equivalences are exactly those morphisms inducing isomorphisms between all the homotopy group (of the geometric realization);
 \item fibrations are Kan fibrations;
@@ -744,10 +744,10 @@ The following classes of maps in $\sset$ define a model structure:
 \end{thm}
 
 \begin{rmk}
-It's possible to give a purely combinatorial description of the model structure on $\sset$. To describe weak equivalences avoiding geometric realization, one has to use the notion of minimal Kan complex and minimal fibration. For an exposition of these notions, the reader is referred to \cite{may} or to \cite[I.10]{gj}.
+It's possible to give a purely combinatorial description of the model structure on $\sSet$. To describe weak equivalences avoiding geometric realization, one has to use the notion of minimal Kan complex and minimal fibration. For an exposition of these notions, the reader is referred to \cite{may} or to \cite[I.10]{gj}.
 \end{rmk}
 
-From this moment on, when we refer to a model structure on $\sset$ we will tacitly mean that of Theorem \ref{thm model structure on sset}. The proof of this Theorem is hard and we will simply outline the main ideas involved there. For the details, the reader is referred to the first chapter of \cite{gj} or to the third chapter 
+From this moment on, when we refer to a model structure on $\sSet$ we will tacitly mean that of Theorem \ref{thm model structure on sset}. The proof of this Theorem is hard and we will simply outline the main ideas involved there. For the details, the reader is referred to the first chapter of \cite{gj} or to the third chapter 
 
 \begin{proof}[Sketch of the proof]
 Coming soon...
@@ -756,7 +756,7 @@ Coming soon...
 At this point we can do some computation. Let's start with the computation of a cylinder object.
 
 \begin{prop}
-If $K \in \sset$ is a simplicial set, $K \times \Delta^1$ is a cylinder object for $K$.
+If $K \in \sSet$ is a simplicial set, $K \times \Delta^1$ is a cylinder object for $K$.
 \end{prop}
 
 \begin{proof}
@@ -783,7 +783,7 @@ which shows that $p \circ i$ is a factorization of the fold map $\nabla \colon K
 which is a homotopy equivalence ($|\Delta^1|$ is contractible), hence $p$ is a weak equivalence.
 \end{proof}
 
-We will see later that this proposition holds in full generality: the key point is that $\{\Delta^n\}_{n \in \N}$ is a cosimplicial object in $\sset$, and $\sset$ is enriched over itself.
+We will see later that this proposition holds in full generality: the key point is that $\{\Delta^n\}_{n \in \N}$ is a cosimplicial object in $\sSet$, and $\sSet$ is enriched over itself.
 
 \begin{prop}
 Let $K$ be a simplicial set. Then $\mathbf{hom}(\Delta^1,K)$ is a path object for $K$.
@@ -792,11 +792,11 @@ Let $K$ be a simplicial set. Then $\mathbf{hom}(\Delta^1,K)$ is a path object fo
 Simplicial sets have another model structure, called the \emph{Joyal model structure}. We won't use it in this chapter, but we will use it dealing with quasicategories (and the equivalence with simplicial categories).
 
 \begin{defin}
-Let $S \in \sset$; we define a simplicial category $\mathfrak C[S]$ as ...
+Let $S \in \sSet$; we define a simplicial category $\mathfrak C[S]$ as ...
 \end{defin}
 
 \begin{thm} \label{thm joyal model structure}
-$\sset$ has a model structure where:
+$\sSet$ has a model structure where:
 \begin{itemize}
 \item cofibrations is a monomorphism;
 \item a map $f \colon S \to S'$ is a weak equivalence if and only if the induced functor $\mathfrak C[S] \to \mathfrak C[S']$ is an equivalence of simplicial categories;
@@ -870,7 +870,7 @@ Using this result we can also identify the homotopy relation for maps starting f
 If $A$ is a CW-complex and $f,g \colon A \to X$ are continuous map, then $f$ is homotopic to $g$ if and only if they are homotopic in the topological sense.
 \end{prop}
 
-Finally, we can anticipate that the adjoint pair composed by geometric realization and singular complex induce an equivalence between $\mathrm{Ho}(\Top)$ and $\mathrm{Ho}(\sset)$. This will give an example of Quillen equivalence. We will return on this point in the next section.
+Finally, we can anticipate that the adjoint pair composed by geometric realization and singular complex induce an equivalence between $\mathrm{Ho}(\Top)$ and $\mathrm{Ho}(\sSet)$. This will give an example of Quillen equivalence. We will return on this point in the next section.
 
 Before passing on, we should at least remark that $\Top$ can be endowed with another model structure, where cofibrations are the inclusions $A \hookrightarrow X$ such that $A$ is a closed subspace of $X$ and the pair $(X,A)$ has the homotopy lifting property. These are called Hurewicz cofibrations. The weak equivalences are unchanged. This gives an example of a model category whose structure is not completely determined by weak equivalences.
 
@@ -1058,7 +1058,7 @@ i.e. $\Ext^m_R(A,B)$.
 
 \subsection{Groupoids} \label{model structure on groupoids}
 
-The category of groupoids will play a central role in these seminars, so we will explain in detail how to derive a model structure on $\grpd$ starting from that on $\sset$. For technical details, we will refer to the Appendix.
+The category of groupoids will play a central role in these seminars, so we will explain in detail how to derive a model structure on $\grpd$ starting from that on $\sSet$. For technical details, we will refer to the Appendix.
 
 \begin{thm} \label{thm model structure on groupoids}
 $\grpd$ has a model structure where
@@ -1160,7 +1160,7 @@ The other statement is dual.
 \end{proof}
 
 \begin{eg} \label{eg groupoids}
-The adjoint pair $\pi_f \colon \sset \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen pair. In fact ... (this is essentially the content of \cite[Lemma 3.3]{hollander})
+The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen pair. In fact ... (this is essentially the content of \cite[Lemma 3.3]{hollander})
 \end{eg}
 
 \begin{cor} \label{cor Quillen pair}
@@ -1271,7 +1271,7 @@ The existence of $\mathbf L F$ and $\mathbf R G$ is implied by Theorem \ref{thm 
 \end{proof}
 
 \begin{eg}
-Consider the geometric realization functor $|\cdot| \colon \sset \to \cghaus$; we know that $|\cdot|$ is left adjoint to the singular complex functor $\sing \colon \cghaus \to \sset$. Moreover, $|\cdot|$ preserves cofibrations (an inclusion of simplicial sets is sent to a cellular inclusion of CW-complexes) and trivial cofibrations (by definition, a map of simplicial sets is a weak equivalence if and only if its geometric realization is a weak equivalence in $\cghaus$). It follows that $(|\cdot|,\sing)$ is a Quillen pair. Moreover, a map $f \colon S \to \sing(X)$ is a weak equivalence if and only if $|f| \colon |S| \to |\sing(X)|$ is a weak equivalence; however, a classical result states that the counit $|\sing(X)| \to X$ is always a weak equivalence;\footnote{See for example \cite[Theorem 16.6]{may}.} it follows that $f$ is a weak equivalence if and only if the adjoint map $|S| \to X$ is a weak equivalence. Therefore $(|\cdot|,\sing)$ is a Quillen equivalence, and induce an equivalence between $\mathrm{Ho}(\sset)$ and $\mathrm{Ho}(\cghaus)$.
+Consider the geometric realization functor $|\cdot| \colon \sSet \to \cghaus$; we know that $|\cdot|$ is left adjoint to the singular complex functor $\sing \colon \cghaus \to \sSet$. Moreover, $|\cdot|$ preserves cofibrations (an inclusion of simplicial sets is sent to a cellular inclusion of CW-complexes) and trivial cofibrations (by definition, a map of simplicial sets is a weak equivalence if and only if its geometric realization is a weak equivalence in $\cghaus$). It follows that $(|\cdot|,\sing)$ is a Quillen pair. Moreover, a map $f \colon S \to \sing(X)$ is a weak equivalence if and only if $|f| \colon |S| \to |\sing(X)|$ is a weak equivalence; however, a classical result states that the counit $|\sing(X)| \to X$ is always a weak equivalence;\footnote{See for example \cite[Theorem 16.6]{may}.} it follows that $f$ is a weak equivalence if and only if the adjoint map $|S| \to X$ is a weak equivalence. Therefore $(|\cdot|,\sing)$ is a Quillen equivalence, and induce an equivalence between $\mathrm{Ho}(\sSet)$ and $\mathrm{Ho}(\cghaus)$.
 \end{eg}
 
 \subsection{Homotopy pushout} \label{homotopy pushout}
@@ -1594,15 +1594,15 @@ If one has some familiarity with the language of $(\infty,1)$-categories in the 
 \]
 which is a topological space or a simplicial set. However, in the language of quasicategories, the existence of such object is not obvious at all. Lurie propose at least three different models for this space; we will choose one of them for sake of clarity (and leave the details of these constructions to successive seminars): if $S$ is a quasicategory and $x,y$ are vertices, define
 \begin{equation} \label{eq lurie mapping space}
-\Hom_{\sset}(\Delta^n, \mathrm{Map}_S(x,y))\coloneqq \Hom_{\sset}^{x,y}(\Delta^n \times \Delta^1, S)
+\Hom_{\sSet}(\Delta^n, \mathrm{Map}_S(x,y))\coloneqq \Hom_{\sSet}^{x,y}(\Delta^n \times \Delta^1, S)
 \end{equation}
 where the apex means that we are considering only the maps $f$ such that
 \[
 f |_{\Delta^n \times 0} = x, \qquad f |_{\Delta^n \times 1} = y
 \]
-It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sset$ is defined
+It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sSet$ is defined
 \[
-\mathbf{Hom}(K,S)_n\coloneqq \Hom_{\sset}(K \times \Delta^n, S)
+\mathbf{Hom}(K,S)_n\coloneqq \Hom_{\sSet}(K \times \Delta^n, S)
 \]
 Thus \eqref{eq lurie mapping space} is nothing but the subcomplex of
 \[
@@ -1686,11 +1686,11 @@ which is a bisimplicial set. We can extract a simplicial set taking the diagonal
 \begin{rmk}
 Fix a cosimplicial object $\mathbf X$ in $\mathcal M$. Then we obtain a functor
 \[
-\mathcal M(\mathbf X, -) \colon \mathcal M \to \sset
+\mathcal M(\mathbf X, -) \colon \mathcal M \to \sSet
 \]
 It can be shown that this functor has a left adjoint, the so-called realization. Dually, for each simplicial object $\mathbf Y$ in $\mathcal M$, the functor
 \[
-\mathcal M(-,\mathbf Y) \colon \mathcal M \to \sset
+\mathcal M(-,\mathbf Y) \colon \mathcal M \to \sSet
 \]
 has a right adjoint, the corealization. We won't need this construction, so we refer the reader to \cite[Ch. 16.3]{hirschhorn} for the details.
 \end{rmk}
@@ -1948,8 +1948,8 @@ If $\mathcal M$ is a simplicial model category, then for each cofibrant object $
 
 In this way we can say that:
 \begin{enumerate}
-\item for $\sset$, $\mathrm{map}(X,Y)$ is just $\mathbf{hom}(\widetilde{X}, \widehat{Y})$, where $\widetilde{X}$ is a cofibrant approximation to $X$ and $\widehat{Y}$ is a fibrant approximation to $Y$;
-\item for $\ch(R)$, we can exploit the natural simplicial structure: $n$-simplices of $\sset(E,F)$ are the chain maps of degree $n$, i.e. elements of $\Hom(E,F[-i])$. It follows that $\pi_i \mathrm{map}(E,F) = \pi_0 \mathrm{map}(E,F[-i]) = \Hom_{D(R)}(E,F[-i])$ (using Proposition \ref{prop path component function complexes}).
+\item for $\sSet$, $\mathrm{map}(X,Y)$ is just $\mathbf{hom}(\widetilde{X}, \widehat{Y})$, where $\widetilde{X}$ is a cofibrant approximation to $X$ and $\widehat{Y}$ is a fibrant approximation to $Y$;
+\item for $\ch(R)$, we can exploit the natural simplicial structure: $n$-simplices of $\sSet(E,F)$ are the chain maps of degree $n$, i.e. elements of $\Hom(E,F[-i])$. It follows that $\pi_i \mathrm{map}(E,F) = \pi_0 \mathrm{map}(E,F[-i]) = \Hom_{D(R)}(E,F[-i])$ (using Proposition \ref{prop path component function complexes}).
 \end{enumerate}
 
 \subsection{Hammock localization}
@@ -2111,11 +2111,11 @@ To conclude this overview of the theory of Bousfield localizations we work out t
 First of all we invoke the following result:
 
 \begin{thm}
-$\sset$ is left proper and cellular
+$\sSet$ is left proper and cellular
 \end{thm}
 
 \begin{proof}
-In $\sset$ every object is cofibrant, hence it is left proper. For cellularity, see \cite[Proposition 12.1.4]{hirschhorn}.
+In $\sSet$ every object is cofibrant, hence it is left proper. For cellularity, see \cite[Proposition 12.1.4]{hirschhorn}.
 \end{proof}
 
 Using Theorem \ref{thm existence of bousfield localization} we conclude the existence of the left Bousfield localization with respect to any set of maps. We consider the set formed only by the inclusion map
@@ -2124,16 +2124,16 @@ Using Theorem \ref{thm existence of bousfield localization} we conclude the exis
 \]
 
 \begin{defin}
-The $S^2$-nullification of $\sset$ is the left Bousfield localization of $\sset$ with respect to the map $\alpha \colon \partial \Delta^3 \to \Delta^3$. We will denote this model category as $(S^2)^{-1} \sset$.
+The $S^2$-nullification of $\sSet$ is the left Bousfield localization of $\sSet$ with respect to the map $\alpha \colon \partial \Delta^3 \to \Delta^3$. We will denote this model category as $(S^2)^{-1} \sSet$.
 \end{defin}
 
-The goal of this example is to characterize the weak equivalences in $(S^2)^{-1} \sset$, that is, the local equivalences with respect to $\alpha$. More precisely, we want to prove the following result:
+The goal of this example is to characterize the weak equivalences in $(S^2)^{-1} \sSet$, that is, the local equivalences with respect to $\alpha$. More precisely, we want to prove the following result:
 
 \begin{prop} \label{prop S^2 nullification}
-The weak equivalences in $(S^2)^{-1} \sset$ are exactly those maps inducing an isomorphism on $\pi_0$ and $\pi_1$ at all base points.
+The weak equivalences in $(S^2)^{-1} \sSet$ are exactly those maps inducing an isomorphism on $\pi_0$ and $\pi_1$ at all base points.
 \end{prop}
 
-We will proceed in several steps. First of all, let's observe that, since we are considering a left Bousfield localization, the cofibrations are unchanged and weak equivalences extends the standard ones. In particular, it follows that for any object $Y \in \sset$,
+We will proceed in several steps. First of all, let's observe that, since we are considering a left Bousfield localization, the cofibrations are unchanged and weak equivalences extends the standard ones. In particular, it follows that for any object $Y \in \sSet$,
 \[
 \{Y \times \Delta^n\}_{n \in \N}
 \]
@@ -2143,7 +2143,7 @@ is still a cosimplicial resolution of $Y$; therefore we conclude that for any pa
 \]
 
 \begin{lemma} \label{lemma S^2 nullification 1}
-The functor $- \times \Delta^1 \colon (S^2)^{-1} \sset \to (S^2)^{-1} \sset$ preserves weak equivalences.
+The functor $- \times \Delta^1 \colon (S^2)^{-1} \sSet \to (S^2)^{-1} \sSet$ preserves weak equivalences.
 \end{lemma}
 
 \begin{proof}
@@ -2179,7 +2179,7 @@ The bottom row is a weak equivalence by hypothesis, and the vertical maps are we
 \end{proof}
 
 \begin{lemma} \label{lemma S^2 nullification 2}
-In $(S^2)^{-1} \sset$ the inclusion $\partial \Delta^n \to \Delta^n$ is a weak equivalence for every $n > 2$.
+In $(S^2)^{-1} \sSet$ the inclusion $\partial \Delta^n \to \Delta^n$ is a weak equivalence for every $n > 2$.
 \end{lemma}
 
 \begin{proof}
@@ -2197,7 +2197,7 @@ Then the vertical arrows are weak equivalences because $|\Delta^1|$ is contracti
 \end{proof}
 
 \begin{cor} \label{cor S^2 nullification}
-If $W$ is a $S^2$-local object, for any $Y \in \sset$ we have
+If $W$ is a $S^2$-local object, for any $Y \in \sSet$ we have
 \[
 \pi_n \mathbf{hom}(Y,W) = 0
 \]
@@ -2230,13 +2230,13 @@ Assume that $f \colon X \to Y$ is $S^2$-local and take a fibrant approximation $
 \[
 f_* \colon \mathbf{hom}(A,\widehat{X}) \to \mathbf{hom}(A,\widehat{Y})
 \]
-is a weak equivalence. In particular, taking $A = \Delta^0$ (since every object in $(S^2)^{-1} \sset$ is cofibrant), we deduce that $\widehat{f} \colon \widehat{X} \to \widehat{Y}$ is a standard weak equivalence.
+is a weak equivalence. In particular, taking $A = \Delta^0$ (since every object in $(S^2)^{-1} \sSet$ is cofibrant), we deduce that $\widehat{f} \colon \widehat{X} \to \widehat{Y}$ is a standard weak equivalence.
 
 Moreover, functoriality of $\pi_0$ and $\pi_1$ allows to reduce to the case of a map $f \colon X \to Y$ with $Y$ fibrant.
 \end{proof}
 
 \begin{thm} \label{thm groupoids nullification}
-The adjoint pair $\pi_f \colon \sset \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen equivalence between $\grpd$ and the $S^2$-nullification of $\sset$.
+The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen equivalence between $\grpd$ and the $S^2$-nullification of $\sSet$.
 \end{thm}
 
 \section{Complements to Chapter 1}
@@ -2351,7 +2351,7 @@ Let $\mathcal M$ be a model category.
 \end{cor}
 
 \begin{cor}
-$\sset$ and $\grpd$ are left proper; $\Top$ is right proper.
+$\sSet$ and $\grpd$ are left proper; $\Top$ is right proper.
 \end{cor}
 
 \subsection{Cofibrantly generated and combinatorial model categories}

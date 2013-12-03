@@ -58,7 +58,7 @@ One should think of weak equivalences between fibrant objects as equivalences of
 \end{proposition}
 
 \begin{remark}
-There is a Quillen adjunction $i_! \colon \sset \leftrightarrows \dset \colon i^*$ induced by the forgetful functor $i \colon \SDelta \to \SOmega$. Given an $\infty$-operad $O$ we will refer
+There is a Quillen adjunction $i_! \colon \sSet \leftrightarrows \dset \colon i^*$ induced by the forgetful functor $i \colon \SDelta \to \SOmega$. Given an $\infty$-operad $O$ we will refer
 to $i^*(O)$ as its underlying $\infty$-category.
 \end{remark}
 
@@ -123,7 +123,7 @@ As we promised in the introduction, the notion of weak algebraic structure that 
 Before studying $E_1$ or $E_{\infty}$ $\infty$-categories, it is already interesting to consider $E_1$ or $E_{\infty}$ spaces. The first interesting thing to remark is that $E_1$-spaces are the same as quasi-categories with only one 0-simplex, so that it is particularly easy to construct the looping/delooping adjunction.
 
 \begin{definition}
-There is a map $i \colon \SDelta\to E_1 \textrm{-} \sset$ sending $[n]$ to the discrete free monoid on $n$ elements. It induces a functor $E_1 \textrm{-} \sset \to \sset$ in the following way:
+There is a map $i \colon \SDelta\to E_1 \textrm{-} \sSet$ sending $[n]$ to the discrete free monoid on $n$ elements. It induces a functor $E_1 \textrm{-} \sSet \to \sSet$ in the following way:
 \[
 M \mapsto ([n] \mapsto \Hom(i(n),M)_0 )
 \]
@@ -135,22 +135,22 @@ It can be show that if $M$ is a weak monoid, then $\mathrm{B}M$ is an $\infty$-c
 \end{proposition}
 
 \begin{remark}
-So far we have a functor $\mathrm{B} \colon E_1 \textrm{-} \sset \to \Cat_{\infty,\bullet}$. The easiest way to build its adjoint $\Omega$ is to observe that $\Cat_{\infty, \bullet}$ is equivalent to the model category $\mathbf{sCat}_{\bullet}$ of pointed simplicial categories. We have the obvious functor $\Omega: \mathbf{sCat}_{\bullet} \to E_1\textrm{-} \sset$ sending a
+So far we have a functor $\mathrm{B} \colon E_1 \textrm{-} \sSet \to \Cat_{\infty,\bullet}$. The easiest way to build its adjoint $\Omega$ is to observe that $\Cat_{\infty, \bullet}$ is equivalent to the model category $\mathbf{sCat}_{\bullet}$ of pointed simplicial categories. We have the obvious functor $\Omega: \mathbf{sCat}_{\bullet} \to E_1\textrm{-} \sSet$ sending a
 pointed simplicial category $\C$ to the (strict) monoid $\Hom_{\C}(*,*)$.
 \end{remark}
 
-The looping/delooping adjunction identifies $E_1 \textrm{-} \sset$ with $\infty$-categories with one object and furthermore provides a strictification result for weak simplicial monoids. It is also clear that $\Omega \circ B \simeq Id$, whereas $\mathrm{B}(\Omega X) \simeq X$ only if X is connected.
+The looping/delooping adjunction identifies $E_1 \textrm{-} \sSet$ with $\infty$-categories with one object and furthermore provides a strictification result for weak simplicial monoids. It is also clear that $\Omega \circ B \simeq Id$, whereas $\mathrm{B}(\Omega X) \simeq X$ only if X is connected.
 
 \begin{proposition}
 Let $\M$ be a weak algebraic structure. If $G$ is a $E_1 \otimes \M$-simplicial set, then $\mathrm{B} M$ is an $\M$-simplicial set in a natural way.
 \end{proposition}
 
 \begin{proof}
-By Freyd's adjoint theorem, $\mathrm{B}$ has a left adjoint $\mathrm{L} \colon \sset \to E_1 \textrm{-} \sset$: it is the only colimits preserving functor that extends $i$. Therefore $\mathrm{B}$ is a monoidal functor (as both monoidal structures are cartesian) and so sends $\M \textrm{-} E_1 \textrm{-} \sset$ to $\M \textrm{-} \sset$.
+By Freyd's adjoint theorem, $\mathrm{B}$ has a left adjoint $\mathrm{L} \colon \sSet \to E_1 \textrm{-} \sSet$: it is the only colimits preserving functor that extends $i$. Therefore $\mathrm{B}$ is a monoidal functor (as both monoidal structures are cartesian) and so sends $\M \textrm{-} E_1 \textrm{-} \sSet$ to $\M \textrm{-} \sSet$.
 \end{proof}
 
 \begin{corollary}
-Let $E_{\infty}$ be the operad of abelian monoids. As $E_{\infty} \simeq E_{\infty} \otimes E_1$, the functor $\mathrm{B}$ induces a functor $E_{\infty} \textrm{-} \sset \to E_{\infty} \textrm{-} \sset$.
+Let $E_{\infty}$ be the operad of abelian monoids. As $E_{\infty} \simeq E_{\infty} \otimes E_1$, the functor $\mathrm{B}$ induces a functor $E_{\infty} \textrm{-} \sSet \to E_{\infty} \textrm{-} \sSet$.
 \end{corollary}
 
 \printbibliography[heading = local]
