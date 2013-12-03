@@ -207,20 +207,20 @@ Since the homotopy pullback of the map $A \oplus M[1] \to k \oplus M[1]$ along $
 Following \cite[Definition 1.1.5]{dagx}, we are led to introduce the following:
 
 \begin{defin}
-A morphism $B \to A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{elementary} if it is an infinitesimal extension of $A$ by $k[n]$ for some $n \ge 0$. A morphism $B \to A$ is said to be \emph{small} if it can be written as a finite composition of elementary morphisms. Finally, an object $A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{small} if the morphism $A \to k$ is small.
+A morphism $B \to A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{elementary} if it is an infinitesimal extension of $A$ by $k[-n]$ for some $n \ge 0$. A morphism $B \to A$ is said to be \emph{small} if it can be written as a finite composition of elementary morphisms. Finally, an object $A$ in $\mathbf{cdga}_{k,*}^{\le 0}$ is said to be \emph{small} if the morphism $A \to k$ is small.
 \end{defin}
 
 \begin{eg} \label{eg elementary morphisms}
-Each morphism $k \to k \oplus k[n]$ is elementary, in a trivial way. Slightly more interesting is the fact that each morphism $k \oplus k[n] \to k$. In fact, it is an useful exercise to check that
+Each morphism $k \to k \oplus k[-n]$ is elementary, in a trivial way. Slightly more interesting is the fact that each morphism $k \oplus k[-n] \to k$. In fact, it is an useful exercise to check that
 \[
 \xymatrix{
-k \oplus k[n] \ar[r] \ar[d] & k \ar[d] \\ k \ar[r] & k \oplus k[n+1]
+k \oplus k[-n] \ar[r] \ar[d] & k \ar[d] \\ k \ar[r] & k \oplus k[-n-1]
 }
 \]
-is a homotopy pullback. Observe that this is equivalent to say that $k \oplus k[n] \simeq \Omega( k \oplus k[n+1])$ in the pointed category $\mathbf{cdga}_{k,*}^{\le 0}$.
+is a homotopy pullback. Observe that this is equivalent to say that $k \oplus k[-n] \simeq \Omega( k \oplus k[-n-1])$ in the pointed category $\mathbf{cdga}_{k,*}^{\le 0}$.
 \end{eg}
 
-It follows from the definition that the category of small objects is essentially controlled (via pullbacks) by the objects $k \oplus k[n]$. It is more remarkable that the full subcategory $\mathbf{cdga}_{k, \mathrm{sm}}^{\le 0}$ of $\mathbf{cdga}_{k,*}^{\le 0}$ spanned by small objects \emph{coincides with $\mathbf{dgArt}_k$}:
+It follows from the definition that the category of small objects is essentially controlled (via pullbacks) by the objects $k \oplus k[-n]$. It is more remarkable that the full subcategory $\mathbf{cdga}_{k, \mathrm{sm}}^{\le 0}$ of $\mathbf{cdga}_{k,*}^{\le 0}$ spanned by small objects \emph{coincides with $\mathbf{dgArt}_k$}:
 
 \begin{prop} \label{prop characterizing artinians}
 For an object $A \in \mathbf{cdga}_k^{\le 0}$ the following conditions are equivalent
@@ -240,7 +240,7 @@ See \cite[Proposition 1.1.11]{dagx}.
 
 At this point we can introduce the notion of formal moduli problem:
 
-\begin{defin}
+\begin{defin} \label{def formal moduli}
 A \emph{formal moduli problem} is a functor $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset$ such that:
 \begin{enumerate}
 \item $F(k)$ is weakly contractible;
@@ -261,26 +261,26 @@ It can be shown that the category $\mathrm{Moduli}_k$ arises as a left Bousfield
 
 \section{The tangent spectrum of a formal moduli problem}
 
-We already remarked in Example \ref{eg elementary morphisms} that the family of objects $\{k \oplus k[n]\}_{n \ge 0}$ can be endowed with equivalences
+We already remarked in Example \ref{eg elementary morphisms} that the family of objects $\{k \oplus k[-n]\}_{n \ge 0}$ can be endowed with equivalences
 \[
-k \oplus k[n] \simeq \Omega( k \oplus k[n+1] )
+k \oplus k[-n] \simeq \Omega( k \oplus k[-n-1] )
 \]
 where the loop is taken in the pointed category $\mathbf{cdga}_{k,*}^{\le 0}$. In the language of \cite{ha}, this is a \emph{spectrum} in $\mathbf{cdga}_{k,*}^{\le 0}$, and the reader should think of it as the analogue of the sphere spectrum in the category of (augmented) simplicial $k$-algebras.
 
 Let $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset$ be a formal moduli problem. Since $k$ is an initial object for $\mathbf{dgArt}_k^{\le 0}$ and $F(k)$ is weakly contractible by definition, we see that $F$ extends naturally to a functor landing in pointed simplicial sets, which we will denote again by $F$. Moreover, given any formal moduli problem $F \colon \mathbf{dgArt}_k^{\le 0} \to \sset_*$ we have a family of pointed spaces
 \[
-\{F(k \oplus k[n])\}_{n \ge 0}
+\{F(k \oplus k[-n])\}_{n \ge 0}
 \]
 endowed with structural morphisms
 \[
-(F(k \oplus k[n])) \to \Omega F(k \oplus k[n+1])
+(F(k \oplus k[-n])) \to \Omega F(k \oplus k[-n-1])
 \]
 which are in fact equivalences. Therefore, we can associate to every formal moduli problem $F$ a spectrum in the category of spaces:
 
 \begin{defin}
 Let $F$ be a formal moduli problem. The \emph{tangent spectrum} of $F$ is the spectrum:
 \[
-\mathbb T F := \{F(k \oplus k[n])\}_{n \ge 0}
+\mathbb T F := \{F(k \oplus k[-n])\}_{n \ge 0}
 \]
 \end{defin}
 
@@ -290,7 +290,7 @@ In particular the $0$-th space of this spectrum is $F(k[\varepsilon]/(\varepsilo
 
 Proposition \ref{prop characterizing artinians} implies that every artinian object in $\mathbf{cdga}_{k,*}^{\le 0}$ can be obtained via a finite number of base changes along maps
 \[
-k \to k \oplus k[n]
+k \to k \oplus k[-n]
 \]
 for various $n \ge 0$. Since we know the behaviour of a formal moduli problem over similar pullback squares, we deduce that a formal moduli problem $F$ is completely determined by its tangent spectrum $\mathbb T F$. As consequence, we can use the tangent spectrum to detect equivalences between formal moduli problem; this is a sort of ``linearization process'' and therefore it is quite interesting:
 
@@ -302,13 +302,13 @@ A morphism of formal moduli problem $f \colon F \to G$ is an equivalence if and 
 This is an exercise, but the reader can find the details in \cite[Proposition 1.2.10]{dagx}.
 \end{proof}
 
-We already have evidence of the fact that $\mathbb T F$ completely determines the formal moduli problem $F$. To complete our discussion of the main theorem of \cite{dagx}, we are left to explain the following facts:
+So far, we have collected enough evidence that $\mathbb T F$ completely determines the formal moduli problem $F$. To complete our discussion of the main theorem of \cite{dagx}, we are left to explain the following facts:
 \begin{enumerate}
 \item $\mathbb T F[1]$ can be identified with a differential graded Lie algebra;
 \item every differential graded Lie algebra arises in this way.
 \end{enumerate}
 
-Let us make the following easy remark:
+The reader will remember the informal argument given in the introduction supporting the existence of a Lie structure on $\mathbb TF[1]$. We leave as an exercise to prove the following lemma, which was used there:
 
 \begin{lemma}
 The assignment $F \mapsto \mathbb T F$ defines a functor
@@ -318,21 +318,31 @@ The assignment $F \mapsto \mathbb T F$ defines a functor
 where $\mathrm{Sp}$ denotes the category of spectra in the category of spaces. Moreover, the functor $\mathbb T$ commutes with homotopy limits.
 \end{lemma}
 
-\begin{proof}
-This is essentially trivial, because homotopy limits can be computed objectwise.
-\end{proof}
+However, the rigorous proof of point 1.\ follows another path and, in fact, it is deduced from the second point; we think it is worth summarizing the strategy here, before getting involved in the algebraic details concerning Koszul duality. Assume we already have built a functor $\Psi$ associating to each differential graded Lie algebra a formal moduli problem and realizing an equivalence of categories between $\mathrm{Lie}_k$ (see Definition \ref{def dgla}) $\mathrm{Moduli}_k$ (see Definition \ref{def formal moduli}). Then, given a formal moduli problem $F$ the existence of a differential graded Lie structure on $\mathbb T F[1]$ can be obtained as follows: 
+\begin{enumerate}
+\item first choose a differential graded Lie algebra $\mathfrak g_*$ such that $F \simeq \Psi(\mathfrak g_*)$;
+\item observe that $\Omega (\mathbb T \Psi(\mathfrak g_*))$ is (equivalent to) the underlying \emph{chain complex} of $\mathfrak g_*$, so that it can be endowed \emph{a posteriori} with a differential graded Lie algebra structure.
+\end{enumerate}
 
-This implies that $\mathbb T F[1] \simeq \mathbb T(\Omega F)$, and therefore it is at least reasonable to expect that $\mathbb T F[1]$ carries a Lie algebra structure.
+The strategy itself claims for a small explanation: in fact, we are saying that the tangent spectrum $\Omega(\mathbb T \Psi(\mathfrak g_*))$ can be considered as a chain complex. Once this is clear, the second point of the outlined proof will be an easy consequence of the very definition of the functor $\Psi$.
 
-\section{The relationship between spectra and complexes}
+\begin{rmk}
+It is important to stress that the definition of the Lie structure on $\mathbb T F[1]$ for a formal moduli problem $F$ is a \emph{computationally hard} problem. The difficulty is of course given by the first point in the strategy we proposed: to determine an explicit differential graded Lie algebra $\mathfrak g_*$ realizing an equivalence $F \simeq \Psi(\mathfrak g_*)$ is not, in the practice, an easy task. The construction of the inverse of $\Psi$ can be obtained via the adjoint functor theorem for $(\infty,1)$-categories; any more explicit construction, however, has to pass through the formalism of $L_\infty$-algebras, as it will be clear from the discussion on Koszul duality.
+\end{rmk}
 
-In characteristic $0$ the two things can be identified... an explanation should be added...
+\subsection{Spectra vs chain complexes}
+
+Recall from Theorem \ref{thm Dold-Kan} that the Dold-Kan functor
+\[
+\mathrm{DK} \colon \dgMod{k}^{\le 0} \to \sMod{k}
+\]
+realizes a Quillen equivalence between the two model categories. Taking spectra on both sides, we will still have a Quillen equivalence 
 
 \begin{eg}
 If $F$ is the formal moduli problem associated to a cdga $A$ via $\Map(A,-)$, then its tangent complex corresponds to Andr\'e - Quillen cochains of $A$.
 \end{eg}
 
-\section{Review of cdga and dgla}
+\section{Review of dgla}
 
 We are left to understand why we should expect that every dgla arises as the tangent space of a formal moduli problem. To understand this, we should take a step back to Example \ref{eg hochschild}; in that example we had a concrete deformation problem and we observed that first-order deformation were controlled by the Maurer-Cartan equation. Basically, what one can attempt to do is to build a formal moduli problem out of a differential graded Lie algebra $\mathfrak g_*$ by considering a kind of ``functor of points'' which associates to a pointed cdga $(A,\mathfrak m_A)$ the set of solutions of the (higher) Maurer-Cartan equations in $\mathfrak m_A \otimes_k \mathfrak g_*$. Stated more formally, a natural choice for the moduli problem associated to $\mathfrak g_*$ would be
 \[
@@ -351,6 +361,10 @@ where $C_*(\mathfrak g_*)$ is the Chevalley-Eilenberg chain complex associated t
 C^* \colon \mathbf{dgla}_k \to (\mathbf{cdga}_k)^{\mathrm{op}}
 \]
 This functor doesn't have an adjoint on the nose, but it does when passing to the $\infty$-categories associated (if one wants to construct a functor the other way around on the level of model categories, he has necessarily to work with dg Lie algebras up-to-homotopy, that is with $L_\infty$ algebras).
+
+\begin{defin} \label{def dgla}
+aaaa
+\end{defin}
 
 \section{The formal moduli problem associated to a dgla}
 
