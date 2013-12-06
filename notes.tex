@@ -1,82 +1,39 @@
 \documentclass[a4paper]{memoir}
-\usepackage{xcolor}
-
-%General Settings
+\usepackage{hyperref}
+\hypersetup{hidelinks, bookmarksopen = true, bookmarksopenlevel = 1}
 
 \usepackage[english]{babel}
 \usepackage{enumitem}
-
-%Page layout
-%%%Packages
+\usepackage{graphicx}
 \usepackage{hyphenat}
 \usepackage{multirow}
-%\usepackage{fancyhdr}
-%\pagestyle{fancy}
+\usepackage{xparse}
 
-%%%Settings
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+% diagrams
+\usepackage[all,cmtip]{xy}
+\usepackage{tikz-cd}
 
-\makeevenhead{headings}{\thepage}{}{\leftmark}
-%\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
-%\fancyhead[RE]{\bfseries\footnotesize\nouppercase{\leftmark}}
-%\fancyhead[LO]{\bfseries\footnotesize\nouppercase{\rightmark}}
-%\setpapersize{A4}
-%\setmarginsrb{35mm}{10mm}{35mm}{10mm}%
-%             {12pt}{10mm}{5mm}{10mm}
-\setlrmarginsandblock{3cm}{3.5cm}{*}
-\setlength\marginparwidth{2.5cm}
-\checkandfixthelayout
-
-%Crossreferences
-%%%Packages
-
-%Mathematical Fonts
+% fonts
 \usepackage{amsthm}
 \usepackage{mathcomp}
 \usepackage[centertags]{amsmath}
 \usepackage{mathtools}
 \usepackage{calligra}
-
-%Diagrams and Pictures
-\usepackage[all,cmtip]{xy}
-\usepackage{graphicx}
-\usepackage{tikz-cd}
-
 \usepackage[T1]{fontenc}
 \usepackage[charter]{mathdesign}
 \usepackage[scaled]{beramono,berasans}
 \usepackage{eucal}
 \usepackage{microtype}
 
+% memoir settings
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
-\usepackage{hyperref}
-%%%Settings
-\hypersetup{hidelinks, bookmarksopen = true, bookmarksopenlevel = 1}
+\makeevenhead{headings}{\thepage}{}{\leftmark}
+\setlrmarginsandblock{3cm}{3.5cm}{*}
+\setlength\marginparwidth{2.5cm}
+\checkandfixthelayout
 
-%Bibliography settings
-%%%Packages
-\usepackage{csquotes}
-\usepackage[style = alphabetic, backend = biber, abbreviate = true, dateabbrev = long, alldates = long]{biblatex}
-%%%Settings
-\renewcommand*{\newunitpunct}{\addcomma\space} %Substitutes dots (.) with commas (,)
-\bibliography{bibliography} %Path of the bibliography
-\defbibheading{local}{\section*{References}}
-
-%Misc Packages
-\usepackage{xparse}
-
-%%%Todo notes
-%%%%%Packages
-%\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
-%%%%%Settings
-%\newcounter{todocounter}
-%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
-%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
-
-%Index settings
 \setcounter{tocdepth}{1}
 \renewcommand\chaptername{Expos\'e}
 \renewcommand\cftchaptername{Expos\'e }
@@ -90,17 +47,20 @@
 \makeatother
 
 
-%Cursive operators: sheaves Hom, Ext, Bil
-%\makeatletter
-%\def\@splitop#1#2\@nil{$\mathscr{#1}\!\!$\calligra#2\,\,}
-%\newcommand*\DeclareCursiveOperator[2]{%
-%  \newcommand#1{\mathop{\mbox{\@splitop#2\@nil}}\nolimits}}
-%\makeatother
-%\DeclareCursiveOperator{\EXT}{Ext}
-%\DeclareCursiveOperator{\HOM}{Hom}
-%\DeclareCursiveOperator{\BIL}{Bil}
+% bibliography
+\usepackage{csquotes}
+\usepackage[style = alphabetic, backend = biber, abbreviate = true, dateabbrev = long, alldates = long]{biblatex}
+\bibliography{bibliography}
+\defbibheading{local}{\section*{References}}
 
-%Environments
+%\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
+%\newcounter{todocounter}
+%\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter: Check this\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\expandthis{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter: Expand\IfNoValueF{#1}{: #1}}}
+%\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter: Fix this\IfNoValueF{#1}{: #1}}}
+
+% TODO these abbrevations should be removed, verbose is always better
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{theorem}[thm]{Theorem}
@@ -123,7 +83,7 @@
 \newtheorem{remark}[thm]{Remark}
 \newtheorem*{notation}{Notation}
 
-%Number sets, projective symbol
+% TODO one-letter commands are evil, these should be removed
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -132,7 +92,7 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\proj}{\mathbb{P}}
 
-%Categories
+% categories
 \newcommand{\Set}{\mathbf{Set}}
 \newcommand{\CRing}{\mathbf{CRing}}
 \newcommand{\Ab}{\mathbf{Ab}}
@@ -269,16 +229,19 @@
 
 \title{Autour de la G\'eom\'etrie Alg\'ebrique D\'eriv\'ee}
 \author{
-Organised by: \\[.2em]
-\hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speakers: \\[.2em]
-\hspace*{.5cm} Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\
-\hspace*{.5cm} Valerio~\textsc{Melani}, Mauro~\textsc{Porta},\\
-\hspace*{.5cm} Marco~\textsc{Robalo}, Pietro~\textsc{Vertechi},\\
-\hspace*{.5cm} Yan~\textsc{Zhao}
+  Organised by: \\[.2em]
+  \hspace*{.5cm} Gabriele~\textsc{Vezzosi} \\[.4em] Speakers: \\[.2em]
+  \hspace*{.5cm} Pieter \textsc{Belmans}, Brice~\textsc{Le Grignou}, \\
+  \hspace*{.5cm} Valerio~\textsc{Melani}, Mauro~\textsc{Porta},\\
+  \hspace*{.5cm} Marco~\textsc{Robalo}, Pietro~\textsc{Vertechi},\\
+  \hspace*{.5cm} Yan~\textsc{Zhao}
 }
 
+
 \begin{document}
+
 \pagenumbering{Alph}
+
 \begin{titlingpage}
   \vfill
   \hbox{
@@ -312,49 +275,50 @@ Organised by: \\[.2em]
 \renewcommand{\cfttocafterlisthook}{\cleardoublepage\pagestyle{headings}}
 \makeatother
 
-\frontmatter
 
-\tableofcontents*
+\frontmatter
 
 \pagestyle{headings}
 
-\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Preface}
+\include{preface}
 
-The purpose of these notes is to provide a written background for the seminars taught by the working group organized by Gabriele Vezzosi in the Spring of 2013. The main goal is to give a wide introduction to Derived Algebraic Geometry, starting from the very foundations. In the present notes, we added more details with respect to the expositions, to make easier for the not (yet) specialised reader to go over them.
+\tableofcontents*
 
-The work is organized as follows:
+\addcontentsline{toc}{chapter}{Introduction}
+\include{introduction}
 
-\begin{enumerate}
-\item Chapter 1 contains a survey of the theory of model categories: the homotopy category, function complexes, left and right (Bousfield) localizations, standard simplicial localization and hammock localization. The relative seminar has been taught the 3/15/2013 by Mauro Porta and Brice Legrignou;
-\item Chapter 2 contains a survey of all the known models for $(\infty,1)$-categories, and the details of three of those constructions (quasicategories, Segal categories and Segal spaces). The relative seminar will be taught the 3/22/2013 by Yan Zhao and Valerio Melani;
-\item Chapter 3 contains a survey of of the theory of simplicial presheaves and their application to the theory of (higher) stacks. The relative seminar has been taught the 3/29/2013 by Mauro Porta and Pietro Vertechi;
-\item
-\end{enumerate}
-
-Finally, the Appendices contain material which is somehow more foundational: we collected some basic results from the theory of simplicial sets, enriched category theory... Essentially because the authors wanted to learn all these theories in a better way.
-
-{\bfseries This is a work in progress}
 
 \mainmatter
 
-%\include{model-categories}
-%\include{simplicial-localization}
-%\include{quasicategories}
-%\include{segal}
-%\include{simplicial-presheaves}
-%\include{higher-stacks}
-%\include{dg}
+\part{Higher category theory}
+\include{model-categories}
+\include{simplicial-localization}
+\include{quasicategories}
+\include{segal}
+
+\part{Higher topos theory}
+\include{simplicial-presheaves}
+\include{higher-stacks}
+
+\part{Derived algebraic geometry}
+\include{dg}
 \include{affine-derived-schemes}
-%%\include{rperf}
-%\include{higher-algebraic}
-%\include{derived-loop}
+\include{rperf}
+\include{higher-algebraic} % TODO this seems to be at a weird position in the text
+
+\part{Advanced topics}
+\include{derived-loop}
 \include{deformation}
-%\include{nc-motives}
-%
-%\appendix
-%
-%\include{simplicial-sets}
-%\include{algebras-and-modules}
-%\include{enriched-categories}
+\include{nc-motives}
+
+
+\appendix
+
+\addcontentsline{toc}{part}{Appendices}
+\part*{Appendices}
+\include{simplicial-sets}
+\include{algebras-and-modules}
+\include{enriched-categories}
 
 \end{document}
