@@ -53,6 +53,15 @@
 \bibliography{bibliography}
 \defbibheading{local}{\section*{References}}
 
+% appendices
+\usepackage{appendix}
+\usepackage{chngcntr}
+\AtBeginEnvironment{subappendices}{%
+  \chapter*{Appendix}
+  \counterwithin{figure}{section}
+  \counterwithin{table}{section}
+}
+
 %\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
 %\newcounter{todocounter}
 %\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
@@ -296,19 +305,21 @@
 \include{simplicial-localization}
 \include{quasicategories}
 \include{segal}
-
-\part{Higher topos theory}
-\include{simplicial-presheaves}
-\include{higher-stacks}
+\include{dg}
+\include{higher-algebra}
 
 \part{Derived algebraic geometry}
-\include{dg}
+\include{simplicial-presheaves}
 \include{affine-derived-schemes}
+\include{higher-stacks}
 \include{rperf}
-\include{higher-algebraic} % TODO this seems to be at a weird position in the text
 
 \part{Advanced topics}
 \include{derived-loop}
+\include{higher-algebraic}
+\begin{subappendices}
+  \include{derived-symplectic}
+\end{subappendices}
 \include{deformation}
 \include{nc-motives}
 
@@ -318,7 +329,6 @@
 \addcontentsline{toc}{part}{Appendices}
 \part*{Appendices}
 \include{simplicial-sets}
-\include{algebras-and-modules}
 \include{enriched-categories}
 
 \end{document}
