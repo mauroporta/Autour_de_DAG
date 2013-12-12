@@ -53,15 +53,6 @@
 \bibliography{bibliography}
 \defbibheading{local}{\section*{References}}
 
-% appendices
-\usepackage{appendix}
-\usepackage{chngcntr}
-\AtBeginEnvironment{subappendices}{%
-  \chapter*{Appendix}
-  \counterwithin{figure}{section}
-  \counterwithin{table}{section}
-}
-
 %\usepackage[colorinlistoftodos, textsize = tiny, textwidth = 2cm]{todonotes}
 %\newcounter{todocounter}
 %\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter: Add reference\IfNoValueF{#1}{: #1}}}
@@ -306,6 +297,9 @@
 \include{quasicategories}
 \include{segal}
 \include{dg}
+\begin{subappendices}
+  \include{model-dg}
+\end{subappendices}
 \include{higher-algebra}
 
 \part{Derived algebraic geometry}
@@ -317,9 +311,7 @@
 \part{Advanced topics}
 \include{derived-loop}
 \include{higher-algebraic}
-\begin{subappendices}
-  \include{derived-symplectic}
-\end{subappendices}
+\include{derived-symplectic}
 \include{deformation}
 \include{nc-motives}
 
