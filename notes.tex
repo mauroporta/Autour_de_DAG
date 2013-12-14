@@ -65,6 +65,7 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{theorem}[thm]{Theorem}
 \newtheorem*{thm*}{Theorem}
+\newtheorem*{question}{Question}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{proposition}[thm]{Proposition}
@@ -224,6 +225,9 @@
 \newcommand{\stncmonoidalk}{\mathcal{S}\mathcal{H}_{nc}(k)^{\otimes}}
 \newcommand{\stncmonoidal}{\mathcal{S}\mathcal{H}_{nc}(S)^{\otimes}}
 \newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\llp}[1]{{}^{\pitchfork}#1}
+\newcommand{\rlp}[1]{#1^{\pitchfork}}
+\newcommand{\cofreg}[1]{\mathrm{cof}_{\mathrm{reg}}(#1)}
 
 %\includeonly{derived-loop}
 
@@ -293,34 +297,34 @@
 
 \part{Higher category theory}
 \include{model-categories}
-\include{simplicial-localization}
-\include{quasicategories}
-\include{segal}
-\include{dg}
-\begin{subappendices}
-  \include{model-dg}
-\end{subappendices}
-\include{higher-algebra}
-
-\part{Derived algebraic geometry}
-\include{simplicial-presheaves}
-\include{affine-derived-schemes}
-\include{higher-stacks}
-\include{rperf}
-
-\part{Advanced topics}
-\include{derived-loop}
-\include{higher-algebraic}
-\include{derived-symplectic}
-\include{deformation}
-\include{nc-motives}
-
-
+%\include{simplicial-localization}
+%\include{quasicategories}
+%\include{segal}
+%\include{dg}
+%\begin{subappendices}
+%  \include{model-dg}
+%\end{subappendices}
+%\include{higher-algebra}
+%
+%\part{Derived algebraic geometry}
+%\include{simplicial-presheaves}
+%\include{affine-derived-schemes}
+%\include{higher-stacks}
+%%\include{rperf}
+%
+%\part{Advanced topics}
+%\include{derived-loop}
+%\include{higher-algebraic}
+%\include{derived-symplectic}
+%\include{deformation}
+%\include{nc-motives}
+%
+%
 \appendix
-
+%
 \addcontentsline{toc}{part}{Appendices}
 \part*{Appendices}
 \include{simplicial-sets}
-\include{enriched-categories}
+%\include{enriched-categories}
 
 \end{document}

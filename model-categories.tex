@@ -1,130 +1,28 @@
 \chapter{Model categories}
 \chapterprecistoc{\textup{by} Mauro Porta}
 
-\begin{refsection}
-
-In this chapter we will introduce one of the main tools of this cycle of seminars, namely model categories. After an informal section concerning motivations coming from others areas of Mathematics, we will introduce the basic definitions and we will state the main theorems, sketching some proof. We will try, whenever possible and within our capacities, to explain the intuitions motivating the definitions, why we should expect a certain theorem to be true and so on; moreover, we selected four examples where we can test the result we will obtain:
-\begin{enumerate}
-\item simplicial sets $\sSet$: this is the main example in homotopy theory; in a sense, we could say that simplicial sets stands to homotopy theory as sets stand to the whole mathematics (which can be seen as constructions on the topos $\Set$, in a very broad sense);
-\item topological spaces: this is the ``continuous'' version of simplicial sets; for many purpose there is no distinction from the homotopy theory for topological spaces and the one for simplicial sets;
-\item chain complexes: this example relates homotopy theory to homological algebra. It gives the ``correct motivation'' for a bunch of facts; for example, that a homotopy of topological spaces gives rise to a chain homotopy between singular complexes;
-\item groupoids: this will be needed in future chapters; it also provides an interesting example where the model structure is uniquely determined by the weak equivalences.
-\end{enumerate}
-The main topics include the homotopy category, Quillen functors, Reedy categories and (co)simplicial resolutions, function complexes. The last part is devoted to the theory of localizations: Bousfield localization (and simplicial localization).
-
-There is finally a complement section containing some selected topics which couldn't be exposed during the seminar. Some of them is just a collection of definitions; in those case, a proper reference is indicated.
-
 \begin{flushright}
 Mauro Porta
 \end{flushright}
 
-\section{Motivations and main ideas}
+\begin{refsection}
 
-From a historical point of view, the theory of Model Categories was first introduced by D. Quillen in his foundational work \cite{quillen} with the purpose of unifying several constructions which are in common to several areas of Mathematics. To my best knowledge, these areas are
-\begin{enumerate}
-\item Algebraic Topology;
-\item Homological Algebra;
-\end{enumerate}
-I will spend a few words for each of them, in order to explain the main ideas that led to the work of Quillen.
+\section{Introduction}
 
-\subsection{Algebraic Topology} \label{algebraic topology}
+Model categories will play a prominent role throughout these notes both at theoretical and at computational level; the purpose of these notes is therefore to provide an introduction to the techniques of model category theory. However, even though it is not really necessary to know model categories in order to read these notes, we expect that many of the readers approaching them will be already familiar with many model categorical notions. As consequence, we will focus more on the advanced topics of the theory, paying notably attention to the notions of combinatorial model category, homotopy limits and colimits, mapping spaces and Bousfield localizations. With the exception of combinatorial model categories, everything else can be already found in Hirschhorn's book \cite{hirschhorn}; we will therefore often omit theoretical proofs giving a precise reference to that book, but on the other side we will do explicitly some calculations and examples that can be hardly found through the literature.
 
-The main goal of Algebraic Topology is the study (up-to homeomorphism) of topological spaces, with the aid of certain algebraic invariants. For our purpose, we can assume as definition of ``algebraic invariant'' the following:
-\begin{defin} \label{algebraic invariant}
-An algebraic invariant for topological spaces is just a functor $\mathcal H \colon \Top \to \mathbf A$, where $\mathbf A$ is some algebraic category.
-\end{defin}
-In fact, we will be more likely interested in a set of invariants (maybe with some mutual relations between); a perfect result would be to find such a set of (calculable) invariants describing completely topological spaces.
+D. Quillen introduced model categories in late sixties in his influential book \cite{quillen} and 
 
-For example, we can consider singular (co)homology, or homotopy groups. For example: to obtain the singular homology, one first consider the cosimplicial object in $\Top$
-\[
-\{|\Delta^n|\}_{n \in \N}
-\]
-and then defines for every $X \in \mathrm{Ob}(\Top)$:
-\[
-C_n^{\mathrm{sing}}(X) \coloneqq \Z \Hom_{\Top}(|\Delta^n|,X) \in \Ab
-\]
-Each $C_n^{\mathrm{sing}}$ is, accordingly to our Definition \ref{algebraic invariant}, an algebraic invariant. The cosimplicial structure on $\{|\Delta^n|\}_{n \in \N}$ produces interesting properties of the set of functors $\{C_n^{\mathrm{sing}}\}$; for example, they can be arranged in a complex $\{C_n^{\mathrm{sing}},d_n\}_{n \in \N}$. See \cite[Ch. 8.2]{weibel} (in particular Example 8.2.3) for the details of this construction; one then can use this complex to define the singular homology groups:
-\[
-H_n^{\mathrm{sing}}(X)\coloneqq H_n(C_\bullet^{\mathrm{sing}},d_n)
-\]
-Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[Ch. 2.2]{hatcher} for more details on computation tools).
+The reader should keep in mind two main examples: topological spaces (simplicial sets would be even better, if he has some familiarity with them) and chain complexes (over a base field).
 
-The homotopy groups construction shares the same philosophy, but it is more involved from a technical point of view. In this case, the group operation is not simply formal, but it reflects the structure of the topological space we are considering. This implies of course that homotopy groups carry more informations than singular homology groups, but they are also more difficult to compute.
-
-\begin{eg}
-Let $S$ be a compact orientable surface of genus $g \ge 2$. Then $S$ cannot be a topological group. The proof relies on the simple fact that if $g \ge 2$ then
-\[
-\pi_1(S) = \left\langle a_i,b_i \mid \prod_{i = 1}^g [a_i,b_i] = 1 \right\rangle
-\]
-which is not abelian; on the other side a simple Eckmann-Hilton argument shows that the first fundamental group of every topological group is abelian.
-\end{eg}
-
-Homotopy groups can identify almost completely certain kind of ``good'' spaces, namely CW-complexes. In fact, a classical result of Algebraic Topology, known as Whitehead's theorem says that:
-
-\begin{thm} \label{thm concrete whitehead}
-If a map $f \colon X \to Y$ between connected CW-complexes induces isomorphisms $f_* \colon \pi_n(X) \to \pi_n(Y)$ for all $n$, then $f$ is a homotopy equivalence.
-\end{thm}
-
-\begin{proof}
-See \cite[Thm 4.5]{hatcher}.
-\end{proof}
-
-Since one usually encounters only CW complexes in applications to other areas of Mathematics, Theorem \ref{thm concrete whitehead} can be considered as a really satisfying result.
-
-Keeping this result in mind, we can pass to the problem of computation of homotopy groups. In this case, we can exploit the ``weakness'' of the set of functors $\{\pi_n\}_{n \in \N}$; first of all they are defined only up to homotopy equivalence, hence we can replace every space with an homotopically equivalent one. But we can do a subtler thing: if a map $f \colon X \to Y$ is such that the induced morphisms $f_* \colon \pi_n(X) \to \pi_n(Y)$ are isomorphisms for every $n$, then we can replace $X$ with $Y$ and compute the homotopy groups of $Y$. This is not a different technique if we work only with CW-complexes because of Theorem \ref{thm concrete whitehead}; however, if $X$ is a general topological space, we can try to reduce to the CW-complex case, where more standard techniques are available. This is in fact always possible:
-
-\begin{thm} \label{thm CW approximation}
-For every topological space $X$, there exists a CW-complex $Z$ and a map $f \colon X \to Y$ such that $f_* \colon \pi_n(X) \to \pi_n(Y)$ is an isomorphism for every $n$.
-\end{thm}
-
-\begin{proof}
-See \cite[Prop. 4.13]{hatcher}.
-\end{proof}
-
-The previous reasoning shows then that it may be worth of to introduce the following definition:
-
-\begin{defin}
-A \emph{weak equivalence} in $\Top$ is a morphism $f \colon X \to Y$ such that the induced morphisms $f_* \colon \pi_n(X) \to \pi_n(Y)$ are isomorphisms for every $n$.
-\end{defin}
-
-To formalize the technique sketched before, we would like to have a category where weak equivalences are invertible. The construction, however, is not completely trivial; to avoid the need to change universe, we can observe that Theorem \ref{thm CW approximation} allows us to restrict ourselves to the full subcategory of CW-complexes; there Theorem \ref{thm concrete whitehead} shows that inverting weak equivalences produces the same result as quotienting by homotopy, except that in this case it is perfectly clear that we are not enlarging our universe.
-
-This construction motivates the construction of the homotopy category of a model category, as we will see later.
-
-\subsection{Homological Algebra}
-
-One could say in a very fancy way that Homological Algebra is the study of the lack of exactness of functors between abelian categories. Motivations, to my best knowledge, come from Algebraic Topology and Algebraic Geometry. In the first case, the relationship is self-evident: we attach to every topological space the complex of (co)chains, and we reason then in term of this complex. It becomes therefore useful to be able to manipulate chain complexes with general techniques. On the other side, in Algebraic Geometry, Homological Algebra shows up in a totally unexpected way.
-
-Recall that a scheme $(X,\mathscr O_X)$ is said to be regular at a point $x$ if the local ring $\mathscr O_{X,x}$ is regular, i.e.
-\[
-\dim_{\kappa(x)} \mathfrak m_x / \mathfrak m_x^2 = \mathrm{dim.Krull } \: \mathscr O_{X,x}
-\]
-The scheme is said to be regular if it is regular at each point. The hope is this notion of regularity is a local condition; however, it is not clear at all why we should be able to check the condition only over closed points. In fact, the proof of this fact relies on a theorem of Serre:
-
-\begin{thm} \label{thm regularity}
-If a noetherian local ring has finite global homological dimension, then it is a regular local ring.
-\end{thm}
-
-\begin{proof}
-See \cite{altman}, in particular Theorem 5.15 and Corollary 5.18.
-\end{proof}
-
-Other motivations come from Algebraic Geometry (like the considerations that lead to Verdier duality), but this is not the right place where to do a full review of them. Instead, we will shortly describe the main construction of elementary Homological Algebra, since it will be of some relevance in our next discussion about model categories.
-
-Let $F \colon \mathcal A \to \mathcal B$ be an additive functor between abelian categories, and let's assume that $F$ is left exact. Following Grothendieck (\cite{tohoku}, but cfr. also \cite[Ch. II]{weibel}) we say that a derived functor for $F$ is a cohomological $\delta$-functor which is universal in an appropriate sense. The classical existence theorem says that if $\mathcal A$ has enough injectives, then the derived functor always exists and it is obtained via the following procedure:
-\begin{enumerate}
-\item start with an object $A \in \Ob(\mathcal A)$;
-\item choose an injective resolution $A \to I^\bullet$ in $\ch(\mathcal A)$;
-\item define $R^i F\coloneqq H^i(F(I^\bullet))$.
-\end{enumerate}
-One technical difficulty in the proof that this gives back a universal cohomological $\delta$-functor is that our definition might depend on the choice of point 2. In fact, 
+The notion of $(\infty,1)$-category will be introduced in later chapters; however, we will use the na\"if idea in order to motivate several constructions in this expos\'e. Recall first of all that an $(\infty,1)$-category is a category with objects of every order such that each $n$-morphism is invertible whenever $n \ge 2$. In this section we will show that a model category is always endowed with a rich homotopical structure: for example, we can define a notion of homotopy between morphisms and of homotopy equivalence between objects, in such a way that we recover as particular case the classical notions (in both the topological and homological contexts). If we define inductively an $n$-morphism as a homotopy between two $(n-1)$-morphisms, we see that a model category could be thought as a (special) $(\infty,1)$-category. This is indeed the case, as we will see in more detail in Chapter 2. From this point of view, it is natural to expect that every higher categorical\footnote{As usual, in these notes, higher categorical means $(\infty,1)$-categorical.} construction can be carried out in the model theoretic setting. Among the basic invariants we can associate to an $(\infty,1)$-category $\mathcal C$ there is of course its homotopy category $\mathrm{Ho}(\mathcal C)$, which is an ordinary category sharing the same objects of $\mathcal C$ and whose morphisms are obtained by those of $\mathcal C$ quotienting by the homotopy equivalence relation. Other higher categorical constructions include homotopy limits and colimits and mapping spaces.
 
 \section{Model categories}
 
-Now that the motivational part is more or less settled, we can start getting serious with the theory of model categories. For sake of completeness, we recall some basic definitions from Category Theory (for more details the reader is referred to \cite{cwm}):
+For sake of completeness, we recall some basic definitions from category theory (for more details the reader is referred to \cite{cwm}):
 
 \begin{defin}
-Let $\mathcal C$ be any category. The arrow category of $\mathcal C$, denoted $\mathbf{Arr}(\mathcal C)$ is by definition the comma category $(\mathcal C \downarrow \mathcal C)$.
+Let $\mathcal C$ be any category. The \emph{arrow category} of $\mathcal C$, denoted $\mathbf{Arr}(\mathcal C)$ is by definition the comma category $(\mathcal C \downarrow \mathcal C)$. The objects of $\mathbf{Arr}(\mathcal C)$ will be denoted $\mathrm{Arr}(\mathcal C)$.
 \end{defin}
 
 \begin{rmk}
@@ -149,7 +47,7 @@ where $\mathbf{Arr}(\mathcal C) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\
 \end{rmk}
 
 \begin{defin}
-Let $\mathcal C$ be any category. An arrow $f \in \mathrm{Arr}(\mathcal C)$ is a retract of an arrow $g \in \mathrm{Arr}(\mathcal C)$ if it is a retract of an object in $\mathbf{Arr}(\mathcal C)$. 
+Let $\mathcal C$ be any category. An arrow $f \in \mathrm{Arr}(\mathcal C)$ \emph{is a retract of an arrow $g \in \mathrm{Arr}(\mathcal C)$} if it is a retract of an object in $\mathbf{Arr}(\mathcal C)$. 
 \end{defin}
 
 Explicitly, $f$ is a retract of $g$ if we are given a commutative diagram as the following:
@@ -161,14 +59,14 @@ A \ar@/^1.25pc/[rr]^{\mathrm{id}_A} \ar[d]^f \ar[r]^\alpha & C \ar[d]^g \ar[r]^\
 
 \begin{defin}
 Let $\mathcal C$ be any category and let $I,J$ be subcategories of $\mathbf{Arr}(\mathcal C)$.
-A functorial $(I,J)$-factorization for $\mathcal C$ is a \emph{strict} section of the restriction of the composition functor
+A \emph{functorial $(I,J)$-factorization} for $\mathcal C$ is a \emph{strict} section of the restriction of the composition functor
 \[
 \circ \colon I \times_{\mathbf d_1,\mathbf d_0} J \to \mathbf{Arr}(\mathcal C)
 \]
 \end{defin}
 
-\begin{defin}
-Let $\mathcal C$ be any category and let $i \colon A \to B$, $p \colon X \to Y$ be any two arrows in $\mathcal C$. We say that $i$ has the left lifting property (LLP) with respect to $p$ or, equivalently, that $f$ has the right lifting property (RLP) with respect to $i$ if and only if for each commutative square
+\begin{defin} \label{def LLP RLP}
+Let $\mathcal C$ be any category and let $i \colon A \to B$, $p \colon X \to Y$ be any two arrows in $\mathcal C$. We say that $i$ \emph{has the left lifting property (\textup{LLP}) with respect to $p$} or, equivalently, that \emph{$f$ has the right lifting property (\textup{RLP}) with respect to $i$} if and only if for each commutative square
 \[
 \xymatrix{ A \ar[d]_i \ar[r]^\alpha & X \ar[d]^p \\ B \ar[r]^\beta \ar@{.>}[ur]^h & Y }
 \]
@@ -176,7 +74,7 @@ the dotted lifting exists.
 \end{defin}
 
 \begin{defin}
-Let $\mathcal C$ be any category. A model structure on $\mathcal C$ is the given of three full subcategories $W$, $\fib$, $\cofib$ of $\mathbf{Arr}(\mathcal C)$ satisfying the following axioms:
+A \emph{model category} is an ordinary category $\mathcal M$ equipped with three full, isomorphism-closed subcategories $W$, $\fib$, $\cofib$ of $\mathbf{Arr}(\mathcal M)$ in such a way that the following axioms are satisfied:
 \begin{itemize}[leftmargin = 1.4 cm]
 \item[{\bfseries MC1.}] $\mathcal M$ is (small) complete and (small) cocomplete.
 \item[{\bfseries MC2.}] if $f,g,h$ are arrows satisfying $fg = h$ and two of them are in $W$, then so is the third;
@@ -188,24 +86,28 @@ We will denote by $(\mathcal C, W,\fib,\cofib)$ a category with a model structur
 \end{defin}
 
 \begin{rmk}
-In the original work of Quillen \cite{quillen} and in work of Dwyer and Spalinski \cite{dwsp} is required only the existence of \emph{finite} limits and a (not necessarily functorial) factorization. In these notes we will follow the more modern habit (cfr. \cite{hovey}, \cite{hirschhorn}, \cite{dhk}).
+In the original work of Quillen \cite{quillen} is required only the existence of \emph{finite} limits and a (not necessarily functorial) factorization. Our definition is conformal with \cite{hovey}, \cite{hirschhorn}, \cite{dhk}; however, the reader is warned that these variations exist.
 \end{rmk}
 
 \begin{eg}
-Let $\mathcal M$ be a model category. Then $\mathcal M^\mathrm{op}$ carries a model category structure in a natural way: weak equivalences in $\mathcal M^\mathrm{op}$ are the same as in $\mathcal M$; fibrations in $\mathcal M^\mathrm{op}$ are the cofibrations of $\mathcal M$, and cofibrations of $\mathcal M^\mathrm{op}$ are the fibrations of $\mathcal M$. The check that this defines a model structure is straightforward and it is left to the reader.
+Let $\mathcal M$ be a model category. Then $\mathcal M^\mathrm{op}$ carries a model category structure in a natural way: weak equivalences in $\mathcal M^\mathrm{op}$ are the same as in $\mathcal M$; fibrations in $\mathcal M^\mathrm{op}$ are the cofibrations of $\mathcal M$, and cofibrations of $\mathcal M^\mathrm{op}$ are the fibrations of $\mathcal M$. The check that this defines a model structure is straightforward and it is left to the reader. This tells us that the theory of model categories is self-dual and therefore every statement has a dual one obtained by interchanging the directions of arrows and fibrations with cofibrations.
 \end{eg}
 
 \begin{eg} \label{eg model structure overcategories}
-c %\expandthis{Induced model structure on overcategories}
+Let $\mathcal M$ be a model category. Then for any object $x \in \Ob(\mathcal M)$ the overcategory $(\mathcal M \downarrow x)$ has a model structure obtained declaring that a morphism
+\[
+\xymatrix{
+y \ar[rr]^f \ar[dr] & & z \ar[dl] \\ & x
+}
+\]
+is a weak equivalence (resp.\ a fibration, resp.\ a cofibration) if and only if $f$ is a weak equivalence (resp.\ a fibration, resp.\ a cofibration) in $\mathcal M$. An analogous statement holds for the undercategory $(x \downarrow \mathcal M)$.
 \end{eg}
 
-\begin{rmk}
-The previous example shows that the theory of model categories is self-dual. It follows that we can apply a duality argument to shorten proofs.
-\end{rmk}
+\begin{eg} \label{eg model structure set}
+Consider the category of sets $\Set$ and define $W$ to be $\mathrm{Arr}(\Set)$, cofibrations to be monomorphisms and fibrations to be epimorphisms. It is a straightforward exercise to check that the model category axioms are satisfied in this case. The reader might have fun in showing that there are other eight model structures on $\Set$.
+\end{eg}
 
-\begin{rmk}
-The axioms for a model category are overdetermined. As next Lemma will show, the knowledge of weak equivalences and fibrations completely determine the cofibrations.
-\end{rmk}
+The axioms for a model category overdetermine the structure. As next Lemma shows, the knowledge of weak equivalences and fibrations completely determine the cofibrations.
 
 \begin{lemma}
 Let $\mathcal M$ be a model category. Then:
@@ -217,7 +119,7 @@ Let $\mathcal M$ be a model category. Then:
 \end{enumerate}
 \end{lemma}
 
-\begin{proof}[Sketch of the proof.]
+\begin{proof}
 The proof of 3. and 4. is dual to that of 1. and 2.; we will sketch 1., and 2. will be analogous. One inclusion is by definition; assume that $f$ has the RLP with respect to all trivial cofibrations; factorize $f$ as $pi$ where $i$ is a trivial cofibration and $p$ is a fibration. Choose a lifting $h$ in the diagram
 \[
 \xymatrix{
@@ -233,6 +135,10 @@ and observe now that the diagram
 express $f$ as retract of $i$. This implies that $f$ is a fibration.
 \end{proof}
 
+\begin{rmk}
+The reader might ask himself whether weak equivalences completely determine the model structure or not. In general, the answer is negative: an easy counterexample is given by the category of chain complexes over a field $\mathbf{Ch}_k$, which can be endowed with both the projective and the injective model structure (see section \ref{chain complexes}). However, we would like to stress that from the perspective of these notes, two different model structures sharing the same weak equivalences should be thought as equivalent, in the sense that they determine the same ``homotopy theory''. To give a precise formulation of this statement, however, we will need both the notion of $(\infty,1)$-category and the simplicial localization technique, so we leave this as a remark for the moment.
+\end{rmk}
+
 \begin{cor} \label{cor stability for base and cobase change}
 Let $\mathcal M$ be a model category. Then
 \begin{enumerate}
@@ -240,10 +146,6 @@ Let $\mathcal M$ be a model category. Then
 \item $\cofib$ is closed under pushout.
 \end{enumerate}
 \end{cor}
-
-\begin{rmk}
-As general philosophy, in a model category we care the most about weak equivalences. However, fibrations and cofibrations are useful at a technical level, since they allow particular constructions (see the homotopy category construction, for example). Also, it is absolutely not true that weak equivalences determine in general the whole model structure: we can endow $\mathbf{CGHaus}$ with at least two different model structures having the same weak equivalences (see the section about examples for the details). However, there are remarkable exceptions: $\Cat$ and $\grpd$ have a uniquely determined model structure where weak equivalences are equivalences of categories. See the complements to this chapter for a detailed proof.
-\end{rmk}
 
 Before ending this section, we introduce a few more concepts that will turn useful later on.
 
@@ -265,6 +167,7 @@ commutes;
 \]
 commutes.
 \end{enumerate}
+We will denote by $\mathcal M_c$ (resp.\ $\mathcal M_f$, resp.\ $\mathcal M_{cf}$) the full subcategory of $\mathcal M$ whose objects are the cofibrant (resp.\ fibrant, resp.\ fibrant and cofibrant) of $\mathcal M$.
 \end{defin}
 
 \begin{prop} \label{prop approximations}
@@ -276,17 +179,11 @@ Let $\mathcal M$ be a model category. Then:
 \end{enumerate}
 \end{prop}
 
-\begin{proof}[Sketch of the proof.]
+\begin{proof}
 1. is a consequence of the factorization axiom. 2. and 3. follows from the lifting properties of cofibrations with respect to trivial fibrations. 
 \end{proof}
 
-\begin{rmk}
-We leave to the reader to state the dual of Proposition \ref{prop approximations}.
-\end{rmk}
-
-\begin{rmk}
-Proposition \ref{prop approximations} is the analogue, in our abstract setting of Theorem \ref{thm CW approximation} (cellular approximation for topological spaces). We will return on this analogy in the examples.
-\end{rmk}
+We leave to the reader to state the dual of Proposition \ref{prop approximations}. We conclude this section with the following Lemma, due to Ken Brown, which is quite useful in several situations:
 
 \begin{lemma} \label{lemma Ken Brown}
 Let $\mathcal M$ be a model category and let $\mathcal C$ be a category with a subcategory $S \subset \mathbf{Arr}(\mathcal M)$ containing all the identities and satisfying the 2-out-of-3 axiom. If $F \colon \mathcal M \to \mathcal C$ is a functor that takes acyclic cofibrations between cofibrant objects to elements of $S$, then $F$ takes every weak equivalence between cofibrant objects to elements of $S$. Dually, if $F$ takes acyclic fibrations between fibrant objects to elements of $S$, then $F$ takes every weak equivalence between fibrant objects to elements of $S$.
@@ -310,13 +207,44 @@ are cofibrations. By the 2-out-of-3 axiom, both $q \circ i_0$ and $q \circ i_1$ 
 
 \section{The homotopy category} \label{homotopy category}
 
-\subsection{Exposition of the problem}
+\subsection{Motivations}
 
-As we will see later on in this cycle of seminars, model categories gives a powerful framework to deal with higher homotopies. In this sense, their theory is absolutely necessary for the theory of $(\infty,1)$-categories as exposed, for example, in \cite{htt}. The homotopy category is a way to extract (first order) homotopical informations from the model category $\mathcal M$. In any case, the passage from the model category to its homotopy category produces a loss of informations. We will see later on how to associate other invariants to any model category.
+It is often claimed that a model category is a good place where to do homotopy theory and, indeed, we were saying something similar in the introduction. Concretely, this means that the presence of a model structure enables us to perform many homotopical constructions inside the model category, which resemble and generalize the topological or homological ones. In this section we introduce several homotopical notions and use them to build a basic invariant that can be attached to every model category: its homotopy category.
 
-Besides this general philosophy about the relationship between a model category and its homotopy category, we can give a more concrete idea of what we are going to do: roughly speaking, the main goal is to describe a general procedure to invert weak equivalences in an arbitrary model category $\mathcal M$, without enlarging the Grothendieck universe we fixed at the beginning; the way to do that, will be to imitate the general procedure described in \ref{algebraic topology}.
+Before getting into the technical details, we think it is worth to give some motivation for the homotopy category. In algebraic topology, one is often concerned only with the ``homotopy type'' of a (sufficiently nice) topological space rather than the topological space itself. To define what is a homotopy type, recall first of all that a weak homotopy equivalence is a map $f \colon X \to Y$ such that $\pi_n(f)$ is an isomorphism for every $n \in \N$; a \emph{homotopy type} is therefore defined to be an equivalence class of topological spaces with respect to the relation generated by weak homotopy equivalences. Let us remark that this definition involves some subtleties: first of all, one might be tempted to say that a homotopy type is completely determined by its homotopy groups (which are indeed well defined). This is not the case, as the following counterexample shows:
 
-Let's get serious now:
+\begin{eg}
+Consider the (real) $2$-projective space $\R \mathrm{P}^2$ and  $\mathcal{S}^2 \times \R \mathrm{P}^\infty$, where $\mathcal{S}^2$ is the (real) $2$-sphere. These two CW-complexes have first fundamental group equal to $\Z / 2 \Z$ and their universal covers are $\mathcal{S}^2$ and $\mathcal{S}^2 \times \mathcal{S}^\infty$, which are homotopically equivalent (since $\mathcal{S}^\infty$ is contractible); therefore $\pi_n(\R \mathrm{P}^2) \simeq \pi_n(\mathcal{S}^2 \times \R \mathrm{P}^\infty)$ for every $n \ge 2$ using \cite[Proposition 4.1]{hatcher}. On the other side, $\mathcal{S}^2 \times \R \mathrm{P}^\infty$ has infinitely many non-vanishing homology groups, since it retracts onto $\R \mathrm{P}^\infty$. Since homology is homotopy invariant, it follows that $\R \mathrm{P}^2$ and $\mathcal{S}^2 \times \R \mathrm{P}^\infty$ cannot be homotopy equivalent.
+\end{eg}
+
+A part from this, a basic issue with the definition of homotopy type is that the relation we are considering is not symmetric, a simple counterexample being given by $\mathcal{S}^1$ and the pseudocircle $\mathbb S$. The smallest equivalence relation containing all the weak homotopy equivalences is obtained by considering zig-zag of homotopy equivalences. One could wish for a successive step, and try to form a ``category of homotopy types''; the natural way to do this is to take as objects the homotopy types and as arrows from $[X]$ to $[Y]$ zig-zag of maps
+\[
+X = X_0 \leftarrow X_1 \rightarrow \ldots \leftarrow X_{n-1} \rightarrow X_n = Y
+\]
+where all the maps going to the left are assumed to be weak equivalences. This construction is precisely the explicit construction of the (Gabriel-Zisman) localization of $\mathbf{CGHaus}$ at the class of weak homotopy equivalences; it is in fact clear that a way to form the category of homotopy types is to formally invert weak homotopy equivalences, i.e.\ to declare them to be isomorphisms. The main problem with this construction, is that \emph{a priori} such a category might not exist in the Grothendieck universe we fixed at the beginning; the problem here is that we are considering arbitrarily large zig-zag of morphisms. To solve this issue, one can classically proceed in two steps:
+\begin{enumerate}
+\item first, show that every equivalence class $[X]$ contains a nice enough representative, such as a CW-complex (this is the content of CW-approximation);
+\item next shows that a map between CW-complexes in the homotopy category is always represented by a map of topological spaces (this is essentially the content of Whitehead's theorem).
+\end{enumerate}
+At this point, one can restrict himself to consider the category of CW-complexes (in virtue of step 1.) and then observe that, since weak homotopy equivalences coincide precisely with homotopy equivalences, to invert the former is the same as to quotient by the equivalence induced by the latter.
+
+The homotopy category of a model category can be seen as a generalization of this process, and the inexperienced reader can think that the final goal of this section is to formalize and complete the technical gaps in the above construction. However, there is at least another way of reading this section, at least once one is familiar with the (intuitive) notion of $(\infty,1)$-category: one could argue, in fact, that the construction of the homotopy category is simply an \emph{escamotage} to introduce in a coherent way several homotopical notions, such as cylinder and path objects and homotopies between maps. This is rather interesting, because the existence of such notions is already a hint of the fact that model categories have enough structure to give rise to an $(\infty,1)$-category; in fact, one could define ``$n$-morphisms'' in $\mathcal M$ in an inductive way, saying that an $n$-morphism is a homotopy between two $(n-1)$-morphisms. One could try to organize these higher morphisms into spaces parametrizing them (this is what we will accomplish via the theory of mapping spaces), ending up with a topological (or simplicial) category. From this point of view, the homotopy category is simply the higher categorical construction that kills all the higher homotopies, giving back an ordinary category which can be seen as a homotopy invariant\footnote{The reader should note that this homotopy invariance is with respect to equivalence of $(\infty,1)$-categories.} of the $(\infty,1)$-category we started with; this perspective makes also really clear why the passage to the homotopy category loses so many informations.
+
+\subsection{The formal definition}
+
+Recall first of all the notion of localization \emph{\`a la Gabriel-Zisman}.
+
+\begin{defin}
+Let $\alpha$ be a cardinal. An $\alpha$-category is a category $\mathcal C$ such that the cardinality of $\mathrm{Arr}(\mathcal C)$ is strictly less than $\alpha$.
+\end{defin}
+
+\begin{rmk}
+If $\alpha$ is a regular cardinal, the previous definition is equivalent to ask that $\mathrm{Ob}(\mathcal C)$ is $\alpha$-small and moreover $\mathcal C$ is locally $\alpha$-small, i.e.\ that for every couple of objects $x$ and $y$ in $\mathcal C$ the set $\Hom_{\mathcal C}(x,y)$ is $\alpha$-small.
+\end{rmk}
+
+\begin{rmk}
+By a Grothendieck universe we will mean a strongly inaccessible cardinal.
+\end{rmk}
 
 \begin{defin} \label{def localization}
 Let $\mathbb U \subset \mathbb V$ be Grothendieck universes and let $\mathcal C$ be a $\mathbb U$-small category. Let $S \subset \mathrm{Arr}(\mathcal C)$ be a set of arrows. A \emph{$\mathbb V$-localization of $\mathcal C$ with respect to $S$} is a $\mathbb V$-small category $\mathcal C[S^{-1}]$ together with a functor $F_S \colon \mathcal C \to \mathcal C[S^{-1}]$ such that
@@ -332,182 +260,92 @@ F_S^* \colon \mathbf{Funct}(\mathcal C[S^{-1}],\mathcal A) \to \mathbf{Funct}(\m
 \]
 is fully faithful.
 \end{enumerate}
+If $\mathcal C$ is a $\mathbb U$-category and $S \subset \mathrm{Arr}(\mathcal C)$ is a set of arrows, we will say that a functor $F \colon \mathcal C \to \mathcal D$ is a localization of $\mathcal C$ at $S$ if it is a $\mathbb V$-localization at $S$ for some Grothendieck universe $\mathbb V$.
 \end{defin}
 
 \begin{rmk}
-This definition differs a little from those given in \cite{gz} and in \cite{weibel} because of the natural isomorphism $\eta_G$. However, this matches better the philosophy of category theory; a similar definition can be found in \cite[Ch. 7.1]{kashiwara}.
-\end{rmk}
-
-\begin{rmk}
-The purpose of point 3. is to ensure the uniqueness of the factorization $G_S$, as well as that of the natural isomorphism $\eta_G$.
-\end{rmk}
-
-\begin{rmk}
-It can be shown that given $\mathbb U$, $\mathcal C$ and $S$ as in the previous definition there is always $\mathbb V$ such that a $\mathbb V$-localization exists. This is proved for example in \cite[I.1]{gz}.
+This definition differs a little from those given in \cite{gz} and in \cite{weibel} because of the natural isomorphism $\eta_G$. However, this matches better the philosophy of category theory; a similar definition can be found in \cite[Ch. 7.1]{kashiwara}. The purpose of point 3. is to ensure the uniqueness of the factorization $G_S$, as well as that of the natural isomorphism $\eta_G$.
 \end{rmk}
 
 \begin{rmk} \label{remark enlarging universe}
-Let $\mathbb U \subset \mathbb V$ be Grothendieck universes. If $\mathcal C$ and $S$ are as in Definition \ref{def localization} and $\mathcal C[S^{-1}]$ is a $\mathbb V$-localization of $\mathcal C$ at $S$, then, for every Grothendieck universe $\mathbb V \subset \mathbb W$, $\mathcal C[S^{-1}]$ is also a $\mathbb W$-localization of $\mathcal C$ at $S$.
+It can be shown that given $\mathbb U$, $\mathcal C$ and $S$ as in the previous definition there is always $\mathbb V$ such that a $\mathbb V$-localization exists. This is proved for example in \cite[I.1]{gz}. Moreover, if $\mathbb U \subset \mathbb V$ are Grothendieck universes and $\mathcal C$ and $S$ are as in Definition \ref{def localization}, then a $\mathbb V$-localization $\mathcal C[S^{-1}]$ of $\mathcal C$ at $S$, is a $\mathbb W$-localization of $\mathcal C$ at $S$ for every Grothendieck universe $\mathbb V \subset \mathbb W$.
 \end{rmk}
 
-With this terminology, the main goal of this section becomes to provide a proof of the following theorem:
+At this point, we can already formulate the first definition of the homotopy category of a model category $\mathcal M$:
 
-\begin{thm} \label{thm homotopy localization}
-Let $\mathbb U$ be a Grothendieck universe and let $\mathcal M$ be a model category. Then there exists a $\mathbb U$-localization of $\mathcal M$ with respect to the set of weak equivalences $W$.
-\end{thm}
-
-\subsection{Localizing subcategories}
-
-To prove Theorem \ref{thm homotopy localization}, we will follow the exposition given in \cite{dhk}, using the refined version that can be found in \cite{riehl}.  First of all, let us introduce a definition:
-
-\begin{defin} \label{def localizing subcategories}
-Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. We say that $\mathcal C_0$ is a left (resp. right) deformation retract of $\mathcal C$ with respect to $\mathbf W$ if there exists a functor $R \colon \mathcal C \to \mathcal C_0$ and a natural transformation $s \colon R \to \mathrm{Id}_{\mathcal C}$ (resp. $s \colon \mathrm{Id}_{\mathcal C} \to R$) such that:
-\begin{enumerate}
-\item $R$ sends $\mathbf W$ into $\mathbf W \cap \mathcal C_0$;
-\item for every object $C \in \Ob(\mathcal C)$, the map $s_C$ is in $\mathbf W$;
-\item for every object $C_0 \in \Ob(\mathcal C_0)$, the map $s_{C_0}$ is in $\mathbf W \cap \mathcal C_0$.
-\end{enumerate}
-The pair $(R,s)$ is called a left (resp. right) deformation retraction from $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. If $\mathbf W = \mathcal C$, we will say that $(R,s)$ is an absolute deformation retraction of $\mathcal C$ to $\mathcal C_0$.
+\begin{defin}
+Let $\mathcal M$ be a model category and let $W$ be the class of weak equivalences of $\mathcal M$. The \emph{homotopy category of $\mathcal M$} is the localization of $\mathcal M$ at $W$ and it is denoted $\mathrm{Ho}(\mathcal M)$.
 \end{defin}
 
-\begin{lemma} \label{lemma localizing subcategories}
-Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. Let $R \colon \mathcal C \to \mathcal C_0$ be an absolute left deformation retraction. Assume that for every object $C \in \Ob(\mathcal C)$ the map $s_C$ is in $\mathbf W$; if $\mathbf W$ satisfies the 2-out-of-3 then $R$ sends $\mathbf W$ into $\mathbf W \cap \mathcal C_0$. If $\mathcal C_0$ is a full subcategory, then for every $C_0 \in \Ob(\mathcal C_0)$, the map $s_{C_0}$ is in $\mathbf W \cap \mathcal C_0$.
-\end{lemma}
+As we were saying at the beginning, it is not clear at all why the homotopy category of $\mathcal M$ should exist in the same Grothendieck universe of $\mathcal M$. This deserves therefore to be stated as a theorem, and it will be the guiding line of this section to provide a proof of it:
 
-\begin{proof}
-Let $f \colon A \to B$ be an arrow in $\mathbf W$; consider the commutative square
-\[
-\xymatrix{
-R(A) \ar[d]^{R(f)} \ar[r]^{s_A} & A \ar[d]^f \\ R(B) \ar[r]^{s_B} & B
-}
-\]
-Then $f \circ s_A$ and $s_B$ are in $\mathbf W$; the 2-out-of-3 implies that $R(f)$ is in $\mathbf W$. The second statement is trivial, since $s_{C_0} \colon R(C_0) \to C_0$ is an arrow between objects of $\mathcal C_0$.
-\end{proof}
-
-\begin{prop} \label{prop localizing subcategories}
-Let $\mathcal C$ be a category and let $\mathcal C_0, \mathbf W \subset \mathcal C$ be subcategories; write $\mathbf W_0\coloneqq \mathcal C_0 \cap \mathbf W$. Let $(R,s)$ be a left (or right) deformation retraction of $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. Let $\mathbb V$ be a Grothendieck universe where the localizations $\mathcal C[\mathbf W^{-1}]$ exist. Then
-\begin{enumerate}
-\item the induced inclusion $\mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$ is an equivalence of categories;
-\item $\mathcal C[\mathbf W^{-1}]$ exists if and only if $\mathcal C_0[\mathbf W_0^{-1}]$ does.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-Let $j_0 \colon \mathcal C_0 \to \mathcal C$ be the inclusion functor. The universal property of localization show that both $j_0$ and $R$ define functors $\widetilde{R} \colon \mathcal C[\mathbf W^{-1}] \to \mathcal C_0[\mathbf W_0^{-1}]$ and $\widetilde{\jmath}_0 \colon \mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$. The natural transformation $s \colon j_0 R \to \mathrm{Id}_{\mathcal C}$ define a natural transformation
-\[
-\widetilde{s} \colon \widetilde{\jmath}_0 \circ \widetilde{R} \to \mathrm{Id}_{\mathcal C[\mathbf W^{-1}]}
-\]
-By construction, $\widetilde{s}_C = s_C$. Therefore, $\widetilde{s}$ is a natural isomorphism. Condition 3. in Definition \ref{def localizing subcategories} shows that $s$ restricts to a natural transformation $R j_0 \to \mathrm{Id}_{\mathcal C_0}$. For the same reasons of above, this natural transformation lifts to a natural isomorphism $\widetilde{R} \circ  \widetilde{\jmath}_0 \to \mathrm{Id}_{\mathcal C_0[\mathbf W_0^{-1}]}$. This gives the desired equivalence of categories. The second statement is an obvious consequence of the first.
-\end{proof}
-
-Let now $\mathcal M$ be a model category. Introduce the following notations:
-
-\begin{notation}
-Let $\mathcal M$ be a model category. We will consider the following subcategories:
-\begin{itemize}
-\item $\mathcal M_c$, the full subcategory whose objects are the cofibrant objects of $\mathcal M$;
-\item $\mathcal M_f$, the full subcategory whose objects are the fibrant objects of $\mathcal M$;
-\item $\mathcal M_{cf}$, the full subcategory whose objects are both fibrant and cofibrant objects of $\mathcal M$.
-\end{itemize}
-\end{notation}
-
-Using the factorization axiom {\bfseries MC5} and Lemma \ref{lemma localizing subcategories} it is immediate to prove the following:
-
-\begin{prop} \label{prop reduction step}
-For every model category $\mathcal M$:
-\begin{enumerate}
-\item $\mathcal M_{cf}$ and $\mathcal M_c$ are left deformation retracts of $\mathcal M_f$ and $\mathcal M$ with respect to weak equivalences;
-\item $\mathcal M_{cf}$ and $\mathcal M_f$ are right deformation retracts of $\mathcal M_c$ and $\mathcal M$.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-We will show that $\mathcal M_c$ is a left deformation retraction of $\mathcal M$ with respect to weak equivalences. The other statements are similar. Let's fix an initial object $\emptyset$; there exists a functor
-\[
-F \colon \mathcal M \to \mathbf{Arr}(\mathcal M)
-\]
-sending an object $A$ to the (unique) arrow $\emptyset \to A$; this assignment extends easily to arrows, and it is functorial. Introduce next the $(\cofib,\fib \cap W)$-factorization functor
-\[
-G \colon \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M)
-\]
-Finally, denote by $\pi_0$ and $\pi_1$ the projection functors
-\[
-\pi_i \colon \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M)
-\]
-Consider the functor
-\[
-Q\coloneqq \mathbf d_0 \circ \pi_1 \circ G \circ F \colon \mathcal M \to \mathcal M_c
-\]
-For each object $A \in \Ob(\mathcal M)$ we have an arrow
-\[
-p_A\coloneqq \pi_1(G(F(A)) \colon Q(A) \to A
-\]
-which is a trivial fibration. It's clear that the family $\{p_A\}_{A \in \Ob(\mathcal M)}$ defines a natural transformation $j_c \circ Q \to \mathrm{Id}_{\mathcal M}$ (here $j_c \colon \mathcal M_c \to \mathcal M$ denotes the natural inclusion). This, together with Lemma \ref{lemma localizing subcategories}, implies that $\mathcal M_c$ is a left deformation retract of $\mathcal M$.
-\end{proof}
-
-Combining Propositions \ref{prop localizing subcategories} and \ref{prop reduction step} it follows that we only need to show the existence of $\mathrm{Ho}(\mathcal M_{cf})$. This will be accomplished in the following paragraph.
-
-\begin{rmk}
-In absence of functorial factorization Proposition \ref{prop reduction step} doesn't need to be true. However, it can be shown that even in that case the localization of a model category exists. For a proof which doesn't make use of the functoriality of factorization, the reader is referred to \cite[Section 4]{dwsp}.
-\end{rmk}
+\begin{thm} \label{thm homotopy localization}
+Let $\mathbb U$ be a Grothendieck universe and let $\mathcal M$ be a model $\mathbb U$-category. Then the homotopy category $\mathrm{Ho}(\mathcal M)$ is a $\mathbb U$-category.
+\end{thm}
 
 \subsection{Homotopy relations}
 
-To construct the localization of $\mathcal M_{cf}$ with respect to weak equivalences, we will need some machinery.
+The first step toward the proof of Theorem \ref{thm homotopy localization} is to introduce a well-behaved notion of homotopy between maps. To do this, we will use the auxiliary notions of cylinder objects. To understand their relationship with the classical homotopy between continuous maps, the reader is encouraged to read the example in section \ref{topological spaces}.
 
 \begin{defin}
-Let $\mathcal M$ be a model category and let $X \in \Ob(\mathcal M)$ be any object.
-\begin{enumerate}
-
-\item A cylinder object for $X$ is a factorization of the fold map
+Let $\mathcal M$ be a model category. A \emph{cylinder object} for $X \in \Ob(\mathcal M)$ is a factorization of the fold map
 \[
 \nabla \colon X \sqcup X \stackrel{i}{\hookrightarrow} X \times I \stackrel{\sim}{\to} X
 \]
 in a cofibration followed by a weak equivalence.
-
-\item A path object for $X$ is a factorization of the diagonal map
-\[
-\Delta \colon X \stackrel{\sim}{\to} X^I \twoheadrightarrow X \times X
-\]
-in a weak equivalence followed by a fibration.
-\end{enumerate}
 \end{defin}
 
+%\begin{defin}
+%Let $\mathcal M$ be a model category and let $X \in \Ob(\mathcal M)$ be any object.
+%\begin{enumerate}
+%\item A cylinder object for $X$ is a factorization of the fold map
+%\[
+%\nabla \colon X \sqcup X \stackrel{i}{\hookrightarrow} X \times I \stackrel{\sim}{\to} X
+%\]
+%in a cofibration followed by a weak equivalence.
+%
+%\item A path object for $X$ is a factorization of the diagonal map
+%\[
+%\Delta \colon X \stackrel{\sim}{\to} X^I \twoheadrightarrow X \times X
+%\]
+%in a weak equivalence followed by a fibration.
+%\end{enumerate}
+%\end{defin}
+
 \begin{rmk}
-A functorial cylinder (path) object always exist, thanks to the factorization axiom. Moreover, we can require the map $X \times I \to X$ (resp. $X \to X^I$) to be a trivial fibration (resp. a trivial cofibration). However, it is important to remark that a cylinder (path) object is \emph{any} factorization of the fold (diagonal) map.
+A functorial cylinder object always exist, thanks to the factorization axiom. Moreover, we can require the map $X \times I \to X$ to be a trivial fibration, even though, we want to stress, this is not required in the definition.
 \end{rmk}
 
-\begin{notation}
+%\begin{rmk}
+%A functorial cylinder (path) object always exist, thanks to the factorization axiom. Moreover, we can require the map $X \times I \to X$ (resp. $X \to X^I$) to be a trivial fibration (resp.\ a trivial cofibration). However, it is important to remark that the weak equivalence in a cylinder (resp.\ path) object is not required to be a fibration (resp.\ a cofibration).
+%\end{rmk}
+
+\begin{rmk}
 If $\mathcal M$ is a model category and $X \times I$ is a cylinder object for $X$, we will denote by $\mathrm{in}_k \colon X \to X \times I$ the two arrows making the diagram
 \[
 \xymatrix{ X \ar[d]^{i_0} \ar@/^.5pc/[dr]^{\mathrm{in}_0} \\ X \sqcup X \ar@{^(->}[r] & X \times I \\ X \ar[u]_{i_1} \ar@/_.5pc/[ur]_{\mathrm{in}_1} }
 \]
-commutative. Observe that the 2-out-of-3 axiom implies that $\mathrm{in}_k$ is always a weak equivalence. Similarly, we denote the dual maps for path objects as $\mathrm{pr}_k$.
-\end{notation}
+commutative. Observe that the 2-out-of-3 axiom implies that $\mathrm{in}_k$ is always a weak equivalence.
+\end{rmk}
 
-We can use cylinder and path objects to introduce the notion of homotopy between two maps:
+We can use cylinder objects to introduce the notion of homotopy between two maps:
 
 \begin{defin}
-Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be two arrows.
-\begin{enumerate}
-\item A left homotopy from $f$ to $g$ is a pair $(A \times I, H)$ where $A \times I$ is a cylinder object for $A$ and $H \colon A \times I \to X$ is a map making the diagram
-\[
-\xymatrix{
-A \ar[d]_{\mathrm{in}_0} \ar@/^.5pc/[dr]^f \\ A \times I \ar[r]^-H & X \\ A \ar[u]^{\mathrm{in}_1} \ar@/_.5pc/[ur]_g
-}
-\]
-commutative. We say that $f$ is left homotopic to $g$ if a left homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{l}{\sim} g$;
-
-\item A right homotopy from $f$ to $g$ is a pair $(X^I, K)$ where $X^I$ is a path object for $X$ and $K \colon A \to X^I$ is a map making the diagram
-\[
-\xymatrix{
-& X \\
-A \ar@/^.5pc/[ur]^f \ar[r]^K \ar@/_.5pc/[dr]_g & X^I \ar[u]_{\mathrm{pr}_0} \ar[d]^{\mathrm{pr}_1} \\ & X
-}
-\]
-commutative. We say that $g$ is right homotopic to $g$ if a right homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{g}{\sim} g$.
-\end{enumerate}
+Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be two arrows. A \emph{left homotopy} from $f$ to $g$ is a pair $(A \times I, H)$ where $A \times I$ is a cylinder object for $A$ and $H \colon A \times I \to X$ is a map satisfying $H \circ \mathrm{in}_0 = f$, $H \circ \mathrm{in}_1 = g$. We will say that \emph{$f$ is left homotopic to $g$} if a left homotopy from $f$ to $g$ exists; in this case we will write $f \stackrel{l}{\sim} g$.
 \end{defin}
+
+\begin{rmk}
+There are dual notions of cylinder objects and left homotopies, namely path objects and right homotopies. We leave to the reader to write down these definitions.
+\end{rmk}
+
+%\begin{defin}
+%Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be two arrows.
+%\begin{enumerate}
+%\item A left homotopy from $f$ to $g$ is a pair $(A \times I, H)$ where $A \times I$ is a cylinder object for $A$ and $H \colon A \times I \to X$ is a map satisfying $H \circ \mathrm{in}_0 = f$, $H \circ \mathrm{in}_1 = g$. We say that $f$ is left homotopic to $g$ if a left homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{l}{\sim} g$;
+%
+%\item A right homotopy from $f$ to $g$ is a pair $(X^I, K)$ where $X^I$ is a path object for $X$ and $K \colon A \to X^I$ is a map satisfying $\mathrm{pr}_0 \circ K = f$, $\mathrm{pr}_1 \circ K = g$. We say that $g$ is right homotopic to $g$ if a right homotopy from $f$ to $g$ exists; in this case we write $f \stackrel{g}{\sim} g$.
+%\end{enumerate}
+%\end{defin}
 
 \begin{lemma} \label{lemma homotopy category 0}
 If $f \colon A \to B$ is left homotopic to a weak equivalence, then $f$ is a weak equivalence.
@@ -518,19 +356,26 @@ Choose a cylinder object $A \times I$ for $A$ and a homotopy $H \colon A \times 
 \end{proof}
 
 \begin{lemma} \label{lemma homotopy category 1}
-Let $\mathcal M$ be a model category.
-\begin{enumerate}
-\item If $A$ is a cofibrant object, then $\stackrel{l}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $X \in \Ob(\mathcal M)$;
-\item if $X$ is a fibrant object, then $\stackrel{r}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $A \in \Ob(\mathcal M)$.
-\end{enumerate}
+Let $\mathcal M$ be a model category. If $A$ is a cofibrant object, then $\stackrel{l}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $X \in \Ob(\mathcal M)$.
 \end{lemma}
 
+%\begin{lemma} \label{lemma homotopy category 1}
+%Let $\mathcal M$ be a model category. 
+%\item If $A$ is a cofibrant object, then $\stackrel{l}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $X \in \Ob(\mathcal M)$;
+%\item if $X$ is a fibrant object, then $\stackrel{r}{\sim}$ defines an equivalence relation on $\Hom_{\mathcal M}(A,X)$ for every object $A \in \Ob(\mathcal M)$.
+%\end{enumerate}
+%\end{lemma}
+
 \begin{defin}
-Let $\mathcal M$ be a model category. Let $A,X \in \Ob(\mathcal M)$; we denote by $\pi^l(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ under the equivalence relation \emph{generated} by left homotopy. Similarly, we will denote by $\pi^r(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ by the equivalence relation \emph{generated} by right homotopy.
+Let $\mathcal M$ be a model category. Let $A,X \in \Ob(\mathcal M)$; we denote by $\pi^l(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ under the equivalence relation \emph{generated} by left homotopy.
 \end{defin}
 
+%\begin{defin}
+%Let $\mathcal M$ be a model category. Let $A,X \in \Ob(\mathcal M)$; we denote by $\pi^l(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ under the equivalence relation \emph{generated} by left homotopy. Similarly, we will denote by $\pi^r(A,X)$ the quotient of $\Hom_{\mathcal M}(A,X)$ by the equivalence relation \emph{generated} by right homotopy.
+%\end{defin}
+
 \begin{lemma} \label{lemma homotopy category 2}
-Let $\mathcal M$ be a model category.
+Let $\mathcal M$ be a model category. 
 \begin{enumerate}
 \item If $A$ is cofibrant and $p \colon X \to Y$ is an acyclic fibration or a weak equivalence between fibrant objects, then the map
 \[
@@ -540,50 +385,67 @@ induces a bijection
 \[
 p_* \colon \pi^l(A,X) \to \pi^l(A,Y)
 \]
-\item If $X$ is fibrant and $i \colon A \to B$ is an acyclic cofibration of a weak equivalence between cofibrant objects, then the map
-\[
-i^* \colon \Hom_{\mathcal M}(B,X) \to \Hom_{\mathcal M}(A,X)
-\]
-induces a bijection
-\[
-i^* \colon \pi^r(B,X) \to \pi^r(A,X)
-\]
-\end{enumerate}
-\end{lemma}
 
-\begin{lemma} \label{lemma hom homotopy category}
-Let $\mathcal M$ be a model category.
-\begin{enumerate}
 \item If $X$ is fibrant then composition in $\mathcal M$ induces a map
 \[
 \pi^l(A',A) \times \pi^l(A,X) \to \pi^l(A',X)
 \]
-\item If $A$ is cofibrant the composition in $\mathcal M$ induces a map
-\[
-\pi^r(A,X) \times \pi^r(A,X') \to \pi^r(A,X')
-\]
 \end{enumerate}
 \end{lemma}
 
-\begin{lemma}
-Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be maps.
-\begin{enumerate}
-\item If $A$ is cofibrant and $f \stackrel{l}{\sim} g$, then $f \stackrel{r}{\sim} g$;
-\item if $X$ is fibrant and $f \stackrel{r}{\sim} g$, then $f \stackrel{l}{\sim} g$.
-\end{enumerate}
-\end{lemma}
+%\begin{lemma} \label{lemma homotopy category 2}
+%Let $\mathcal M$ be a model category.
+%\begin{enumerate}
+%\item If $A$ is cofibrant and $p \colon X \to Y$ is an acyclic fibration or a weak equivalence between fibrant objects, then the map
+%\[
+%p_* \colon \Hom_{\mathcal M}(A,X) \to \Hom_{\mathcal M}(A,Y)
+%\]
+%induces a bijection
+%\[
+%p_* \colon \pi^l(A,X) \to \pi^l(A,Y)
+%\]
+%\item If $X$ is fibrant and $i \colon A \to B$ is an acyclic cofibration of a weak equivalence between cofibrant objects, then the map
+%\[
+%i^* \colon \Hom_{\mathcal M}(B,X) \to \Hom_{\mathcal M}(A,X)
+%\]
+%induces a bijection
+%\[
+%i^* \colon \pi^r(B,X) \to \pi^r(A,X)
+%\]
+%\end{enumerate}
+%\end{lemma}
 
-\begin{notation}
-If $A$ is cofibrant and $X$ is fibrant, previous lemma shows that the two relations $\stackrel{l}{\sim}$ and $\stackrel{r}{\sim}$ on $\Hom_{\mathcal M}(A,X)$ coincide. In this case we will denote both by $\sim$ and we will refer to it as the homotopy equivalence relation.
-\end{notation}
+%\begin{lemma} \label{lemma hom homotopy category}
+%Let $\mathcal M$ be a model category.
+%\begin{enumerate}
+%\item If $X$ is fibrant then composition in $\mathcal M$ induces a map
+%\[
+%\pi^l(A',A) \times \pi^l(A,X) \to \pi^l(A',X)
+%\]
+%\item If $A$ is cofibrant the composition in $\mathcal M$ induces a map
+%\[
+%\pi^r(A,X) \times \pi^r(A,X') \to \pi^r(A,X')
+%\]
+%\end{enumerate}
+%\end{lemma}
 
-With these notations we have the following:
+%\begin{lemma}
+%Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be maps.
+%\begin{enumerate}
+%\item If $A$ is cofibrant and $f \stackrel{l}{\sim} g$, then $f \stackrel{r}{\sim} g$;
+%\item if $X$ is fibrant and $f \stackrel{r}{\sim} g$, then $f \stackrel{l}{\sim} g$.
+%\end{enumerate}
+%\end{lemma}
+%
+%\begin{notation}
+%If $A$ is cofibrant and $X$ is fibrant, previous lemma shows that the two relations $\stackrel{l}{\sim}$ and $\stackrel{r}{\sim}$ on $\Hom_{\mathcal M}(A,X)$ coincide. In this case we will denote both by $\sim$ and we will refer to it as the homotopy equivalence relation.
+%\end{notation}
 
 \begin{cor} \label{cor weak homotopy category}
 The homotopy relation on morphisms of $\mathcal M_{cf}$ is an equivalence relation and it is compatible with composition. Hence the category $\mathcal M_{cf} / \sim$ exists.
 \end{cor}
 
-The following proposition is the key result in our proof of Theorem \ref{thm homotopy localization}. It is the equivalent, in our abstract setting, of Whitehead's Theorem \ref{thm concrete whitehead}.
+The following theorem is the equivalent, in our abstract setting, of Whitehead's Theorem:
 
 \begin{thm} \label{thm abstract whitehead}
 Let $\mathcal M$ be a model category and let $f \colon A \to X$ be a map between objects which are both fibrant and cofibrant. Then $f$ is a weak equivalence if and only if it is a homotopy equivalence.
@@ -651,74 +513,343 @@ The universal property of the quotient therefore produces a unique morphism
 and a unique natural isomorphism $t \colon \overline{F} \circ \gamma \to F$. Universality follows from universal property of the quotient, with considerations similar to the ones above.
 \end{proof}
 
-We are now ready to provide a proof of Theorem \ref{thm homotopy localization}:
+\subsection{Localizing subcategories}
+
+So far we proved that the localization of $\mathcal M_{cf}$ with respect to the class of weak equivalences exist. To conclude that the same holds true for the whole model category $\mathcal M$, one can use the abstract notion of localizing subcategory to reduce to that case.
+
+\begin{defin} \label{def localizing subcategories}
+Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. We say that $\mathcal C_0$ is a left (resp. right) deformation retract of $\mathcal C$ with respect to $\mathbf W$ if there exists a functor $R \colon \mathcal C \to \mathcal C_0$ and a natural transformation $s \colon R \to \mathrm{Id}_{\mathcal C}$ (resp. $s \colon \mathrm{Id}_{\mathcal C} \to R$) such that:
+\begin{enumerate}
+\item $R$ sends $\mathbf W$ into $\mathbf W \cap \mathcal C_0$;
+\item for every object $C \in \Ob(\mathcal C)$, the map $s_C$ is in $\mathbf W$;
+\item for every object $C_0 \in \Ob(\mathcal C_0)$, the map $s_{C_0}$ is in $\mathbf W \cap \mathcal C_0$.
+\end{enumerate}
+The pair $(R,s)$ is called a left (resp. right) deformation retraction from $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. If $\mathbf W = \mathcal C$, we will say that $(R,s)$ is an absolute deformation retraction of $\mathcal C$ to $\mathcal C_0$.
+\end{defin}
+
+\begin{lemma} \label{lemma localizing subcategories}
+Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. Let $R \colon \mathcal C \to \mathcal C_0$ be an absolute left deformation retraction. Assume that for every object $C \in \Ob(\mathcal C)$ the map $s_C$ is in $\mathbf W$; if $\mathbf W$ satisfies the 2-out-of-3 then $R$ sends $\mathbf W$ into $\mathbf W \cap \mathcal C_0$. If $\mathcal C_0$ is a full subcategory, then for every $C_0 \in \Ob(\mathcal C_0)$, the map $s_{C_0}$ is in $\mathbf W \cap \mathcal C_0$.
+\end{lemma}
+
+\begin{proof}
+Let $f \colon A \to B$ be an arrow in $\mathbf W$; consider the commutative square
+\[
+\xymatrix{
+R(A) \ar[d]^{R(f)} \ar[r]^{s_A} & A \ar[d]^f \\ R(B) \ar[r]^{s_B} & B
+}
+\]
+Then $f \circ s_A$ and $s_B$ are in $\mathbf W$; the 2-out-of-3 implies that $R(f)$ is in $\mathbf W$. The second statement is trivial, since $s_{C_0} \colon R(C_0) \to C_0$ is an arrow between objects of $\mathcal C_0$.
+\end{proof}
+
+\begin{prop} \label{prop localizing subcategories}
+Let $\mathcal C$ be a category and let $\mathcal C_0, \mathbf W \subset \mathcal C$ be subcategories; write $\mathbf W_0\coloneqq \mathcal C_0 \cap \mathbf W$. Let $(R,s)$ be a left (or right) deformation retraction of $\mathcal C$ to $\mathcal C_0$ with respect to $\mathbf W$. Let $\mathbb V$ be a Grothendieck universe where the localizations $\mathcal C[\mathbf W^{-1}]$ exist. Then
+\begin{enumerate}
+\item the induced inclusion $\mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$ is an equivalence of categories;
+\item $\mathcal C[\mathbf W^{-1}]$ exists if and only if $\mathcal C_0[\mathbf W_0^{-1}]$ does.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Let $j_0 \colon \mathcal C_0 \to \mathcal C$ be the inclusion functor. The universal property of localization show that both $j_0$ and $R$ define functors $\widetilde{R} \colon \mathcal C[\mathbf W^{-1}] \to \mathcal C_0[\mathbf W_0^{-1}]$ and $\widetilde{\jmath}_0 \colon \mathcal C_0[\mathbf W_0^{-1}] \to \mathcal C[\mathbf W^{-1}]$. The natural transformation $s \colon j_0 R \to \mathrm{Id}_{\mathcal C}$ define a natural transformation
+\[
+\widetilde{s} \colon \widetilde{\jmath}_0 \circ \widetilde{R} \to \mathrm{Id}_{\mathcal C[\mathbf W^{-1}]}
+\]
+By construction, $\widetilde{s}_C = s_C$. Therefore, $\widetilde{s}$ is a natural isomorphism. Condition 3. in Definition \ref{def localizing subcategories} shows that $s$ restricts to a natural transformation $R j_0 \to \mathrm{Id}_{\mathcal C_0}$. For the same reasons of above, this natural transformation lifts to a natural isomorphism $\widetilde{R} \circ  \widetilde{\jmath}_0 \to \mathrm{Id}_{\mathcal C_0[\mathbf W_0^{-1}]}$. This gives the desired equivalence of categories. The second statement is an obvious consequence of the first.
+\end{proof}
+
+One finally observe that the functorial factorization easily imply:
+
+\begin{prop} \label{prop reduction step}
+For every model category $\mathcal M$:
+\begin{enumerate}
+\item $\mathcal M_{cf}$ and $\mathcal M_c$ are left deformation retracts of $\mathcal M_f$ and $\mathcal M$ with respect to weak equivalences;
+\item $\mathcal M_{cf}$ and $\mathcal M_f$ are right deformation retracts of $\mathcal M_c$ and $\mathcal M$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Exercise.
+\end{proof}
+
+%\begin{proof}
+%We will show that $\mathcal M_c$ is a left deformation retraction of $\mathcal M$ with respect to weak equivalences. The other statements are similar. Let's fix an initial object $\emptyset$; there exists a functor
+%\[
+%F \colon \mathcal M \to \mathbf{Arr}(\mathcal M)
+%\]
+%sending an object $A$ to the (unique) arrow $\emptyset \to A$; this assignment extends easily to arrows, and it is functorial. Introduce next the $(\cofib,\fib \cap W)$-factorization functor
+%\[
+%G \colon \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M)
+%\]
+%Finally, denote by $\pi_0$ and $\pi_1$ the projection functors
+%\[
+%\pi_i \colon \mathbf{Arr}(\mathcal M) \times_{\mathbf d_1, \mathbf d_0} \mathbf{Arr}(\mathcal M) \to \mathbf{Arr}(\mathcal M)
+%\]
+%Consider the functor
+%\[
+%Q\coloneqq \mathbf d_0 \circ \pi_1 \circ G \circ F \colon \mathcal M \to \mathcal M_c
+%\]
+%For each object $A \in \Ob(\mathcal M)$ we have an arrow
+%\[
+%p_A\coloneqq \pi_1(G(F(A)) \colon Q(A) \to A
+%\]
+%which is a trivial fibration. It's clear that the family $\{p_A\}_{A \in \Ob(\mathcal M)}$ defines a natural transformation $j_c \circ Q \to \mathrm{Id}_{\mathcal M}$ (here $j_c \colon \mathcal M_c \to \mathcal M$ denotes the natural inclusion). This, together with Lemma \ref{lemma localizing subcategories}, implies that $\mathcal M_c$ is a left deformation retract of $\mathcal M$.
+%\end{proof}
+
+We can finally prove Theorem \ref{thm homotopy localization}:
 
 \begin{proof}[Proof of Theorem \ref{thm homotopy localization}.]
 With Proposition \ref{prop reduction step} we were reduced to prove that the localization of $\mathcal M_{cf}$ with respect to weak equivalences exists. This is done in Corollary \ref{cor homotopy for fibrant cofibrant}.
 \end{proof}
 
-\subsection{Complement: homotopy and liftings}
+%\subsection{Complement: homotopy and liftings}
+%
+%This part is not necessary for the development of the theory, but it sheds some light on the lifting axiom {\bfseries MC4.\ } and it gives motivations for the theory of mapping spaces. In reading the lifting axiom for model category, the reader might have asked himself whether the lifting is unique or not. The answer in general is negative:
+%
+%\begin{eg}
+%Consider $\Set$ with the model structure of Example \ref{eg model structure set}; assume that $p \colon X \to Y$ is a surjection and consider the following lifting problem:
+%\[
+%\xymatrix{
+%\emptyset \ar[r] \ar[d] & X \ar[d]^p \\ Y \ar@{=}[r] \ar@{.>}[ur] & Y
+%}
+%\]
+%A solution for this problem is precisely a section of $f$ and therefore it is clear that such a solution is not unique as soon as $p$ is not bijective.
+%\end{eg}
+%
+%The situation described in previous example is standard: in homotopy theory, it doesn't make much sense to ask for uniqueness, but only for uniqueness up-to-homotopy, as it is easy to show:
+%
+%\begin{prop} \label{prop lifting up to homotopy}
+%Let $i \colon A \to B$ be a cofibration, $p \colon X \to Y$ a fibration. Then for each commutative square
+%\[
+%\xymatrix{
+%A \ar[d]_i \ar[r]^f & X \ar[d]^p \\ B \ar[r]_g \ar@<.5ex>@{.>}[ur]^{h_1} \ar@<-.5ex>@{.>}[ur]_{h_2} & Y
+%}
+%\]
+%and each pair of liftings $h_1,h_2$, we have:
+%\begin{enumerate}
+%\item if $p$ is a trivial fibration, $h_1$ is left homotopic to $h_2$;
+%\item if $i$ is a trivial cofibration, $h_1$ is right homotopic to $h_2$.
+%\end{enumerate}
+%\end{prop}
+%
+%\begin{proof}
+%We will prove the first statement. Choose a cylinder object for $B$:
+%\[
+%B \sqcup B \xrightarrow{j} B \times I \xrightarrow{r} B
+%\]
+%and consider the diagram
+%\[
+%\xymatrix{
+%B \sqcup B \ar[d]_j \ar[rr]^-{h_1 \sqcup h_2} & & X \ar[d]^p \\ B \times I \ar@{.>}[urr]^H \ar[r]_r & B \ar[r]_g & Y
+%}
+%\]
+%The lifting exists by hypothesis, since $j$ is a cofibration and $p$ is a trivial fibration. Clearly,
+%\[
+%H \circ \mathrm{in}_0 = h_1, \quad H \circ \mathrm{in}_1 = h_2
+%\]
+%\end{proof}
+%
+%This result is satisfactory in the sense that it is philosophically correct to replace uniqueness statements in classical category theory with uniqueness-up-to-homotopy in the world of $(\infty,1)$-categories. The relation between the two can be better understood if we think that maps between objects in homotopy theory are not simply sets, but rather spaces (at this point the reader can simply understand topological spaces); therefore the uniqueness-up-to-homotopy is equivalent to say that the space of solutions to a lifting problem is contractible and, therefore, not distinguishable from a point, homotopically speaking.
+%
+%\begin{cor} \label{cor lifting between approximations}
+%Let $X,Y$ be given objects; let $(\widetilde{X},i)$ and $(\widetilde{Y},j)$ be cofibrant approximations such that the $j$ is a fibration. Then any map $f \colon X \to Y$ has a lifting $\widetilde{f} \colon \widetilde{X} \to \widetilde{Y}$ and this lifting is unique up to right homotopy.
+%\end{cor}
+%
+%\begin{proof}
+%We obtain $\widetilde{f}$ choosing a lifting in the following diagram:
+%\[
+%\xymatrix{
+%\emptyset \ar[d] \ar[r] & \widetilde{Y} \ar[d]^j \\ \widetilde{X} \ar@{.>}[ur]^{\widetilde{f}} \ar[r]_{f \circ i} & Y
+%}
+%\]
+%Uniqueness up to right homotopy is then a consequence of Proposition \ref{prop lifting up to homotopy}.
+%\end{proof}
+%
+%\begin{cor} \label{cor uniqueness of approximation}
+%Let $X$ be a given object. If $(W,i)$ and $(W',j)$ are two cofibrant approximations such that $j$ is a fibration, there is a weak equivalence $f \colon W \to W'$ such that $j \circ f = i$; moreover $f$ is unique up to right homotopy.
+%\end{cor}
+%
+%\begin{proof}
+%Apply Corollary \ref{cor lifting between approximations} to the identity $\mathrm{id}_X \colon X \to X$.
+%\end{proof}
 
-Before developing some examples, we want to discuss some lifting criterion and uniqueness (up-to-homotopy) property. All the objects will be objects in a given model category $\mathcal M$.
+\section{Cofibrantly generated model categories}
 
-\begin{prop} \label{prop lifting up to homotopy}
-Let $i \colon A \to B$ be a cofibration, $p \colon X \to Y$ a fibration. Then for each commutative square
-\[
-\xymatrix{
-A \ar[d]_i \ar[r]^f & X \ar[d]^p \\ B \ar[r]_g \ar@<.5ex>@{.>}[ur]^{h_1} \ar@<-.5ex>@{.>}[ur]_{h_2} & Y
-}
-\]
-and each pair of liftings $h_1,h_2$, we have:
+So far we saw only one example of model category, namely Example \ref{eg model structure set}, and it was rather trivial. The reason is that to prove the existence of a model structure one usually needs a lot of work, and it is not an easy task at all. Usually, the most difficult axioms to verify are the factorization ones. The goal of this section is to provide a general technique, called the \emph{Quillen small object argument}, which produces factorization systems. The main drawback of this tool is that the resulting factorization is usually not computable and therefore one needs supplementary work when he has to explicitly deal with the model structure; nevertheless, this is a fundamental technique and it is part of the standard toolbox of every homotopy theorist. Once the small object argument will be dealt with, we will briefly discuss the notion of cofibrantly generated model category, as it is the most common type of model category that one can encounter in the practice.
+
+\subsection{Generalities about weak factorization systems}
+
+The small object argument produces special kind of factorization systems, which are usually known as \emph{weak factorization systems}. We collect here a small number of definitions and of basic results concerning such objects. This theory is due to A. Joyal and M. Tierney.
+
+\begin{defin}
+Let $\mathcal C$ be a category and let $I$ and $F$ be two subset of arrows in $\mathcal C$. We will say that $I$ is weakly left orthogonal to $F$, written $I \pitchfork F$ if every arrow of $I$ has the LLP with respect to every arrow in $F$.
+\end{defin}
+
+\begin{defin}
+Let $I$ be a subset of arrows in a category $\mathcal C$. We will denote by $\rlp{I}$ the class of arrows having the RLP with respect to every morphism in $I$. Dually, we will denote by $\llp{I}$ the class of arrows having the LLP with respect to every morphism in $I$.
+\end{defin}
+
+\begin{defin}
+A class of morphisms $S$ in a category $\mathcal C$ is said to be \emph{weakly saturated} if it satisfies the following requirements:
 \begin{enumerate}
-\item if $p$ is a trivial fibration, $h_1$ is left homotopic to $h_2$;
-\item if $i$ is a trivial cofibration, $h_1$ is right homotopic to $h_2$.
+\item $S$ is closed under isomorphisms;
+\item $S$ is closed under retracts;
+\item $S$ is closed under pushouts;
+\item $S$ is closed under countable compositions and arbitrary disjoint unions.
 \end{enumerate}
-\end{prop}
+\end{defin}
+
+\begin{lemma} \label{lemma llp saturation}
+\begin{enumerate}
+\item Let $f \colon F \to G$ be a map in a category $\mathcal C$. Then $\llp{\{f\}}$ is weakly saturated;
+
+\item the intersection of weakly saturated classes is again saturated.
+\end{enumerate}
+\end{lemma}
 
 \begin{proof}
-We will prove the first statement. Choose a cylinder object for $B$:
-\[
-B \sqcup B \xrightarrow{j} B \times I \xrightarrow{r} B
-\]
-and consider the diagram
-\[
-\xymatrix{
-B \sqcup B \ar[d]_j \ar[rr]^-{h_1 \sqcup h_2} & & X \ar[d]^p \\ B \times I \ar@{.>}[urr]^H \ar[r]_r & B \ar[r]_g & Y
-}
-\]
-The lifting exists by hypothesis, since $j$ is a cofibration and $p$ is a trivial fibration. Clearly,
-\[
-H \circ \mathrm{in}_0 = h_1, \quad H \circ \mathrm{in}_1 = h_2
-\]
+Exercise.
 \end{proof}
 
-\begin{cor} \label{cor lifting between approximations}
-Let $X,Y$ be given objects; let $(\widetilde{X},i)$ and $(\widetilde{Y},j)$ be cofibrant approximations such that the $j$ is a fibration. Then any map $f \colon X \to Y$ has a lifting $\widetilde{f} \colon \widetilde{X} \to \widetilde{Y}$ and this lifting is unique up to right homotopy.
+\begin{defin}
+Let $\mathcal C$ be a category. A (functorial) weak factorization system is the given of two subset of arrows $(I,F)$ satisfying the following conditions:
+\begin{enumerate}
+\item every arrow of $f$ can be (functorially) factorized as $p \circ i$, where $p \in F$ and $i \in I$;
+
+\item $I = \llp{(\rlp{F})}$ and $F = \rlp{I}$.
+\end{enumerate}
+\end{defin}
+
+\subsection{The small object argument}
+
+\begin{defin} \label{def regular cardinal}
+A cardinal $\alpha$ is said to be \emph{regular} if for every family of sets $\{X_i\}_{i \in I}$ such that $|I| < \alpha$ and $|X_i| < \alpha$ one has $\left| \bigcup_{i \in I} X_i \right| < \alpha$.
+\end{defin}
+
+\begin{defin}
+Let $\alpha$ be a regular cardinal and let $\mathcal C$ be a category. A diagram $F \colon \alpha \to \mathcal C$ is said to be an \emph{$\alpha$-sequence} if for every limit ordinal $\gamma < \alpha$ the natural map
+\[
+\colim_{\beta < \gamma} F(\beta) \to F(\gamma)
+\]
+is an isomorphism. If moreover $S \subset \mathrm{Arr}(\mathcal C)$ is a set of arrows, by an \emph{$\alpha$-sequence in $\mathcal D$} we will mean an $\alpha$-sequence $F \colon \alpha \to \mathcal C$ such that for every $\beta \le \gamma < \alpha$ the natural map $F(\beta) \to F(\gamma)$ is an element of $S$.
+\end{defin}
+
+\begin{defin}
+Let $\mathcal C$ be a category, $S$ a set of arrows of $\mathcal C$ and $\alpha$ a regular cardinal. An object $X$ in $\mathcal C$ is said to be \emph{$\alpha$-compact with respect to $S$} if the corepresentable functor $\Hom_{\mathcal C}(X,-)$ preserves the colimits of $\alpha$-sequences in $S$.
+\end{defin}
+
+\begin{defin}
+Let $\mathcal C$ be a category. A subset of arrows $I \subset \mathrm{Arr}(\mathcal C)$ is said to \emph{permit the small object argument} if there exists a regular cardinal $\alpha$ such that the domains of the arrows in $I$ are $\alpha$-compact with respect to $\mathrm{cof}_{\mathrm{reg}}(I)$.
+\end{defin}
+
+\begin{thm}
+Suppose that $I$ is a set of morphisms in a category $\mathcal C$ permitting the small object argument. Then $(\mathrm{cof}_{\mathrm{reg}}(I), I^{\pitchfork})$ is a weak factorization system in $\mathcal C$.
+\end{thm}
+
+\begin{proof}
+See \cite{hirschhorn}.
+\end{proof}
+
+\begin{cor} \label{cor weakly saturation}
+Suppose that $I$ is a set of morphisms in a category $\mathcal C$ permitting the small object argument. Then $\llp{(\rlp{I})}$ is the smallest weakly saturated subcategory of $\mathcal C$ containing $I$.
 \end{cor}
 
 \begin{proof}
-We obtain $\widetilde{f}$ choosing a lifting in the following diagram:
-\[
-\xymatrix{
-\emptyset \ar[d] \ar[r] & \widetilde{Y} \ar[d]^j \\ \widetilde{X} \ar@{.>}[ur]^{\widetilde{f}} \ar[r]_{f \circ i} & Y
-}
-\]
-Uniqueness up to right homotopy is then a consequence of Proposition \ref{prop lifting up to homotopy}.
+Let $\overline{I}$ be the smallest weakly saturated subcategory of $\mathcal C$ containing $I$. It is clear that $\llp{(\rlp{I})}$ is a subcategory and that $I \subset \llp{(\rlp{I})}$. Since $\llp{(\rlp{I})}$ is weakly saturated, it follows that $\overline{I} \subset \llp{(\rlp{I})}$. On the other side, an element $f$ of $\llp{(\rlp{I})}$ can be factored as $f = p \circ i$, where $p \in \rlp{(\llp{I})}$ and $i \in \cofreg{I}$. Then $i \in \overline{I}$ and $f$ is a retract of $i$, completing the proof.
 \end{proof}
 
-\begin{cor} \label{cor uniqueness of approximation}
-Let $X$ be a given object. If $(W,i)$ and $(W',j)$ are two cofibrant approximations such that $j$ is a fibration, there is a weak equivalence $f \colon W \to W'$ such that $j \circ f = i$; moreover $f$ is unique up to right homotopy.
-\end{cor}
+\subsection{Cofibrantly generation}
+
+\begin{defin}
+A cofibrantly generated model category is a model category $\mathcal M$ such that:
+\begin{enumerate}
+\item there exists a set $I$ of maps permitting the small object argument and such that $\fib \cap W = \rlp{I}$;
+\item there exists a set $J$ of maps permitting the small object argument and such that $\fib = \rlp{J}$.
+\end{enumerate}
+\end{defin}
+
+\begin{thm}[Recognizing principle] \label{thm recognizing}
+Let $\mathcal M$ be a category that is closed under small limits and colimits and let $W$ be a subcategory of $\mathcal M$ containing all the isomorphisms. If $I$ and $J$ are sets of maps in $\mathcal M$, then $\mathcal M$ has a cofibrantly generated model structure with $W$ as weak equivalences, $I$ as generating cofibrations and $J$ as generating trivial cofibrations if and only if the following conditions are met:
+\begin{enumerate}
+\item $W$ is closed under retracts and it satisfies the 2-out-of-3 axiom;
+\item both $I$ and $J$ permit the small object argument;
+\item $\llp{(\rlp{J})} \subseteq \llp{(\rlp{I})} \cap W$;
+\item $\rlp{I} \subseteq \rlp{J} \cap W$;
+\item either $\llp{(\rlp{I})} \cap W \subseteq \llp{(\rlp{J})}$ or $\rlp{J} \cap W \subseteq \rlp{I}$.
+\end{enumerate}
+\end{thm}
 
 \begin{proof}
-Apply Corollary \ref{cor lifting between approximations} to the identity $\mathrm{id}_X \colon X \to X$.
+If $\mathcal M$ is a cofibrantly generated model category with $W$ as class of weak equivalences, $I$ as set of generating cofibrations and $J$ as set of generating trivial cofibrations, then the conditions 1. and 2. hold by definition. Moreover
+\[
+\rlp{I} = \fib \cap W, \quad \fib = \rlp{J}
+\]
+so that
+\[
+\llp{(\rlp{I})} = \cofib, \quad \cofib \cap W = \llp{(\rlp{J})}
+\]
+and conditions 3., 4. and 5. follow.
+
+Conversely, assume that conditions 1. to 5. hold. Define
+\[
+\fib := \rlp{J}, \quad \cofib := \llp{(\rlp{I})}
+\]
+Then it is clear that $\fib$ and $\cofib$ form subcategories closed under retracts. The small object argument produces functorial weak factorization systems $(I \textrm{-} \cofreg, \rlp{I})$ and $(\cofreg{J}, \rlp{J})$; conditions 3. and 4. imply then that {\bfseries MC5} is satisfied. We are left to check the lifting axiom {\bfseries MC4}.
+
+Assume for example that $\llp{(\rlp{I})} \cap W \subseteq \llp{(\rlp{J})}$; we immediately get
+\[
+\cofib \cap W = \llp{(\rlp{J})} = \llp{(\rlp{J})} = \llp{\fib}
+\]
+and we have to show $\fib \cap W \subseteq \rlp{\cofib}$. Let $f \colon A \to B$ be a trivial fibration and factorize it as
+\[
+f = q \circ j
+\]
+where $q \in \rlp{I}$ and $j \in \cofreg{I} \cap W$. In the diagram
+\[
+\xymatrix{
+A \ar[d]_j \ar@{=}[r] & A \ar[d]^f \\ C \ar[r]_q \ar@{.>}[ur] & B
+}
+\]
+the lifting exists because $j \in \cofib \cap W$ and $f \in \fib$, so that $f$ is a retract of $q$, which has the right lifting property with respect to every cofibration because
+\[
+\rlp{I} \subseteq \rlp{\cofib}
+\]
+If instead $\rlp{J} \cap W \subseteq \rlp{I}$ the proof proceed in a similar way.
 \end{proof}
 
-\begin{rmk}
-The situation described in previous results is somehow standard: really often, in homotopy theory, we cannot ask for uniqueness, but only for uniqueness up-to-homotopy. The idea is that, from a homotopical point of view, it doesn't really matter, so we have a ``virtual uniqueness''. An important example is the following: if we are working up-to-homotopy, it doesn't really matter to know the composition of $f$ and $g$; we just need to know a composition up-to-homotopy; obviously, the requirement is that every two admissible compositions are reciprocally homotopic ``at any order''. The correct formulation of these ideas is by no means trivial; it is somehow intuitive to try to reduce to a ``contractibility property'', but it took several decades to reach a satisfactory formulation.
+\begin{thm}[Lifting principle] \label{thm lifting}
+Let $\mathcal M$ be a cofibrantly generated model category with generating cofibrations $I$ and generating trivial cofibrations $J$. Let $\mathcal N$ be a complete and cocomplete category and let $F \colon \mathcal M \rightleftarrows \mathcal N \colon U$ be a pair of adjoint functors. If the following conditions are satisfied:
+\begin{enumerate}
+\item both $F(I)$ and $F(J)$ permit the small object argument;
+\item $U$ takes the elements of $\cofreg{F(J)}$ in weak equivalences;
+\end{enumerate}
+then there is a cofibrantly generated model category structure on $\mathcal N$ where a map $f \colon A \to B$ is
+\begin{enumerate}
+\item a weak equivalence if and only if $U(f)$ is a weak equivalence;
+\item a fibration if and only if $U(f)$ is a fibration;
+\item a cofibration if and only if it belongs to $\llp{(\rlp{F(I)})}$.
+\end{enumerate}
+Moreover, if this is the case, $F(I)$ is a set of generating cofibrations, $F(J)$ is a set of generating trivial cofibrations and the adjunction $F \dashv G$ is a Quillen pair.
+\end{thm}
 
-To the best of my knowledge, after the work of Quillen it has been standard to interpret this conctractibility in term of the classifying space of a category. For example, if we are given maps as in Proposition \ref{prop lifting up to homotopy}, then the category whose objects are the diagonal fillings and whose morphisms are the right-homotopies will have conctractible classifying space. This shows that the theory we are developing is working well, since it produces the results that we intuitively expect. However, this theory has a great disadvantage: it requires a lot of constructions and a lot of comparison results. This defect has been overcome in the theory of $(\infty,1)$-categories via quasicategories; the exposition given by Lurie in \cite{htt} is perfectly organic and doesn't need any ``external'' construction: for example, we have the notion of contractibility of a quasicategory, and if $S$ is a quasicategory, we can consider the subcategory spanned by the diagonal fillings; the previous result can be restated by saying that this quasicategory is contractible, without need to invoke the classifying space construction. This is, in my opinion, one of the principal strengths of quasicategories.
-\end{rmk}
+\begin{proof}
+Let $W$ be the class of maps of $\mathcal N$ taken into weak equivalences by $U$. Let us show that $W$, $F(I)$ and $F(J)$ satisfy the conditions of Theorem \ref{thm recognizing}. It is clear that $W$ is closed under retracts and that it satisfies the 2-out-of-3 axiom and condition 2. holds by hypothesis.
+
+Let us prove conditions 3. and 4.: adjoint nonsense implies that
+\[
+\llp{F(J)} = \{f \in \mathrm{Arr}(\mathcal N) \mid U(f) \in \rlp{J}\}
+\]
+Since $\rlp{I} = \fib_{\mathcal M} \cap W \subseteq \rlp{I}$ we get
+\[
+\rlp{F(I)} \subseteq \rlp{F(J)}
+\]
+and so it follows
+\[
+\llp{(\rlp{F(J)})} \subseteq \llp{(\rlp{F(I)})}
+\]
+To get condition 3., we are left to show $\llp{(\rlp{F(J)})} \subseteq W$; the small object argument shows that an arrow $f \in \llp{(\rlp{F(J)})}$ is a retract of an arrow in $F(J) \textrm{-} \cofreg$, hence our hypothesis 2. implies that $U(f)$ is a retract of a weak equivalence, so that $f \in W$. To get condition 4., we have to show that $\rlp{F(I)} \subset W$; if $f \in \rlp{F(I)}$ then $U(f) \in \rlp{I}$, i.e. $U(f)$ is a trivial fibration in $\mathcal M$; in particular $f \in W$.
+
+Now, if $f$ is a fibration in the model structure on $\mathcal N$ if and only if it has the right lifting property with respect to every element in $F(J)$; by adjoint nonsense, this is equivalent to $U(f)$ having the right lifting property with respect to every element of $J$. It follows that $f$ is a fibration if and only if $U(f)$ is a fibration and also that $U$ is a left Quillen functor.
+\end{proof}
 
 \section{Examples}
 
@@ -804,7 +935,7 @@ $\sSet$ has a model structure where:
 \end{itemize}
 \end{thm}
 
-\subsection{Topological spaces}
+\subsection{Topological spaces}  \label{topological spaces}
 
 Among the most important examples of model category there is $\Top$.
 
@@ -874,7 +1005,7 @@ Finally, we can anticipate that the adjoint pair composed by geometric realizati
 
 Before passing on, we should at least remark that $\Top$ can be endowed with another model structure, where cofibrations are the inclusions $A \hookrightarrow X$ such that $A$ is a closed subspace of $X$ and the pair $(X,A)$ has the homotopy lifting property. These are called Hurewicz cofibrations. The weak equivalences are unchanged. This gives an example of a model category whose structure is not completely determined by weak equivalences.
 
-\subsection{Chain complexes over $\Mod_R$}
+\subsection{Chain complexes over $\Mod_R$} \label{chain complexes}
 
 This is a purely algebraic example of model category, and establishes a strong relation with homological algebra. The intuition coming from this example will be useful as analogy in the construction of the total derived functor.
 
@@ -1093,18 +1224,18 @@ Let $F_1,F_2 \colon \mathcal G \to \mathcal H$ be functors between groupoids. Th
 This is an easy consequence of Proposition \ref{prop cylinder for groupoids} (using a standard reformulation of natural transformation).
 \end{proof}
 
-\subsection{Categories} \label{model structure on cat}
-
-The category of all small categories $\Cat$ has a model structure which doesn't differ much from that of groupoids. However, we state it as a theorem for future references:
-
-\begin{thm} \label{thm model structure on cat}
-$\Cat$ has a model structure where:
-\begin{itemize}
-\item weak equivalences are equivalences of categories;
-\item cofibrations are functors injective on objects;
-\item fibrations are functors with the RLP with respect to the map $\Delta^0_{\grpd} \to \Delta^1_{\grpd}$.
-\end{itemize}
-\end{thm}
+%\subsection{Categories} \label{model structure on cat}
+%
+%The category of all small categories $\Cat$ has a model structure which doesn't differ much from that of groupoids. However, we state it as a theorem for future references:
+%
+%\begin{thm} \label{thm model structure on cat}
+%$\Cat$ has a model structure where:
+%\begin{itemize}
+%\item weak equivalences are equivalences of categories;
+%\item cofibrations are functors injective on objects;
+%\item fibrations are functors with the RLP with respect to the map $\Delta^0_{\grpd} \to \Delta^1_{\grpd}$.
+%\end{itemize}
+%\end{thm}
 
 
 \section{Quillen adjunctions and total derived functors}
@@ -1274,6 +1405,56 @@ The existence of $\mathbf L F$ and $\mathbf R G$ is implied by Theorem \ref{thm 
 Consider the geometric realization functor $|\cdot| \colon \sSet \to \cghaus$; we know that $|\cdot|$ is left adjoint to the singular complex functor $\sing \colon \cghaus \to \sSet$. Moreover, $|\cdot|$ preserves cofibrations (an inclusion of simplicial sets is sent to a cellular inclusion of CW-complexes) and trivial cofibrations (by definition, a map of simplicial sets is a weak equivalence if and only if its geometric realization is a weak equivalence in $\cghaus$). It follows that $(|\cdot|,\sing)$ is a Quillen pair. Moreover, a map $f \colon S \to \sing(X)$ is a weak equivalence if and only if $|f| \colon |S| \to |\sing(X)|$ is a weak equivalence; however, a classical result states that the counit $|\sing(X)| \to X$ is always a weak equivalence;\footnote{See for example \cite[Theorem 16.6]{may}.} it follows that $f$ is a weak equivalence if and only if the adjoint map $|S| \to X$ is a weak equivalence. Therefore $(|\cdot|,\sing)$ is a Quillen equivalence, and induce an equivalence between $\mathrm{Ho}(\sSet)$ and $\mathrm{Ho}(\cghaus)$.
 \end{eg}
 
+\section{Homotopy limits and colimits} \label{homotopy limits}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Last section contains a brief summary about the construction of the homotopy pushout. If we want to deal with diagrams of more general shapes, we have to take in account an additional difficulty: the category $\mathcal M^{\mathcal C}$ doesn't need to come equipped with a natural model structure. There are several ways to overcome this problem: for example, one can restricts to nice enough diagrams; or one can consider only sufficiently well-behaved model categories. In this exposition, we will consider only Reedy diagrams. However, before the technical details, we would like to explain a more general approach to this problem, that doesn't require additional hypothesis.
+
+Recall that Proposition \ref{prop localizing subcategories} played a major role in our construction of $\mathrm{Ho}(\mathcal M)$ for a model category $\mathcal M$. Moreover, the existence of a deformation retraction of $\mathcal M$ onto $\mathcal M_c$ has proven extremely useful also in Theorem \ref{thm existence derived functor}. Actually, these constructions can be carried over in the more general context of homotopical categories. Here we state the definition:
+
+\begin{defin}
+A homotopical category is a category $\mathcal C$ equipped with a wide subcategory $\mathcal W$ satisfying the 2-out-of-6 axiom: if $f,g,h$ is a composable triple of arrows and $hg$, $gf$ are in $\mathcal W$, then so are $f,g,h,hgf$.
+\end{defin}
+
+It can be developed a deformation theory for homotopical categories allowing to show that if $\mathcal M$ is a model category and $\mathcal C$ is a small category, then $\mathcal M^{\mathcal C}$ with the componentwise homotopical structure admits a homotopy category. Theorem \ref{thm existence derived functor} about derived functors extends to this context (substituting $\mathcal M_c$ with an appropriate deformation retraction of $\mathcal M$). From this point of view, we can try seriously to generalize the approach described for homotopy pushouts. Namely, we can prove that the $\colim$ functor has a total left derived functor, and we can look for a representative
+\[
+\mathrm{hocolim} \colon \mathcal M^{\mathcal C} \to \mathcal M
+\]
+well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dhk}, has been further developed in \cite{shulman} and \cite{riehl}.
+
+
+\subsection{holim and hocolim}
+
+Using the machinery developed above, we easily obtain the following result:
+
+\begin{prop}
+Let $\mathcal C$ be a Reedy category with fibrant constants. For every model category $\mathcal M$ the colimit functor $\colim \colon \mathcal M^{\mathcal C} \to \mathcal M$ has a total left derived functor.
+\end{prop}
+
+\begin{proof}
+This is an immediate consequence of Theorem \ref{thm quillen adjuntion} and Corollary \ref{cor reedy fibrant constants}.
+\end{proof}
+
+Previous Proposition holds in particular when $\mathcal C = \boldsymbol\Delta$ and $\mathcal C = \boldsymbol\Delta^{\mathrm{op}}$, i.e. for simplicial and cosimplicial diagrams. As in the case of homotopy pushouts, the problem becomes to find a representative for $\mathbf L \colim$ behaving well with respect to weak equivalences. This is absolutely not trivial: for the general case, we will need more theory (in particular, the tool of simplicial and cosimplicial resolutions). However, when the model category $\mathcal M$ is simplicial, there are well-known formulas due to Bousfield and Kan mimicking the constructions for topological spaces.
+
+\begin{rmk}
+To conclude this too short introduction to homotopy limits and colimits, we have at least to say something about the $(\infty,1)$-categorical context. Lurie proposes in \cite{htt} a definition for homotopy limits and colimits for quasicategories. This definition (due to Joyal, see \cite{joyal}) has the advantage of being extremely compact and it doesn't require much machinery to be formulated. Moreover, it specializes to our construction when it makes sense (i.e. when the quasicategory is presented by a model category). We refer to successive chapters for a more detailed exposition.
+\end{rmk}
+
 \subsection{Homotopy pushout} \label{homotopy pushout}
 
 To conclude this section, I would like to deal with a specific example of great relevance to homotopy theory: homotopy pushout and homotopy pullback (later on we will deal with more general kind of homotopy limits and colimits). Introduce the ``pushout category''
@@ -1392,21 +1573,33 @@ we obtain
 which is the ``correct'' result.
 \end{rmk}
 
-\section{Homotopy limits and colimits} \label{homotopy limits}
+\section{Mapping spaces}
 
-Last section contains a brief summary about the construction of the homotopy pushout. If we want to deal with diagrams of more general shapes, we have to take in account an additional difficulty: the category $\mathcal M^{\mathcal C}$ doesn't need to come equipped with a natural model structure. There are several ways to overcome this problem: for example, one can restricts to nice enough diagrams; or one can consider only sufficiently well-behaved model categories. In this exposition, we will consider only Reedy diagrams. However, before the technical details, we would like to explain a more general approach to this problem, that doesn't require additional hypothesis.
+\subsection{Informal ideas and motivations}
 
-Recall that Proposition \ref{prop localizing subcategories} played a major role in our construction of $\mathrm{Ho}(\mathcal M)$ for a model category $\mathcal M$. Moreover, the existence of a deformation retraction of $\mathcal M$ onto $\mathcal M_c$ has proven extremely useful also in Theorem \ref{thm existence derived functor}. Actually, these constructions can be carried over in the more general context of homotopical categories. Here we state the definition:
+As we already said, the homotopy category of a model category $\mathcal M$ describes only a small part of the information contained in $\mathcal M$; intuitively, we can say that $\mathrm{Ho}(\mathcal M)$ extracts the 1-homotopical information in $\mathcal M$. There are other invariants (under Quillen equivalence, let's say) which represent an attempt to describe the higher homotopical content of $\mathcal M$. In this section we will concerned with one of them: the mapping spaces.
 
-\begin{defin}
-A homotopical category is a category $\mathcal C$ equipped with a wide subcategory $\mathcal W$ satisfying the 2-out-of-6 axiom: if $f,g,h$ is a composable triple of arrows and $hg$, $gf$ are in $\mathcal W$, then so are $f,g,h,hgf$.
-\end{defin}
-
-It can be developed a deformation theory for homotopical categories allowing to show that if $\mathcal M$ is a model category and $\mathcal C$ is a small category, then $\mathcal M^{\mathcal C}$ with the componentwise homotopical structure admits a homotopy category. Theorem \ref{thm existence derived functor} about derived functors extends to this context (substituting $\mathcal M_c$ with an appropriate deformation retraction of $\mathcal M$). From this point of view, we can try seriously to generalize the approach described for homotopy pushouts. Namely, we can prove that the $\colim$ functor has a total left derived functor, and we can look for a representative
+If one has some familiarity with the language of $(\infty,1)$-categories in the sense of Lurie (cfr. \cite{htt}), he will know that the theory of quasicategories is equivalent in an appropriate sense to the theory of topological categories and to the theory of simplicial categories. In these two last cases, for each pair of objects $X,Y$ we are given, by the very definition, a mapping space
 \[
-\mathrm{hocolim} \colon \mathcal M^{\mathcal C} \to \mathcal M
+\mathrm{Map}_{\mathcal C}(X,Y)
 \]
-well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dhk}, has been further developed in \cite{shulman} and \cite{riehl}.
+which is a topological space or a simplicial set. However, in the language of quasicategories, the existence of such object is not obvious at all. Lurie propose at least three different models for this space; we will choose one of them for sake of clarity (and leave the details of these constructions to successive seminars): if $S$ is a quasicategory and $x,y$ are vertices, define
+\begin{equation} \label{eq lurie mapping space}
+\Hom_{\sSet}(\Delta^n, \mathrm{Map}_S(x,y))\coloneqq \Hom_{\sSet}^{x,y}(\Delta^n \times \Delta^1, S)
+\end{equation}
+where the apex means that we are considering only the maps $f$ such that
+\[
+f |_{\Delta^n \times 0} = x, \qquad f |_{\Delta^n \times 1} = y
+\]
+It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sSet$ is defined
+\[
+\mathbf{Hom}(K,S)_n\coloneqq \Hom_{\sSet}(K \times \Delta^n, S)
+\]
+Thus \eqref{eq lurie mapping space} is nothing but the subcomplex of
+\[
+\mathbf{Hom}(\Delta^1,S)
+\]
+spanned by those elements ``starting from $x$'' and ``reaching $y$''.
 
 \subsection{Reedy categories}
 
@@ -1564,51 +1757,6 @@ Let $\mathcal C$ be a Reedy category. Then
 We will prove \emph{2.} If $(\colim, \Delta)$ is a Quillen pair, then $\Delta$ takes fibrations to fibrations, and hence fibrant objects to fibrant objects. Thus in this case $\mathcal C$ has fibrant constants. Conversely, if $\mathcal C$ has cofibrant constants, and $p \colon X \to Y$ is a fibration, then Proposition \ref{prop reedy cofibrant constants} implies that the relative matching map of $\Delta(i)$ at each object $\alpha$ is either the identity map of $X$ or isomorphic to $p$; in both cases it is a fibration.
 \end{proof}
 
-\subsection{holim and hocolim}
-
-Using the machinery developed above, we easily obtain the following result:
-
-\begin{prop}
-Let $\mathcal C$ be a Reedy category with fibrant constants. For every model category $\mathcal M$ the colimit functor $\colim \colon \mathcal M^{\mathcal C} \to \mathcal M$ has a total left derived functor.
-\end{prop}
-
-\begin{proof}
-This is an immediate consequence of Theorem \ref{thm quillen adjuntion} and Corollary \ref{cor reedy fibrant constants}.
-\end{proof}
-
-Previous Proposition holds in particular when $\mathcal C = \boldsymbol\Delta$ and $\mathcal C = \boldsymbol\Delta^{\mathrm{op}}$, i.e. for simplicial and cosimplicial diagrams. As in the case of homotopy pushouts, the problem becomes to find a representative for $\mathbf L \colim$ behaving well with respect to weak equivalences. This is absolutely not trivial: for the general case, we will need more theory (in particular, the tool of simplicial and cosimplicial resolutions). However, when the model category $\mathcal M$ is simplicial, there are well-known formulas due to Bousfield and Kan mimicking the constructions for topological spaces.
-
-\begin{rmk}
-To conclude this too short introduction to homotopy limits and colimits, we have at least to say something about the $(\infty,1)$-categorical context. Lurie proposes in \cite{htt} a definition for homotopy limits and colimits for quasicategories. This definition (due to Joyal, see \cite{joyal}) has the advantage of being extremely compact and it doesn't require much machinery to be formulated. Moreover, it specializes to our construction when it makes sense (i.e. when the quasicategory is presented by a model category). We refer to successive chapters for a more detailed exposition.
-\end{rmk}
-
-\section{Mapping spaces}
-
-\subsection{Informal ideas and motivations}
-
-As we already said, the homotopy category of a model category $\mathcal M$ describes only a small part of the information contained in $\mathcal M$; intuitively, we can say that $\mathrm{Ho}(\mathcal M)$ extracts the 1-homotopical information in $\mathcal M$. There are other invariants (under Quillen equivalence, let's say) which represent an attempt to describe the higher homotopical content of $\mathcal M$. In this section we will concerned with one of them: the mapping spaces.
-
-If one has some familiarity with the language of $(\infty,1)$-categories in the sense of Lurie (cfr. \cite{htt}), he will know that the theory of quasicategories is equivalent in an appropriate sense to the theory of topological categories and to the theory of simplicial categories. In these two last cases, for each pair of objects $X,Y$ we are given, by the very definition, a mapping space
-\[
-\mathrm{Map}_{\mathcal C}(X,Y)
-\]
-which is a topological space or a simplicial set. However, in the language of quasicategories, the existence of such object is not obvious at all. Lurie propose at least three different models for this space; we will choose one of them for sake of clarity (and leave the details of these constructions to successive seminars): if $S$ is a quasicategory and $x,y$ are vertices, define
-\begin{equation} \label{eq lurie mapping space}
-\Hom_{\sSet}(\Delta^n, \mathrm{Map}_S(x,y))\coloneqq \Hom_{\sSet}^{x,y}(\Delta^n \times \Delta^1, S)
-\end{equation}
-where the apex means that we are considering only the maps $f$ such that
-\[
-f |_{\Delta^n \times 0} = x, \qquad f |_{\Delta^n \times 1} = y
-\]
-It's reasonable that this choice produces a ``good definition'', provided some familiarity with the theory of simplicial sets. In fact, recall that the internal hom of $\sSet$ is defined
-\[
-\mathbf{Hom}(K,S)_n\coloneqq \Hom_{\sSet}(K \times \Delta^n, S)
-\]
-Thus \eqref{eq lurie mapping space} is nothing but the subcomplex of
-\[
-\mathbf{Hom}(\Delta^1,S)
-\]
-spanned by those elements ``starting from $x$'' and ``reaching $y$''.
 
 \subsection{(Co)simplicial resolutions} \label{cosimplicial resolutions}
 
