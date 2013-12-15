@@ -330,7 +330,7 @@ commutative. Observe that the 2-out-of-3 axiom implies that $\mathrm{in}_k$ is a
 
 We can use cylinder objects to introduce the notion of homotopy between two maps:
 
-\begin{defin}
+\begin{defin} \label{def left homotopy}
 Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be two arrows. A \emph{left homotopy} from $f$ to $g$ is a pair $(A \times I, H)$ where $A \times I$ is a cylinder object for $A$ and $H \colon A \times I \to X$ is a map satisfying $H \circ \mathrm{in}_0 = f$, $H \circ \mathrm{in}_1 = g$. We will say that \emph{$f$ is left homotopic to $g$} if a left homotopy from $f$ to $g$ exists; in this case we will write $f \stackrel{l}{\sim} g$.
 \end{defin}
 
@@ -429,14 +429,14 @@ p_* \colon \pi^l(A,X) \to \pi^l(A,Y)
 %\end{enumerate}
 %\end{lemma}
 
-%\begin{lemma}
-%Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be maps.
-%\begin{enumerate}
-%\item If $A$ is cofibrant and $f \stackrel{l}{\sim} g$, then $f \stackrel{r}{\sim} g$;
-%\item if $X$ is fibrant and $f \stackrel{r}{\sim} g$, then $f \stackrel{l}{\sim} g$.
-%\end{enumerate}
-%\end{lemma}
-%
+\begin{lemma} \label{lemma homotopy category 3}
+Let $\mathcal M$ be a model category and let $f,g \colon A \to X$ be maps.
+\begin{enumerate}
+\item If $A$ is cofibrant and $f \stackrel{l}{\sim} g$, then $f \stackrel{r}{\sim} g$;
+\item if $X$ is fibrant and $f \stackrel{r}{\sim} g$, then $f \stackrel{l}{\sim} g$.
+\end{enumerate}
+\end{lemma}
+
 %\begin{notation}
 %If $A$ is cofibrant and $X$ is fibrant, previous lemma shows that the two relations $\stackrel{l}{\sim}$ and $\stackrel{r}{\sim}$ on $\Hom_{\mathcal M}(A,X)$ coincide. In this case we will denote both by $\sim$ and we will refer to it as the homotopy equivalence relation.
 %\end{notation}
@@ -444,6 +444,10 @@ p_* \colon \pi^l(A,X) \to \pi^l(A,Y)
 \begin{cor} \label{cor weak homotopy category}
 The homotopy relation on morphisms of $\mathcal M_{cf}$ is an equivalence relation and it is compatible with composition. Hence the category $\mathcal M_{cf} / \sim$ exists.
 \end{cor}
+
+\begin{proof}
+This follows from Lemma \ref{lemma homotopy category 2} and its dual version, concerning path objects and right homotopies, and from Lemma \ref{lemma homotopy category 3}.
+\end{proof}
 
 The following theorem is the equivalent, in our abstract setting, of Whitehead's Theorem:
 
@@ -719,6 +723,10 @@ Let $\mathcal C$ be a category. A (functorial) weak factorization system is the 
 \end{enumerate}
 \end{defin}
 
+\begin{defin}
+Let $\mathcal C$ be a category and let $I$ be a class of arrows in $\mathcal C$. We will denote by $\cofreg{I}$ the smallest class of arrows of $\mathcal C$ containing $I$ and closed under isomorphisms, pushouts and transfinite compositions.
+\end{defin}
+
 \subsection{The small object argument}
 
 \begin{defin} \label{def regular cardinal}
@@ -853,38 +861,74 @@ Now, if $f$ is a fibration in the model structure on $\mathcal N$ if and only if
 
 \section{Examples}
 
-In this section we collect some of the easiest examples of model categories. Each example will be organized in the following way:
+In this section we collect some of the most common example of model categories, and in any case it is safe to assume that every other example we will encounter throughout this book can be obtained from these ones via some model-theoretic construction (such as a lifting argument or a Bousfield localization). Often, to prove the existence of a certain model structure is a difficult task, as in the case of simplicial sets, and this would go beyond the scope of these notes; in these cases, we will simply refer the reader to a proper reference. Besides this, for each model category we will introduce, we will compute explicitly cylinder objects.
 
-\begin{enumerate}
-\item description of the model structure with a sketch of the verification of the axioms;
-\item explicit computation of cylinder objects and path objects (at least in some good case);
-\item explicit computation of the $\Hom$ in the homotopy category $\mathrm{Ho}(\mathcal M)$.
-\end{enumerate}
+\subsection{Topological spaces}  \label{topological spaces}
+
+$\mathbf{CGHaus}$ is among the simplest (and interesting) examples of a model category that we know. There are at least two different model structures on $\mathbf{CGHaus}$ sharing the same classes of weak equivalences. We will focus here on the model structure induced by the notion of Serre's fibration.
+
+\begin{defin}
+A map of topological spaces $p \colon X \to Y$ is said to be a \emph{Serre fibration} if, for each CW-pair $(X,A)$, the map $p$ has the RLP with respect to the inclusion $(X \times 0) \cup (A \times I) \to X \times I$.
+\end{defin}
+
+\begin{thm} \label{thm model structure top}
+$\mathbf{CGHaus}$ has a model structure where
+\begin{itemize}
+\item weak equivalences are weak homotopy equivalences;
+\item fibrations are Serre fibrations;
+\item cofibrations are the maps with LLP with respect to acyclic fibrations.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+See \cite[Proposition 8.3]{dwsp}.
+\end{proof}
+
+\begin{prop}
+With respect to the model structure of Theorem \ref{thm model structure top}, in $\mathbf{CGHaus}$ every object is fibrant and every cellular inclusion $A \to B$ is a cofibration.
+\end{prop}
+
+\begin{proof}
+The first statement follows from \cite[Proposition 0.16]{hatcher}, while the second is a consequence of  \cite[Proposition 8.6]{dwsp}.
+\end{proof}
+
+\begin{prop}
+If $A$ is a CW-complex, $A \times I$ is a cylinder object for $A$.
+\end{prop}
+
+\begin{proof}
+Consider the inclusions $A \sqcup A \to A \times I$ at level $0$ and $1$. This is a cofibration because it is a cellular inclusion. On the other side, the projection $p \colon A \times I \to A$ is a homotopy equivalence, hence also a weak homotopy equivalence. Moreover, it is easily shown to be a Serre fibration.
+\end{proof}
+
+Using this result we can also identify the homotopy relation for maps starting from a CW-complex:
+
+\begin{cor}
+If $A$ is a CW-complex and $f,g \colon A \to X$ are continuous map, then $f$ is homotopic to $g$ in the sense of Definition \ref{def left homotopy} if and only if they are homotopic in the topological sense.
+\end{cor}
 
 \subsection{Simplicial sets}
 
-The theory of simplicial sets are at the core of homotopy theory. They are the first purely algebraic (combinatorial) model for the homotopy category of topological spaces we discovered. Appendix A contains a brief summary of this theory; more specific references are given there. Here we will simply describe the usual model structure given to $\sSet$.
+Simplicial sets are at the core of homotopy theory, both in the classical and in the abstract one. From a classical perspective, simplicial sets can be used to construct an equivalent theory of homotopy types; even though it could be harder to work out the details of the constructions from this point of view, it is a fact that the resulting theory is completely combinatorial and, therefore, it is easier to be controlled. In a sense, the construction of homotopy types out of simplicial sets is more minimal than the one obtained starting with (nice) topological spaces.
+
+From the point of view of abstract homotopy theory, instead, simplicial sets play a major role because they can be used to codify the higher categorical content of a model category. More explicitly, we already discussed the fact that the possibility of defining (higher) homotopies between maps in a model category $\mathcal M$ is a hint of the fact that $\mathcal M$ presents somehow an $(\infty,1)$-category. Given two objects $X$ and $Y$ in a model category $\mathcal M$, it is natural to look for ``spaces'' parametrizing all the higher homotopies between $X$ and $Y$. We will see in the section concerning mapping spaces that a natural way to formalize the previous idea leads to construct such spaces as simplicial sets. We therefore tend to think that simplicial sets stand to homotopy theory as much as sets stands to classical geometry (i.e.\ geometry which doesn't involve homotopies).
+
+Quillen first proved that $\sSet$ can be endowed with a model structure; the proof usually given nowadays is not undergone to major simplifications, and it remains a difficult proof, which is far beyond the scope of these notes.
 
 \begin{thm} \label{thm model structure on sset}
 The following classes of maps in $\sSet$ define a model structure:
 \begin{itemize}
-\item weak equivalences are exactly those morphisms inducing isomorphisms between all the homotopy group (of the geometric realization);
-\item fibrations are Kan fibrations;
-\item cofibrations are injections on objects.
+\item a map $f \colon F \to G$ is a weak equivalence if and only if its geometric realization (cfr. Section \ref{geometric realization}) $|f| \colon |F| \to |G|$ is a weak homotopy equivalence;
+\item fibrations are Kan fibrations (cfr. Definition \ref{def kan fibration});
+\item cofibrations are monomorphisms.
 \end{itemize}
+Moreover, this model structure is cofibrantly generated and we can take as set of generating cofibrations the maps $\{\partial \Delta^n \to \Delta^n\}$ and as generating trivial cofibrations the maps $\{\Lambda^n_i \to \Delta^n\}$.
 \end{thm}
 
-\begin{rmk}
-It's possible to give a purely combinatorial description of the model structure on $\sSet$. To describe weak equivalences avoiding geometric realization, one has to use the notion of minimal Kan complex and minimal fibration. For an exposition of these notions, the reader is referred to \cite{may} or to \cite[I.10]{gj}.
-\end{rmk}
-
-From this moment on, when we refer to a model structure on $\sSet$ we will tacitly mean that of Theorem \ref{thm model structure on sset}. The proof of this Theorem is hard and we will simply outline the main ideas involved there. For the details, the reader is referred to the first chapter of \cite{gj} or to the third chapter 
-
-\begin{proof}[Sketch of the proof]
-Coming soon...
+\begin{proof}
+See \cite[Theorem I.11.3]{gj}.
 \end{proof}
 
-At this point we can do some computation. Let's start with the computation of a cylinder object.
+Cylinder and path objects are sufficiently close to our imagination:
 
 \begin{prop}
 If $K \in \sSet$ is a simplicial set, $K \times \Delta^1$ is a cylinder object for $K$.
@@ -914,225 +958,138 @@ which shows that $p \circ i$ is a factorization of the fold map $\nabla \colon K
 which is a homotopy equivalence ($|\Delta^1|$ is contractible), hence $p$ is a weak equivalence.
 \end{proof}
 
-We will see later that this proposition holds in full generality: the key point is that $\{\Delta^n\}_{n \in \N}$ is a cosimplicial object in $\sSet$, and $\sSet$ is enriched over itself.
+\begin{rmk}
+Observe that the projection map $K \times \Delta^1 \to K$ is not a Kan fibration in general, because $\Delta^n$ is not a Kan complex.
+\end{rmk}
 
-\begin{prop}
-Let $K$ be a simplicial set. Then $\mathbf{hom}(\Delta^1,K)$ is a path object for $K$.
-\end{prop}
-
-Simplicial sets have another model structure, called the \emph{Joyal model structure}. We won't use it in this chapter, but we will use it dealing with quasicategories (and the equivalence with simplicial categories).
-
-\begin{defin}
-Let $S \in \sSet$; we define a simplicial category $\mathfrak C[S]$ as ...
-\end{defin}
-
-\begin{thm} \label{thm joyal model structure}
-$\sSet$ has a model structure where:
-\begin{itemize}
-\item cofibrations is a monomorphism;
-\item a map $f \colon S \to S'$ is a weak equivalence if and only if the induced functor $\mathfrak C[S] \to \mathfrak C[S']$ is an equivalence of simplicial categories;
-\item fibrations are maps with the RLP with respect to trivial cofibrations.
-\end{itemize}
-\end{thm}
-
-\subsection{Topological spaces}  \label{topological spaces}
-
-Among the most important examples of model category there is $\Top$.
-
-\begin{defin}
-A map of topological spaces $p \colon X \to Y$ is said to be a \emph{Serre fibration} if, for each CW-complex $A$, the map $p$ has the RLP with respect to the inclusion $A \times 0 \to A \times [0,1]$.
-\end{defin}
-
-\begin{thm} \label{thm model structure top}
-$\Top$ has a model structure where
-\begin{itemize}
-\item weak equivalences are weak homotopy equivalences;
-\item fibrations are Serre fibrations;
-\item cofibrations are the maps with LLP with respect to acyclic fibrations.
-\end{itemize}
-\end{thm}
-
-Since $I\coloneqq [0,1]$ is contractible, it follows that $A \times [0,1]$ retracts onto $A \times 0$; in particular, every map $X \to *$ is a Serre fibration, that is:
-
-\begin{cor}
-With the model structure of Theorem \ref{thm model structure top}, in $\Top$ every object is fibrant.
-\end{cor}
-
-On the other side one can prove:
-
-\begin{lemma}
-Every cellular inclusion $A \to B$ is a cofibration.
-\end{lemma}
-
-At this point, we can do a computation. Assume that $A$ is a CW-complex and let $X$ be an arbitrary topological space. Since $A$ is cofibrant by previous proposition, and $X$ is fibrant because every object is fibrant, it follows that
-\[
-\Hom_{\mathrm{Ho}(\Top)}(A,X) \sim \Hom_{\Top}(A,X) / \sim
-\]
-
-\begin{prop}
-If $A$ is a CW-complex, $A \times [0,1]$ is a cylinder object for $A$.
-\end{prop}
-
-\begin{proof}
-Consider the inclusions
-\[
-A \sqcup A \to A \times [0,1]
-\]
-at level $0$ and $1$. This is a cofibration because it is a cellular inclusion. Then we can introduce the projection:
-\[
-p \colon A \times [0,1] \to A
-\]
-This is a homotopy equivalence, hence also a weak equivalence. Moreover, it is a fibration: given a diagram
-\[
-\xymatrix{
-B \times 0 \ar[d]^g \ar[r]^f & A \times [0,1] \ar[d]^p \\ B \times [0,1] \ar[r]^h & A
-}
-\]
-simply define a lifting $H \colon B \times [0,1] \to A \times [0,1]$ by
-\[
-H(b,t) = (h(b,t),q(f(b,0)))
-\]
-where $q \colon A \times [0,1] \to [0,1]$ is the second projection.
-\end{proof}
-
-Using this result we can also identify the homotopy relation for maps starting from a CW-complex:
-
-\begin{prop}
-If $A$ is a CW-complex and $f,g \colon A \to X$ are continuous map, then $f$ is homotopic to $g$ if and only if they are homotopic in the topological sense.
-\end{prop}
-
-Finally, we can anticipate that the adjoint pair composed by geometric realization and singular complex induce an equivalence between $\mathrm{Ho}(\Top)$ and $\mathrm{Ho}(\sSet)$. This will give an example of Quillen equivalence. We will return on this point in the next section.
-
-Before passing on, we should at least remark that $\Top$ can be endowed with another model structure, where cofibrations are the inclusions $A \hookrightarrow X$ such that $A$ is a closed subspace of $X$ and the pair $(X,A)$ has the homotopy lifting property. These are called Hurewicz cofibrations. The weak equivalences are unchanged. This gives an example of a model category whose structure is not completely determined by weak equivalences.
+\begin{exercise}
+Let $K$ be a fibrant simplicial set. Show that $\mathbf{hom}(\Delta^1,K)$ is a path object for $K$ (\emph{hint}: to show that the natural map $\mathbf{hom}(\Delta^1, K) \to K \times K$ is a Kan fibration, it will be convenient to use Corollary \ref{cor anodyne 3} applied to the cofibration $\partial \Delta^1 \to \Delta^1$ and to the fibration $K \to *$).
+\end{exercise}
 
 \subsection{Chain complexes over $\Mod_R$} \label{chain complexes}
 
-This is a purely algebraic example of model category, and establishes a strong relation with homological algebra. The intuition coming from this example will be useful as analogy in the construction of the total derived functor.
+Chain complexes over an arbitrary base ring are the last building block we will need throughout these notes; since this is a purely algebraic example, it is much easier to do computations here than in the previous examples and we will often come back to this example as a testing ground for new homotopical notions. As the reader will proceed with these notes, he will realize that this is a really rich example, exactly as simplicial sets (the existence of the Dold-Kan equivalence should be seen as a motivation for this statement).
 
-We will restrict ourselves to consider complexes \emph{bounded below}.
+We will adopt a \emph{cohomological notation} (as in \cite{hagII}) and we will consider two different categories of chain complexes: the bounded above and the unbounded ones. For all the basic definitions concerning chain complexes we will refer to the first chapter of \cite{weibel}.
 
 \begin{defin}
-A morphism of complexes $f_\bullet \colon M_\bullet \to N_\bullet$ is said to be a \emph{quasi-isomorphism} if, for each $n \in \N$, $H_i(f_\bullet) \colon H_i(M_\bullet) \to H_i(N_\bullet)$ is an isomorphism.
+A morphism of complexes $f \colon M^\bullet \to N^\bullet$ is said to be a \emph{quasi-isomorphism} if, for each $n \in \N$, $H_i(f) \colon H_i(M_\bullet) \to H_i(N_\bullet)$ is an isomorphism.
 \end{defin}
 
-\begin{rmk}
-Recall from \cite[Ch. I]{weibel} that every chain-equivalence is also a quasi-isomorphism. The converse is false: for example, a complex is split-exact if and only if its identity is chain-homotopic to the null map; however, there are exact complexes which are not split exact; for each such complex, the map to the zero complex is a quasi isomorphism, but it is not a chain-equivalence.
-\end{rmk}
-
-For each $R$-module $A$ and each $n \in \N$, $n \ge 1$ define the complex $((D_n(A))_\bullet,d_\bullet)$ by
+For each $R$-module $A$ and each $n \in \Z$ define the complex $D^n(A)$ by
 \[
-(D_n(A))_i = \begin{cases} 0 & \text{if } i \ne n - 1, n \\ A & \text{if } i = n-1,n \end{cases}, \qquad d_i = \begin{cases} 0 & \text{if } i \ne n-1 \\ \mathrm{id}_A & \text{if } i = n-1 \end{cases}
+(D^n(A))^i \coloneqq \begin{cases} A & \text{if } i = n,n+1 \\ 0 & \text{otherwise.} \end{cases}, \qquad d^i = \begin{cases}  \mathrm{id}_A & \text{if } i = n \\ 0 & \text{otherwise.} \end{cases}
 \]
-Clearly this gives rise to a functor $D_n \colon \Mod_R \to \ch(R)$. Let now $\Pi_n \colon \ch(R) \to \Mod_R$ be the functor projecting everything to the $n$-th position. The following lemma is straightforward:
-
-\begin{lemma} \label{lemma chain complexes}
-For each $n \in \N$, $n \ge 1$ we have the following adjunction relations:
+Similarly, define the complex $S^n(A)$ by
 \[
-D_n \dashv \Pi_n \dashv D_{n+1}
+(S^n(A))^i \coloneqq \begin{cases} A & \text{if } i = n \\ 0 & \text{otherwise.} \end{cases}
 \]
-In particular $D_n$ takes projective objects into projective objects.
-\end{lemma}
 
-\begin{proof}[Sketch of the proof.]
-The first statement is clear by inspection. The second statement follows easily from the adjunction $D_n \dashv \Pi_n$ and the fact that $\Pi_n$ is an exact functor.
-\end{proof}
-
-\begin{thm}
-Let $R$ be a ring. The category of (bounded below) chain complexes $\ch(R)$ has a model structure where
+\begin{thm} \label{thm model structure unbounded complexes}
+Let $R$ be a ring. The category of chain complexes $\ch(R)$ admits a \emph{projective model structure}, where:
 \begin{itemize}
-\item a weak equivalence is a quasi-isomorphism;
-\item a cofibration is a map $f_\bullet \colon M_\bullet \to N_\bullet$ such that $f_k$ is a monomorphism with projective cokernel for every degree $k$;
-\item a fibration is a map $f_\bullet \colon M_\bullet \to N_\bullet$ which is an epimorphism in every strictly positive degree.
+\item a map is a weak equivalence if and only if it is a quasi-isomorphism;
+\item a map $f \colon M^\bullet \to N^\bullet$ is a cofibration if and only if such that $f^n$ is a monomorphism with projective cokernel for every $n \in \Z$;
+\item a map $f \colon M^\bullet \to N^\bullet$ is a fibration if and only if it is an epimorphism in every degree.
 \end{itemize}
+Moreover, if we let $I$ be the set of maps $S^n(R) \to D^n(R)$ and $J$ be the set of maps $0 \to D^n(R)$, for $n \in \Z$ we have that the previous model structure is cofibrantly generated and $I$ is a set of generating cofibrations.
 \end{thm}
 
-\begin{proof}{Sketch of the proof}
-Axioms {\bfseries MC1} -- {\bfseries MC3} are straightforward. Let's prove the RLP of cofibrations with respect to acyclic fibrations. Consider a diagram
-\begin{equation} \label{eq RLP chain complexes}
-\xymatrix{
-A_\bullet \ar[r]^{g_\bullet} \ar[d]_{i_\bullet} & X_\bullet \ar[d]^{p_\bullet} \\ B_\bullet \ar[r]^{h_\bullet} & Y_\bullet
-}
-\end{equation}
-where $i_\bullet$ is a cofibration and $p$ an acyclic fibration. Since $H_0(p_\bullet)$ is an isomorphism, it follows that $p_0 \colon X_0 \to Y_0$ is onto, and so $p_\bullet \colon X_\bullet \to Y_\bullet$ is onto. Now the idea is to split $B_k = A_k \oplus P_k$, where $P_k$ is a projective module (possible because $i_\bullet$ is a cofibration) and use the projection $B_k \to A_k$ to build inductively a lifting $B_k \to X_k$.
-
-Assume now that in the diagram \eqref{eq RLP chain complexes} $i_\bullet$ is an acyclic cofibration and $p_\bullet$ a fibration. Let $P_\bullet$ be the cokernel of $i_\bullet$; then the long exact sequence in homology shows that $P_\bullet$ is acyclic; by assumption each $P_k$ is a projective $R$-module. It can be shown with an induction argument that
-\[
-P_\bullet \simeq \bigoplus_{k \ge 1} D_k(\mathrm{Z}_{k-1}(P))
-\]
-and that each $Z_k(P)$ is a projective $R$-module. It follows from Lemma \ref{lemma chain complexes} that $P_\bullet$ is a projective object in $\ch(R)$. The short exact sequence
-\[
-0 \to A_\bullet \xrightarrow{i_\bullet} B_\bullet \to P_\bullet \to 0
-\]
-is split. This allows to build the desired lifting.
-
-Axiom {\bfseries MC5} follows by a standard small object argument.
+\begin{proof}
+The proof is not hard, and it can be obtained by checking that the hypothesis of Theorem \ref{thm recognizing} are satisfied. We refer to \cite[Theorem 2.3.11]{hovey} for the details.
 \end{proof}
 
-\begin{eg}
-For each $R$-module $A$, let $(P_\bullet,f_\bullet)$ be a cofibrant replacement for $J_0(A)$. The map $f_\bullet \colon P_\bullet \to K(A,0)$ is a quasi-isomorphism; in particular $P_\bullet$ is exact in strictly positive degrees. Moreover, it is cofibrant, hence each object is projective. It follows that $P_\bullet$ is a \emph{projective resolution} of $A$.
-\end{eg}
-
 \begin{rmk}
-The tensor product of chain complexes is defined as $A_\bullet \otimes_{\ch(R)} B_\bullet\coloneqq \tot^\oplus(A_\bullet \otimes_R B_\bullet)$, where $A_\bullet \otimes_R B_\bullet$ is the natural double complex associated to $A_\bullet$ and $B_\bullet$. This tensor product endows $\ch(R)$ with a monoidal structure. See the appendixes for the details.
+$\ch(R)$ admits another cofibrantly generated model structure (the \emph{injective} one), whose cofibrations are degreewise monomorphisms and whose weak equivalences are again quasi-isomorphisms. We refer to \cite[Theorem 2.3.13]{hovey} for a detailed description and a proof of the existence. We only remark that the proof of this theorem is somehow more difficult than the one of Theorem \ref{thm model structure unbounded complexes}, and a cardinality argument (sometimes called the \emph{Bousfield-Kan cardinality argument}) is involved. We will meet this argument again later in these notes, so we postpone the discussion until that point.
 \end{rmk}
 
-\begin{eg} \label{eg delta^1 for chain complexes}
-Consider the complex:
+We said at the beginning of this example that it is also possible to endow $\ch_{\le 0}(R)$ with a model structure. In this case, the argument goes back to Quillen \cite{quillen}:
+
+\begin{thm} \label{thm model structure on bounded complexes}
+The category of bounded above complexes $\ch_{\le 0}(R)$ has a cofibrantly generated model structure (the projective model structure), where:
+\begin{itemize}
+\item a map is a weak equivalence if and only if it is a quasi-isomorphism;
+\item a map $f \colon M^\bullet \to N^\bullet$ is a fibration if and only if $f^n$ is surjective for every $n < 0$;
+\item a map $f$ is a cofibration if and only if it is a degreewise monomorphism.
+\end{itemize}
+A set of generating cofibrations is given by the maps $\{S^n(R) \to D^n(R)\}_{n < 0}$ and a set of generating fibrations is given by the maps $\{0 \to D^n(R)\}_{n < 0}$.
+\end{thm}
+
+\begin{proof}
+See \cite[Theorem 7.2]{dwsp}.
+\end{proof}
+
+\begin{rmk}
+We will see at the end of this chapter how to recover the model structure on bounded complexes from the model structure on unbounded ones via a Bousfield localization. It is perhaps a bit more surprising that we can recover also the model structure on the unbounded complexes starting from the model structure on the bounded ones: the process is that of taking \emph{spectra} and it will be discussed in the Interlude about higher algebra.
+\end{rmk}
+
+\begin{rmk}
+Observe that the homotopy categories of $\ch(R)$ and of $\ch_{\le 0}(R)$ are precisely the derived categories $\mathrm{D}(R)$ and $\mathrm{D}^b(R)$. This follows from the definition of the weak equivalences.
+\end{rmk}
+
+\begin{eg}
+Consider the projective model structure on the bounded above complexes $\ch(R)_{\le 0}$. For each $R$-module $A$, seen as a complex concentrated in degree $0$, let $(P^\bullet,f)$ be a cofibrant replacement for $A$. The map $f \colon P^\bullet \to A$ is a quasi-isomorphism; in particular $P^\bullet$ is exact in strictly positive degrees. Moreover, it is cofibrant, hence each object is projective. It follows that $P^\bullet$ is a \emph{projective resolution} of $A$.
+\end{eg}
+
+From this moment on we will work with the projective model structure on \emph{unbounded} chain complexes. Recall that $\ch(R)$ can be endowed with a monoidal structure whose tensor product is defined by
 \[
-\Delta^1_R \colon \ldots \to 0 \to R \xrightarrow{d} R^2
+A^\bullet \otimes B^\bullet \coloneqq \tot^\oplus(A^\bullet \otimes_R B^\bullet)
 \]
-where
+where $A^\bullet \otimes_R B^\bullet$ denotes the natural double complex obtained by tensoring objectwise $A^\bullet$ and $B^\bullet$. Introduce now the complex
+\[
+\Delta^1_R \colon \ldots \to 0 \to 0 \to R \xrightarrow{d} R^2 \to 0 \to \ldots
+\]
+where $R^2$ is in degree $0$ and
 \[
 d = \begin{pmatrix} - \mathrm{id}_R \\ \mathrm{id}_R \end{pmatrix}
 \]
-Consider the map
+Consider moreover the map
+\begin{equation} \label{eq cylinder chain complex}
+h \colon \Delta^1_R \to S^0(R)
+\end{equation}
+defined by the condition
 \[
-h_\bullet \colon \Delta^1_R \to K(R,0)
+h^0 = \begin{pmatrix} \mathrm{id}_R & \mathrm{id}_R \end{pmatrix}
 \]
-defined by
-\[
-h_0 = \begin{pmatrix} \mathrm{id}_R & \mathrm{id}_R \end{pmatrix}
-\]
-and
-\[
-h_n = 0 \quad \text{if } n > 0
-\]
-We claim that $h_\bullet$ is a chain-equivalence. In fact, consider the map
-\[
-g \bullet \colon K(R,0) \to \Delta^1_R
-\]
-defined in degree $0$ to be
-\[
-g_0 = \begin{pmatrix} \mathrm{id}_R \\ 0 \end{pmatrix}
-\]
-and $g_n = 0$ for $n > 0$. Then setting $f_\bullet\coloneqq g_\bullet \circ h_\bullet$ we obtain the following map:
-\[
-\xymatrix{
-\cdots \ar[r] & R \ar[d]_0 \ar[r]^{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2 \ar[d]^{\scriptstyle \begin{pmatrix} \mathrm{id} & \mathrm{id} \\ 0 & 0 \end{pmatrix}} \ar@{.>}[dl]|-s \\ \cdots \ar[r] & 0 \ar[r]_{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2
-}
-\]
-Using as basis for $R^2$ the vectors
-\[
-u_0\coloneqq \begin{pmatrix}
--1 \\ 1
-\end{pmatrix}, \quad u_1\coloneqq \begin{pmatrix} 1 \\ 0 \end{pmatrix}
-\]
-define $s \colon R^2 \to R$ by the conditions
-\[
-s(u_0) = 1, \quad s(u_1) = 0
-\]
-Then a routine check shows that $s$ is the required chain homotopy between $f_\bullet$ and $\mathrm{id}_{\Delta^1_R}$. Since $h_\bullet \circ g_\bullet = \mathrm{id}_{K(R,0)}$, we completely proved our statement.
-\end{eg}
 
+\begin{exercise}
+Show that $h$ is a chain equivalence.
+\end{exercise}
+
+%We claim that $h_\bullet$ is a chain-equivalence. In fact, consider the map
+%\[
+%g \bullet \colon K(R,0) \to \Delta^1_R
+%\]
+%defined in degree $0$ to be
+%\[
+%g_0 = \begin{pmatrix} \mathrm{id}_R \\ 0 \end{pmatrix}
+%\]
+%and $g_n = 0$ for $n > 0$. Then setting $f_\bullet\coloneqq g_\bullet \circ h_\bullet$ we obtain the following map:
+%\[
+%\xymatrix{
+%\cdots \ar[r] & R \ar[d]_0 \ar[r]^{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2 \ar[d]^{\scriptstyle \begin{pmatrix} \mathrm{id} & \mathrm{id} \\ 0 & 0 \end{pmatrix}} \ar@{.>}[dl]|-s \\ \cdots \ar[r] & 0 \ar[r]_{\scriptstyle \begin{pmatrix} - \mathrm{id} \\ \mathrm{id} \end{pmatrix}} & R^2
+%}
+%\]
+%Using as basis for $R^2$ the vectors
+%\[
+%u_0\coloneqq \begin{pmatrix}
+%-1 \\ 1
+%\end{pmatrix}, \quad u_1\coloneqq \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+%\]
+%define $s \colon R^2 \to R$ by the conditions
+%\[
+%s(u_0) = 1, \quad s(u_1) = 0
+%\]
+%Then a routine check shows that $s$ is the required chain homotopy between $f_\bullet$ and $\mathrm{id}_{\Delta^1_R}$. Since $h_\bullet \circ g_\bullet = \mathrm{id}_{K(R,0)}$, we completely proved our statement.
 
 \begin{lemma}
-Let $A_\bullet$ be a cofibrant object in $\ch(R)$. Then $A_\bullet \otimes_{\ch(R)} \Delta^1_R$ is a cylinder object for $A_\bullet$. More generally, let $A_\bullet$ be any object in $\ch(R)$ and let $(\widetilde{A}_\bullet,f_\bullet)$ be a cofibrant approximation of $A_\bullet$; then $\widetilde{A}_\bullet \otimes \Delta^1_R$ is a cylinder object for $A_\bullet$.
+Let $A^\bullet$ be a cofibrant object in $\ch(R)$. Then $A^\bullet \otimes \Delta^1_R$ is a cylinder object for $A^\bullet$. More generally, let $A^\bullet$ be any object in $\ch(R)$ and let $(\widetilde{A}^\bullet,f)$ be a cofibrant approximation of $A_\bullet$; then $\widetilde{A}^\bullet \otimes \Delta^1_R$ is a cylinder object for $A_\bullet$.
 \end{lemma}
 
 \begin{proof}
 Explicitly
 \[
-(A_\bullet \otimes_{\ch(R)} \Delta^1_R)_n = A_{n-1} \oplus A_n \oplus A_n
+(A^\bullet \otimes \Delta^1_R)^n = A^{n-1} \oplus A^n \oplus A^n
 \]
 and the differential is given by
 \[
@@ -1140,65 +1097,65 @@ and the differential is given by
 - d & 0 & 0 \\ \mathrm{id} & d & 0 \\ - \mathrm{id} & 0 & d
 \end{pmatrix}
 \]
-Let's consider the map $g_\bullet \colon A_\bullet \otimes_{\ch(R)} \Delta^1_R \to A_n$ defined by
+Let's consider the map $g \colon A^\bullet \otimes \Delta^1_R \to A_n$ defined by
 \[
-g_n = \begin{pmatrix} \mathrm{id} & 0 & \mathrm{id} \end{pmatrix}
+g^n = \begin{pmatrix} \mathrm{id} & 0 & \mathrm{id} \end{pmatrix}
 \]
-Introduce also $f_\bullet \colon B_\bullet \oplus B_\bullet \to A_\bullet \otimes_{\ch(R)} \Delta^1_R$ setting
+Introduce also $f \colon B^\bullet \oplus B^\bullet \to A^\bullet \otimes \Delta^1_R$ setting
 \[
-f_n = \begin{pmatrix} \mathrm{id} & 0 \\ 0 & 0 \\ 0 & \mathrm{id} \end{pmatrix}
+f^n = \begin{pmatrix} \mathrm{id} & 0 \\ 0 & 0 \\ 0 & \mathrm{id} \end{pmatrix}
 \]
-Inspection shows that $f_\bullet$ and $g_\bullet$ are chain maps. Moreover, they factorize the fold map
+Inspection shows that $f$ and $g$ are chain maps. Moreover, they factorize the fold map
 \[
-\nabla \colon B_\bullet \oplus B_\bullet \to B_\bullet
+\nabla \colon B^\bullet \oplus B^\bullet \to B^\bullet
 \]
-The map $g_\bullet$ is clearly surjective in every degree; in particular it is a fibration. Moreover, it is a quasi-isomorphism: using the map $h_\bullet$ defined in Example \ref{eg delta^1 for chain complexes} we obtain a map
+The map $g$ is clearly surjective in every degree; in particular it is a fibration. Moreover, it is a quasi-isomorphism: using the map $h$ of \eqref{eq cylinder chain complex}
 \[
-\mathrm{id} \otimes_{\ch(R)} h_\bullet \colon B_\bullet \otimes_{\ch(R)} \Delta^1_R \to B_\bullet \otimes_{\ch(R)} K(R,0) \simeq B_\bullet
+\mathrm{id} \otimes h \colon B^\bullet \otimes \Delta^1_R \to B^\bullet \otimes S^0(R) \simeq B^\bullet
 \]
-which is still a chain equivalence. Finally, $f_\bullet$ is a cofibration because $A_\bullet$ is assumed to be cofibrant.
+which is still a chain equivalence. Finally, $f$ is a cofibration because $A^\bullet$ is assumed to be cofibrant.
 \end{proof}
 
 \begin{rmk}
-Observe that $A_\bullet \times \Delta^1_R$ is, in the notations of \cite[Ch. 1.5]{weibel}, the mapping cylinder of $\mathrm{id}_{A_\bullet}$.
+Observe that $A_\bullet \otimes \Delta^1_R$ is, in the notations of \cite[Section 1.5]{weibel}, the mapping cylinder of $\mathrm{id}_{A_\bullet}$.
 \end{rmk}
 
 \begin{cor}
-Let $A_\bullet$ be a cofibrant object in $\ch(R)$; let $f_\bullet, g_\bullet \colon A_\bullet \to B_\bullet$ be two chain-maps. Then a left homotopy from $f_\bullet$ to $g_\bullet$ is precisely a chain-homotopy.
+Let $A^\bullet$ be a cofibrant object in $\ch(R)$; let $f, g \colon A^\bullet \to B^\bullet$ be two chain-maps. Then a left homotopy from $f$ to $g$ is precisely a chain-homotopy.
 \end{cor}
 
-\begin{rmk}
-We can now interpret Corollaries \ref{cor lifting between approximations} and \ref{cor uniqueness of approximation} in term of the usual results of homological algebra: any map between objects can be lifted to a map between projective resolutions, and the lifting is unique up-to-homotopy.
-\end{rmk}
-
 \begin{prop}
-$\Hom_{\mathrm{Ho}(\ch(R))}(K(A,n),K(B,m)) = \Ext_R^{m-n}(A,B)$.
+$\Hom_{\mathrm{Ho}(\ch(R))}(S^n(A),S^m(B)) = \Ext_R^{m-n}(A,B)$.
 \end{prop}
 
 \begin{proof}
-If $n = 0$ and $m > 0$, choose a cofibrant replacement for $K(A,0)$; as we saw, this is a projective resolution $P_\bullet \to A$. Then $P_\bullet$ is cofibrant, hence left homotopy on
+If $n = 0$ and $m > 0$, choose a cofibrant replacement for $S^0(A)$; as we saw, this is a projective resolution $P_\bullet \to A$. Then $P_\bullet$ is cofibrant, hence left homotopy on
 \[
-\Hom_{\ch(R)}(P_\bullet, K(B,m)) = \{\alpha \colon P_m \to B \mid \alpha \circ d = 0 \}
+\Hom_{\ch(R)}(P_\bullet, S^m(B)) = \{\alpha \colon P_m \to B \mid \alpha \circ d = 0 \}
 \]
 coincides with chain homotopy. This is exactly the homology of
 \[
 \Hom_R(P_{m+1},B) \to \Hom_R(P_m,B) \to \Hom_R(P_{m-1},B)
 \]
-i.e. $\Ext^m_R(A,B)$.
+i.e.\ $\Ext^m_R(A,B)$.
 \end{proof}
 
 \subsection{Groupoids} \label{model structure on groupoids}
 
-The category of groupoids will play a central role in these seminars, so we will explain in detail how to derive a model structure on $\grpd$ starting from that on $\sSet$. For technical details, we will refer to the Appendix.
+This is a lesser example, but it will be useful at some point and therefore we state it in order to refer back to it. Recall that a groupoid is a category where every arrow is invertible. Examples are given by $\Delta^0_{\grpd}$, the category with only one element and the identity morphism, and $\Delta^1_{\grpd}$, sometimes called the \emph{walking isomorphism}, which is the category with two objects and a unique isomorphism between them.
 
 \begin{thm} \label{thm model structure on groupoids}
-$\grpd$ has a model structure where
+The category of groupoids $\grpd$ has a model structure where
 \begin{itemize}
 \item weak equivalences are equivalences of categories;
 \item fibrations are the functors with the RLP with respect to the map $\Delta^0_{\grpd} \to \Delta^1_{\grpd}$;
 \item cofibrations are functors which are injections on objects.
 \end{itemize}
 \end{thm} %\checkthis{The adjunction (fundamental groupoid, nerve) is a Quillen equivalence?}
+
+\begin{proof}
+It is an exercise left to the reader.
+\end{proof}
 
 \begin{prop} \label{prop cylinder for groupoids}
 Let $\mathcal G$ be a groupoid. A cylinder object for $\mathcal G$ is $\mathcal G \times \Delta^1_{\grpd}$.
@@ -1224,6 +1181,10 @@ Let $F_1,F_2 \colon \mathcal G \to \mathcal H$ be functors between groupoids. Th
 This is an easy consequence of Proposition \ref{prop cylinder for groupoids} (using a standard reformulation of natural transformation).
 \end{proof}
 
+\begin{rmk}
+Strangely enough, it is possible to show that the model structure on $\grpd$ is \emph{uniquely determined} by its weak equivalences. The same proof given at \url{http://sbseminar.wordpress.com/2012/11/16/the-canonical-model-structure-on-cat/} adapts in fact to this case.
+\end{rmk}
+
 %\subsection{Categories} \label{model structure on cat}
 %
 %The category of all small categories $\Cat$ has a model structure which doesn't differ much from that of groupoids. However, we state it as a theorem for future references:
@@ -1236,7 +1197,6 @@ This is an easy consequence of Proposition \ref{prop cylinder for groupoids} (us
 %\item fibrations are functors with the RLP with respect to the map $\Delta^0_{\grpd} \to \Delta^1_{\grpd}$.
 %\end{itemize}
 %\end{thm}
-
 
 \section{Quillen adjunctions and total derived functors}
 
@@ -1265,30 +1225,34 @@ Let $(F,G,\varphi) \colon \mathcal A \to \mathcal B$ be an adjunction of categor
 \end{lemma}
 
 \begin{proof}
-Recall that in our notations $\varphi$ is the natural isomorphism
-\[
-\varphi_{A,B} \colon \Hom_{\mathcal B}(F(A),B) \to \Hom_{\mathcal A}(A,G(B))
-\]
-Consider the two commutative diagrams
-\[
-\xymatrix{
-A_1 \ar[d]_f \ar[r]^-\alpha & G(B_1) \ar[d]^{G(g)} \\ A_2 \ar[r]_-{\beta} \ar@{.>}[ur]^h & G(B_2)
-} \qquad
-\xymatrix{
-F(A_1) \ar[d]_{F(f)} \ar[r]^-\gamma & B_1 \ar[d]^g \\ F(A_2) \ar@{.>}[ur]^k \ar[r]_-\delta & B_2
-}
-\]
-Assume that $f$ has the RLP with respect to $G(g)$. Starting with the diagram on the right, set $\alpha = \varphi(\gamma)$, $\beta = \varphi(\delta)$; the diagram on the left commutes thanks to adjunction properties. Therefore there is a diagonal lifting $h \colon A_2 \to G(B_1)$; write $\psi$ for $\varphi^{-1}$. Then
-\[
-\psi(h) \colon F(A_2) \to B_1
-\]
-and
-\begin{gather*}
-\alpha = \psi(\varphi(\alpha)) = \psi(h \circ f) = \psi(h) \circ F(f) \\
-\beta = \psi(\varphi(\beta) = \psi(G(g) \circ h) = g \circ \psi(h)
-\end{gather*}
-The other statement is dual.
+This is a straightforward exercise in category theory and it is left to the reader.
 \end{proof}
+
+%\begin{proof}
+%Recall that in our notations $\varphi$ is the natural isomorphism
+%\[
+%\varphi_{A,B} \colon \Hom_{\mathcal B}(F(A),B) \to \Hom_{\mathcal A}(A,G(B))
+%\]
+%Consider the two commutative diagrams
+%\[
+%\xymatrix{
+%A_1 \ar[d]_f \ar[r]^-\alpha & G(B_1) \ar[d]^{G(g)} \\ A_2 \ar[r]_-{\beta} \ar@{.>}[ur]^h & G(B_2)
+%} \qquad
+%\xymatrix{
+%F(A_1) \ar[d]_{F(f)} \ar[r]^-\gamma & B_1 \ar[d]^g \\ F(A_2) \ar@{.>}[ur]^k \ar[r]_-\delta & B_2
+%}
+%\]
+%Assume that $f$ has the RLP with respect to $G(g)$. Starting with the diagram on the right, set $\alpha = \varphi(\gamma)$, $\beta = \varphi(\delta)$; the diagram on the left commutes thanks to adjunction properties. Therefore there is a diagonal lifting $h \colon A_2 \to G(B_1)$; write $\psi$ for $\varphi^{-1}$. Then
+%\[
+%\psi(h) \colon F(A_2) \to B_1
+%\]
+%and
+%\begin{gather*}
+%\alpha = \psi(\varphi(\alpha)) = \psi(h \circ f) = \psi(h) \circ F(f) \\
+%\beta = \psi(\varphi(\beta) = \psi(G(g) \circ h) = g \circ \psi(h)
+%\end{gather*}
+%The other statement is dual.
+%\end{proof}
 
 \begin{eg} \label{eg groupoids}
 The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen pair. In fact ... (this is essentially the content of \cite[Lemma 3.3]{hollander})
@@ -1315,8 +1279,6 @@ This follows from Lemma \ref{lemma Ken Brown} and Corollary \ref{cor Quillen pai
 \begin{defin}
 Let $(F,G,\varphi) \colon \mathcal M \to \mathcal N$ be a Quillen pair. We say that it is a \emph{Quillen equivalence} if for every cofibrant object $A \in \Ob(\mathcal M)$ and each fibrant object $X \in \Ob(\mathcal N)$ a map $f \colon A \to G(X)$ is a weak equivalence if and only if $\varphi(f) \colon F(A) \to X$ is a weak equivalence.
 \end{defin}
-
-
 
 \subsection{Derived functor}
 
@@ -1407,7 +1369,13 @@ Consider the geometric realization functor $|\cdot| \colon \sSet \to \cghaus$; w
 
 \section{Homotopy limits and colimits} \label{homotopy limits}
 
+As for the homotopy category, it is possible to give two different kind of motivations for homotopy limits and colimits: a classical one, coming from algebraic topology and the theory of homotopy types, and a ``modern'' one, coming from the world of $(\infty,1)$-categories; we will briefly discuss them both.
 
+Let us begin from a classical perspective; remember that we constructed the category of homotopy types as the homotopy category of (for example) simplicial sets, $\mathrm{Ho}(\sSet)$. However, this category is not as well-behaved as one might hope; a basic issue is that this category is \emph{not} cocomplete (a counterxample can be found in \cite[Example 6.3.3]{riehl}). More subtlety, even when the colimits exist, they could be quite different from what we expect.
+
+\begin{eg}
+
+\end{eg}
 
 
 
@@ -2389,82 +2357,80 @@ The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem
 
 \section{Complements to Chapter 1}
 
-\subsection{Uniqueness of the model structure for $\grpd$}
-
-The goal of this section is to provide a proof of the following:\footnote{I learned this theorem from a post of Chris Schommer-Pries which can be found at \url{http://sbseminar.wordpress.com/2012/11/16/the-canonical-model-structure-on-cat/}. In this section I simply adapt the proof given there to the case of groupoids, as suggested by Mike Shulman in his answer.}
-
-\begin{thm} \label{thm uniqueness grpd}
-On the category of (small) groupoids there is a unique model structure in which the weak equivalences are the equivalences of groupoids.
-\end{thm}
-
-We already described such a model structure for $\grpd$ in the example \ref{model structure on groupoids}. From now on, we will assume that $\grpd$ is endowed with a generic model structure satisfying the hypothesis of Theorem \ref{thm uniqueness grpd}. We will refer to the model structure already defined as the \emph{canonical model structure} on $\grpd$.
-
-\begin{lemma} \label{lemma uniqueness 1}
-The map $\emptyset \to \mathbf 1$ is a cofibration.
-\end{lemma}
-
-\begin{proof}
-Choose a cofibrant approximation $(\mathcal A,i)$ for $\mathbf 1$. Then for any functor $F \colon \mathbf 1 \to \mathcal A$, the diagram
-\[
-\xymatrix{
-\emptyset \ar[d] \ar[r] & \emptyset \ar[d] \ar[r] & \emptyset \ar[d] \\
-\mathbf 1 \ar[r]^F & \mathcal A \ar[r] & \mathbf 1
-}
-\]
-commutes and express $\emptyset \to \mathbf 1$ as a retract of $\emptyset \to \mathcal A$.
-\end{proof}
-
-\begin{cor} \label{cor uniqueness 2}
-Acyclic fibrations are surjective on objects.
-\end{cor}
-
-\begin{proof}
-This is an easy consequence of the fact that acyclic fibrations have the RLP with respect to all cofibrations, hence in particular with respect to $\emptyset \to \mathbf 1$.
-\end{proof}
-
-\begin{cor} \label{cor uniqueness 3}
-(Acyclic) fibrations are a subset of canonical (acyclic) fibrations.
-\end{cor}
-
-\begin{proof}
-The statement for acyclic fibrations follows from Corollary \ref{cor uniqueness 2}. The other statement follows from this one because cofibrations must contain canonical cofibrations; hence acyclic cofibrations contain canonical acyclic cofibrations and so fibrations are a subset of canonical fibrations.
-\end{proof}
-
-\begin{lemma} \label{lemma uniqueness 4}
-Let $\Delta^1$ be the groupoid with two objects and exactly one isomorphism between them. If the cofibrations contain a map which is not a canonical cofibration, then the map $\Delta^1 \to \mathbf 1$ is a cofibration.
-\end{lemma}
-
-\begin{proof}
-Assume that the functor $F \colon \mathcal A \to \mathcal B$ is a cofibration but fails to be an injection on objects. Then we can choose $X,Y \in \Ob(\mathcal A)$ such that $F(X) = F(Y)$; choose a functor $G \colon \mathcal A \to \Delta^1$ separating $X$ and $Y$ and form the pushout
-\[
-\xymatrix{
-\mathcal A \ar[d]_F \ar[r]^G & \Delta^1 \ar[d] \\ \mathcal B \ar[r] & \mathcal C
-}
-\]
-Then the functor $\Delta^1 \to \mathcal C$ is again a cofibration and sends the two objects of $\Delta^1$ to the same object in $\mathcal C$. Let now $\mathcal C^\delta$ be the free connected groupoid generated by the objects of $\mathcal C$; we clearly have a unique functor $\mathcal C \to \mathcal C^\delta$ which is the identity on objects. This functor is a canonical cofibration, hence it is also a cofibration (cfr. the proof of Lemma \ref{cor uniqueness 3}). It follows that the map $\Delta^1 \to \mathcal C^\delta$ is a cofibration. But now we clearly have a retraction diagram
-\[
-\xymatrix{
-\Delta^1 \ar[r]^{\mathrm{id}} \ar[d] & \Delta^1 \ar[r]^{\mathrm{id}} \ar[d] & \Delta^1 \ar[d] \\ \mathbf 1 \ar[r] & \mathcal C^\delta \ar[r] & \mathbf 1
-}
-\]
-which concludes the proof.
-\end{proof}
-
-\begin{lemma} \label{lemma uniqueness 5}
-If the cofibrations contain the map $\Delta^1 \to \mathbf 1$, then every fibrant object is gaunt (that is, every isomorphism is an identity).
-\end{lemma}
-
-\begin{proof}
-The map $\Delta^1 \to \mathbf 1$ is a weak equivalence. Therefore, the RLP of fibrations with respect to acyclic cofibrations concludes.
-\end{proof}
-
-Now we are ready to prove the main theorem:
-
-\begin{proof}[Proof of Theorem \ref{thm uniqueness grpd}]
-Thanks to Corollary \ref{cor uniqueness 3} we only need to prove that every cofibration is a canonical cofibration. Assume this is not the case and choose a groupoid $\mathcal G$ with one object and non-trivial automorphism group. A fibrant replacement for $\mathcal G$ will be gaunt by Lemma \ref{lemma uniqueness 4} and Lemma \ref{lemma uniqueness 5}; but then $\mathcal G$ cannot be equivalent to its fibrant replacement, contradiction. The thesis follows.
-\end{proof}
-
-\subsection{The small object argument}
+%\subsection{Uniqueness of the model structure for $\grpd$}
+%
+%The goal of this section is to provide a proof of the following:\footnote{I learned this theorem from a post of Chris Schommer-Pries which can be found at \url{http://sbseminar.wordpress.com/2012/11/16/the-canonical-model-structure-on-cat/}. In this section I simply adapt the proof given there to the case of groupoids, as suggested by Mike Shulman in his answer.}
+%
+%\begin{thm} \label{thm uniqueness grpd}
+%On the category of (small) groupoids there is a unique model structure in which the weak equivalences are the equivalences of groupoids.
+%\end{thm}
+%
+%We already described such a model structure for $\grpd$ in the example \ref{model structure on groupoids}. From now on, we will assume that $\grpd$ is endowed with a generic model structure satisfying the hypothesis of Theorem \ref{thm uniqueness grpd}. We will refer to the model structure already defined as the \emph{canonical model structure} on $\grpd$.
+%
+%\begin{lemma} \label{lemma uniqueness 1}
+%The map $\emptyset \to \mathbf 1$ is a cofibration.
+%\end{lemma}
+%
+%\begin{proof}
+%Choose a cofibrant approximation $(\mathcal A,i)$ for $\mathbf 1$. Then for any functor $F \colon \mathbf 1 \to \mathcal A$, the diagram
+%\[
+%\xymatrix{
+%\emptyset \ar[d] \ar[r] & \emptyset \ar[d] \ar[r] & \emptyset \ar[d] \\
+%\mathbf 1 \ar[r]^F & \mathcal A \ar[r] & \mathbf 1
+%}
+%\]
+%commutes and express $\emptyset \to \mathbf 1$ as a retract of $\emptyset \to \mathcal A$.
+%\end{proof}
+%
+%\begin{cor} \label{cor uniqueness 2}
+%Acyclic fibrations are surjective on objects.
+%\end{cor}
+%
+%\begin{proof}
+%This is an easy consequence of the fact that acyclic fibrations have the RLP with respect to all cofibrations, hence in particular with respect to $\emptyset \to \mathbf 1$.
+%\end{proof}
+%
+%\begin{cor} \label{cor uniqueness 3}
+%(Acyclic) fibrations are a subset of canonical (acyclic) fibrations.
+%\end{cor}
+%
+%\begin{proof}
+%The statement for acyclic fibrations follows from Corollary \ref{cor uniqueness 2}. The other statement follows from this one because cofibrations must contain canonical cofibrations; hence acyclic cofibrations contain canonical acyclic cofibrations and so fibrations are a subset of canonical fibrations.
+%\end{proof}
+%
+%\begin{lemma} \label{lemma uniqueness 4}
+%Let $\Delta^1$ be the groupoid with two objects and exactly one isomorphism between them. If the cofibrations contain a map which is not a canonical cofibration, then the map $\Delta^1 \to \mathbf 1$ is a cofibration.
+%\end{lemma}
+%
+%\begin{proof}
+%Assume that the functor $F \colon \mathcal A \to \mathcal B$ is a cofibration but fails to be an injection on objects. Then we can choose $X,Y \in \Ob(\mathcal A)$ such that $F(X) = F(Y)$; choose a functor $G \colon \mathcal A \to \Delta^1$ separating $X$ and $Y$ and form the pushout
+%\[
+%\xymatrix{
+%\mathcal A \ar[d]_F \ar[r]^G & \Delta^1 \ar[d] \\ \mathcal B \ar[r] & \mathcal C
+%}
+%\]
+%Then the functor $\Delta^1 \to \mathcal C$ is again a cofibration and sends the two objects of $\Delta^1$ to the same object in $\mathcal C$. Let now $\mathcal C^\delta$ be the free connected groupoid generated by the objects of $\mathcal C$; we clearly have a unique functor $\mathcal C \to \mathcal C^\delta$ which is the identity on objects. This functor is a canonical cofibration, hence it is also a cofibration (cfr. the proof of Lemma \ref{cor uniqueness 3}). It follows that the map $\Delta^1 \to \mathcal C^\delta$ is a cofibration. But now we clearly have a retraction diagram
+%\[
+%\xymatrix{
+%\Delta^1 \ar[r]^{\mathrm{id}} \ar[d] & \Delta^1 \ar[r]^{\mathrm{id}} \ar[d] & \Delta^1 \ar[d] \\ \mathbf 1 \ar[r] & \mathcal C^\delta \ar[r] & \mathbf 1
+%}
+%\]
+%which concludes the proof.
+%\end{proof}
+%
+%\begin{lemma} \label{lemma uniqueness 5}
+%If the cofibrations contain the map $\Delta^1 \to \mathbf 1$, then every fibrant object is gaunt (that is, every isomorphism is an identity).
+%\end{lemma}
+%
+%\begin{proof}
+%The map $\Delta^1 \to \mathbf 1$ is a weak equivalence. Therefore, the RLP of fibrations with respect to acyclic cofibrations concludes.
+%\end{proof}
+%
+%Now we are ready to prove the main theorem:
+%
+%\begin{proof}[Proof of Theorem \ref{thm uniqueness grpd}]
+%Thanks to Corollary \ref{cor uniqueness 3} we only need to prove that every cofibration is a canonical cofibration. Assume this is not the case and choose a groupoid $\mathcal G$ with one object and non-trivial automorphism group. A fibrant replacement for $\mathcal G$ will be gaunt by Lemma \ref{lemma uniqueness 4} and Lemma \ref{lemma uniqueness 5}; but then $\mathcal G$ cannot be equivalent to its fibrant replacement, contradiction. The thesis follows.
+%\end{proof}
 
 \subsection{Proper model categories}
 
