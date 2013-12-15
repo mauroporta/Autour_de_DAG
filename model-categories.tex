@@ -801,7 +801,7 @@ Conversely, assume that conditions 1. to 5. hold. Define
 \[
 \fib := \rlp{J}, \quad \cofib := \llp{(\rlp{I})}
 \]
-Then it is clear that $\fib$ and $\cofib$ form subcategories closed under retracts. The small object argument produces functorial weak factorization systems $(I \textrm{-} \cofreg, \rlp{I})$ and $(\cofreg{J}, \rlp{J})$; conditions 3. and 4. imply then that {\bfseries MC5} is satisfied. We are left to check the lifting axiom {\bfseries MC4}.
+Then it is clear that $\fib$ and $\cofib$ form subcategories closed under retracts. The small object argument produces functorial weak factorization systems $(\cofreg{I}, \rlp{I})$ and $(\cofreg{J}, \rlp{J})$; conditions 3. and 4. imply then that {\bfseries MC5} is satisfied. We are left to check the lifting axiom {\bfseries MC4}.
 
 Assume for example that $\llp{(\rlp{I})} \cap W \subseteq \llp{(\rlp{J})}$; we immediately get
 \[
@@ -822,41 +822,6 @@ the lifting exists because $j \in \cofib \cap W$ and $f \in \fib$, so that $f$ i
 \rlp{I} \subseteq \rlp{\cofib}
 \]
 If instead $\rlp{J} \cap W \subseteq \rlp{I}$ the proof proceed in a similar way.
-\end{proof}
-
-\begin{thm}[Lifting principle] \label{thm lifting}
-Let $\mathcal M$ be a cofibrantly generated model category with generating cofibrations $I$ and generating trivial cofibrations $J$. Let $\mathcal N$ be a complete and cocomplete category and let $F \colon \mathcal M \rightleftarrows \mathcal N \colon U$ be a pair of adjoint functors. If the following conditions are satisfied:
-\begin{enumerate}
-\item both $F(I)$ and $F(J)$ permit the small object argument;
-\item $U$ takes the elements of $\cofreg{F(J)}$ in weak equivalences;
-\end{enumerate}
-then there is a cofibrantly generated model category structure on $\mathcal N$ where a map $f \colon A \to B$ is
-\begin{enumerate}
-\item a weak equivalence if and only if $U(f)$ is a weak equivalence;
-\item a fibration if and only if $U(f)$ is a fibration;
-\item a cofibration if and only if it belongs to $\llp{(\rlp{F(I)})}$.
-\end{enumerate}
-Moreover, if this is the case, $F(I)$ is a set of generating cofibrations, $F(J)$ is a set of generating trivial cofibrations and the adjunction $F \dashv G$ is a Quillen pair.
-\end{thm}
-
-\begin{proof}
-Let $W$ be the class of maps of $\mathcal N$ taken into weak equivalences by $U$. Let us show that $W$, $F(I)$ and $F(J)$ satisfy the conditions of Theorem \ref{thm recognizing}. It is clear that $W$ is closed under retracts and that it satisfies the 2-out-of-3 axiom and condition 2. holds by hypothesis.
-
-Let us prove conditions 3. and 4.: adjoint nonsense implies that
-\[
-\llp{F(J)} = \{f \in \mathrm{Arr}(\mathcal N) \mid U(f) \in \rlp{J}\}
-\]
-Since $\rlp{I} = \fib_{\mathcal M} \cap W \subseteq \rlp{I}$ we get
-\[
-\rlp{F(I)} \subseteq \rlp{F(J)}
-\]
-and so it follows
-\[
-\llp{(\rlp{F(J)})} \subseteq \llp{(\rlp{F(I)})}
-\]
-To get condition 3., we are left to show $\llp{(\rlp{F(J)})} \subseteq W$; the small object argument shows that an arrow $f \in \llp{(\rlp{F(J)})}$ is a retract of an arrow in $F(J) \textrm{-} \cofreg$, hence our hypothesis 2. implies that $U(f)$ is a retract of a weak equivalence, so that $f \in W$. To get condition 4., we have to show that $\rlp{F(I)} \subset W$; if $f \in \rlp{F(I)}$ then $U(f) \in \rlp{I}$, i.e. $U(f)$ is a trivial fibration in $\mathcal M$; in particular $f \in W$.
-
-Now, if $f$ is a fibration in the model structure on $\mathcal N$ if and only if it has the right lifting property with respect to every element in $F(J)$; by adjoint nonsense, this is equivalent to $U(f)$ having the right lifting property with respect to every element of $J$. It follows that $f$ is a fibration if and only if $U(f)$ is a fibration and also that $U$ is a left Quillen functor.
 \end{proof}
 
 \section{Examples}
@@ -1367,179 +1332,251 @@ The existence of $\mathbf L F$ and $\mathbf R G$ is implied by Theorem \ref{thm 
 Consider the geometric realization functor $|\cdot| \colon \sSet \to \cghaus$; we know that $|\cdot|$ is left adjoint to the singular complex functor $\sing \colon \cghaus \to \sSet$. Moreover, $|\cdot|$ preserves cofibrations (an inclusion of simplicial sets is sent to a cellular inclusion of CW-complexes) and trivial cofibrations (by definition, a map of simplicial sets is a weak equivalence if and only if its geometric realization is a weak equivalence in $\cghaus$). It follows that $(|\cdot|,\sing)$ is a Quillen pair. Moreover, a map $f \colon S \to \sing(X)$ is a weak equivalence if and only if $|f| \colon |S| \to |\sing(X)|$ is a weak equivalence; however, a classical result states that the counit $|\sing(X)| \to X$ is always a weak equivalence;\footnote{See for example \cite[Theorem 16.6]{may}.} it follows that $f$ is a weak equivalence if and only if the adjoint map $|S| \to X$ is a weak equivalence. Therefore $(|\cdot|,\sing)$ is a Quillen equivalence, and induce an equivalence between $\mathrm{Ho}(\sSet)$ and $\mathrm{Ho}(\cghaus)$.
 \end{eg}
 
+\subsection{Lifting principle}
+
+Sometimes it is possible to force a model structure on a category by declaring that a certain adjunction toward a (sufficiently nice) model category is a Quillen adjunction. This goes under the name of \emph{lifting principle} and it goes back to Quillen \cite{quillen}, where he used this idea (in fact, a many-adjunction variant) to show that the category of simplicial objects in a category can often be endowed with a model structure deduced from that of simplicial sets. Here, we give a possible statement of the lifting principle and deduce its proof from Theorem \ref{thm recognizing}.
+
+\begin{thm} \label{thm lifting}
+Let $\mathcal M$ be a cofibrantly generated model category and let
+\[
+\{F_s \colon \mathcal M \rightleftarrows \mathcal N \colon U_s\}_{s \in S}
+\]
+be a family of adjunctions parametrized by the set $S$. Let $I$ and $J$ be sets of generating cofibrations and generating trivial cofibrations for $\mathcal M$. Write
+\[
+I_{\mathcal N} := \bigcup_{s \in S} F_s(I), \qquad J_{\mathcal N} := \bigcup_{s \in S} F_s(J)
+\]
+If
+\begin{enumerate}
+\item $I_{\mathcal N}$ and $J_{\mathcal N}$ permit the small object argument;
+\item each $U_s$ takes elements of $\cofreg{J_{\mathcal N}}$ in weak equivalences;
+\end{enumerate}
+then $\mathcal N$ has a cofibrantly generated model structure where a map $f \colon A \to B$ is
+\begin{enumerate}
+\item a weak equivalence if and only if $U_s(f)$ is a weak equivalence for each $s \in S$;
+\item a fibration if and only if $U_s(f)$ is a weak equivalence for each $s \in S$;
+\item a cofibration if and only if it belongs to $\llp{(\rlp{I_{\mathcal N}})}$.
+\end{enumerate}
+Moreover, if this is the case $I_{\mathcal N}$ and $J_{\mathcal N}$ are sets of generating cofibrations and generating trivial cofibrations respectively, and each adjunction $F_s \dashv G_s$ is a Quillen pair.
+\end{thm}
+
+\begin{proof}
+We leave as an exercise the reduction to the case of a single adjunction. Let $W$ be the class of maps of $\mathcal N$ taken into weak equivalences by $U$. Let us show that $W$, $F(I)$ and $F(J)$ satisfy the conditions of Theorem \ref{thm recognizing}. It is clear that $W$ is closed under retracts and that it satisfies the 2-out-of-3 axiom and condition 2. holds by hypothesis.
+
+Let us prove conditions 3. and 4.: adjoint nonsense implies that
+\[
+\llp{F(J)} = \{f \in \mathrm{Arr}(\mathcal N) \mid U(f) \in \rlp{J}\}
+\]
+Since $\rlp{I} = \fib_{\mathcal M} \cap W \subseteq \rlp{I}$ we get
+\[
+\rlp{F(I)} \subseteq \rlp{F(J)}
+\]
+and so it follows
+\[
+\llp{(\rlp{F(J)})} \subseteq \llp{(\rlp{F(I)})}
+\]
+To get condition 3., we are left to show $\llp{(\rlp{F(J)})} \subseteq W$; the small object argument shows that an arrow $f \in \llp{(\rlp{F(J)})}$ is a retract of an arrow in $\cofreg{F(J)}$, hence our hypothesis 2. implies that $U(f)$ is a retract of a weak equivalence, so that $f \in W$. To get condition 4., we have to show that $\rlp{F(I)} \subset W$; if $f \in \rlp{F(I)}$ then $U(f) \in \rlp{I}$, i.e. $U(f)$ is a trivial fibration in $\mathcal M$; in particular $f \in W$.
+
+Now, if $f$ is a fibration in the model structure on $\mathcal N$ if and only if it has the right lifting property with respect to every element in $F(J)$; by adjoint nonsense, this is equivalent to $U(f)$ having the right lifting property with respect to every element of $J$. It follows that $f$ is a fibration if and only if $U(f)$ is a fibration and also that $U$ is a left Quillen functor.
+\end{proof}
+
+The following corollary gives some easy conditions on the adjunctions guaranteeing that the hypotheses of Theorem \ref{thm lifting} are satisfied:
+
+\begin{cor} \label{cor SLP} %simplified lifting principle
+Let $\mathcal M$ be a cofibrantly generated model category and let
+\[
+\{F_s \colon \mathcal M \rightleftarrows \mathcal N \colon U_s\}_{s \in S}
+\]
+be a family of adjunctions parametrized by a set $S$. If, with the notations of Proposition \ref{prop GLP}, the following conditions are met:
+\begin{enumerate}
+\item the functor $U_s$ commutes with sequential colimits for every $s \in S$;
+\item the functor $U_s$ takes elements of $\cofreg{I_{\mathcal N}}$ in cofibrations for every $s \in S$;
+\item the functor $U_s$ takes elements of $\cofreg{J_{\mathcal N}}$ in weak equivalences;
+\end{enumerate}
+then the hypotheses of Proposition \ref{thm lifting} are satisfied.
+\end{cor}
+
 \section{Homotopy limits and colimits} \label{homotopy limits}
 
 As for the homotopy category, it is possible to give two different kind of motivations for homotopy limits and colimits: a classical one, coming from algebraic topology and the theory of homotopy types, and a ``modern'' one, coming from the world of $(\infty,1)$-categories; we will briefly discuss them both.
 
-Let us begin from a classical perspective; remember that we constructed the category of homotopy types as the homotopy category of (for example) simplicial sets, $\mathrm{Ho}(\sSet)$. However, this category is not as well-behaved as one might hope; a basic issue is that this category is \emph{not} cocomplete (a counterxample can be found in \cite[Example 6.3.3]{riehl}). More subtlety, even when the colimits exist, they could be quite different from what we expect.
+Let us begin from a classical perspective; remember that we constructed the category of homotopy types as the homotopy category of (for example) compactly generated Hausdorff spaces, $\mathrm{Ho}(\mathbf{CGHaus})$. However, this category is not as well-behaved as one might hope; a basic issue is that this category is \emph{not} cocomplete (a counterxample can be found in \cite[Example 6.3.3]{riehl}). More subtlety, even when the colimits exist, they could be quite different from what we expect.
 
 \begin{eg}
-
+Consider the following diagram in $\mathbf{CGHaus}$:
+\[
+\xymatrix{
+D^n \ar[d] & \mathcal S^n \ar[l] \ar@{=}[d] \ar[r] & D^n \ar[d] \\
+{*} & \mathcal{S}^n \ar[l] \ar[r] & {*}
+}
+\]
+Vertical arrows are weak homotopy equivalences, hence the two lines define the same diagram in $\mathrm{Ho}(\mathbf{CGHaus})$. In this case the pushout of the diagram exist, but it is the homotopy type of a point and it is different from the pushout of the first line (computed in $\mathbf{CGHaus}$), which is $\mathcal S^{n+1}$.
 \end{eg}
 
+The previous example shows that in general colimits do not pass to the homotopy category and suggests that an obstruction is given by their lack of homotopy invariance, in the sense that colimits of weakly equivalent diagrams\footnote{For the moment, we mean that there exists a morphism of diagrams which is an objectwise weak equivalence.} are not weakly equivalent. Homotopy limits and homotopy colimits were firstly conceived as a solution to these problems and were defined via the rather explicit \emph{Bousfield-Kan formulas}; the idea is that to recover the homotopy invariance we can modify a little the diagram before computing the usual (co)limit. To get a grasp of what kind of modifications could be needed, let us assume that $\mathcal C$ is a small category and $\mathcal M$ is a model category; let us assume furthermore that the category of diagrams $\mathcal M^{\mathcal C}$ can be endowed with a model structure where weak equivalences are defined objectwise. We know that the colimit functor $\colim \colon \mathcal M^{\mathcal C} \to \mathcal M$ is left adjoint to the diagonal functor $\Delta \colon \mathcal M \to \mathcal M^{\mathcal C}$. If this adjunction was a Quillen adjunction, the left derived functor of $\colim$ would exist; indeed if $Q$ is a cofibrant replacement functor for $\mathcal M^{\mathcal C}$, the functor
+\[
+\mathrm{hocolim} \coloneqq \colim \circ Q
+\]
+is homotopy invariant and therefore it has a total left derived functor. Therefore the ``small modifications of the diagram'' we were speaking about before are encoded in the functor $Q$. Bousfield-Kan formulas pass through an explicit (and rather elegant) choice of such a modification functor. However, to prove that their construction actually solves the problem would take some time and would go beyond the scope of these notes. We will therefore content ourselves with a thorough discussion of the abstract reasoning described above.
 
+Another way of viewing homotopy (co)limits is from the $(\infty,1)$-categorical point of view. The reader familiar with the na\"if idea of higher categories will know that there are subtleties concerning limits and colimits in this setting. We can explain the difficulties as follows: suppose we are given a diagram, $F \colon \mathcal C \to \mathcal M$ where $\mathcal M$ is an $(\infty,1)$-category\footnote{The reader can safely assume that $\mathcal M$ is a model category for the moment.}; a colimit for this diagram should be a ``weakly universal cocone'' over some object $X$ of $\mathcal M$, in the sense that for any other cocone over $Y$ the space of maps from $X$ to $Y$ compatible with the two cocones is homotopically equivalent to a point. There are several ways of formalizing this rough idea, and we will discuss them in later chapters; the important point in here is that homotopy (co)limits answers correctly also to this problem. As we will see later, when passing from a model category to its associated $(\infty,1)$-category, homotopy (co)limits goes to $(\infty,1)$-(co)limits.
 
+\subsection{The global projective model structure}
 
+A key point in the informal reasoning we proposed above was the possibility of endowing a diagram category $\mathcal M^{\mathcal C}$ with a model structure satisfying certain constraints. Namely, we asked for weak equivalences to be defined objectwise and for the diagonal functor $\Delta \colon \mathcal C \to \mathcal M^{\mathcal C}$ to be either right or left Quillen (depending on whether we are interested in colimits or in limits). For example, an easy way to make $\Delta$ into a right Quillen fucntor is to require fibrations in $\mathcal M^{\mathcal C}$ to be defined objectwise.
 
+A problem with this kind of approach is that such a model structure does not always exist on the category $\mathcal M^{\mathcal C}$. We only have sufficient conditions which can be cast either on the model category $\mathcal M$ or on the index category $\mathcal C$. In this section, we will show that whenever $\mathcal M$ is cofibrantly generated, there exists a model structure on $\mathcal M^{\mathcal C}$ allowing a theory of homotopy colimits. Other possibilities are given by requiring $\mathcal M$ to be combinatorial, or $\mathcal C$ to be Reedy; we will briefly discuss both later on in this chapter.
 
-
-
-
-
-
-
-
-
-Last section contains a brief summary about the construction of the homotopy pushout. If we want to deal with diagrams of more general shapes, we have to take in account an additional difficulty: the category $\mathcal M^{\mathcal C}$ doesn't need to come equipped with a natural model structure. There are several ways to overcome this problem: for example, one can restricts to nice enough diagrams; or one can consider only sufficiently well-behaved model categories. In this exposition, we will consider only Reedy diagrams. However, before the technical details, we would like to explain a more general approach to this problem, that doesn't require additional hypothesis.
-
-Recall that Proposition \ref{prop localizing subcategories} played a major role in our construction of $\mathrm{Ho}(\mathcal M)$ for a model category $\mathcal M$. Moreover, the existence of a deformation retraction of $\mathcal M$ onto $\mathcal M_c$ has proven extremely useful also in Theorem \ref{thm existence derived functor}. Actually, these constructions can be carried over in the more general context of homotopical categories. Here we state the definition:
+Under the assumption that $\mathcal M$ is cofibrantly generated, we are going to show the existence of a so-called \emph{global projective model structure}\footnote{The full meaning of this name will be clear in the chapter about simplicial presheaves.} on $\mathcal M^{\mathcal C}$; we will obtain this as a consequence of the lifting principle. The idea of the proof is to declare that the evaluation functors
+\[
+\mathrm{ev}_\alpha \colon M^{\mathcal C} \to \mathcal M, \quad \alpha \in \Ob(\mathcal C)
+\]
+are right Quillen functors. That is, the strategy is to show that $\mathrm{ev}_\alpha$ has a left adjoint and that the hypotheses of the lifting principle are satisfied. Since $\mathcal M$ is a cocomplete category, the copower defines a bifunctor
+\[
+- \otimes - \colon \Set \times \mathcal M \to \mathcal M
+\]
+such that for each $m \in \Ob(\mathcal M)$ the induced functor $- \otimes m \colon \Set \to \mathcal M$ has a right adjoint given by $\mathcal M(m,-)$. For any (small) category $\mathcal C$ we have an induced bifunctor
+\[
+- \otimes - \colon \Set^{\mathcal C} \times \mathcal M^{\mathcal C}
+\]
+Moreover, it is an exercise in formalism to show that for each $m \in \Ob(\mathcal M)$ the functor $- \otimes m \colon \Set^{\mathcal C} \to \mathcal M^{\mathcal C}$ has still a right adjoint given by
+\[
+\mathcal M(m,-) \colon \mathcal M^{\mathcal C} \to \Set^{\mathcal C}
+\]
+If we write down this adjunction we obtain
+\[
+\mathcal M^{\mathcal C}(S \otimes m, \mathcal Y) \simeq \Set^{\mathcal C}(S, \mathcal M(m, \mathcal Y))
+\]
+Choosing $S = \mathcal C(\alpha,-)$ for $\alpha \in \Ob(\mathcal C)$, the Yoneda lemma implies
+\[
+\mathcal M^{\mathcal C}(\mathcal C(\alpha,-) \otimes m, \mathcal Y) \simeq \mathcal M(m,\mathcal Y(\alpha))
+\]
+which shows that the adjunction
+\[
+\mathcal C(\alpha,-) \otimes - \dashv \mathrm{ev}_\alpha
+\]
+holds.
 
 \begin{defin}
-A homotopical category is a category $\mathcal C$ equipped with a wide subcategory $\mathcal W$ satisfying the 2-out-of-6 axiom: if $f,g,h$ is a composable triple of arrows and $hg$, $gf$ are in $\mathcal W$, then so are $f,g,h,hgf$.
+If $\mathcal M$ is a model category and $\mathcal C$ is a small category, we will say that a map $f \colon \mathcal X \to \mathcal Y$ in $\mathcal M^{\mathcal C}$ is:
+\begin{enumerate}
+\item an objectwise (or global) cofibration if $f_\alpha \colon \mathcal X(\alpha) \to \mathcal Y(\alpha)$ is a cofibration for every object $\alpha \in \Ob(\mathcal C)$;
+
+\item an objectwise (or global) fibration if $f_\alpha \colon \mathcal X(\alpha) \to \mathcal Y(\alpha)$ is a fibration for every object $\alpha \in \Ob(\mathcal C)$;
+
+\item an objectwise (or global) weak equivalence if $f_\alpha \colon \mathcal X(\alpha) \to \mathcal Y(\alpha)$ is a weak equivalence for every object $\alpha \in \Ob(\mathcal C)$.
+\end{enumerate}
 \end{defin}
 
-It can be developed a deformation theory for homotopical categories allowing to show that if $\mathcal M$ is a model category and $\mathcal C$ is a small category, then $\mathcal M^{\mathcal C}$ with the componentwise homotopical structure admits a homotopy category. Theorem \ref{thm existence derived functor} about derived functors extends to this context (substituting $\mathcal M_c$ with an appropriate deformation retraction of $\mathcal M$). From this point of view, we can try seriously to generalize the approach described for homotopy pushouts. Namely, we can prove that the $\colim$ functor has a total left derived functor, and we can look for a representative
+\begin{defin}
+Let $\mathcal C$ be a small category and let $\alpha \in \Ob(\mathcal C$. If $\mathcal M$ is a model category and $I$ is a set of maps in $\mathcal M$, then a free $I$-cell generated at $\alpha$ in $\mathcal M^{\mathcal C}$ is a map of the form
 \[
-\mathrm{hocolim} \colon \mathcal M^{\mathcal C} \to \mathcal M
+\mathcal C(\alpha,-) \otimes A \to \mathcal C(\alpha, -) \otimes B
 \]
-well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dhk}, has been further developed in \cite{shulman} and \cite{riehl}.
+where $A \to B$ is an element of $I$.
+\end{defin}
 
+\begin{notation}
+In the notation of the previous definition, we denote by $F^{\mathcal C}_I$ the collection of the free $I$-cells generated at $\alpha$ as $\alpha$ varies in $\mathcal C$.
+\end{notation}
 
-\subsection{holim and hocolim}
-
-Using the machinery developed above, we easily obtain the following result:
-
-\begin{prop}
-Let $\mathcal C$ be a Reedy category with fibrant constants. For every model category $\mathcal M$ the colimit functor $\colim \colon \mathcal M^{\mathcal C} \to \mathcal M$ has a total left derived functor.
+\begin{prop} \label{prop K-inj}
+If $\mathcal M$ is a model category, $\mathcal C$ is a small category and $K$ is a set of maps in $\mathcal M$, then a map $g \colon \mathcal X \to \mathcal Y$ in $\mathcal M^{\mathcal C}$ is $F^{\mathcal C}_K$-injective if and only if $g_\alpha \colon \mathcal X(\alpha) \to \mathcal Y(\alpha)$ is $K$-injective for every $\alpha \in \Ob(\mathcal C)$.
 \end{prop}
 
 \begin{proof}
-This is an immediate consequence of Theorem \ref{thm quillen adjuntion} and Corollary \ref{cor reedy fibrant constants}.
+This follows from the adjunction $\mathcal C(\alpha, -) \otimes - \dashv \mathrm{ev}_\alpha$.
 \end{proof}
 
-Previous Proposition holds in particular when $\mathcal C = \boldsymbol\Delta$ and $\mathcal C = \boldsymbol\Delta^{\mathrm{op}}$, i.e. for simplicial and cosimplicial diagrams. As in the case of homotopy pushouts, the problem becomes to find a representative for $\mathbf L \colim$ behaving well with respect to weak equivalences. This is absolutely not trivial: for the general case, we will need more theory (in particular, the tool of simplicial and cosimplicial resolutions). However, when the model category $\mathcal M$ is simplicial, there are well-known formulas due to Bousfield and Kan mimicking the constructions for topological spaces.
-
-\begin{rmk}
-To conclude this too short introduction to homotopy limits and colimits, we have at least to say something about the $(\infty,1)$-categorical context. Lurie proposes in \cite{htt} a definition for homotopy limits and colimits for quasicategories. This definition (due to Joyal, see \cite{joyal}) has the advantage of being extremely compact and it doesn't require much machinery to be formulated. Moreover, it specializes to our construction when it makes sense (i.e. when the quasicategory is presented by a model category). We refer to successive chapters for a more detailed exposition.
-\end{rmk}
-
-\subsection{Homotopy pushout} \label{homotopy pushout}
-
-To conclude this section, I would like to deal with a specific example of great relevance to homotopy theory: homotopy pushout and homotopy pullback (later on we will deal with more general kind of homotopy limits and colimits). Introduce the ``pushout category''
-\[
-\xymatrix{
-\mathcal C\coloneqq \{ \bullet & \bullet \ar[l] \ar[r] & \bullet \}
-}
-\]
-If $\mathcal M$ is a model category, we can consider $\mathcal M^{\mathcal C}$; in standard category theory we have a functor
-\[
-\colim \colon \mathcal M^{\mathcal C} \to \mathcal M
-\]
-sending a $\mathcal C$-diagram to its colimit. However, this functor doesn't behave well with respect to the model structure on $\mathcal M$; for example, it doesn't send weak equivalences to weak equivalences:
-
-\begin{eg} \label{eg pushout fails in homotopy}
-Let $\mathcal M = \cghaus$ with the standard model structure (fibrations are Serre fibrations). Consider the following diagram:
-\[
-\xymatrix{
-D^n \ar[d] & S^{n-1} \ar[l] \ar[r] \ar[d] & D^n \ar[d] \\ \mathrm{*} & S^{n-1} \ar[r] \ar[l] & \mathrm{*}
-}
-\]
-All the vertical arrows are weak equivalences; however, the induced map on pushouts is $S^n \to *$, which not a weak equivalence.
-\end{eg}
-
-This example is pathological in many ways; for the moment, we can observe that it suggests the subtlety in the relationship between colimits and model structure. To understand better their interaction, we should understand the ``homotopical content'' of diagrams of shape $\mathcal C$; due to the particular choice of $\mathcal C$, this is not hard:
-
-\begin{lemma}
-Define an arrow in $\mathcal M^{\mathcal C}$ to be:
-\begin{itemize}
-\item a weak equivalence if it is an objectwise weak equivalence;
-\item a fibration if it is an objectwise fibration;
-\item a cofibration if it is an objectwise cofibration.
-\end{itemize}
-Then there is a model structure on $\mathcal M^{\mathcal C}$ whose weak equivalences, fibrations and cofibrations are the ones specified above.
-\end{lemma}
+\begin{prop} \label{cor objectwise implies global}
+If $\mathcal M$ is a cofibrantly generated model category, $I$ is a set of generating cofibrations and $J$ a set of generating trivial cofibration, then for every small category $\mathcal C$ and every $f \in \cofreg{F^{\mathcal C}_I}$ (resp. $f \in \cofreg{F^{\mathcal C}_J}$), $f_\alpha$ is a cofibration (resp. trivial cofibration) for each $\alpha \in \Ob(\mathcal C$.
+\end{prop}
 
 \begin{proof}
-The proof is straightforward. The reader is referred to \cite[Section 10]{dwsp} for the details.
+It is sufficient to show that if $f \in F^{\mathcal C}_I$ (resp. $f \in F^{\mathcal C}_J$, then $f_\alpha$ is a cofibration (resp. trivial cofibration) for every $\alpha \in \Ob(\mathcal C)$ because $\mathrm{ev}_\alpha$ preserves colimits. In this case, $f$ is of the form $\mathcal C(\beta,-) \otimes A \to \mathcal C(\beta,-) \otimes B$ for some $g \colon A \to B$ in $I$ and some $\beta \in \Ob(\mathcal C)$. It follows that $f_\alpha$ is of the form
+\[
+\coprod_{\mathcal C(\beta, \alpha)} g \colon \coprod_{\mathcal C(\beta, \alpha)} A \to \coprod_{\mathcal C(\beta, \alpha)} B
+\]
+which is a (trivial) cofibration since (trivial) cofibrations are closed under coproducts.
 \end{proof}
 
-Obviously, this suggests to employ Theorem \ref{thm existence derived functor}: even though $\colim$ doesn't preserve weak equivalences, its derived functor may exists as well. In fact, $\colim$ is left adjoint to the diagonal functor
-\[
-\Delta \colon \mathcal M \to \mathcal M^{\mathcal C}
-\]
-Since it's clear that $\Delta$ preserves fibrations and trivial fibrations, Theorem \ref{thm quillen adjuntion} implies that the left derived functor of $\colim$ exists.
+\begin{thm}
+Let $\mathcal M$ be a cofibrantly generated model category with generating cofibrations $I$ and generating trivial cofibrations $J$. If $\mathcal C$ is a small category, then the category $\mathcal M^{\mathcal C}$ has a cofibrantly generated model structure with generating cofibrations $F^{\mathcal C}_I$ and generating trivial cofibrations $F^{\mathcal C}_J$. Moreover, in this model category a map is:
+\begin{enumerate}
+\item a weak equivalence if and only if it is a global weak equivalence;
+\item a fibration if and only if it is a global fibration;
+\item a cofibration if and only if it is a retract of an element of $\cofreg{F^{\mathcal C}_I}$.
+\end{enumerate}
+\end{thm}
 
-In practice, it is obviously important to be able to compute $\mathbf L \colim$ for given pushout diagrams; thus, we want to recall its construction: Theorem \ref{thm quillen adjuntion} works via a deformation $Q \colon \mathcal M \to \mathcal M_c$, and $\mathbf L \colim$ is obtained applying the universal property of localization to the functor $\colim \circ Q$. It follows that, in order to do computations, we are essentially interested in $\colim \circ Q$. Recall that we produced explicitly a deformation $Q$ in Proposition \ref{prop reduction step}; however $Q$ is by no means unique. We can try to exploit this lack of uniqueness to counteract the bad behaviour of $\colim$ showed in Example \ref{eg pushout fails in homotopy}: namely, we can try to choose $Q$ in such a way that $\colim \circ Q$ respects weak equivalences.
+\begin{proof}
+We want to invoke Corollary \ref{cor SLP} with respect to the family of adjunctions
+\[
+\{ \mathcal C(\alpha,-) \otimes - \colon \mathcal M \rightleftarrows \mathcal M^{\mathcal C} \colon \mathrm{ev}_\alpha \}
+\]
+Observe that in the notations of that corollary we have
+\[
+I_{\mathcal M^{\mathcal C}} = F^{\mathcal C}_I, \quad J_{\mathcal M^{\mathcal C}} = F^{\mathcal C}_J
+\]
+Proposition \ref{cor objectwise implies global} implies that $\mathrm{ev}_\alpha$ takes elements of $\cofreg{F^{\mathcal C}_I}$ in cofibrations and elements of $\cofreg{F^{\mathcal C}_J}$ in trivial cofibrations, hence conditions 2. and 3. of Corollary \ref{cor SLP} are satisfied. Condition 1. holds because $\mathrm{ev}_\alpha$ is a left adjoint.
+\end{proof}
 
-Concretely, we can construct $Q$ in the following way: starting with a diagram
+\begin{cor}
+If $\mathcal M$ is a cofibrantly generated model category and $\mathcal C$ is a small category, then a cofibration in the global projective model structure on $\mathcal M^{\mathcal C}$ is also an objectwise cofibration.
+\end{cor}
+
+\begin{proof}
+This is Proposition \ref{cor objectwise implies global}.
+\end{proof}
+
+\begin{cor}
+If $\mathcal M$ and $\mathcal N$ are cofibrantly generated model categories and $F \colon \mathcal M \rightleftarrows \mathcal N \colon U$ is a Quillen adjunction, then $F_* \colon \mathcal M^{\mathcal C} \rightleftarrows \mathcal N^{\mathcal C} \colon U_*$ is a Quillen pair.
+\end{cor}
+
+\begin{proof}
+It is clear that $U_*$ preserves fibrations and weak equivalences.
+\end{proof}
+
+We finally obtain the result we are aiming to:
+
+\begin{thm}
+Let $\mathcal C$ be a cofibrantly generated model category. Then:
+\begin{enumerate}
+\item the adjunction $\colim \colon \mathcal M^{\mathcal C} \rightleftarrows \mathcal M \colon \Delta$ is a Quillen pair;
+\item $\colim$ takes objectwise weak equivalences between cofibrant objects to weak equivalences.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+It is clear that $\Delta$ is a right Quillen functor.
+\end{proof}
+
+More generally we have:
+
+\begin{thm}
+Let $i \colon \mathcal C \to \mathcal D$ be a functor of small categories. If $\mathcal M$ is a cofibrantly generated model category, then the adjoint pair
 \[
-\xymatrix{ A_1 & A_0 \ar[l]_j \ar[r]^i & A_2 }
+\mathrm{Lan}_i \colon \mathcal M^{\mathcal C} \rightleftarrows \mathcal M^{\mathcal D} \colon i_*
 \]
-we take a cofibrant approximation $w_0 \colon A_0' \to A_0$ and then we factorize $i \circ w$ and $j \circ w$ into cofibrations followed by trivial fibrations. We obtain
-\[
-\xymatrix{
-A_1' \ar[d] & A_0' \ar[l]_{j'} \ar[d]^w \ar[r]^{i'} & A_2' \ar[d] \\ A_1 & A_0 \ar[l]_j \ar[r]^i & A_2
-}
-\]
-and $i'$, $j'$ are cofibrations. Reasoning as in Proposition \ref{prop reduction step}, we can make functorial this procedure, obtaining a deformation retraction. It can be shown that $\mathrm{hocolim}$ is homotopy invariant. We will return to this point later, in greater generality.
+is a Quillen pair.
+\end{thm}
+
+\begin{proof}
+It is clear that $i_*$ preserves fibrations and weak equivalences.
+\end{proof}
 
 \begin{rmk}
-There are even more subtleties. In fact, one may na\"ively expect that at the level of $\mathrm{Ho}(\mathcal M)$ the derived functor $\mathbf L \colim$ coincides with the colimit functor. This cannot be true: consider again the situation of Example \ref{eg pushout fails in homotopy}. It should be more or less clear that in $\mathrm{Ho}(\cghaus)$ the pushout of
-\[
-\xymatrix{
-D^n & S^{n-1} \ar[l] \ar[r] & D^n
-}
-\]
-is $*$. Obviously, this is not what we really want; better, this makes clear that passing to the homotopy category produces a loss of informations. I will try to explain where this loss happens. Instead of working with simple homotopy, let's try to work with ``coherent homotopy''. If $*$ were, also in this context, the pushout of our diagram, we could consider the natural maps
-\[
-\xymatrix{
-S^1 \ar[d] \ar[r] & D^2 \ar@/^1pc/[ddr] \ar[d] \\ D^n \ar[r] \ar@/_1pc/[drr] & \text{*} \ar@{.>}[dr] \\ & & S^2
-}
-\]
-The coherence problem is the following: first of all, we are assigned a homotopy
-\[
-\xymatrix{
-S^1 \ar[d] \ar[r] & D^2 \ar[d] \ar@{=>}[dl]_{h_1} \\ D^2 \ar[r] & S^1
-}
-\]
-The map $* \to S^n$ must come with other two homotopies
-\[
-\xymatrix{
-S^1 \ar[d] \ar[r] & D^2 \ar@/^1pc/[ddr]_{\hspace{1pt}}="a" \ar[d] \\ D^2 \ar[r] \ar@/_1pc/[drr]^{\hspace{1pt}}="b" & \text{*} \ar@{.>}[dr] \ar@{=>}{};"a" ^{h_3} \ar@{=>}{};"b" _{h_2} \\ & & S^2
-}
-\]
-and these three homotopies $h_1,h_2,h_3$ must be compatible in the sense that $h_1 \circ h_3$ is, up-to-homotopy, equal to $h_2$. It is important to remark that we are considering homotopies
-\[
-(S^1 \times I) \times I \to Y
-\]
-relatives to
-\[
-Y\coloneqq (S^1 \times \{0\}) \sqcup (X \times \{1\})
-\]
-(at each fixed time, we must have a homotopy between the two maps of $S^1$ into $S^2$). However, such $h_1,h_2,h_3$ (and the required higher homotopy) cannot exist: $h_2^{-1} \circ h_1 \circ h_3$ defines an element in $\pi_2(S^2) = \Z$, and inspection shows that this element is a generator; if $h_1 \circ h_3$ was homotopic relative to $Y$ to $h_2$, we would have that, up-to-homotopy, $h_2^{-1} \circ h_1 \circ h_3$ is trivial, which is not the case.
-
-This rough explanation should make clear that in the homotopy category things don't go as expected because we are ``inverting too much'', producing a loss of (higher homotopical) informations.
+This approach has several drawbacks. First of all, it is not clear at all how to compute a cofibrant replacement functor for the global projective model structure on $\mathcal M^{\mathcal C}$, at least at this level of generality. A second, perhaps even more serious issue, is that this approach works \emph{only} for homotopy colimits. Obviously one can state (by duality) a theorem saying that whenever $\mathcal M$ is \emph{fibrantly} generated, then $\mathcal M^{\mathcal C}$ has a global injective model structure (weak equivalences and cofibrations defined objectwise). However, this is of little practical importance, as fibrantly generated model categories are extremely rare (while almost every category we will encounter is cofibrantly generated). There is a nice solution to this problem, which involves more hypotheses on the model category $\mathcal M$ (but which are always, in a sense, mild), namely it is sufficient to require that $\mathcal M$ is \emph{combinatorial}. Again, combinatorial model categories are really common in the practice, hence the hypothesis is rather mild; despite this, the proof of the existence of a global injective model structure under the combinatorial assumption is far from being trivial. We will discuss it to a certain extent this later on, when analysing Bousfield localization.
 \end{rmk}
 
-\begin{rmk}
-We gave a brief presentation of homotopy pushout in the general context of model categories. The theory developed firstly in the topological context, and then in the simplicial one. In those case, we know several formulas for homotopy limits and colimits. Let's describe the explicit construction of the homotopy pushout in $\cghaus$: if we are given a diagram of spaces
-\[
-\xymatrix{
-Z & X \ar[l]_g \ar[r]^f & Y
-}
-\]
-the ordinary colimit is built gluing $Z$ and $Y$ along the images $f(X)$ and $g(X)$. In this process the homotopy type of $X$ can be lost, and this gives rise to the unpleasant situation of Example \ref{eg pushout fails in homotopy}. It's quite natural, however, to ``keep track'' of the homotopy type of $X$ using the following trick: replace $X$ with a cylinder object $X \times I$, then glue $Z$ to $X \times I$ along $g(X)$ and $X \times \{1\}$; similarly, glue $Y$ to $X \times I$ along $f(X)$ and $X \times \{0\}$. This gives intuitively the correct result. If we apply this construction to
-\[
-\xymatrix{
-\text{*} & S^{n-1} \ar[r] \ar[l] & \text{*}
-}
-\]
-we obtain
-\[
-(S^{n-1} \times I) / (S^{n-1} \times \{0\} \sqcup S^{n-1} \times \{1\}) \simeq S^n
-\]
-which is the ``correct'' result.
-\end{rmk}
+\subsection{Homotopy pushout and homotopy pullback}
+
+
+
+
+
+
+
+
 
 \section{Mapping spaces}
 
