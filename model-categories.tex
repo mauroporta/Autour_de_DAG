@@ -1397,11 +1397,13 @@ then the hypotheses of Proposition \ref{thm lifting} are satisfied.
 
 \section{Homotopy limits and colimits} \label{homotopy limits}
 
-As for the homotopy category, it is possible to give two different kind of motivations for homotopy limits and colimits: a classical one, coming from algebraic topology and the theory of homotopy types, and a ``modern'' one, coming from the world of $(\infty,1)$-categories; we will briefly discuss them both.
+\subsection{Motivations}
 
-Let us begin from a classical perspective; remember that we constructed the category of homotopy types as the homotopy category of (for example) compactly generated Hausdorff spaces, $\mathrm{Ho}(\mathbf{CGHaus})$. However, this category is not as well-behaved as one might hope; a basic issue is that this category is \emph{not} cocomplete (a counterxample can be found in \cite[Example 6.3.3]{riehl}). More subtlety, even when the colimits exist, they could be quite different from what we expect.
+Since homotopy (co)limits are an important piece of the theory which is not quite trivial, they deserve some discussion. However, before getting down to business, let us say a few words about the organization of this section: after a motivational part, we will discuss a possible solution to the problem posed by the homotopy (co)limits, and this will involve the construction of the global projective model structure on diagrams. After that this is settled, we will analyse more carefully the situation for homotopy pullbacks and homotopy pushouts: we will obtain specific criteria allowing to do several computations and we will illustrate them. These two topics will be fundamental throughout these notes, but they can also be read without referring to homotopy (co)limits. Therefore, the reader may skip this section and refer back to it only when he needs to.
 
-\begin{eg}
+Let us now focus on the main topic of this section. As in the case of the homotopy category, it is possible to give two different kind of motivations for homotopy limits and colimits: a classical one, coming from algebraic topology and the theory of homotopy types, and a ``modern'' one, coming from the world of $(\infty,1)$-categories; we will briefly discuss them both. Beginning from a classical perspective, remember that we constructed the category of homotopy types as the homotopy category of (for example) compactly generated Hausdorff spaces, $\mathrm{Ho}(\mathbf{CGHaus})$. However, this category is not as well-behaved as one might hope; a basic issue is that this category is \emph{not} cocomplete (a counterxample can be found in \cite[Example 6.3.3]{riehl}). More subtlety, even when the colimits exist, they could be quite different from what we expect.
+
+\begin{eg} \label{eg sphere suspension}
 Consider the following diagram in $\mathbf{CGHaus}$:
 \[
 \xymatrix{
@@ -1520,7 +1522,7 @@ I_{\mathcal M^{\mathcal C}} = F^{\mathcal C}_I, \quad J_{\mathcal M^{\mathcal C}
 Proposition \ref{cor objectwise implies global} implies that $\mathrm{ev}_\alpha$ takes elements of $\cofreg{F^{\mathcal C}_I}$ in cofibrations and elements of $\cofreg{F^{\mathcal C}_J}$ in trivial cofibrations, hence conditions 2. and 3. of Corollary \ref{cor SLP} are satisfied. Condition 1. holds because $\mathrm{ev}_\alpha$ is a left adjoint.
 \end{proof}
 
-\begin{cor}
+\begin{cor} \label{cor global projective cofibration}
 If $\mathcal M$ is a cofibrantly generated model category and $\mathcal C$ is a small category, then a cofibration in the global projective model structure on $\mathcal M^{\mathcal C}$ is also an objectwise cofibration.
 \end{cor}
 
@@ -1568,15 +1570,132 @@ It is clear that $i_*$ preserves fibrations and weak equivalences.
 This approach has several drawbacks. First of all, it is not clear at all how to compute a cofibrant replacement functor for the global projective model structure on $\mathcal M^{\mathcal C}$, at least at this level of generality. A second, perhaps even more serious issue, is that this approach works \emph{only} for homotopy colimits. Obviously one can state (by duality) a theorem saying that whenever $\mathcal M$ is \emph{fibrantly} generated, then $\mathcal M^{\mathcal C}$ has a global injective model structure (weak equivalences and cofibrations defined objectwise). However, this is of little practical importance, as fibrantly generated model categories are extremely rare (while almost every category we will encounter is cofibrantly generated). There is a nice solution to this problem, which involves more hypotheses on the model category $\mathcal M$ (but which are always, in a sense, mild), namely it is sufficient to require that $\mathcal M$ is \emph{combinatorial}. Again, combinatorial model categories are really common in the practice, hence the hypothesis is rather mild; despite this, the proof of the existence of a global injective model structure under the combinatorial assumption is far from being trivial. We will discuss it to a certain extent this later on, when analysing Bousfield localization.
 \end{rmk}
 
+\begin{rmk}
+Suppose that $\mathcal M$ is a cofibrantly generated model category and let $\mathcal C$ be a small category. Then there is a natural functor $\mathrm{Ho}(\mathcal M^{\mathcal C}) \to (\mathrm{Ho}(\mathcal M))^{\mathcal C}$ which is not, in general, an equivalence.
+\end{rmk}
+
+\begin{exercise}
+Show that if $\mathcal C$ is discrete the functor of the previous remark is an equivalence and deduce from this that homotopy products define products in the homotopy category. Is it necessary for $\mathcal M$ to be cofibrantly generated in order to have the global projective model structure on $\mathcal M^{\mathcal C}$ in this case?
+\end{exercise}
+
 \subsection{Homotopy pushout and homotopy pullback}
 
+As an illustration of the previous technique we consider the case of the homotopy pushout. This will make clear that often the general approach described before is far from being ``optimal'', in the sense that there could exist, depending on the shape of the diagram, more efficient ways to compute its homotopy colimit. From this moment on, $\mathcal C$ will designate the category $\{1 \xleftarrow{g} 0 \xrightarrow{f} 2\}$.
 
+\begin{lemma}
+A diagram $F$ in $\mathcal M^{\mathcal C}$ is cofibrant if and only if it is objectwise cofibrant and both $F(f)$ and $F(g)$ are cofibrations.
+\end{lemma}
 
+\begin{proof}
+Suppose first of all that $F$ is a cofibrant object; we deduce from Corollary \ref{cor global projective cofibration} that $F$ is objectwise cofibrant. We will show that $F(f)$ is a cofibration, and the same argument will go for $F(g)$. Choose any commutative square
+\begin{equation} \label{eq homotopy pushout}
+\xymatrix{
+F(0) \ar[d]_{F(f)} \ar[r]^\alpha & X \ar[d]^p \\
+F(2) \ar[r]^\beta & Y
+}
+\end{equation}
+where $p \colon X \to Y$ is a trivial fibration. Observe that the map of diagrams in $\mathcal M^{\mathcal C}$:
+\[
+\xymatrix{
+{*} \ar@{=}[d] & X \ar[l] \ar@{=}[r] \ar[d]^p & X \ar[d]^p \\
+{*} & Y \ar[l] \ar@{=}[r] & Y
+}
+\]
+is a trivial fibration. Moreover, the commutative square \eqref{eq homotopy pushout} induces a map from $F$ to the bottom line of the above diagram. Since $F$ is cofibrant, there exists a lift, but this is equivalent to being able to solve the lifting problem in \eqref{eq homotopy pushout}.
 
+Suppose now that $F$ is objectwise cofibrant and that both $F(f)$ and $F(g)$ are cofibrations. If
+\[
+\xymatrix{
+Z \ar[d]^r & X \ar[l] \ar[r] \ar[d]^p & Y \ar[d]^q \\
+Z' & X' \ar[l] \ar[r] & Y'
+}
+\]
+is any trivial fibration of diagrams in $\mathcal M^{\mathcal C}$ and we are given a morphism from $F$ to the bottom line of this diagram, we first solve the lifting problem
+\[
+\xymatrix{
+& X \ar[d]^p \\
+F(0) \ar@{.>}[ur]^h \ar[r] & X'
+}
+\]
+using the fact that $F(0)$ is cofibrant and that $p$ is a trivial fibration. Then we solve the two problems
+\[
+\xymatrix{
+F(0) \ar[d]_{F(f)} \ar[r]^-h & X \ar[r] & Y \ar[d]^q \\
+F(2) \ar[rr] \ar@{.>}[urr] & & Y'
+} \qquad \xymatrix{
+F(0) \ar[d]_{F(g)} \ar[r]^-h & X \ar[r] & Z \ar[d]^r \\
+F(1) \ar[rr] \ar@{.>}[urr] & & Z'
+}
+\]
+using the fact that $F(f)$ and $F(g)$ are cofibrations and that $q$ and $r$ are trivial fibrations.
+\end{proof}
 
+We therefore have an easy algorithm to compute homotopy pushouts: given a diagram
+\[
+\xymatrix{
+Z & X \ar[l] \ar[r] & Y
+}
+\]
+we take a cofibrant replacement $\widetilde{X}$ for $X$ and then we approximate the maps $\widetilde{X} \to Z$ and $\widetilde{X} \to Y$ with cofibrations; the pushout of the resulting diagram will be a model for the homotopy pushout of the original one. This is quite a good algorithm (which obviously depend on the ability to compute cofibrant approximation to arrows in the base model category); however, a further simplification is available: we could content ourselves to replace all the objects and just one arrow. To prove this, we will need to introduce the notion of \emph{proper model category}:
 
+\begin{defin}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item $\mathcal M$ is said to be left proper if every pushout of  a weak equivalence along a cofibration is a weak equivalence;
+\item $\mathcal M$ is right proper if every pullback of a weak equivalence along a fibration is a weak equivalence;
+\item $\mathcal M$ is proper if it is both left and right proper.
+\end{enumerate}
+\end{defin}
 
+\begin{prop}
+Let $\mathcal M$ be a model category.
+\begin{enumerate}
+\item every pushout of a weak equivalence between cofibrant objects along a cofibration is a weak equivalence;
+\item every pullback of a weak equivalence between fibrant objects along a fibration is a weak equivalence.
+\end{enumerate}
+\end{prop}
 
+\begin{proof}
+There is a simple argument due to Reedy (cfr. \cite[Proposition 13.1.2]{hirschhorn}), but there is also a more elaborate proof that avoid any lifting argument and therefore can be carried out in the more general context of categories of cofibrant objects (see \cite[Proposition II.8.5]{gj}).
+\end{proof}
+
+Once the above Proposition is known, it is not hard to prove our claim, via several reduction step. We won't include the details of this:
+
+\begin{prop} \label{prop right proper}
+Let $\mathcal M$ be a right proper model category. If we have a diagram
+\[
+\xymatrix{
+X \ar[r]^g & Z & Y \ar[l]_h
+}
+\]
+where at least one of $g$ and $h$ is a fibration, then the pullback $X \times_Z Y$ is naturally weakly equivalent to the homotopy pullback.
+\end{prop}
+
+\begin{proof}
+See \cite[Corollary 13.3.8]{hirschhorn}.
+\end{proof}
+
+\begin{rmk}
+By duality, the same arguments show that it is possible to define a good notion of homotopy pullback, even when the model category $\mathcal M$ is not cofibrantly generated. On the other side, it is also very simple to show that $\mathcal M^{\mathcal C}$ always has a global injective model structure.
+\end{rmk}
+
+\begin{eg} \label{eg topological suspension}
+Fix a topological space $X$ in $\mathbf{CGHaus}$. We want to compute the homotopy pushout of $* \leftarrow X \rightarrow *$; to do so, we can assume from the very beginning that $X$ is a CW-complex. Consider the mapping cone of the map $X \to *$, $\mathrm{Cone}(X)$; this is a contractible CW-complex which comes equipped with a cellular inclusion $X \to \mathrm{Cone}(X)$, which is therefore a cofibration. The general technique developed above shows that the homotopy pushout of $* \leftarrow X \rightarrow *$ is the (usual) pushout of
+\[
+\xymatrix{
+X \ar[d] \ar[r] & \mathrm{Cone}(X) \ar[d] \\ {*} \ar[r] & Y
+}
+\]
+and this is indeed the suspension $\Sigma(X)$ of $X$. In particular we see that the homotopy pushout of the diagram considered in Example \ref{eg sphere suspension} is $\mathcal S^{n+1}$, which is what we were expecting.
+\end{eg}
+
+\begin{eg} \label{eg homological suspension}
+Consider an unbounded chain complex $M^\bullet$ in $\ch(R)$, with respect to the projective model structure of Theorem \ref{thm model structure unbounded complexes}. Remember that a map of chain complexes $f \colon M^\bullet \to N^\bullet$ is a quasi-isomorphism if and only if $\mathrm{Cone}(f)$ is quasi-isomorphic to $0$. In particular, we see that $\mathrm{Cone}(M^\bullet) \coloneqq \mathrm{Cone}(\mathrm{id}_{M^\bullet})$ is always quasi-isomorphic to $0$. It follows from the machinery we developed above that the homotopy pushout of $0 \leftarrow M^\bullet \rightarrow 0$ coincides with the cokernel of the natural map $M^\bullet \to \mathrm{Cone}(M^\bullet)$, which is exactly $M^\bullet[1]$.
+\end{eg}
+
+\begin{exercise} \label{exo homological loop}
+Following a similar procedure to that of Example \ref{eg homological suspension} show that the homotopy pullback of $0 \leftarrow M^\bullet \rightarrow 0$ is $M^\bullet[-1]$.
+\end{exercise}
 
 \section{Mapping spaces}
 
@@ -2392,9 +2511,9 @@ Moreover, functoriality of $\pi_0$ and $\pi_1$ allows to reduce to the case of a
 The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem \ref{thm nerve adjunction 2} is a Quillen equivalence between $\grpd$ and the $S^2$-nullification of $\sSet$.
 \end{thm}
 
-\section{Complements to Chapter 1}
-
-%\subsection{Uniqueness of the model structure for $\grpd$}
+%\section{Complements to Chapter 1}
+%
+%%\subsection{Uniqueness of the model structure for $\grpd$}
 %
 %The goal of this section is to provide a proof of the following:\footnote{I learned this theorem from a post of Chris Schommer-Pries which can be found at \url{http://sbseminar.wordpress.com/2012/11/16/the-canonical-model-structure-on-cat/}. In this section I simply adapt the proof given there to the case of groupoids, as suggested by Mike Shulman in his answer.}
 %
@@ -2468,95 +2587,59 @@ The adjoint pair $\pi_f \colon \sSet \rightleftarrows \grpd \colon N$ of Theorem
 %\begin{proof}[Proof of Theorem \ref{thm uniqueness grpd}]
 %Thanks to Corollary \ref{cor uniqueness 3} we only need to prove that every cofibration is a canonical cofibration. Assume this is not the case and choose a groupoid $\mathcal G$ with one object and non-trivial automorphism group. A fibrant replacement for $\mathcal G$ will be gaunt by Lemma \ref{lemma uniqueness 4} and Lemma \ref{lemma uniqueness 5}; but then $\mathcal G$ cannot be equivalent to its fibrant replacement, contradiction. The thesis follows.
 %\end{proof}
-
-\subsection{Proper model categories}
-
-\begin{defin}
-Let $\mathcal M$ be a model category.
-\begin{enumerate}
-\item $\mathcal M$ is said to be left proper if every pushout of  a weak equivalence along a cofibration is a weak equivalence;
-\item $\mathcal M$ is right proper if every pullback of a weak equivalence along a fibration is a weak equivalence;
-\item $\mathcal M$ is proper if it is both left and right proper.
-\end{enumerate}
-\end{defin}
-
-\begin{prop}
-Let $\mathcal M$ be a model category.
-\begin{enumerate}
-\item every pushout of a weak equivalence between cofibrant objects along a cofibration is a weak equivalence;
-\item every pullback of a weak equivalence between fibrant objects along a fibration is a weak equivalence.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-The second statement follows from the first by duality. Let's prove this one: let $f \colon A \to B$ be a weak equivalence between cofibrant objects and let $i \colon A \to C$ be a cofibration.
-\end{proof}
-
-\begin{cor}
-Let $\mathcal M$ be a model category.
-\begin{enumerate}
-\item if every object of $\mathcal M$ is cofibrant, $\mathcal M$ is left proper;
-\item if every object of $\mathcal M$ is fibrant, $\mathcal M$ is right proper;
-\item if every object of $\mathcal M$ is both fibrant and cofibrant, $\mathcal M$ is proper.
-\end{enumerate}
-\end{cor}
-
-\begin{cor}
-$\sSet$ and $\grpd$ are left proper; $\Top$ is right proper.
-\end{cor}
-
-\subsection{Cofibrantly generated and combinatorial model categories}
-
-\begin{defin}
-A \emph{cofibrantly generated model category} is a model category $\mathcal M$ such that:
-\begin{enumerate}
-\item there exists a set $I$ of maps that permits the small objects argument and such that a map is a trivial fibration if and only if it has the RLP with respect to all the maps in $I$;
-\item there exists a set $J$ of maps that permits the small objects argument and such that a map is a fibration if and only if it has the RLP with respect to all the maps in $J$.
-\end{enumerate}
-\end{defin}
-
-\begin{defin} \label{def combinatorial}
-A \emph{combinatorial model category} is a cofibrantly generated model caetgory $\mathcal M$ which is moreover presentable.
-\end{defin}
-
-\begin{thm} \label{thm combinatorial functor cat}
-Let $\mathcal M$ be a combinatorial model category and let $\mathcal C$ be a small category. Then there exist two combinatorial model structure over $\mathcal M^{\mathcal C}$:
-\begin{itemize}
-\item the projective model structure, where weak equivalences and fibrations are defined objectwise;
-\item the injective model structure, where weak equivalences and cofibrations are defined objectwise.
-\end{itemize}
-\end{thm}
-
-\begin{proof}
-See \cite[Prop. A.2.8.2]{htt}.
-\end{proof}
-
-\subsection{Cellular Model Categories}
-
-\begin{defin}
-A \emph{cellular model category} is a cofibrantly generated model category for which there are a set of generating cofibrations $I$ and a set $J$ of generating trivial cofibrations such that
-\begin{enumerate}
-\item both the domains and the codomains of the elements of $I$ are compact;
-\item the domains of the elements of $J$ are small relative to $I$;
-\item the cofibrations are effective monomorphisms.
-\end{enumerate}
-\end{defin}
-
-\subsection{Simplicial Model Categories} \label{simplicial model categories}
-
-Simplicial model categories are well behaved for several reason: they have natural, preferred ways to construct homotopy limits and homotopy colimits, simplicial and cosimplicial resolutions. We could say that all such notions are already ``built-in'' in a simplicial model category.
-
-The following proposition shows that the situation described in the discussion at the beginning of section \ref{cosimplicial resolutions} is common to every simplicial model category:
-
-\begin{prop} \label{prop simplicial resolutions simplicial category}
-Let $\mathcal M$ be a simplicial model category. If $X$ is an object in $\mathcal M$ and $W \to X$ is a cofibrant approximation, then the cosimplicial object $\widetilde{\mathbf W}$ defined by
-\[
-\widetilde{\mathbf W}^n\coloneqq W \otimes \Delta^n
-\]
-defines a cosimplicial resolution of $\mathbf X$.
-\end{prop}
-
-\subsection{Comparison for mapping spaces}
+%
+%\subsection{Cofibrantly generated and combinatorial model categories}
+%
+%\begin{defin}
+%A \emph{cofibrantly generated model category} is a model category $\mathcal M$ such that:
+%\begin{enumerate}
+%\item there exists a set $I$ of maps that permits the small objects argument and such that a map is a trivial fibration if and only if it has the RLP with respect to all the maps in $I$;
+%\item there exists a set $J$ of maps that permits the small objects argument and such that a map is a fibration if and only if it has the RLP with respect to all the maps in $J$.
+%\end{enumerate}
+%\end{defin}
+%
+%\begin{defin} \label{def combinatorial}
+%A \emph{combinatorial model category} is a cofibrantly generated model caetgory $\mathcal M$ which is moreover presentable.
+%\end{defin}
+%
+%\begin{thm} \label{thm combinatorial functor cat}
+%Let $\mathcal M$ be a combinatorial model category and let $\mathcal C$ be a small category. Then there exist two combinatorial model structure over $\mathcal M^{\mathcal C}$:
+%\begin{itemize}
+%\item the projective model structure, where weak equivalences and fibrations are defined objectwise;
+%\item the injective model structure, where weak equivalences and cofibrations are defined objectwise.
+%\end{itemize}
+%\end{thm}
+%
+%\begin{proof}
+%See \cite[Prop. A.2.8.2]{htt}.
+%\end{proof}
+%
+%\subsection{Cellular Model Categories}
+%
+%\begin{defin}
+%A \emph{cellular model category} is a cofibrantly generated model category for which there are a set of generating cofibrations $I$ and a set $J$ of generating trivial cofibrations such that
+%\begin{enumerate}
+%\item both the domains and the codomains of the elements of $I$ are compact;
+%\item the domains of the elements of $J$ are small relative to $I$;
+%\item the cofibrations are effective monomorphisms.
+%\end{enumerate}
+%\end{defin}
+%
+%\subsection{Simplicial Model Categories} \label{simplicial model categories}
+%
+%Simplicial model categories are well behaved for several reason: they have natural, preferred ways to construct homotopy limits and homotopy colimits, simplicial and cosimplicial resolutions. We could say that all such notions are already ``built-in'' in a simplicial model category.
+%
+%The following proposition shows that the situation described in the discussion at the beginning of section \ref{cosimplicial resolutions} is common to every simplicial model category:
+%
+%\begin{prop} \label{prop simplicial resolutions simplicial category}
+%Let $\mathcal M$ be a simplicial model category. If $X$ is an object in $\mathcal M$ and $W \to X$ is a cofibrant approximation, then the cosimplicial object $\widetilde{\mathbf W}$ defined by
+%\[
+%\widetilde{\mathbf W}^n\coloneqq W \otimes \Delta^n
+%\]
+%defines a cosimplicial resolution of $\mathbf X$.
+%\end{prop}
+%
+%\subsection{Comparison for mapping spaces}
 
 \printbibliography[heading = local]
 
