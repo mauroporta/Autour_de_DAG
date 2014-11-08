@@ -47,7 +47,7 @@ Each $C_n^{\mathrm{sing}}$ is, accordingly to our Definition \ref{algebraic inva
 \[
 H_n^{\mathrm{sing}}(X)\coloneqq H_n(C_\bullet^{\mathrm{sing}},d_n)
 \]
-Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[Ch. 2.2]{hatcher} for more details on computation tools).
+Singular (co)homology groups are quite easy to compute, because we can use several tools (Excision, Mayer Vietoris). In the case where the space is a CW-complex, we can also use the powerful tool which is Cellular Homology (see \cite[section~2.2]{hatcher-algebraic-topology} for more details on computation tools).
 
 The homotopy groups construction shares the same philosophy, but it is more involved from a technical point of view. In this case, the group operation is not simply formal, but it reflects the structure of the topological space we are considering. This implies of course that homotopy groups carry more informations than singular homology groups, but they are also more difficult to compute.
 
@@ -66,7 +66,7 @@ If a map $f \colon X \to Y$ between connected CW-complexes induces isomorphisms 
 \end{thm}
 
 \begin{proof}
-See \cite[Thm 4.5]{hatcher}.
+See \cite[theorem~4.5]{hatcher-algebraic-topology}.
 \end{proof}
 
 Since one usually encounters only CW complexes in applications to other areas of Mathematics, Theorem \ref{thm concrete whitehead} can be considered as a really satisfying result.
@@ -78,7 +78,7 @@ For every topological space $X$, there exists a CW-complex $Z$ and a map $f \col
 \end{thm}
 
 \begin{proof}
-See \cite[Prop. 4.13]{hatcher}.
+See \cite[proposition~4.13]{hatcher-algebraic-topology}.
 \end{proof}
 
 The previous reasoning shows then that it may be worth of to introduce the following definition:
@@ -106,12 +106,12 @@ If a noetherian local ring has finite global homological dimension, then it is a
 \end{thm}
 
 \begin{proof}
-See \cite{altman}, in particular Theorem 5.15 and Corollary 5.18.
+  See \cite{altman-kleiman-grothendieck-duality}, in particular theorem~5.15 and corollary~5.18.\fixthis{is this really the best reference?}
 \end{proof}
 
 Other motivations come from Algebraic Geometry (like the considerations that lead to Verdier duality), but this is not the right place where to do a full review of them. Instead, we will shortly describe the main construction of elementary Homological Algebra, since it will be of some relevance in our next discussion about model categories.
 
-Let $F \colon \mathcal A \to \mathcal B$ be an additive functor between abelian categories, and let's assume that $F$ is left exact. Following Grothendieck (\cite{tohoku}, but cfr. also \cite[Ch. II]{weibel}) we say that a derived functor for $F$ is a cohomological $\delta$-functor which is universal in an appropriate sense. The classical existence theorem says that if $\mathcal A$ has enough injectives, then the derived functor always exists and it is obtained via the following procedure:
+Let $F \colon \mathcal A \to \mathcal B$ be an additive functor between abelian categories, and let's assume that $F$ is left exact. Following Grothendieck (\cite{grothendieck-sur-quelques-points}, but cfr.\ also \cite[Ch. II]{weibel}) we say that a derived functor for $F$ is a cohomological $\delta$-functor which is universal in an appropriate sense. The classical existence theorem says that if $\mathcal A$ has enough injectives, then the derived functor always exists and it is obtained via the following procedure:
 \begin{enumerate}
 \item start with an object $A \in \Ob(\mathcal A)$;
 \item choose an injective resolution $A \to I^\bullet$ in $\ch(\mathcal A)$;
@@ -188,7 +188,7 @@ We will denote by $(\mathcal C, W,\fib,\cofib)$ a category with a model structur
 \end{defin}
 
 \begin{rmk}
-In the original work of Quillen \cite{quillen} and in work of Dwyer and Spalinski \cite{dwsp} is required only the existence of \emph{finite} limits and a (not necessarily functorial) factorization. In these notes we will follow the more modern habit (cfr. \cite{hovey}, \cite{hirschhorn}, \cite{dhk}).
+In the original work of Quillen \cite{quillen} and in work of Dwyer and Spalinski \cite{dwyer-spalinski-homotopy-theories-and-model-categories} is required only the existence of \emph{finite} limits and a (not necessarily functorial) factorization. In these notes we will follow the more modern habit (cfr. \cite{hovey}, \cite{hirschhorn-model-categories}, \cite{dwyer-hirschhorn-smith-homotopy-limit-functors}).
 \end{rmk}
 
 \begin{eg}
@@ -335,11 +335,11 @@ is fully faithful.
 \end{defin}
 
 \begin{rmk}
-This definition differs a little from those given in \cite{gz} and in \cite{weibel} because of the natural isomorphism $\eta_G$. However, this matches better the philosophy of category theory; a similar definition can be found in \cite[Ch. 7.1]{kashiwara}.
+This definition differs a little from those given in \cite{gz} and in \cite{weibel} because of the natural isomorphism $\eta_G$. However, this matches better the philosophy of category theory; a similar definition can be found in \cite[section~7.1]{kashiwara-schapira-categories-and-sheaves}.
 \end{rmk}
 
 \begin{rmk}
-The purpose of point 3. is to ensure the uniqueness of the factorization $G_S$, as well as that of the natural isomorphism $\eta_G$.
+The purpose of point 3 is to ensure the uniqueness of the factorization $G_S$, as well as that of the natural isomorphism $\eta_G$.
 \end{rmk}
 
 \begin{rmk}
@@ -358,7 +358,7 @@ Let $\mathbb U$ be a Grothendieck universe and let $\mathcal M$ be a model categ
 
 \subsection{Localizing subcategories}
 
-To prove Theorem \ref{thm homotopy localization}, we will follow the exposition given in \cite{dhk}, using the refined version that can be found in \cite{riehl}.  First of all, let us introduce a definition:
+To prove Theorem \ref{thm homotopy localization}, we will follow the exposition given in \cite{dwyer-hirschhorn-kan-smith-homotopy-limit-functors}, using the refined version that can be found in \cite{riehl}.  First of all, let us introduce a definition:
 
 \begin{defin} \label{def localizing subcategories}
 Let $\mathcal C$ be a category and let $\mathcal C_0$, $\mathbf W \subset \mathcal C$ be subcategories. We say that $\mathcal C_0$ is a left (resp. right) deformation retract of $\mathcal C$ with respect to $\mathbf W$ if there exists a functor $R \colon \mathcal C \to \mathcal C_0$ and a natural transformation $s \colon R \to \mathrm{Id}_{\mathcal C}$ (resp. $s \colon \mathrm{Id}_{\mathcal C} \to R$) such that:
@@ -448,7 +448,7 @@ which is a trivial fibration. It's clear that the family $\{p_A\}_{A \in \Ob(\ma
 Combining Propositions \ref{prop localizing subcategories} and \ref{prop reduction step} it follows that we only need to show the existence of $\mathrm{Ho}(\mathcal M_{cf})$. This will be accomplished in the following paragraph.
 
 \begin{rmk}
-In absence of functorial factorization Proposition \ref{prop reduction step} doesn't need to be true. However, it can be shown that even in that case the localization of a model category exists. For a proof which doesn't make use of the functoriality of factorization, the reader is referred to \cite[Section 4]{dwsp}.
+In absence of functorial factorization Proposition \ref{prop reduction step} doesn't need to be true. However, it can be shown that even in that case the localization of a model category exists. For a proof which doesn't make use of the functoriality of factorization, the reader is referred to \cite[section 4]{dwyer-spalinski-homotopy-theories-and-model-categories}.
 \end{rmk}
 
 \subsection{Homotopy relations}
@@ -744,10 +744,10 @@ The following classes of maps in $\sSet$ define a model structure:
 \end{thm}
 
 \begin{rmk}
-It's possible to give a purely combinatorial description of the model structure on $\sSet$. To describe weak equivalences avoiding geometric realization, one has to use the notion of minimal Kan complex and minimal fibration. For an exposition of these notions, the reader is referred to \cite{may} or to \cite[I.10]{gj}.
+It's possible to give a purely combinatorial description of the model structure on $\sSet$. To describe weak equivalences avoiding geometric realization, one has to use the notion of minimal Kan complex and minimal fibration. For an exposition of these notions, the reader is referred to \cite{may} or to \cite[section I.10]{goerss-jardine-simplicial-homotopy-theory}.
 \end{rmk}
 
-From this moment on, when we refer to a model structure on $\sSet$ we will tacitly mean that of Theorem \ref{thm model structure on sset}. The proof of this Theorem is hard and we will simply outline the main ideas involved there. For the details, the reader is referred to the first chapter of \cite{gj} or to the third chapter 
+From this moment on, when we refer to a model structure on $\sSet$ we will tacitly mean that of Theorem \ref{thm model structure on sset}. The proof of this Theorem is hard and we will simply outline the main ideas involved there. For the details, the reader is referred to the first chapter of \cite{goerss-jardine-simplicial-homotopy-theory} or to the third chapter 
 
 \begin{proof}[Sketch of the proof]
 Coming soon...
@@ -1311,7 +1311,7 @@ Then there is a model structure on $\mathcal M^{\mathcal C}$ whose weak equivale
 \end{lemma}
 
 \begin{proof}
-The proof is straightforward. The reader is referred to \cite[Section 10]{dwsp} for the details.
+The proof is straightforward. The reader is referred to \cite[section 10]{dwyer-spalinski-homotopy-theories-and-model-categories} for the details.
 \end{proof}
 
 Obviously, this suggests to employ Theorem \ref{thm existence derived functor}: even though $\colim$ doesn't preserve weak equivalences, its derived functor may exists as well. In fact, $\colim$ is left adjoint to the diagonal functor
@@ -1406,7 +1406,7 @@ It can be developed a deformation theory for homotopical categories allowing to 
 \[
 \mathrm{hocolim} \colon \mathcal M^{\mathcal C} \to \mathcal M
 \]
-well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dhk}, has been further developed in \cite{shulman} and \cite{riehl}.
+well behaved with respect to weak equivalences. This approach, appeared firstly in \cite{dwyer-hirschhorn-kan-smith-homotopy-limit-functors}, has been further developed in \cite{shulman} and \cite{riehl}.
 
 \subsection{Reedy categories}
 
@@ -1507,7 +1507,7 @@ Let $\mathcal C$ be a Reedy category and let $\mathcal M$ be a model category. T
 \end{thm}
 
 \begin{proof}
-See \cite[Theorem 15.3.4]{hirschhorn}.
+See \cite[theorem~15.3.4]{hirschhorn-model-categories}.
 \end{proof}
 
 \begin{defin}
