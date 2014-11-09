@@ -254,8 +254,8 @@ This dg~category serves as an enrichment for~$\Ho\mathcal{M}$, as one might alre
         &\Hom_{\HH^0(\Int(\mathcal{M}))}(X,Y) \\
         &\qquad=\HH^0(\RRR\Hom_{\Int(\mathcal{M})}(X,Y)^\bullet) & \text{definition} \\ 
         &\qquad\cong\Hom_{\Ho(\Ch(\Mod{k}))}(k,\RRR\Hom_{\Int(\mathcal{M})}(X,Y)^\bullet) & \text{Yoneda with~$k$ in degree 0} \\
-        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(k\LLLotimes X,Y) & \text{total derived adjunction} \\
-        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(X,Y) & \text{$k$ is unit for~$-\LLLotimes-$}
+        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(k\otimes^\LLL X,Y) & \text{total derived adjunction} \\
+        &\qquad\cong\Hom_{\Ho(\mathcal{M})}(X,Y) & \text{$k$ is unit for~$-\otimes^\LLL-$}
       \end{aligned}
     \end{equation}
     for~$X$ and~$Y$ by abuse of notation and the fundamental theorem of model categories both in~$\HH^0(\Int(\mathcal{M}))$ and~$\Ho(\mathcal{M})$. So we can conclude that~$\HH^0(\Int(\mathcal{M}))$ and~$\Ho(\mathcal{M})$ are indeed equivalent categories.
@@ -338,11 +338,11 @@ If we consider~$\dgMod{(\mathcal{C}\otimes\mathcal{D}^\opp)}_k$ we can define fo
 \end{equation}
 by the mapping~$f\mapsto\mathrm{id}_X\otimes f$, for~$Y,Z\in\Ob(\mathcal{D}^\opp)$. Because the cofibrant replacement functor of~$\dgCat_k$ can be taken to be the identity on the objects \cite[proposition 2.3]{toen} this defines
 \begin{equation}
-  i_X\colon\mathcal{D}^\opp\to\cofibrrepl(\mathcal{C})\otimes\mathcal{D}^\opp\eqqcolon\mathcal{C}\LLLotimes\mathcal{D}^\opp.
+  i_X\colon\mathcal{D}^\opp\to\cofibrrepl(\mathcal{C})\otimes\mathcal{D}^\opp\eqqcolon\mathcal{C}\otimes^\LLL\mathcal{D}^\opp.
 \end{equation}
 We can then define the following.
 \begin{definition}
-  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$(\mathcal{C}\LLLotimes\mathcal{D}^\opp)$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$, i.e.\ it is representable in~$\Ho(\dgMod{\mathcal{D}^\opp}_k)$ by an object~$D$ of~$\mathcal{D}$.
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$, i.e.\ it is representable in~$\Ho(\dgMod{\mathcal{D}^\opp}_k)$ by an object~$D$ of~$\mathcal{D}$.
 \end{definition}
 We can now state the theorem.
 \begin{theorem}
@@ -350,7 +350,7 @@ We can now state the theorem.
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. We have a functorial bijection
   \begin{equation}
     \label{equation:fundamental-bijection}
-    \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( \dgMod{(\mathcal{C}\LLLotimes\mathcal{D}^\opp)}_k^\rqr \right) \right).
+    \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( \dgMod{(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}_k^\rqr \right) \right).
   \end{equation}
 \end{theorem}
 Hence every ``fraction'' of dg~functors in the homotopy category can be represented in a unique way by a right quasi-representable bimodule. If one is familiar with Morita theory this might ring a bell. The remainder of \cite{toen} is based on the technical result that underlies this theorem.  
@@ -362,16 +362,16 @@ Recall that there exists a closed monoidal structure on~$\dgCat_k$. Unfortunatel
 If on the other hand~$k$ is a field, we can use the ideas from \cite{tabuada-3} if we equip~$\dgCat_k$ with the Morita model category structure. In this paper a derived internal Hom is constructed using ``localising pairs''. One first proves a Quillen equivalence between~$\dgCat_k$ and a second model category, which is a true monoidal model category (i.e.\ the structures are compatible with eachother). This equivalence is moreover compatible with the monoidal structure, but not with the actual monoidal model structure. Then going to the homotopy categories there is a derived internal Hom for the second category, hence by the equivalence also on the homotopy category (with the Morita equivalences inverted). But we will continue to use the quasi-equivalences.
 \begin{theorem}
   \label{theorem:internal-Hom}
-  We can equip the monoidal category~$(\Ho(\dgCat_k,-\LLLotimes-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover described by
+  We can equip the monoidal category~$(\Ho(\dgCat_k,-\otimes^\LLL-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover described by
   \begin{equation}
-    \RRRHHom(\mathcal{C},\mathcal{D})\cong\Int\left( \dgMod{(\mathcal{C}\LLLotimes\mathcal{D}^\opp)}_k^\rqr \right)
+    \RRRHHom(\mathcal{C},\mathcal{D})\cong\Int\left( \dgMod{(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}_k^\rqr \right)
   \end{equation}
   for~$\mathcal{C},\mathcal{D}\in\Ob(\Ho(\dgCat_k))$.
 \end{theorem}
 So we have the derived tensor-Hom adjunction
 \begin{equation}
   \label{equation:tensor-Hom-adjunction}
-  \Hom_{\Ho(\dgCat_k)}(\mathcal{C}\LLLotimes\mathcal{D},\mathcal{E})\cong\Hom_{\Ho(\dgCat_k)}(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
+  \Hom_{\Ho(\dgCat_k)}(\mathcal{C}\otimes^\LLL\mathcal{D},\mathcal{E})\cong\Hom_{\Ho(\dgCat_k)}(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
 \end{equation}
 for all~$\mathcal{C},\mathcal{D}$ and~$\mathcal{E}$ dg~categories.
 
@@ -382,7 +382,7 @@ It is also possible to introduce a~$\Ho(\sSet)$\dash structure on~$\Ho(\dgCat_k)
   \label{corollary:simplicial-compatibility}
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be two dg~categories. Let~$K$ be a simplicial set. Then we have the functorial isomorphism
   \begin{equation}
-    K\LLLotimes_\simp(\mathcal{C}\LLLotimes\mathcal{D})\cong(K\LLLotimes_\simp\mathcal{C})\LLLotimes\mathcal{D}
+    K\otimes_\simp^\LLL(\mathcal{C}\otimes^\LLL\mathcal{D})\cong(K\otimes_\simp^\LLL\mathcal{C})\otimes^\LLL\mathcal{D}
   \end{equation}
   in~$\Ho(\dgCat_k)$.
 \end{corollary}
@@ -392,7 +392,7 @@ This corollary yields the following enriched tensor-Hom adjunction.
   Let~$\mathcal{C},\mathcal{D},\mathcal{E}$ be dg~categories. Then we have the functorial isomorphism
   \begin{equation}
     \label{equation:internal-Hom-Map-adjointness}
-    \Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C}\LLLotimes\mathcal{D},\mathcal{E})\cong\Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
+    \Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C}\otimes^\LLL\mathcal{D},\mathcal{E})\cong\Map_{\Ho(\dgCat_k)}^\ell(\mathcal{C},\RRRHHom(\mathcal{D},\mathcal{E}))
   \end{equation}
   in~$\Ho(\sSet)$.
 \end{corollary}

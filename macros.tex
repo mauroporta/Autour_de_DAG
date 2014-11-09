@@ -14,7 +14,7 @@
 \newcommand\cgHaus{\category{cgHaus}}
 \newcommand\Ch{\category{Ch}}
 \newcommand\Coh{\category{coh}}
-\newcommand\cRing{\category{cRing}
+\newcommand\cRing{\category{cRing}}
 \newcommand\dgAlg{\category{dgAlg}}
 \newcommand\dgCat{\category{dgCat}}
 \newcommand\dgMod{\category{dgMod}}
@@ -24,7 +24,7 @@
 \newcommand\Mod{\category{Mod}}
 \newcommand\Qcat{\category{Qcat}}
 \newcommand\Qcoh{\category{Qcoh}}
-\newcommand\Set{\category{Set}
+\newcommand\Set{\category{Set}}
 \newcommand\sAb{\category{sAb}}
 \newcommand\sAlg{\category{sAlg}}
 \newcommand\scAlg{\category{scAlg}}
@@ -40,14 +40,19 @@
 %%%%%%%%%%%%%
 % operators %
 %%%%%%%%%%%%%
-\DeclareMathOperator\char{char}
+\DeclareMathOperator\characteristic{char}
+\DeclareMathOperator\cofibrrepl{Q}
 \DeclareMathOperator\coker{coker}
 \DeclareMathOperator*\colim{colim}
 \DeclareMathOperator\diag{diag}
+\DeclareMathOperator\EEnd{\mathcal{E}nd}
+\DeclareMathOperator\End{End}
 \DeclareMathOperator\ev{ev}
 \DeclareMathOperator\Ext{Ext}
+\DeclareMathOperator\fibrrepl{R}
 \DeclareMathOperator\Ho{Ho}
 \DeclareMathOperator\HH{H}
+\DeclareMathOperator\HHom{\mathcal{H}om}
 \DeclareMathOperator*\hocolim{hocolim}
 \DeclareMathOperator\hofib{hofib}
 \DeclareMathOperator*\holim{holim}
@@ -56,10 +61,14 @@
 \DeclareMathOperator\im{im}
 \DeclareMathOperator\Int{Int}
 \DeclareMathOperator\Isom{Isom}
+\DeclareMathOperator\KKK{\mathbf{K}}
 \DeclareMathOperator\map{map} % TODO why two different maps?
 \DeclareMathOperator\Map{Map}
+\DeclareMathOperator\Mor{Mor}
 \DeclareMathOperator\nerve{N}
 \DeclareMathOperator\Ob{Ob}
+\DeclareMathOperator\Perf{Perf}
+\DeclareMathOperator\RRRHHom{\mathbf{R}\mathcal{H}om}
 \DeclareMathOperator\RSpec{\mathbf{R}Spec}
 \DeclareMathOperator\RPerf{\mathbf{R}Perf}
 \DeclareMathOperator\RVect{\mathbf{R}Vect}
@@ -68,16 +77,22 @@
 \DeclareMathOperator\Sym{Sym}
 \DeclareMathOperator\Tor{Tor}
 \DeclareMathOperator\Tot{Tot}
+\DeclareMathOperator\Vect{Vect}
 \DeclareMathOperator\truncation{t_0}
 \DeclareMathOperator\ZZ{Z}
 
 %%%%%%%%%%%
 % various %
 %%%%%%%%%%%
+\newcommand\dash{\nobreakdash-\hspace{0pt}}
 \mathchardef\mhyphen="2D
 
+\newcommand\dd{\ensuremath{\mathrm{d}}}
 \newcommand\LLL{\ensuremath{\mathbf{L}}}
 \newcommand\RRR{\ensuremath{\mathbf{R}}}
+\newcommand\simp{\ensuremath{\mathbf{s}}}
+\newcommand\weq{\ensuremath{\mathop{\overset{\sim}{\vphantom{\rule{0pt}{2pt}}\smash{\to}}}}}
+
 
 %%%%%%%%%%%%%%%%%%%%
 % textual commands %
@@ -91,4 +106,7 @@
 \newcommand\dg{\ensuremath{\mathrm{dg}}}
 \newcommand\fib{\ensuremath{\mathrm{fib}}}
 \newcommand\opp{\ensuremath{\mathrm{op}}}
+\newcommand\perf{\ensuremath{\mathrm{perf}}}
+\newcommand\qcoh{\ensuremath{\mathrm{qc}}}
 \newcommand\rqr{\ensuremath{\mathrm{r\,qr}}}
+\newcommand\unit{\mathrm{e}}
