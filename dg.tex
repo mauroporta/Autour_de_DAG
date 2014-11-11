@@ -216,7 +216,7 @@ So a dg~$\mathcal{C}$\dash module could also be defined as a ``$\Ch(k\mhyphen\Mo
 As usual we can consider all dg~modules and endow them with the structure of a category.
 \begin{definition}
   \label{definition:category-of-dg-modules}
-  Let~$\mathcal{C}$ be a small dg~category. The \emph{category of dg~$\mathcal{C}$\dash modules}\index{category!of differential graded $\mathcal{C}$\dash modules}~$\dgMod{\mathcal{C}}_k$ has all dg~$\mathcal{C}$\dash modules as objects and morphisms of dg~functors as morphism spaces. 
+  Let~$\mathcal{C}$ be a small dg~category. The \emph{category of dg~$\mathcal{C}$\dash modules}\index{category!of differential graded $\mathcal{C}$\dash modules}~${\mathcal{C}}\mhyphen\dgMod_k$ has all dg~$\mathcal{C}$\dash modules as objects and morphisms of dg~functors as morphism spaces. 
 \end{definition}
 It is an abelian category, where epi- resp.\ monomorphisms can be checked degreewise.
 
@@ -225,7 +225,7 @@ We can generalize the notion of a dg~$\mathcal{C}$\dash module which has values 
   \label{definition:C-dgMod(M)}
   Let~$\mathcal{C}$ be a dg~category and~$\mathcal{M}$ a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category. A~\emph{dg~$\mathcal{C}$\dash module with values in~$\mathcal{M}$}\index{module!differential graded $\mathcal{C}$\dash\ldots with values in a cofibrantly generated~$\Ch(k\mhyphen\Mod)$\dash model category} is a dg~functor~$\mathcal{C}\to\mathcal{M}$, where~$\mathcal{M}$ is a dg~category because its Hom-sets are by assumption enriched over~$\Ch(k\mhyphen\Mod)$.
   
-  The \emph{category of dg~$\mathcal{C}$\dash modules with values in~$\mathcal{M}$} has as objects the dg~functors~$\mathcal{C}\to\mathcal{M}$ and its morphisms are given by the complexes of graded morphisms (or natural transformations). It will be denoted~$\dgMod{\mathcal{C}}_k(\mathcal{M})$.
+  The \emph{category of dg~$\mathcal{C}$\dash modules with values in~$\mathcal{M}$} has as objects the dg~functors~$\mathcal{C}\to\mathcal{M}$ and its morphisms are given by the complexes of graded morphisms (or natural transformations). It will be denoted~${\mathcal{C}}\mhyphen\dgMod_k(\mathcal{M})$.
 \end{definition}
 
 For every~$\Ch(k\mhyphen\Mod)$\dash model category~$\mathcal{M}$ we can define its associated ``internal dg~category'' (even without the assumption that it is cofibrantly generated). This provides a dg~enrichment of the homotopy category~$\Ho\mathcal{M}$, as is shown in proposition \ref{proposition:internal-category-is-dg-enrichment}.
@@ -303,17 +303,17 @@ We now introduce the fibrations in this model category structure.
 
 In the second model category structure we use a bigger class of weak equivalences, the same fibrations and therefore a smaller class of cofibrations. An important use of this model category structure are sheaves on higher stacks \cite{chern}. To define it we mimick the idea of a Morita equivalence, but now in a (derived) dg~context.
 \begin{definition}
-  Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}, which we'll denote~$\mathbf{D}(\dgMod{\mathcal{C}}_k)$, is the localisation of~$\dgMod{\mathcal{C}}_k$ with respect to the quasi-isomorphisms.
+  Let~$\mathcal{C}$ be a dg~category. Its \emph{derived category of dg~$\mathcal{C}$\dash modules}, which we'll denote~$\mathbf{D}({\mathcal{C}}\mhyphen\dgMod_k)$, is the localisation of~${\mathcal{C}}\mhyphen\dgMod_k$ with respect to the quasi-isomorphisms.
 \end{definition}
 Associated to a dg~functor~$f\colon\mathcal{C}\to\mathcal{D}$ is the restriction functor
 \begin{equation}
-  f^*\colon\dgMod{\mathcal{D}}_k\to\dgMod{\mathcal{C}}_k
+  f^*\colon{\mathcal{D}}\mhyphen\dgMod_k\to{\mathcal{C}}\mhyphen\dgMod_k
 \end{equation}
 given by composition. This yields the following definition.
 \begin{definition}
   Let~$f\colon\mathcal{C}\to\mathcal{D}$ be a morphism in~$\dgCat_k$. It is said to be a \emph{Morita equivalence} if
   \begin{equation}
-    f^*\colon\mathbf{D}(\dgMod{\mathcal{D}}_k)\to\mathbf{D}(\dgMod{\mathcal{C}}_k)
+    f^*\colon\mathbf{D}({\mathcal{D}}\mhyphen\dgMod_k)\to\mathbf{D}({\mathcal{C}}\mhyphen\dgMod_k)
   \end{equation}
   is an equivalence of categories.
 \end{definition}
@@ -332,7 +332,7 @@ given by composition. This yields the following definition.
 \label{section:mapping-spaces}
 The following section is a discussion of the main technical result in \cite{toen}. Its actual proof is rather long and technical, and there is not enough room here to discuss even the necessary definitions and notations. One needs cosimplicial resolution functors, restrictions to specific subcategories, diagonals of bisimplicial sets and nerves just to write down the statement. So immediately its interpretation in terms of the homotopy category is given.
 
-If we consider~$\dgMod{(\mathcal{C}\otimes\mathcal{D}^\opp)}_k$ we can define for every~$X\in\Ob(\mathcal{C})$ a morphism of dg~categories~$\mathcal{D}^\opp\to\mathcal{C}\otimes\mathcal{D}^\opp$ which on the level of objects is defined as~$Y\mapsto(X,Y)$ and therefore on the level of the morphisms as
+If we consider~${(\mathcal{C}\otimes\mathcal{D}^\opp)}\mhyphen\dgMod_k$ we can define for every~$X\in\Ob(\mathcal{C})$ a morphism of dg~categories~$\mathcal{D}^\opp\to\mathcal{C}\otimes\mathcal{D}^\opp$ which on the level of objects is defined as~$Y\mapsto(X,Y)$ and therefore on the level of the morphisms as
 \begin{equation}
   \Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet\mapsto\Hom_{\mathcal{C}\otimes\mathcal{D}^\opp}\left( (X,Y),(X,Z) \right)^\bullet\overset{\eqref{equation:tensor-product-dg-categories}}{=}\Hom_{\mathcal{C}}(X,X)^\bullet\otimes_k\Hom_{\mathcal{D}^\opp}(Y,Z)^\bullet
 \end{equation}
@@ -342,7 +342,7 @@ by the mapping~$f\mapsto\mathrm{id}_X\otimes f$, for~$Y,Z\in\Ob(\mathcal{D}^\opp
 \end{equation}
 We can then define the following.
 \begin{definition}
-  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~$\dgMod{\mathcal{D}^\opp}_k$, i.e.\ it is representable in~$\Ho(\dgMod{\mathcal{D}^\opp}_k)$ by an object~$D$ of~$\mathcal{D}$.
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. A dg~$(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)$\dash module~$F$ is \emph{right quasi-representable}\index{right quasi-representable} if for all~$X\in\Ob(\mathcal{C})$ the dg~$\mathcal{D}^\opp$\dash module~$i_X(F)$ is quasi-representable in~${\mathcal{D}^\opp}\mhyphen\dgMod_k$, i.e.\ it is representable in~$\Ho({\mathcal{D}^\opp}\mhyphen\dgMod_k)$ by an object~$D$ of~$\mathcal{D}$.
 \end{definition}
 We can now state the theorem.
 \begin{theorem}
@@ -350,7 +350,7 @@ We can now state the theorem.
   Let~$\mathcal{C}$ and~$\mathcal{D}$ be small dg~categories. We have a functorial bijection
   \begin{equation}
     \label{equation:fundamental-bijection}
-    \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( \dgMod{(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}_k^\rqr \right) \right).
+    \Hom_{\Ho(\dgCat_k)}(\mathcal{C},\mathcal{D})\cong\Isom\left( \Ho\left( {(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}\mhyphen\dgMod_k^\rqr \right) \right).
   \end{equation}
 \end{theorem}
 Hence every ``fraction'' of dg~functors in the homotopy category can be represented in a unique way by a right quasi-representable bimodule. If one is familiar with Morita theory this might ring a bell. The remainder of \cite{toen} is based on the technical result that underlies this theorem.  
@@ -364,7 +364,7 @@ If on the other hand~$k$ is a field, we can use the ideas from \cite{tabuada-3} 
   \label{theorem:internal-Hom}
   We can equip the monoidal category~$(\Ho(\dgCat_k,-\otimes^\LLL-))$ with an internal Hom-object which we'll denote~$\RRRHHom$, hence it is a closed monoidal category. This internal Hom is moreover described by
   \begin{equation}
-    \RRRHHom(\mathcal{C},\mathcal{D})\cong\Int\left( \dgMod{(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}_k^\rqr \right)
+    \RRRHHom(\mathcal{C},\mathcal{D})\cong\Int\left( {(\mathcal{C}\otimes^\LLL\mathcal{D}^\opp)}\mhyphen\dgMod_k^\rqr \right)
   \end{equation}
   for~$\mathcal{C},\mathcal{D}\in\Ob(\Ho(\dgCat_k))$.
 \end{theorem}

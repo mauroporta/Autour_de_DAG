@@ -78,29 +78,29 @@ Whenever the terminology ``derived stack'' is used we refer to the~$\mathbf{D}^-
 In order to get a nice result we need to impose a certain finiteness condition on the codomain category in the generalisation of \eqref{equation:moduli-linear-category} to dg~categories. In the~$k$\dash linear case we considered projective modules of finite type, which corresponds to the notion of perfectness in derived categories. Hence the generalisation to dg~categories is motivated by this observation.
 
 \begin{definition}
-  Let~$\mathcal{C}$ be a dg~category. Let~$M$ be a~$\mathcal{C}^\opp$\dash dg~module. We say~$M$ is \emph{perfect} (or \emph{compact}) if it is homotopically finitely presented in~$\dgMod{\mathcal{C}^\opp}_k$, i.e.\ for every filtered system of~$\mathcal{C}^\opp$\dash dg~modules~$(N_i)_{i\in I}$ is the morphism
+  Let~$\mathcal{C}$ be a dg~category. Let~$M$ be a~$\mathcal{C}^\opp$\dash dg~module. We say~$M$ is \emph{perfect} (or \emph{compact}) if it is homotopically finitely presented in~${\mathcal{C}^\opp}\mhyphen\dgMod_k$, i.e.\ for every filtered system of~$\mathcal{C}^\opp$\dash dg~modules~$(N_i)_{i\in I}$ is the morphism
   \begin{equation}
-    \colim_{i\in I}\Map_{\dgMod{\mathcal{C}^\opp}_k}(M,N_i)^*\to\Map_{\dgMod{\mathcal{C}^\opp}_k}\left( M,\hocolim_{i\in I}N_i \right)^*
+    \colim_{i\in I}\Map_{{\mathcal{C}^\opp}\mhyphen\dgMod_k}(M,N_i)^*\to\Map_{{\mathcal{C}^\opp}\mhyphen\dgMod_k}\left( M,\hocolim_{i\in I}N_i \right)^*
   \end{equation}
-  an isomorphism in~$\Ho(\sSet)$. The full dg~subcategory of perfect objects in~$\Int(\dgMod{\mathcal{C}^\opp}_k)$ is denoted~$\Int_\perf(\dgMod{\mathcal{C}^\opp}_k)$.
+  an isomorphism in~$\Ho(\sSet)$. The full dg~subcategory of perfect objects in~$\Int({\mathcal{C}^\opp}\mhyphen\dgMod_k)$ is denoted~$\Int_\perf({\mathcal{C}^\opp}\mhyphen\dgMod_k)$.
 \end{definition}
 \begin{definition}
-  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. Let~$M$ be an object of~$\Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)$. Let~$C$ be an object of~$\mathcal{C}$. We can define a morphism of dg~categories~$\ev_M$ which acts as a partial evaluation in the first parameter, by setting
+  Let~$\mathcal{C}$ and~$\mathcal{D}$ be dg~categories. Let~$M$ be an object of~$\Int({(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}\mhyphen\dgMod_k)$. Let~$C$ be an object of~$\mathcal{C}$. We can define a morphism of dg~categories~$\ev_M$ which acts as a partial evaluation in the first parameter, by setting
   \begin{equation}
     \ev_M(C)\colon\mathcal{D}^\opp\to\Ch_\dg(k\mhyphen\Mod):D\mapsto M(C,D)^\bullet.
   \end{equation}
   We consider this morphism in~$\Ho(\dgCat_k)$. Using \cite[theorem 6.1]{toen} (as in the proof of \cite[corollary 7.6]{toen}) we obtain a natural isomorphism
   \begin{equation}
     \begin{aligned}
-      \Int(\dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}_k)&\cong\RRRHHom\left( (\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp,\Int(\dgMod_k) \right) \\
-      &\cong\RRRHHom\left( \mathcal{C}^\opp,\Int(\dgMod{\mathcal{D}^\opp}_k) \right)
+      \Int({(\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp}\mhyphen\dgMod_k)&\cong\RRRHHom\left( (\mathcal{C}\otimes^{\mathbf{L}}\mathcal{D})^\opp,\Int(\dgMod_k) \right) \\
+      &\cong\RRRHHom\left( \mathcal{C}^\opp,\Int({\mathcal{D}^\opp}\mhyphen\dgMod_k) \right)
     \end{aligned}
   \end{equation}
   in~$\Ho(\dgCat_k)$ hence we see that the object~$M$ corresponds to~$\ev_M$. We then say that~$M$ is \emph{pseudoperfect relative to~$\mathcal{D}$} if we can factorise~$\ev_M$ in~$\Ho(\dgCat_k)$ as
   \begin{equation}
     \begin{tikzcd}
-      \mathcal{C}^\opp \arrow{r}{\ev_M} \arrow{rd} & \Int(\dgMod{\mathcal{D}^\opp}_k) \\
-      & \Int_\perf(\dgMod{\mathcal{D}^\opp}_k) \arrow[hook]{u}.
+      \mathcal{C}^\opp \arrow{r}{\ev_M} \arrow{rd} & \Int({\mathcal{D}^\opp}\mhyphen\dgMod_k) \\
+      & \Int_\perf({\mathcal{D}^\opp}\mhyphen\dgMod_k) \arrow[hook]{u}.
     \end{tikzcd}
   \end{equation}
 \end{definition}
@@ -112,15 +112,15 @@ We now give several finiteness properties a dg~category can satisfy.
   Let~$\mathcal{C}$ be a dg~category. We say that it
   \begin{enumerate}
     \item is \emph{locally perfect} or \emph{locally proper} if for every~$C$ and~$D\in\Ob(\mathcal{C})$ the morphism cochain complex~$\Hom_{\mathcal{C}}(C,D)^\bullet$ is a perfect complex of~$k$\dash modules;
-    \item has \emph{a compact generator} if the triangulated category~$\HH^0(\Int(\dgMod{\mathcal{C}^\opp}_k))$ has a compact generator;
+    \item has \emph{a compact generator} if the triangulated category~$\HH^0(\Int({\mathcal{C}^\opp}\mhyphen\dgMod_k))$ has a compact generator;
     \item is \emph{proper} if it is locally proper and it has a compact generator;
-    \item is \emph{smooth} if it is a perfect object in~$\Int\left( \dgMod{(\mathcal{C}^\opp\otimes^{\mathbf{L}}\mathcal{C})^\opp}_k \right)$, using the interpretation
+    \item is \emph{smooth} if it is a perfect object in~$\Int\left( {(\mathcal{C}^\opp\otimes^{\mathbf{L}}\mathcal{C})^\opp}\mhyphen\dgMod_k \right)$, using the interpretation
       \begin{equation}
         \mathcal{C}\colon\mathcal{C}^\opp\otimes^{\mathbf{L}}\mathcal{C}:(C,D)\mapsto\Hom_{\mathcal{C}}(C,D)^\bullet;
       \end{equation}
-    \item is \emph{pretriangulated} if~$\mathcal{C}\to\Int_\perf(\dgMod{\mathcal{C}^\opp}_k)$ is a quasi-equivalence, this is equivalent to the notion introduced in section~\ref{subsection:functoriality-of-the-cone};
+    \item is \emph{pretriangulated} if~$\mathcal{C}\to\Int_\perf({\mathcal{C}^\opp}\mhyphen\dgMod_k)$ is a quasi-equivalence, this is equivalent to the notion introduced in section~\ref{subsection:functoriality-of-the-cone};
     \item is \emph{saturated} if it is proper, smooth and pretriangulated;
-    \item is \emph{of finite type} if there exists a dg~algebra~$B^\bullet$ which is homotopically finitely presented in~$\dgAlg$ such that~$\Int(\dgMod{\mathcal{C}^\opp}_k)$ is quasi-equivalent to~$\Int(\dgMod{B^\bullet}_k)$.
+    \item is \emph{of finite type} if there exists a dg~algebra~$B^\bullet$ which is homotopically finitely presented in~$\dgAlg$ such that~$\Int({\mathcal{C}^\opp}\mhyphen\dgMod_k)$ is quasi-equivalent to~$\Int({B^\bullet}\mhyphen\dgMod_k)$.
   \end{enumerate}
 \end{definition}
 Before we define the main object of study we list some of the properties that can be deduced from these finiteness conditions.
@@ -128,7 +128,7 @@ Before we define the main object of study we list some of the properties that ca
   \label{proposition:dg-properties}
   Let~$\mathcal{C}$ be a dg~category.
   \begin{enumerate}
-    \item If~$\mathcal{C}$ is saturated then an object in~$\Ho(\Int(\dgMod{\mathcal{C}^\opp}_k))$ is pseudoperfect if and only if it is quasirepresentable \cite[corollary 2.9(2)]{toen-vaquie}.
+    \item If~$\mathcal{C}$ is saturated then an object in~$\Ho(\Int({\mathcal{C}^\opp}\mhyphen\dgMod_k))$ is pseudoperfect if and only if it is quasirepresentable \cite[corollary 2.9(2)]{toen-vaquie}.
     \item If~$\mathcal{C}$ is smooth and proper then it is of finite type \cite[corollary 2.13]{toen-vaquie}.
     \item If~$\mathcal{C}$ is of finite type then it is smooth \cite[corollary 2.14]{toen-vaquie}.
   \end{enumerate}
@@ -139,7 +139,7 @@ Before we define the main object of study we list some of the properties that ca
   \label{definition:derived-stack-of-pseudoperfect-objects}
   Let~$\mathcal{C}$ be a dg~category. The \emph{derived moduli stack of pseudoperfect~$\mathcal{C}^\opp$\dash dg~modules}~$\mathcal{M}_{\mathcal{C}}$ is given by the simplicial presheaf
   \begin{equation}
-    \mathcal{M}_{\mathcal{C}}:\scAlg{k}\to\sSet:A^*\mapsto\Map_{\dgCat_K}\left( \mathcal{C}^\opp,\Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right)^*.
+    \mathcal{M}_{\mathcal{C}}\colon{k}\mhyphen\scAlg\to\sSet:A^*\mapsto\Map_{\dgCat_K}\left( \mathcal{C}^\opp,\Int_\perf\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right) \right)^*.
   \end{equation}
 \end{definition}
 
@@ -176,21 +176,21 @@ The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other const
   \begin{proof}[Proof]
     As discussed in \cite[corollary 1.3.2.4]{hagII} the proof is reduced to showing the following three properties:
     \begin{enumerate}
-      \item for every weak equivalence~$A^*\weq B^*$ in~$\scAlg{k}$ is the natural morphism
+      \item for every weak equivalence~$A^*\weq B^*$ in~$k\mhyphen\scAlg$ is the natural morphism
         \begin{equation}
           \label{equation:condition-1}
-          \Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\weq\Int_\perf\left( \dgMod{\nerve(B^*)^\bullet}_k \right)
+          \Int_\perf\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right)\weq\Int_\perf\left( {\nerve(B^*)^\bullet}\mhyphen\dgMod_k \right)
         \end{equation}
         a quasi-equivalence;
-      \item for every~$A^*$ and~$B^*$ in~$\scAlg{k}$ is the natural morphism
+      \item for every~$A^*$ and~$B^*$ in~$k\mhyphen\scAlg$ is the natural morphism
         \begin{equation}
-          \Int_\perf\left( \dgMod{\nerve(A^*\times B^*)^\bullet}_k \right)\weq\Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\times\Int_\perf\left( \dgMod{\nerve(B^*)^\bullet}_k \right)
+          \Int_\perf\left( {\nerve(A^*\times B^*)^\bullet}\mhyphen\dgMod_k \right)\weq\Int_\perf\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right)\times\Int_\perf\left( {\nerve(B^*)^\bullet}\mhyphen\dgMod_k \right)
         \end{equation}
         a quasi-equivalence;
-      \item for every \'etale hypercovering~$X_*\to Y$ in~$\mathbf{D}^-\Aff$, or equivalently a co-augmented cosimplicial object~$A^*\to B_*^*$ in~$\scAlg{k}$ is
+      \item for every \'etale hypercovering~$X_*\to Y$ in~$\mathbf{D}^-\Aff$, or equivalently a co-augmented cosimplicial object~$A^*\to B_*^*$ in~$k\mhyphen\scAlg$ is
         \begin{equation}
           \label{equation:condition-3}
-          \Int_\perf\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\weq\holim_{[n]\in\Ob(\Delta)}\Int_\perf\left( \dgMod{B_n^*}_k \right)
+          \Int_\perf\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right)\weq\holim_{[n]\in\Ob(\Delta)}\Int_\perf\left( {B_n^*}\mhyphen\dgMod_k \right)
         \end{equation}
         a quasi-equivalence.
     \end{enumerate}
@@ -201,33 +201,33 @@ The derived moduli stack~$\RPerf$ serves as a ``base point'' for all other const
     %  \item $\mathcal{M}_{\mathcal{C}}$ is compatible with \'etale hypercovers.
     %\end{enumerate}
 
-    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence by lemma \ref{lemma:quillen-adjunction-equivalence-simplicial-tensor-product}, so we obtain a quasi-equivalence~$\Int(\dgMod{\nerve(A^*)^\bullet}_k)\to\Int(\dgMod{\nerve(B^*)^\bullet}_k)$ \cite[proposition 3.2]{toen}. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
+    Let~$A^*\weq B^*$ be a weak equivalence. The base change~$B^*\otimes_{A^*}-$ is a Quillen equivalence by lemma \ref{lemma:quillen-adjunction-equivalence-simplicial-tensor-product}, so we obtain a quasi-equivalence~$\Int({\nerve(A^*)^\bullet}\mhyphen\dgMod_k)\to\Int({\nerve(B^*)^\bullet}\mhyphen\dgMod_k)$ \cite[proposition 3.2]{toen}. This then descends to the full dg~subcategories of perfect objects, hence \eqref{equation:condition-1} is a quasi-equivalence and~$\RPerf$ satisfies property~1.
 
     By \cite[corollary 1.3.7.4]{hagII} we have that perfectness is \'etale local, hence we can drop the perfectness condition when proving properties~2 and~3. We then observe that
     \begin{equation}
-      \Int\left( \dgMod{\nerve(A^*\times B^*)^\bullet}_k \right)\to\Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\times\Int\left( \dgMod{\nerve(B^*)^\bullet}_k \right)
+      \Int\left( {\nerve(A^*\times B^*)^\bullet}\mhyphen\dgMod_k \right)\to\Int\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right)\times\Int\left( {\nerve(B^*)^\bullet}\mhyphen\dgMod_k \right)
     \end{equation}
     is a quasi-equivalence because the nerve construction respects products, just like the internal dg~category, which proves property~2.
 
     The last property is slightly more involved, and requires the results from \cite{toen} discussed in section~\ref{section:mapping-spaces}. First of all, we have reduced \eqref{equation:condition-3} to
     \begin{equation}
-      \Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right)\to\holim_{[n]\in\Ob(\Delta)}\Int\left( \dgMod{B_n^*}_k \right)
+      \Int\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right)\to\holim_{[n]\in\Ob(\Delta)}\Int\left( {B_n^*}\mhyphen\dgMod_k \right)
     \end{equation}
     by the previous remark. By applying Yoneda we reduce this to proving that
     \begin{equation}
-      \Map\left( \mathcal{C},\Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right)\to\Map\left( \mathcal{C},\holim_{[n]\in\Ob(\Delta)}\Int\left( \dgMod{B_n^*}_k \right) \right)
+      \Map\left( \mathcal{C},\Int\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right) \right)\to\Map\left( \mathcal{C},\holim_{[n]\in\Ob(\Delta)}\Int\left( {B_n^*}\mhyphen\dgMod_k \right) \right)
     \end{equation}
     is a weak equivalence of simplicial sets, for every dg~category~$\mathcal{C}$. By \cite[theorem 4.2]{toen} we have a weak equivalence
     \begin{equation}
-      \Map\left( \mathcal{C},\Int\left( \dgMod{\nerve(A^*)^\bullet}_k \right) \right)\weq\nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(A^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)
+      \Map\left( \mathcal{C},\Int\left( {\nerve(A^*)^\bullet}\mhyphen\dgMod_k \right) \right)\weq\nerve\left( {(\mathcal{C}\otimes^{\mathbf{L}}\nerve(A^*)^\bullet)}\mhyphen\dgMod_k^{\mathrm{cof,weq}} \right)
     \end{equation}
     and weak equivalences
     \begin{equation}
-      \Map\left( \mathcal{C},\Int\left( \dgMod{\nerve(B_n^*)^\bullet}_k \right) \right)\weq\nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(B_n^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)
+      \Map\left( \mathcal{C},\Int\left( {\nerve(B_n^*)^\bullet}\mhyphen\dgMod_k \right) \right)\weq\nerve\left( {(\mathcal{C}\otimes^{\mathbf{L}}\nerve(B_n^*)^\bullet)}\mhyphen\dgMod_k^{\mathrm{cof,weq}} \right)
     \end{equation}
     for each~$n\geq 0$. Hence we have to prove that
     \begin{equation}
-      \nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(A^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)\to\holim_{[n]\in\Ob(\Delta)}\nerve\left( \dgMod{(\mathcal{C}\otimes^{\mathbf{L}}\nerve(B_n^*)^\bullet)}_k^{\mathrm{cof,weq}} \right)
+      \nerve\left( {(\mathcal{C}\otimes^{\mathbf{L}}\nerve(A^*)^\bullet)}\mhyphen\dgMod_k^{\mathrm{cof,weq}} \right)\to\holim_{[n]\in\Ob(\Delta)}\nerve\left( {(\mathcal{C}\otimes^{\mathbf{L}}\nerve(B_n^*)^\bullet)}\mhyphen\dgMod_k^{\mathrm{cof,weq}} \right)
     \end{equation}
     is a weak equivalence. But this follows from \cite[corollary B.0.8]{hagII}.
   \end{proof}
@@ -261,9 +261,9 @@ The following properties give some idea on how this notion behaves \cite[proposi
     \item\label{enumerate:Tor-amplitude-1} Let the Tor amplitude of~$P^\bullet$ (resp.\ $Q^\bullet$) be contained in~$[a,b]$ (resp.\ $[c,d]$), then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^\bullet$ is a perfect~$\nerve(A^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a+c,b+d]$.
     \item\label{enumerate:Tor-amplitude-2} Let the Tor amplitude of~$P^\bullet$ and~$Q^\bullet$ be contained in~$[a,b]$, then the homotopy fiber of~$f\colon P^\bullet\to Q^\bullet$ has Tor amplitude contained in~$[a,b+1]$.
     \item\label{enumerate:Tor-amplitude-3} The Tor amplitude of a~$\nerve(A^*)^\bullet$\dash dg~module~$P^\bullet$ is contained in~$[a,b]$ if and only if the base change~$\smash{P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\pi_0(A^*)}$ is a perfect complex of~$\pi_0(A^*)$\dash modules with Tor amplitude contained in~$[a,b]$.
-    \item\label{enumerate:Tor-amplitude-4} Let~$A^*\to B^*$ be a morphism in~$\scAlg{k}$. Let the Tor amplitude of~$P^\bullet$ be contained in~$[a,b]$. Then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet$ is a perfect~$\nerve(B^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a,b]$.
+    \item\label{enumerate:Tor-amplitude-4} Let~$A^*\to B^*$ be a morphism in~$k\mhyphen\scAlg$. Let the Tor amplitude of~$P^\bullet$ be contained in~$[a,b]$. Then~$P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet$ is a perfect~$\nerve(B^*)^\bullet$\dash dg~module whose Tor amplitude is contained in~$[a,b]$.
     \item\label{enumerate:Tor-amplitude-5} We can find~$a\leq b$ such that the Tor amplitude of~$P^\bullet$ is contained in~$[a,b]$.
-    \item\label{enumerate:Tor-amplitude-6} Let the Tor amplitude of~$P^\bullet$ be~$[a,a]$. Then~$P^\bullet$ is isomorphic in~$\Ho(\dgMod{\nerve(A^*)^\bullet}_k)$ to the shift with~$a$ positions of a projective~$\nerve(A^*)^\bullet$\dash module of finite type.
+    \item\label{enumerate:Tor-amplitude-6} Let the Tor amplitude of~$P^\bullet$ be~$[a,a]$. Then~$P^\bullet$ is isomorphic in~$\Ho({\nerve(A^*)^\bullet}\mhyphen\dgMod_k)$ to the shift with~$a$ positions of a projective~$\nerve(A^*)^\bullet$\dash module of finite type.
     \item\label{enumerate:Tor-amplitude-7} Let the Tor amplitude of~$P^\bullet$ be~$[a,b]$. We can find a projective~$\nerve(A^*)^\bullet$\dash dg~module of finite type~$E$ and a morphism~$E[-b]\to P^\bullet$ such that the homotopy cofiber has Tor amplitude contained in~$[a,b-1]$.
   \end{enumerate}
 \end{proposition}
@@ -301,9 +301,9 @@ The next two definitions are a finiteness condition on a derived stack.
 \begin{definition}
   Let~$X=\RSpec A^*$ be an affine derived stack. It is \emph{finitely presented} if the morphism
   \begin{equation}
-    \colim_{i\in I}\Map_{\scAlg{k}}(A^*,B_i^*)^*\to\Map_{\scAlg{k}}\left( A^*,\colim_{i\in I}B_i^* \right)^*
+    \colim_{i\in I}\Map_{k\mhyphen\scAlg}(A^*,B_i^*)^*\to\Map_{k\mhyphen\scAlg}\left( A^*,\colim_{i\in I}B_i^* \right)^*
   \end{equation}
-  is an isomorphism in~$\Ho(\sSet)$ for every filtered\footnote{Remark that it doesn't matter whether we consider colimits or homotopy colimits, they agree in these cases.} system~$(B_i^*)_{i\in I}$ in~$\scAlg{k}$.
+  is an isomorphism in~$\Ho(\sSet)$ for every filtered\footnote{Remark that it doesn't matter whether we consider colimits or homotopy colimits, they agree in these cases.} system~$(B_i^*)_{i\in I}$ in~$k\mhyphen\scAlg$.
 \end{definition}
 \begin{definition}
   Let~$F$ be an~$n$\dash geometric derived stack. It is \emph{locally of finite presentation} if there exists an~$n$\dash atlas~$(X_i)_{i\in I}$ such that each~$X_i$ is finitely presented.
@@ -327,7 +327,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
   \begin{proof}[Sketch of a proof]
     We first make the following reduction: let~$a\leq b$ be integers, then there exists a full derived substack~$\RPerf^{[a,b]}$ of~$\RPerf$.
     
-    For~$A^*\in\Ob(\scAlg{k})$ we see that~$\pi_0(\RPerf(A^*))$ consists of the quasi-isomorphism classes of perfect~$\nerve(A^*)^\bullet$\dash dg~modules. Hence we can define~$\RPerf^{[a,b]}(A^*)$ to be the full subsimplicial set of~$\RPerf(A^*)$ of connected components that correspond to perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. We can then write
+    For~$A^*\in\Ob(k\mhyphen\scAlg)$ we see that~$\pi_0(\RPerf(A^*))$ consists of the quasi-isomorphism classes of perfect~$\nerve(A^*)^\bullet$\dash dg~modules. Hence we can define~$\RPerf^{[a,b]}(A^*)$ to be the full subsimplicial set of~$\RPerf(A^*)$ of connected components that correspond to perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. We can then write
     \begin{equation}
       \RPerf=\bigcup_{a\leq b}\RPerf^{[a,b]}
     \end{equation}
@@ -344,11 +344,11 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
 
     Now let~$a<b$. As~$X$ is affine we have a simplicial commutative~$k$\dash algebra~$A^*$ representing it, and~$f$ and~$g$ are two~$A^*$\dash rational points of~$\RPerf^{[a,b]}$, hence they correspond to two perfect~$\nerve(A^*)^\bullet$\dash dg~modules whose Tor amplitude is contained in~$[a,b]$. By the strictification theorem \cite[appendix B]{hagII} we can rewrite~$\RSpec A^*\times_{\RPerf^{[a,b]}}\RSpec A^*$ as
     \begin{equation}
-      \scAlg{k}_{/A^*}\to\sSet:B^*\mapsto\Map_{\dgMod{\nerve(A^*)^\bullet}_k}^{\mathrm{weq}}\left( P^\bullet,Q^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet \right)
+      k\mhyphen\scAlg_{/A^*}\to\sSet\colon B^*\mapsto\Map_{{\nerve(A^*)^\bullet}_k}\mhyphen\dgMod^{\mathrm{weq}}\left( P^\bullet,Q^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet \right)
     \end{equation}
     and we can then consider the (bigger) derived stack
     \begin{equation}
-      F\colon\scAlg{k}_{/A^*}\to\sSet:B^*\mapsto\Map_{\dgMod{\nerve(A^*)^\bullet}_k}\left( P^\bullet,Q^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet \right)
+      F\colon k\mhyphen\scAlg_{/A^*}\to\sSet\colon B^*\mapsto\Map_{{\nerve(A^*)^\bullet}\mhyphen\dgMod_k}\left( P^\bullet,Q^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}\nerve(B^*)^\bullet \right)
     \end{equation}
     together with the morphism
     \begin{equation}
@@ -356,7 +356,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     This morphism is proven to be~$0$\dash representable, hence its fibers are~$0$\dash geometric derived stacks. One then shows that~$F$ is a~$(n-1)$\dash geometric derived stack. To do so one first writes
     \begin{equation}
-      F\colon\scAlg{k}_{/A^*}\to\sSet:B^*\mapsto\Map_{\dgMod{\nerve(A^*)^\bullet}_k}\left( P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^{\bullet,\vee},\nerve(B^*)^\bullet \right)
+      F\colon k\mhyphen\scAlg_{/A^*}\to\sSet:B^*\mapsto\Map_{{\nerve(A^*)^\bullet}\mhyphen\dgMod_k}\left( P^\bullet\otimes_{\nerve(A^*)^\bullet}^{\mathbf{L}}Q^{\bullet,\vee},\nerve(B^*)^\bullet \right)
     \end{equation}
     where the first parameter has Tor amplitude~$[a-b,b-a]$ by proposition \ref{proposition:Tor-amplitude}(\ref{enumerate:Tor-amplitude-1}). This is the content of \cite[sublemma 3.9]{toen-vaquie}, which uses proposition~\ref{proposition:Tor-amplitude}(\ref{enumerate:Tor-amplitude-7}).
 
@@ -366,7 +366,7 @@ We first prove that the base derived stack~$\RPerf$ is locally geometric and loc
     \end{equation}
     and by \cite[corollary 1.3.7.4]{hagII} we obtain that it is a~$1$\dash geometric derived stack, locally of finite presentation.
 
-    Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~$\dgMod{\nerve(A^*)^\bullet}_k$. This category of morphisms is equipped with its projective model category structure, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ has Tor amplitude~$[b-1,b-1]$. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
+    Now let~$a<b$, or equivalently~$n>1$. We have the~$(n-1)$\dash geometric derived stack~$\RPerf^{[a,b-1]}$ which is locally of finite presentation. The construction of~$U$ is done by considering the model category of morphisms in~${\nerve(A^*)^\bullet}\mhyphen\dgMod_k$. This category of morphisms is equipped with its projective model category structure, restricting oneself to cofibrant objects~$u\colon Q^\bullet\to R^\bullet$ such that~$Q^\bullet$ has Tor amplitude contained in~$[a,b-1]$ and~$R^\bullet$ has Tor amplitude~$[b-1,b-1]$. This yields a~$(n-1)$\dash geometric stack, locally of finite presentation, by considering the morphism
     \begin{equation}
       p\colon U\to\RPerf^{[a,b-1]}\times^{\mathrm{h}}\RVect:(u\colon Q^\bullet\to R^\bullet)\mapsto(Q^\bullet,R^\bullet[b-1]).
     \end{equation}
